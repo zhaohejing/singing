@@ -1,0 +1,14 @@
+2017-05-04 at 14:47:47 CST INFO  com.efan.aspect.LogAspect 43 doBefore - URL : http://localhost:8080/user/list
+2017-05-04 at 14:47:47 CST INFO  com.efan.aspect.LogAspect 44 doBefore - HTTP_METHOD : POST
+2017-05-04 at 14:47:47 CST INFO  com.efan.aspect.LogAspect 45 doBefore - IP : 0:0:0:0:0:0:0:1
+2017-05-04 at 14:47:47 CST INFO  com.efan.aspect.LogAspect 46 doBefore - CLASS_METHOD : com.efan.controller.UserController.UserList
+2017-05-04 at 14:47:47 CST INFO  com.efan.aspect.LogAspect 47 doBefore - ARGS : []
+2017-05-04 at 14:47:47 CST INFO  com.efan.aspect.LogAspect 53 doAfterReturning - RESPONSE : {"success":true,"result":[],"unAuthorizedRequest":false}
+2017-05-04 at 14:47:47 CST INFO  com.efan.aspect.LogAspect 54 doAfterReturning - SPEND TIME : 201
+2017-05-04 at 17:26:30 CST INFO  com.efan.aspect.LogAspect 43 doBefore - URL : http://localhost:8080/api/song/list
+2017-05-04 at 17:26:30 CST INFO  com.efan.aspect.LogAspect 44 doBefore - HTTP_METHOD : POST
+2017-05-04 at 17:26:30 CST INFO  com.efan.aspect.LogAspect 45 doBefore - IP : 0:0:0:0:0:0:0:1
+2017-05-04 at 17:26:30 CST INFO  com.efan.aspect.LogAspect 46 doBefore - CLASS_METHOD : com.efan.controller.SongController.UserList
+2017-05-04 at 17:26:30 CST INFO  com.efan.aspect.LogAspect 47 doBefore - ARGS : []
+2017-05-04 at 17:26:30 CST INFO  com.efan.aspect.LogAspect 53 doAfterReturning - RESPONSE : {"success":true,"result":[{"id":1,"songName":"好汉歌","songNum":"000001","singer":"阿拉蕾","songCategory":"流行","language":"汉语","isDelete":false,"isCommon":false,"creationUserId":1,"creationTime":"2017-05-04"}],"unAuthorizedRequest":false}
+2017-05-04 at 17:26:30 CST INFO  com.efan.aspect.LogAspect 54 doAfterReturning - SPEND TIME : 186
