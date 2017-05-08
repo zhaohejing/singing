@@ -1,6 +1,10 @@
 package com.efan.controller;
 
+import com.efan.appservice.iservice.IOrderService;
+import com.efan.controller.dtos.RemoteDto;
 import com.efan.core.page.ActionResult;
+import com.efan.core.page.PageModel;
+import com.efan.core.page.ResultModel;
 import io.swagger.annotations.ApiImplicitParam;
 import io.swagger.annotations.ApiImplicitParams;
 import io.swagger.annotations.ApiOperation;
@@ -15,23 +19,26 @@ import org.springframework.web.bind.annotation.RestController;
 @RestController
 @RequestMapping("/api/order")
 public class OrderController {
+    private IOrderService _orderService;
     @Autowired
-    public OrderController(){
-
+    public OrderController(IOrderService orderService){
+        _orderService=orderService;
     }
 /*获取门店列表*/
     @ApiOperation(value="获取门店列表", notes="远程购买接口")
     @ApiImplicitParam(name = "point", value = "点位坐标", required = true, dataType = "String")
     @RequestMapping(value  ="/stores" ,method = RequestMethod.POST)
     public ActionResult RemoteBuy(String point){
-        return  new ActionResult();
+        ResultModel<RemoteDto> result= _orderService.GetRemoteList(point,new PageModel(1,10));
+        return  new ActionResult(result);
     }
     /*获取包房信息*/
     @ApiOperation(value="获取包房信息", notes="远程购买接口")
     @ApiImplicitParam(name = "id", value = "点位id", required = true, dataType = "Integer")
     @RequestMapping(value  ="/coupe" ,method = RequestMethod.POST)
     public ActionResult CoupeList(Integer id){
-        return  new ActionResult();
+        ResultModel<RemoteDto> result= _orderService.GetCoupeList(id,new PageModel(1,10));
+        return  new ActionResult(result);
     }
     /*获取包房预定列表*/
     @ApiOperation(value="获取包房预定清单", notes="远程购买接口")
