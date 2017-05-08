@@ -26,6 +26,4 @@ public class MyController {
     public ActionResult MySongs(String openId){
         return  new ActionResult();
     }
-
-
 }

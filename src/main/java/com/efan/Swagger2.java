@@ -29,8 +29,8 @@ public class Swagger2 {
 
     private ApiInfo apiInfo() {
         return new ApiInfoBuilder()
-                .title("efan的e起唱接口列表")
-                .description("这个描述被用来写url")
+                .title("efan的KTV接口列表")
+                .description("版本不固定先简单来")
                 .termsOfServiceUrl("http://blog.didispace.com/")
                 .version("1.0")
                 .build();

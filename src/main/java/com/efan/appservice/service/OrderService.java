@@ -4,7 +4,7 @@ import com.efan.appservice.iservice.IOrderService;
 import org.springframework.stereotype.Service;
 
 /**
- * Created by 45425 on 2017/5/8.
+ * 购买订单相关接口
  */
 @Service
 public class OrderService implements IOrderService {
