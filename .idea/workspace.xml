@@ -1,21 +1,8 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="ChangeListManager">
-    <list default="true" id="f0d0a10e-b853-4aeb-84d6-8ad172c74a8a" name="默认的" comment="骑牛接口添加">
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/src/main/java/com/efan/controller/dtos/RemoteDto.java" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/src/main/java/com/efan/core/page/PageModel.java" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/src/main/java/com/efan/core/page/ResultModel.java" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/src/main/java/com/efan/utils/HttpUtils.java" />
+    <list default="true" id="f0d0a10e-b853-4aeb-84d6-8ad172c74a8a" name="默认的" comment="">
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/main/java/com/efan/appservice/iservice/IMyTapeService.java" afterPath="$PROJECT_DIR$/src/main/java/com/efan/appservice/iservice/IMyTapeService.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/main/java/com/efan/appservice/iservice/IOrderService.java" afterPath="$PROJECT_DIR$/src/main/java/com/efan/appservice/iservice/IOrderService.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/main/java/com/efan/appservice/service/MyTapeService.java" afterPath="$PROJECT_DIR$/src/main/java/com/efan/appservice/service/MyTapeService.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/main/java/com/efan/appservice/service/OrderService.java" afterPath="$PROJECT_DIR$/src/main/java/com/efan/appservice/service/OrderService.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/main/java/com/efan/appservice/service/TapeService.java" afterPath="$PROJECT_DIR$/src/main/java/com/efan/appservice/service/TapeService.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/main/java/com/efan/controller/MyController.java" afterPath="$PROJECT_DIR$/src/main/java/com/efan/controller/MyController.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/main/java/com/efan/core/entity/MySongs.java" afterPath="$PROJECT_DIR$/src/main/java/com/efan/core/entity/MySongs.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/main/java/com/efan/core/entity/MyTape.java" afterPath="$PROJECT_DIR$/src/main/java/com/efan/core/entity/MyTape.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/main/java/com/efan/repository/IMyTapeRepository.java" afterPath="$PROJECT_DIR$/src/main/java/com/efan/repository/IMyTapeRepository.java" />
     </list>
     <ignored path="$PROJECT_DIR$/out/" />
     <ignored path="$PROJECT_DIR$/target/" />
@@ -780,7 +767,7 @@
       <workItem from="1493875794061" duration="2578000" />
       <workItem from="1493878423842" duration="10631000" />
       <workItem from="1494213091273" duration="4227000" />
-      <workItem from="1494217987511" duration="12579000" />
+      <workItem from="1494217987511" duration="12598000" />
     </task>
     <task id="LOCAL-00001" summary="创建接口列表 修改  实体">
       <created>1494215316819</created>
@@ -824,11 +811,18 @@
       <option name="project" value="LOCAL" />
       <updated>1494221786642</updated>
     </task>
-    <option name="localTasksCounter" value="7" />
+    <task id="LOCAL-00007" summary="骑牛接口添加">
+      <created>1494237459742</created>
+      <option name="number" value="00007" />
+      <option name="presentableId" value="LOCAL-00007" />
+      <option name="project" value="LOCAL" />
+      <updated>1494237459742</updated>
+    </task>
+    <option name="localTasksCounter" value="8" />
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="30015000" />
+    <option name="totallyTimeSpent" value="30034000" />
   </component>
   <component name="ToolWindowManager">
     <frame x="1420" y="-8" width="1554" height="916" extended-state="6" />
@@ -878,10 +872,10 @@
   <component name="VcsManagerConfiguration">
     <MESSAGE value="创建接口列表 修改  实体" />
     <MESSAGE value="添加接口" />
-    <MESSAGE value="骑牛接口添加" />
     <MESSAGE value="接口添加" />
     <MESSAGE value="测试接口" />
-    <option name="LAST_COMMIT_MESSAGE" value="测试接口" />
+    <MESSAGE value="骑牛接口添加" />
+    <option name="LAST_COMMIT_MESSAGE" value="骑牛接口添加" />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>
