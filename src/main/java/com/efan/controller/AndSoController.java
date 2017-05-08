@@ -24,7 +24,6 @@ public class AndSoController {
     public ActionResult HitList(){
         return  new ActionResult();
     }
-
     /*歌曲模糊搜索*/
     @ApiOperation(value="歌曲模糊搜索", notes="歌单接口")
     @ApiImplicitParam(name = "keyWord", value = "关键词", required = true, dataType = "String")
