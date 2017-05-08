@@ -3,7 +3,7 @@ package com.efan.core.page;
 import java.io.Serializable;
 
 /**
- * Created by 45425 on 2017/5/4.
+ * 输出类
  */
 
 public class ActionResult implements Serializable {
@@ -12,7 +12,9 @@ public class ActionResult implements Serializable {
     private  String error;
     private  boolean unAuthorizedRequest;
     private  String targetUrl;
-    public  ActionResult(){}
+    public  ActionResult(){
+        success=false;
+    }
 public  ActionResult(Object result){
     this.success=result!=null;
     this.result=result;
