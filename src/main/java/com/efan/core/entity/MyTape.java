@@ -31,6 +31,46 @@ public class MyTape implements Serializable {
     @Column(length = 50)
     private  String songtime;
 
+    public Long getCreationUserId() {
+        return creationUserId;
+    }
+
+    public void setCreationUserId(Long creationUserId) {
+        this.creationUserId = creationUserId;
+    }
+
+    public String getCreationTime() {
+        return creationTime;
+    }
+
+    public void setCreationTime(String creationTime) {
+        this.creationTime = creationTime;
+    }
+
+    public Long getModifyUserId() {
+        return modifyUserId;
+    }
+
+    public void setModifyUserId(Long modifyUserId) {
+        this.modifyUserId = modifyUserId;
+    }
+
+    public String getModifyTime() {
+        return modifyTime;
+    }
+
+    public void setModifyTime(String modifyTime) {
+        this.modifyTime = modifyTime;
+    }
+
+    private Long creationUserId;
+
+    private String creationTime;
+
+    private Long modifyUserId;
+
+    private String modifyTime;
+
     public Long getId() {
         return id;
     }
