@@ -39,7 +39,7 @@ public class OrderService implements IOrderService {
     /**
      * 获取包厢列表
      * */
-    public ResultModel<RemoteDto> GetCoupeList(int remoteId, PageModel input) {
+    public ResultModel<RemoteDto> GetCoupeList(Integer remoteId, PageModel input) {
         List<RemoteDto> result = new ArrayList<RemoteDto>();
         result.add(new RemoteDto(1,"box1","大望路36号1",11,1));
         result.add(new RemoteDto(2,"box2","大望路36号2",22,1));

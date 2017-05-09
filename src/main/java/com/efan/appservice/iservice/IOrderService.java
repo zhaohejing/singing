@@ -8,12 +8,12 @@ import java.util.ArrayList;
 import java.util.List;
 
 /**
- * Created by 45425 on 2017/5/8.
+ *接口列表
  */
 public interface IOrderService {
      ResultModel<RemoteDto> GetRemoteList(String pointName, PageModel input) ;
     /**
      * 获取包厢列表
      * */
-     ResultModel<RemoteDto> GetCoupeList(int remoteId, PageModel input) ;
+     ResultModel<RemoteDto> GetCoupeList(Integer remoteId, PageModel input) ;
 }
