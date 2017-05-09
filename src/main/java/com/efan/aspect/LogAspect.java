@@ -18,7 +18,7 @@ import javax.servlet.http.HttpServletRequest;
 
 
 /**
- * Created by xuenianxiang on 2017/4/11.
+ * 拦截器
  */
 @Aspect
 @Order(5)
