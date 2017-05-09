@@ -4,6 +4,7 @@ import com.efan.appservice.iservice.IOrderService;
 import com.efan.controller.dtos.OrderTime;
 import com.efan.controller.dtos.OrderType;
 import com.efan.controller.dtos.RemoteDto;
+import com.efan.controller.inputs.GetPayType;
 import com.efan.core.page.ActionResult;
 import com.efan.core.page.PageModel;
 import com.efan.core.page.ResultModel;
@@ -11,10 +12,7 @@ import io.swagger.annotations.ApiImplicitParam;
 import io.swagger.annotations.ApiImplicitParams;
 import io.swagger.annotations.ApiOperation;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestMethod;
-import org.springframework.web.bind.annotation.RequestParam;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
 
@@ -68,13 +66,10 @@ public class OrderController {
 /**
  * 获取套餐详情*/
     @ApiOperation(value="获取套餐详情列表", notes="远程购买接口")
-    @ApiImplicitParams({
-            @ApiImplicitParam(name = "isRemote", value = "是否远程预定", required = true, dataType = "Boolean"),
-            @ApiImplicitParam(name = "boxId", value = "包厢id", required = true, dataType = "Integer"),
-    })
+    @ApiImplicitParam(name = "input", value = "dto对象", required = true, dataType = "GetPayType")
     @RequestMapping(value  ="/getpaylist" ,method = RequestMethod.POST)
-     public  ActionResult GetPayList(@RequestParam Boolean isRemote,@RequestParam Integer boxId){
-        List<OrderType> list=_orderService.GetOrderTypeList(isRemote,boxId);
+     public  ActionResult GetPayList(@RequestBody GetPayType input){
+        List<OrderType> list=_orderService.GetOrderTypeList(input.isRemote,input.boxId);
              return  new ActionResult(list);
      }
 
