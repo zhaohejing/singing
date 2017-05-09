@@ -1,13 +1,14 @@
 package com.efan.controller;
 
+import com.efan.appservice.iservice.IMyTapeService;
+import com.efan.controller.dtos.MyTapeDto;
+import com.efan.core.entity.MyTape;
 import com.efan.core.page.ActionResult;
 import io.swagger.annotations.ApiImplicitParam;
 import io.swagger.annotations.ApiImplicitParams;
 import io.swagger.annotations.ApiOperation;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestMethod;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
 
 /**
@@ -16,43 +17,31 @@ import org.springframework.web.bind.annotation.RestController;
 @RestController
 @RequestMapping("/api/tape")
 public class TapeController {
+    private IMyTapeService _mytapeService;
     @Autowired
-    public TapeController(){
-
+    public TapeController(IMyTapeService mytapeService){
+this._mytapeService=mytapeService;
     }
-    /*获取门店列表*/
-    @ApiOperation(value="获取门店列表", notes="远程购买接口")
-    @ApiImplicitParam(name = "point", value = "点位坐标", required = true, dataType = "String")
-    @RequestMapping(value  ="/stores" ,method = RequestMethod.POST)
-    public ActionResult RemoteBuy(String point){
-        return  new ActionResult();
+    /*创建我的原唱歌曲*/
+    @ApiOperation(value="创建我的原唱歌曲", notes="我的模块接口")
+    @RequestMapping(value  ="/insertTape" ,method = RequestMethod.POST)
+    public ActionResult InsertTape(@RequestBody MyTapeDto input){
+        MyTape result=_mytapeService.ModifyMyTape(input);
+        return  new ActionResult(result);
     }
-    /*获取包房信息*/
-    @ApiOperation(value="获取包房信息", notes="远程购买接口")
-    @ApiImplicitParam(name = "id", value = "点位id", required = true, dataType = "Integer")
-    @RequestMapping(value  ="/coupe" ,method = RequestMethod.POST)
-    public ActionResult CoupeList(Integer id){
-        return  new ActionResult();
+    /*通知设备上传文件并获取到唯一id*/
+    @ApiOperation(value="通知设备上传文件并获取到唯一id", notes="我的模块接口")
+    @RequestMapping(value  ="/notifyupload" ,method = RequestMethod.POST)
+    public ActionResult NotifyUploadSongs(@RequestBody MyTapeDto input){
+        MyTape result=_mytapeService.ModifyMyTape(input);
+        return  new ActionResult(result);
     }
-    /*获取包房预定列表*/
-    @ApiOperation(value="获取包房预定清单", notes="远程购买接口")
-    @ApiImplicitParam(name = "id", value = "包房id", required = true, dataType = "Integer")
-    @RequestMapping(value  ="/booking" ,method = RequestMethod.POST)
-    public ActionResult Booking(Integer id){
-        return  new ActionResult();
+    /*修改我的歌单文件上传状态*/
+    @ApiOperation(value="修改我的歌单文件上传状态", notes="我的模块接口")
+    @RequestMapping(value  ="/updatemytapestate" ,method = RequestMethod.POST)
+    public ActionResult UpdateMyTapeState(@RequestParam Long id){
+        MyTape result=_mytapeService.UpdateMyTapeState(id);
+        return  new ActionResult(result);
     }
-
-    /*支付接口*/
-    @ApiOperation(value="调用支付", notes="远程购买接口")
-    @ApiImplicitParams({
-            @ApiImplicitParam(name = "orderId", value = "包房id", required = true, dataType = "String"),
-            @ApiImplicitParam(name = "openId", value = "微信openId", required = true, dataType = "String"),
-    })
-    @RequestMapping(value  ="/payfor" ,method = RequestMethod.POST)
-    public ActionResult PayFor(String orderId,String openId){
-        return  new ActionResult();
-    }
-
-
 
 }

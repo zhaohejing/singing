@@ -1,6 +1,8 @@
 package com.efan.controller;
 
 import com.efan.appservice.iservice.IOrderService;
+import com.efan.controller.dtos.OrderTime;
+import com.efan.controller.dtos.OrderType;
 import com.efan.controller.dtos.RemoteDto;
 import com.efan.core.page.ActionResult;
 import com.efan.core.page.PageModel;
@@ -11,7 +13,10 @@ import io.swagger.annotations.ApiOperation;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
+
+import java.util.List;
 
 /**
  * 远程购买接口表
@@ -42,10 +47,11 @@ public class OrderController {
     }
     /*获取包房预定列表*/
     @ApiOperation(value="获取包房预定清单", notes="远程购买接口")
-    @ApiImplicitParam(name = "id", value = "包房id", required = true, dataType = "Integer")
+    @ApiImplicitParam(name = "boxId", value = "包房id", required = true, dataType = "Integer")
     @RequestMapping(value  ="/booking" ,method = RequestMethod.POST)
-    public ActionResult Booking(Integer id){
-        return  new ActionResult();
+    public ActionResult Booking(Integer boxId){
+        List<OrderTime> res =_orderService.GetOrderList(boxId);
+        return  new ActionResult(res);
     }
 
     /*支付接口*/
@@ -59,6 +65,17 @@ public class OrderController {
         return  new ActionResult();
     }
 
-
+/**
+ * 获取套餐详情*/
+    @ApiOperation(value="获取套餐详情列表", notes="远程购买接口")
+    @ApiImplicitParams({
+            @ApiImplicitParam(name = "isRemote", value = "是否远程预定", required = true, dataType = "Boolean"),
+            @ApiImplicitParam(name = "boxId", value = "包厢id", required = true, dataType = "Integer"),
+    })
+    @RequestMapping(value  ="/getpaylist" ,method = RequestMethod.POST)
+     public  ActionResult GetPayList(@RequestParam Boolean isRemote,@RequestParam Integer boxId){
+        List<OrderType> list=_orderService.GetOrderTypeList(isRemote,boxId);
+             return  new ActionResult(list);
+     }
 
 }

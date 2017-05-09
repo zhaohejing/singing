@@ -1,15 +1,20 @@
 package com.efan.appservice.service;
 
 import com.efan.appservice.iservice.IOrderService;
+import com.efan.controller.dtos.OrderTime;
+import com.efan.controller.dtos.OrderType;
 import com.efan.controller.dtos.RemoteDto;
+import com.efan.core.entity.Order;
 import com.efan.core.page.PageModel;
 import com.efan.core.page.ResultModel;
 import com.efan.repository.IOrderRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import java.sql.Timestamp;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Random;
 
 /**
  * 购买订单相关接口
@@ -51,4 +56,27 @@ public class OrderService implements IOrderService {
         result.add(new RemoteDto(8,"box8","大望路36号8",88,1));
         return  new ResultModel<RemoteDto>(result,(long)result.size());
     }
+    public List<OrderTime> GetOrderList(Integer boxId){
+        List<OrderTime> result=new ArrayList<OrderTime>();
+          List<Order> list=   _orderRepository.findByBoxId(boxId);
+        for (int i = 0; i <24 ; i++) {
+            for (int j = 0; j < list.size(); j++) {
+                Order temp=list.get(j);
+               Timestamp from= temp.getFromTime();
+                Timestamp to= temp.getToTime();
+            }
+            
+            result.add(new OrderTime(i,i+1,new Random().nextInt(60)));
+        }
+        return  result;
+    }
+///根据lexington获取套餐详情
+     public  List<OrderType> GetOrderTypeList(Boolean isRemote,Integer boxId){
+            List<OrderType> result=new ArrayList<OrderType>();
+         result.add(new OrderType("28分钟",60.0D,36.0D));
+         result.add(new OrderType("38分钟",80.0D,42.0D));
+         result.add(new OrderType("48分钟",100.0D,48.0D));
+         result.add(new OrderType("58分钟",120.0D,55.0D));
+return  result;
+     }
 }

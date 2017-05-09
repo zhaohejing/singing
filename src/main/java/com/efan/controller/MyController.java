@@ -24,29 +24,6 @@ public class MyController {
         this._mytapeService=mytapeService;
 
     }
-
-
-    /*创建我的原唱歌曲*/
-    @ApiOperation(value="创建我的原唱歌曲", notes="我的模块接口")
-    @RequestMapping(value  ="/insertTape" ,method = RequestMethod.POST)
-    public ActionResult InsertTape(@RequestBody MyTapeDto input){
-         MyTape result=_mytapeService.ModifyMyTape(input);
-         return  new ActionResult(result);
-    }
-    /*通知设备上传文件并获取到唯一id*/
-    @ApiOperation(value="通知设备上传文件并获取到唯一id", notes="我的模块接口")
-    @RequestMapping(value  ="/notifyupload" ,method = RequestMethod.POST)
-    public ActionResult NotifyUploadSongs(@RequestBody MyTapeDto input){
-        MyTape result=_mytapeService.ModifyMyTape(input);
-        return  new ActionResult(result);
-    }
-    /*修改我的歌单文件上传状态*/
-    @ApiOperation(value="修改我的歌单文件上传状态", notes="我的模块接口")
-    @RequestMapping(value  ="/updatemytapestate" ,method = RequestMethod.POST)
-    public ActionResult UpdateMyTapeState(@RequestParam Long id){
-        MyTape result=_mytapeService.UpdateMyTapeState(id);
-        return  new ActionResult(result);
-    }
     /*获取我的歌单列表*/
     @ApiOperation(value="获取我的歌单列表", notes="我的模块接口")
     @RequestMapping(value  ="/mytapes" ,method = RequestMethod.POST)

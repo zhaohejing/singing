@@ -30,6 +30,18 @@ public class Order implements Serializable {
     //点位名称
     @Column(length = 50)
     private  String pointName;
+
+    public Integer getBoxId() {
+        return boxId;
+    }
+
+    public void setBoxId(Integer boxId) {
+        this.boxId = boxId;
+    }
+
+    //包厢Id
+    @NotNull
+    private    Integer boxId;
     //包房编号
     @Column(length = 20)
     private String boxName;
@@ -57,11 +69,11 @@ private  Integer state;
 
     private Long creationUserId;
 
-    private String creationTime;
+    private Timestamp creationTime;
 
     private Long modifyUserId;
 
-    private String modifyTime;
+    private Timestamp modifyTime;
 
     public Long getId() {
         return id;
@@ -183,11 +195,11 @@ private  Integer state;
         this.creationUserId = creationUserId;
     }
 
-    public String getCreationTime() {
+    public Timestamp getCreationTime() {
         return creationTime;
     }
 
-    public void setCreationTime(String creationTime) {
+    public void setCreationTime(Timestamp creationTime) {
         this.creationTime = creationTime;
     }
 
@@ -199,11 +211,11 @@ private  Integer state;
         this.modifyUserId = modifyUserId;
     }
 
-    public String getModifyTime() {
+    public Timestamp getModifyTime() {
         return modifyTime;
     }
 
-    public void setModifyTime(String modifyTime) {
+    public void setModifyTime(Timestamp modifyTime) {
         this.modifyTime = modifyTime;
     }
 }
