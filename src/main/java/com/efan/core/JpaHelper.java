@@ -1,15 +1,7 @@
 package com.efan.core;
 
-
-import com.efan.core.entity.Order;
-import org.aspectj.lang.annotation.After;
-import org.aspectj.lang.annotation.Before;
-
-import javax.persistence.EntityManager;
 import javax.persistence.EntityManagerFactory;
-import javax.persistence.Persistence;
-import javax.persistence.Query;
-import java.util.List;
+
 
 /**
  * 测试JPA原生SQL查询
@@ -17,7 +9,7 @@ import java.util.List;
  */
 public class JpaHelper {
     EntityManagerFactory emf = null;
-    public void testNativeQuery1() {
+ /*   public void testNativeQuery1() {
         EntityManager em = emf.createEntityManager();
         //定义SQL
         String sql = "SELECT * FROM t_user";
@@ -32,11 +24,9 @@ public class JpaHelper {
         }
         em.close();
     }
+*/
 
-
-    /**
-     * 查询的结果是实体的集合
-     */
+/*
 
     public List<Order> GetUserList() {
         EntityManager em = emf.createEntityManager();
@@ -49,13 +39,11 @@ public class JpaHelper {
         em.close();
         return  userList;
     }
+*/
 
 
-    /**
-     * 查询单个属性
-     * 返回的是这个属性值的集合
-     */
-    public void testNativeQuery3() {
+
+   /* public void testNativeQuery3() {
         EntityManager em = emf.createEntityManager();
         //定义SQL
         String sql = "SELECT t.name FROM t_user t";
@@ -66,13 +54,9 @@ public class JpaHelper {
         em.close();
     }
 
+*/
 
-    /**
-     　  　　  * 查询多个属性
-     　  　　  * 返回的是这些属性值的数组的集合
-     　　　 */
-
-    public void testNativeQuery4() {
+/*    public void testNativeQuery4() {
         EntityManager em = emf.createEntityManager();
         //定义SQL
         String sql = "SELECT t.name,t.age,t.email FROM t_user t";
@@ -86,6 +70,6 @@ public class JpaHelper {
         }
         em.close();
 
-    }
+    }*/
 
 }
