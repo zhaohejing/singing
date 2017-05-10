@@ -7,6 +7,7 @@ import com.efan.core.page.PageModel;
 import com.efan.core.page.ResultModel;
 
 import java.util.ArrayList;
+import java.util.Date;
 import java.util.List;
 
 /**
@@ -19,6 +20,6 @@ public interface IOrderService {
      * */
      ResultModel<RemoteDto> GetCoupeList(Integer remoteId, PageModel input) ;
      //获取预定列表
-    List<OrderTime> GetOrderList(Integer boxId);
+    List<OrderTime> GetOrderList(Integer boxId, Date date);
     List<OrderType> GetOrderTypeList(Boolean isRemote, Integer boxId);
 }

@@ -4,6 +4,7 @@ import com.efan.appservice.iservice.IOrderService;
 import com.efan.controller.dtos.OrderTime;
 import com.efan.controller.dtos.OrderType;
 import com.efan.controller.dtos.RemoteDto;
+import com.efan.controller.inputs.GetOrderInput;
 import com.efan.controller.inputs.GetPayType;
 import com.efan.core.page.ActionResult;
 import com.efan.core.page.PageModel;
@@ -14,6 +15,7 @@ import io.swagger.annotations.ApiOperation;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
+import java.util.Date;
 import java.util.List;
 
 /**
@@ -45,10 +47,10 @@ public class OrderController {
     }
     /*获取包房预定列表*/
     @ApiOperation(value="获取包房预定清单", notes="远程购买接口")
-    @ApiImplicitParam(name = "boxId", value = "包房id", required = true, dataType = "Integer")
+    @ApiImplicitParam(name = "input", value = "dto对象", required = true, dataType = "GetOrderInput")
     @RequestMapping(value  ="/booking" ,method = RequestMethod.POST)
-    public ActionResult Booking(Integer boxId){
-        List<OrderTime> res =_orderService.GetOrderList(boxId);
+    public ActionResult Booking(@RequestBody GetOrderInput input){
+        List<OrderTime> res =_orderService.GetOrderList(input.boxId, input.date);
         return  new ActionResult(res);
     }
 

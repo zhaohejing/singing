@@ -1,14 +1,28 @@
 package com.efan.core;
 
+import com.efan.core.entity.Order;
+
+import java.util.List;
+
+import javax.persistence.EntityManager;
 import javax.persistence.EntityManagerFactory;
+import javax.persistence.Persistence;
+import javax.persistence.Query;
+
+
 
 
 /**
  * 测试JPA原生SQL查询
  * @author Luxh
  */
-public class JpaHelper {
-    EntityManagerFactory emf = null;
+public  class JpaHelper {
+  static   EntityManagerFactory emf = null;
+    public  JpaHelper(){
+        emf = Persistence.createEntityManagerFactory("myJPA");
+    }
+
+
  /*   public void testNativeQuery1() {
         EntityManager em = emf.createEntityManager();
         //定义SQL
@@ -26,12 +40,19 @@ public class JpaHelper {
     }
 */
 
-/*
 
-    public List<Order> GetUserList() {
+
+    public static List<Order> GetOrderList(Integer boxId, String start, String end) {
         EntityManager em = emf.createEntityManager();
         //定义SQL
-        String sql = "SELECT * FROM t_user";
+        StringBuilder sb = new StringBuilder();
+        sb.append("SELECT  * from efan_order");
+        sb.append("where box_id="+boxId);
+        sb.append("and creation_time >'"+start+"' ");
+        sb.append("and creation_time <='"+end  +"' ");
+
+
+        String sql = sb.toString();
         //创建原生SQL查询QUERY实例,指定了返回的实体类型
        Query query =  em.createNativeQuery(sql,Order.class);
        //执行查询，返回的是实体列表,
@@ -39,7 +60,7 @@ public class JpaHelper {
         em.close();
         return  userList;
     }
-*/
+
 
 
 
