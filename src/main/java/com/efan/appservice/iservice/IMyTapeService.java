@@ -2,6 +2,7 @@ package com.efan.appservice.iservice;
 
 import com.efan.controller.dtos.MyTapeDto;
 import com.efan.core.entity.MyTape;
+import com.efan.core.page.FilterModel;
 import com.efan.core.page.PageModel;
 import com.efan.core.page.ResultModel;
 
@@ -10,6 +11,6 @@ import com.efan.core.page.ResultModel;
  */
 public interface IMyTapeService {
     MyTape ModifyMyTape(MyTapeDto input);
-    ResultModel<MyTape> GetMyTapeList(PageModel model);
+    ResultModel<MyTape> GetMyTapeList(FilterModel model);
     MyTape UpdateMyTapeState(Long tapeId);
 }

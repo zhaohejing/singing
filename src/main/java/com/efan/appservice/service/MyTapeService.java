@@ -3,6 +3,7 @@ package com.efan.appservice.service;
 import com.efan.appservice.iservice.IMyTapeService;
 import com.efan.controller.dtos.MyTapeDto;
 import com.efan.core.entity.MyTape;
+import com.efan.core.page.FilterModel;
 import com.efan.core.page.PageModel;
 import com.efan.core.page.ResultModel;
 import com.efan.repository.IMyTapeRepository;
@@ -53,9 +54,9 @@ public class MyTapeService implements IMyTapeService {
         }
     }
 //获取我的歌单列表
-    public ResultModel<MyTape> GetMyTapeList(PageModel model){
+    public ResultModel<MyTape> GetMyTapeList(FilterModel model){
         Pageable pageable = new PageRequest(model.index-1, model.size,null);
-      Page<MyTape> res=  _myTapeRepository.findAll(pageable);
+      Page<MyTape> res=  _myTapeRepository.findMyTapeBySongKey(model.filter, pageable);
       List<MyTape> te=res.getContent();
       return  new ResultModel<MyTape>( res.getContent(),res.getTotalElements());
     }
