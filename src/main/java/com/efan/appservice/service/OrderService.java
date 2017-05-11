@@ -4,6 +4,7 @@ import com.efan.appservice.iservice.IOrderService;
 import com.efan.controller.dtos.OrderTime;
 import com.efan.controller.dtos.OrderType;
 import com.efan.controller.dtos.RemoteDto;
+import com.efan.controller.inputs.OrderInput;
 import com.efan.core.entity.Order;
 import com.efan.core.page.PageModel;
 import com.efan.core.page.ResultModel;
@@ -13,6 +14,8 @@ import org.springframework.stereotype.Service;
 
 import java.sql.Timestamp;
 
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
 import java.util.*;
 
 /**
@@ -115,6 +118,55 @@ public class OrderService implements IOrderService {
          result.add(new OrderType("58分钟",120.0D,55.0D));
 return  result;
      }
+//创建订单并调用支付接口
+    public Order CreateOrder(OrderInput input)  {
+        Timestamp date = new Timestamp(System.currentTimeMillis());
+      UUID num=   java.util.UUID.randomUUID();
+      String pars=getTimeDifference(input.fromTime,input.toTime);
+        Order model=new Order();
+        model.setAmount(input.amount);
+        model.setBoxId(input.boxId);
+        model.setBoxName(input.boxName);
+        model.setOrderNum(num.toString());
+        model.setCommon(false);
+        model.setPointName(input.pointName);
+        model.setState(0);
+        model.setPurchasetime(pars);
+        model.setConsumerName(input.consumerName);
+        model.setCreationTime(date);
+        model.setCreationUserId(1L);
+        model.setDelete(false);
+        model.setFromTime(input.fromTime);
+        model.setModifyTime(date);
+        model.setMobile(input.consumerName);
+        model.setOrderType(input.orderType);
+        model.setToTime(input.toTime);
+       return  _orderRepository.save(model);
 
+    }
 
+    private  String getTimeDifference(Timestamp a, Timestamp b) {
+        SimpleDateFormat timeformat = new SimpleDateFormat("yyyy-MM-dd,HH:mm:ss");
+        long t1 = 0L;
+        long t2 = 0L;
+        try {
+            t1 = timeformat.parse(getTimeStampNumberFormat(a)).getTime();
+        } catch (ParseException e) {
+            e.printStackTrace();
+        }
+        try {
+            t2 = timeformat.parse(getTimeStampNumberFormat(b)).getTime();
+        } catch (ParseException e) {
+            e.printStackTrace();
+        }
+        //因为t1-t2得到的是毫秒级,所以要初3600000得出小时.算天数或秒同理
+        int hours=(int) ((t1 - t2)/3600000);
+        int minutes=(int) (((t1 - t2)/1000-hours*3600)/60);
+        int second=(int) ((t1 - t2)/1000-hours*3600-minutes*60);
+        return ""+  hours*60+minutes+(second/60);
+    }
+    private  String getTimeStampNumberFormat(Timestamp formatTime) {
+        SimpleDateFormat m_format = new SimpleDateFormat("yyyy-MM-dd,HH:mm:ss", new Locale("zh", "cn"));
+        return m_format.format(formatTime);
+    }
 }

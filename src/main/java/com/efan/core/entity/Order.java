@@ -31,13 +31,7 @@ public class Order implements Serializable {
     @Column(length = 50)
     private  String pointName;
 
-    public Integer getBoxId() {
-        return boxId;
-    }
 
-    public void setBoxId(Integer boxId) {
-        this.boxId = boxId;
-    }
 
     //包厢Id
     @NotNull
@@ -74,6 +68,13 @@ private  Integer state;
     private Long modifyUserId;
 
     private Timestamp modifyTime;
+    public Integer getBoxId() {
+        return boxId;
+    }
+
+    public void setBoxId(Integer boxId) {
+        this.boxId = boxId;
+    }
 
     public Long getId() {
         return id;

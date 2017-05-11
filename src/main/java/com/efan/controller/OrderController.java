@@ -6,6 +6,8 @@ import com.efan.controller.dtos.OrderType;
 import com.efan.controller.dtos.RemoteDto;
 import com.efan.controller.inputs.GetOrderInput;
 import com.efan.controller.inputs.GetPayType;
+import com.efan.controller.inputs.OrderInput;
+import com.efan.core.entity.Order;
 import com.efan.core.page.ActionResult;
 import com.efan.core.page.PageModel;
 import com.efan.core.page.ResultModel;
@@ -53,6 +55,14 @@ public class OrderController {
         List<OrderTime> res =_orderService.GetOrderList(input.boxId, input.date);
         return  new ActionResult(res);
     }
+    /*确认预定创建支付订单*/
+    @ApiOperation(value="创建订单", notes="远程购买接口")
+    @ApiImplicitParam(name = "input", value = "dto对象", required = true, dataType = "OrderInput")
+    @RequestMapping(value  ="/createorder" ,method = RequestMethod.POST)
+    public ActionResult CreateOrder(@RequestBody OrderInput input){
+        Order res=_orderService.CreateOrder(input);
+        return  new ActionResult(res);
+    }
 
     /*支付接口*/
     @ApiOperation(value="调用支付", notes="远程购买接口")
@@ -62,7 +72,7 @@ public class OrderController {
             })
     @RequestMapping(value  ="/payfor" ,method = RequestMethod.POST)
     public ActionResult PayFor(String orderId,String openId){
-        return  new ActionResult();
+        return  new ActionResult(1);
     }
 
 /**
