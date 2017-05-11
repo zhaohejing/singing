@@ -30,9 +30,6 @@ public class Order implements Serializable {
     //点位名称
     @Column(length = 50)
     private  String pointName;
-
-
-
     //包厢Id
     @NotNull
     private    Integer boxId;
@@ -45,18 +42,18 @@ public class Order implements Serializable {
     //购买时间段
     @NotNull
     private Timestamp toTime;
-//订单类型
+    //订单类型
     private  Integer orderType;
     //购买时长
     @Column(length = 20)
     @NotNull
-    private  String purchasetime;
+    private  String purchaseTime;
     //金额
     @NotNull
     private  double amount;
     //状态
-private  Integer state;
-
+    private  Integer state;
+//是否删除
     private Boolean isDelete;
     //是否常用
     private  Boolean isCommon;
@@ -148,12 +145,12 @@ private  Integer state;
         this.orderType = orderType;
     }
 
-    public String getPurchasetime() {
-        return purchasetime;
+    public String getPurchaseTime() {
+        return purchaseTime;
     }
 
-    public void setPurchasetime(String purchasetime) {
-        this.purchasetime = purchasetime;
+    public void setPurchaseTime(String purchasetime) {
+        this.purchaseTime = purchasetime;
     }
 
     public double getAmount() {

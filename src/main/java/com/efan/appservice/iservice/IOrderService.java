@@ -3,6 +3,7 @@ package com.efan.appservice.iservice;
 import com.efan.controller.dtos.OrderTime;
 import com.efan.controller.dtos.OrderType;
 import com.efan.controller.dtos.RemoteDto;
+import com.efan.controller.inputs.OrderDetailInput;
 import com.efan.controller.inputs.OrderInput;
 import com.efan.core.entity.Order;
 import com.efan.core.page.PageModel;
@@ -25,4 +26,5 @@ public interface IOrderService {
     List<OrderTime> GetOrderList(Integer boxId, Date date);
     List<OrderType> GetOrderTypeList(Boolean isRemote, Integer boxId);
     Order CreateOrder(OrderInput input);
+    Order GetOrderDetail(OrderDetailInput input);
 }

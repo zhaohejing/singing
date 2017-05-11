@@ -6,6 +6,7 @@ import com.efan.controller.dtos.OrderType;
 import com.efan.controller.dtos.RemoteDto;
 import com.efan.controller.inputs.GetOrderInput;
 import com.efan.controller.inputs.GetPayType;
+import com.efan.controller.inputs.OrderDetailInput;
 import com.efan.controller.inputs.OrderInput;
 import com.efan.core.entity.Order;
 import com.efan.core.page.ActionResult;
@@ -66,12 +67,9 @@ public class OrderController {
 
     /*支付接口*/
     @ApiOperation(value="调用支付", notes="远程购买接口")
-    @ApiImplicitParams({
-            @ApiImplicitParam(name = "orderId", value = "包房id", required = true, dataType = "String"),
-            @ApiImplicitParam(name = "openId", value = "微信openId", required = true, dataType = "String"),
-            })
+    @ApiImplicitParam(name = "input", value = "dto对象", required = true, dataType = "OrderDetailInput")
     @RequestMapping(value  ="/payfor" ,method = RequestMethod.POST)
-    public ActionResult PayFor(String orderId,String openId){
+    public ActionResult PayFor(@RequestBody OrderDetailInput input){
         return  new ActionResult(1);
     }
 
@@ -84,5 +82,19 @@ public class OrderController {
         List<OrderType> list=_orderService.GetOrderTypeList(input.isRemote,input.boxId);
              return  new ActionResult(list);
      }
+
+    /**
+     * 通知机器是否可以开唱*/
+    @ApiOperation(value="获取套餐详情列表", notes="远程购买接口")
+    @ApiImplicitParam(name = "input", value = "dto对象", required = true, dataType = "OrderDetailInput")
+    @RequestMapping(value  ="/cansingit" ,method = RequestMethod.POST)
+    public  ActionResult CanSingIt(@RequestBody OrderDetailInput input){
+      Order model   =_orderService.GetOrderDetail(input);
+      if ( model.getState()!=1){
+          return  new ActionResult(false,null ,"订单还未支付"   );
+      }
+        return  new ActionResult(true,model.getOrderNum(),"获取成功,可以开唱");
+    }
+
 
 }

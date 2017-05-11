@@ -4,6 +4,7 @@ import com.efan.appservice.iservice.IOrderService;
 import com.efan.controller.dtos.OrderTime;
 import com.efan.controller.dtos.OrderType;
 import com.efan.controller.dtos.RemoteDto;
+import com.efan.controller.inputs.OrderDetailInput;
 import com.efan.controller.inputs.OrderInput;
 import com.efan.core.entity.Order;
 import com.efan.core.page.PageModel;
@@ -59,22 +60,7 @@ public class OrderService implements IOrderService {
         return  new ResultModel<RemoteDto>(result,(long)result.size());
     }
 
-    private  Date GenderTime(Date time,Boolean isstart){
-        Calendar calendar = new GregorianCalendar();
-        calendar.setTime(time);
-        if (isstart){
-            calendar.set(Calendar.HOUR,0);
-            calendar.set(Calendar.MINUTE,0);
-            calendar.set(Calendar.SECOND,0);
-            calendar.set(Calendar.MILLISECOND,0);
-        }else   {
-            calendar.set(Calendar.HOUR,23);
-            calendar.set(Calendar.MINUTE,59);
-            calendar.set(Calendar.SECOND,59);
-            calendar.set(Calendar.MILLISECOND,999);
-        }
-        return  calendar.getTime();
-    }
+
     /*获取预定订单列表*/
     public List<OrderTime> GetOrderList(Integer boxId, Date date){
         Date start=GenderTime(date,true);
@@ -116,8 +102,17 @@ public class OrderService implements IOrderService {
          result.add(new OrderType("38分钟",80.0D,42.0D));
          result.add(new OrderType("48分钟",100.0D,48.0D));
          result.add(new OrderType("58分钟",120.0D,55.0D));
+         if (!isRemote){
+             result.add(new OrderType("一首歌时间",20.0D,13.0D));
+         }
 return  result;
      }
+     ///获取订单详情
+     public  Order GetOrderDetail(OrderDetailInput input){
+     Order model=_orderRepository.findOrderByFilter(input.orderId,input.openId)
+;      return  model;
+     }
+
 //创建订单并调用支付接口
     public Order CreateOrder(OrderInput input)  {
         Timestamp date = new Timestamp(System.currentTimeMillis());
@@ -131,7 +126,8 @@ return  result;
         model.setCommon(false);
         model.setPointName(input.pointName);
         model.setState(0);
-        model.setPurchasetime(pars);
+        model.setPurchaseTime(pars);
+        model.setModifyUserId(1L);
         model.setConsumerName(input.consumerName);
         model.setCreationTime(date);
         model.setCreationUserId(1L);
@@ -144,7 +140,22 @@ return  result;
        return  _orderRepository.save(model);
 
     }
-
+    private  Date GenderTime(Date time,Boolean isstart){
+        Calendar calendar = new GregorianCalendar();
+        calendar.setTime(time);
+        if (isstart){
+            calendar.set(Calendar.HOUR,0);
+            calendar.set(Calendar.MINUTE,0);
+            calendar.set(Calendar.SECOND,0);
+            calendar.set(Calendar.MILLISECOND,0);
+        }else   {
+            calendar.set(Calendar.HOUR,23);
+            calendar.set(Calendar.MINUTE,59);
+            calendar.set(Calendar.SECOND,59);
+            calendar.set(Calendar.MILLISECOND,999);
+        }
+        return  calendar.getTime();
+    }
     private  String getTimeDifference(Timestamp a, Timestamp b) {
         SimpleDateFormat timeformat = new SimpleDateFormat("yyyy-MM-dd,HH:mm:ss");
         long t1 = 0L;

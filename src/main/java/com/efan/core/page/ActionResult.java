@@ -23,7 +23,11 @@ public ActionResult(Boolean state,Object result){
     this.success=state;
     this.result=result;
 }
-
+    public ActionResult(Boolean state,Object result,String msg){
+        this.success=state;
+        this.result=result;
+        this.error=msg;
+    }
     public boolean isSuccess() {
         return success;
     }
