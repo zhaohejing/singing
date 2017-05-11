@@ -166,7 +166,13 @@ public class AndSoController {
     @ApiOperation(value="获取排行榜列表", notes="歌单接口")
     @RequestMapping(value  ="/getrankinglist" ,method = RequestMethod.POST)
     public ActionResult GetRankingList(){
-        return  new ActionResult();
+        List<SongDto> list=new ArrayList<SongDto>();
+        list.add(new SongDto(1,"小苹果"));
+        list.add(new SongDto(6,"暖暖"));
+        list.add(new SongDto(7,"贵妃醉酒"));
+        list.add(new SongDto(8,"相别1997"));
+        int total=list.size();
+        return  new ActionResult(new ResultModel<SongDto>(list, (long) total));
     }
     /*获取排行榜歌曲列表*/
     @ApiOperation(value="获取排行榜歌曲列表", notes="歌单接口")
