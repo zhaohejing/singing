@@ -4,10 +4,7 @@ import com.efan.appservice.iservice.IOrderService;
 import com.efan.controller.dtos.OrderTime;
 import com.efan.controller.dtos.OrderType;
 import com.efan.controller.dtos.RemoteDto;
-import com.efan.controller.inputs.GetOrderInput;
-import com.efan.controller.inputs.GetPayType;
-import com.efan.controller.inputs.OrderDetailInput;
-import com.efan.controller.inputs.OrderInput;
+import com.efan.controller.inputs.*;
 import com.efan.core.entity.Order;
 import com.efan.core.page.ActionResult;
 import com.efan.core.page.PageModel;
@@ -35,13 +32,10 @@ public class OrderController {
     }
 /*获取门店列表*/
     @ApiOperation(value="获取门店列表", notes="远程购买接口")
-    @ApiImplicitParams({
-            @ApiImplicitParam(name = "x", value = "x点位坐标", required = true, dataType = "String"),
-            @ApiImplicitParam(name = "y", value = "y点位坐标", required = true, dataType = "String")
-    })
+    @ApiImplicitParam(name = "input", value = "dto对象", required = true, dataType = "RemoteInput")
     @RequestMapping(value  ="/stores" ,method = RequestMethod.POST)
-    public ActionResult RemoteBuy(String x,String y){
-        Response result= _orderService.GetRemoteList(x,y);
+    public ActionResult RemoteBuy(RemoteInput input){
+        Response result= _orderService.GetRemoteList(input);
         return  new ActionResult(result);
     }
     /*获取包房信息*/

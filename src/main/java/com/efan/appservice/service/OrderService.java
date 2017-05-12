@@ -6,6 +6,7 @@ import com.efan.controller.dtos.OrderType;
 import com.efan.controller.dtos.RemoteDto;
 import com.efan.controller.inputs.OrderDetailInput;
 import com.efan.controller.inputs.OrderInput;
+import com.efan.controller.inputs.RemoteInput;
 import com.efan.core.entity.Order;
 import com.efan.core.page.PageModel;
 import com.efan.core.page.Response;
@@ -42,30 +43,35 @@ public class OrderService implements IOrderService {
      /**
       * 获取门店列表
      * */
-    public Response GetRemoteList(String x, String y) {
+    public Response GetRemoteList(RemoteInput input) {
         String url=efanurl+"api/getSpotsByCoordinate";
-        String parms="?longitude="+x+"&latitude"+y;
+        String parms="?longitude="+input.x+"&latitude"+input.y+"&page="+input.page;
       String result=  HttpUtils.sendPost(url,parms);
-        Response res=null;
-      if (result.indexOf("\"code\":200")!=-1){
-        res =   new Gson().fromJson(result,Response.class);
-      }
+        Response res;
+        try{
+            res =   new Gson().fromJson(result,Response.class);
+        }catch (Exception e){
+            res=new Response();
+            res.code=1000;
+            res.message=result;
+        }
         return  res;
     }
     /**
      * 获取包厢列表
      * */
-    public Response GetCoupeList(Integer remoteId) {
+    public Response GetCoupeList(Integer remoteId)  {
         String url=efanurl+"api/getMachineListBySpot";
         String parms="?spot_id="+remoteId;
         String result=  HttpUtils.sendPost(url,parms);
-        Response res=null;
+        Response res;
         try{
             res =   new Gson().fromJson(result,Response.class);
         }catch (Exception e){
-            throw e;
+           res=new Response();
+           res.code=1000;
+           res.message=result;
         }
-
         return  res;
     }
 
@@ -74,7 +80,7 @@ public class OrderService implements IOrderService {
     public List<OrderTime> GetOrderList(Integer boxId, Date date){
         Date start=GenderTime(date,true);
         Date end=GenderTime(date,false);
-        List<OrderTime> result=new ArrayList<OrderTime>();
+        List<OrderTime> result=new ArrayList<>();
           List<Order> list= _orderRepository.findOrders(boxId,start,end);
         for (int i = 0; i <24 ; i++) {
             Integer count=0;
@@ -106,11 +112,15 @@ public class OrderService implements IOrderService {
 ///根据lexington获取套餐详情
      public  Response GetOrderTypeList(Boolean isRemote,Integer boxId){
          String url=efanurl+"api/getProductsByRoom";
-         String parms="?roomid="+boxId+"&isremote="+isRemote;
+         String parms="?room_id="+boxId+"&isremote="+isRemote;
          String result=  HttpUtils.sendPost(url,parms);
-         Response res=null;
-         if (result.indexOf("\"code\":200")!=-1){
+         Response res;
+         try{
              res =   new Gson().fromJson(result,Response.class);
+         }catch (Exception e){
+             res=new Response();
+             res.code=1000;
+             res.message=result;
          }
          return  res;
      }
