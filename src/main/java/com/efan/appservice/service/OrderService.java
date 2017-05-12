@@ -18,6 +18,7 @@ import org.springframework.beans.factory.annotation.Value;
 import org.springframework.scheduling.annotation.Async;
 import org.springframework.stereotype.Service;
 
+import java.security.PublicKey;
 import java.sql.Timestamp;
 
 import java.text.ParseException;
@@ -56,12 +57,15 @@ public class OrderService implements IOrderService {
      * */
     public Response GetCoupeList(Integer remoteId) {
         String url=efanurl+"api/getMachineListBySpot";
-        String parms="?spotid="+remoteId;
+        String parms="?spot_id="+remoteId;
         String result=  HttpUtils.sendPost(url,parms);
         Response res=null;
-        if (result.indexOf("\"code\":200")!=-1){
+        try{
             res =   new Gson().fromJson(result,Response.class);
+        }catch (Exception e){
+            throw e;
         }
+
         return  res;
     }
 
@@ -111,9 +115,9 @@ public class OrderService implements IOrderService {
          return  res;
      }
      ///获取订单详情
-     public  Order GetOrderDetail(OrderDetailInput input){
-     Order model=_orderRepository.findOrderByFilter(input.orderId,input.openId)
-;      return  model;
+     public  Order GetOrderDetail(String orderId){
+     Order model=_orderRepository.findOrderByFilter(orderId);
+     return  model;
      }
 
 //创建订单并调用支付接口
@@ -143,15 +147,15 @@ public class OrderService implements IOrderService {
         model.setOrderType(input.orderType);
         model.setToTime(input.toTime);
        Order order=  _orderRepository.save(model);
-       if ( order.getId()>0){
-           //调用微信支付
-           String url="http://wxpay.dev.efanyun.com/order";
-           String parms="?machineCode="+input.boxId+"&productId="+input.orderId+"&notifyUrl="+returnurl;
-           HttpUtils.sendPost(url,parms);
-       }
           return order;
     }
 
+    public String Payfor(String boxId,String orderId){
+        //调用微信支付
+        String url="http://wxpay.dev.efanyun.com/order";
+        String parms="?machineCode="+boxId+"&productId="+orderId+"&notifyUrl="+returnurl;
+      return   HttpUtils.sendPost(url,parms);
+    }
 
 
     private  Date GenderTime(Date time,Boolean isstart){

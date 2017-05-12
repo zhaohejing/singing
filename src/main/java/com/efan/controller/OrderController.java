@@ -35,7 +35,10 @@ public class OrderController {
     }
 /*获取门店列表*/
     @ApiOperation(value="获取门店列表", notes="远程购买接口")
-    @ApiImplicitParam(name = "point", value = "点位坐标", required = true, dataType = "String")
+    @ApiImplicitParams({
+            @ApiImplicitParam(name = "x", value = "x点位坐标", required = true, dataType = "String"),
+            @ApiImplicitParam(name = "y", value = "y点位坐标", required = true, dataType = "String")
+    })
     @RequestMapping(value  ="/stores" ,method = RequestMethod.POST)
     public ActionResult RemoteBuy(String x,String y){
         Response result= _orderService.GetRemoteList(x,y);
@@ -57,7 +60,7 @@ public class OrderController {
         List<OrderTime> res =_orderService.GetOrderList(input.boxId, input.date);
         return  new ActionResult(res);
     }
-    /*确认预定创建支付订单*/
+    /*创建支付订单*/
     @ApiOperation(value="创建订单", notes="远程购买接口")
     @ApiImplicitParam(name = "input", value = "dto对象", required = true, dataType = "OrderInput")
     @RequestMapping(value  ="/createorder" ,method = RequestMethod.POST)
@@ -71,9 +74,9 @@ public class OrderController {
     @ApiImplicitParam(name = "input", value = "dto对象", required = true, dataType = "OrderDetailInput")
     @RequestMapping(value  ="/payfor" ,method = RequestMethod.POST)
     public ActionResult PayFor(@RequestBody OrderDetailInput input){
-        return  new ActionResult(1);
+        String res= _orderService.Payfor(input.boxId,input.orderId);
+        return  new ActionResult(res);
     }
-
 /**
  * 获取套餐详情*/
     @ApiOperation(value="获取套餐详情列表", notes="远程购买接口")
@@ -86,11 +89,11 @@ public class OrderController {
 
     /**
      * 通知机器是否可以开唱*/
-    @ApiOperation(value="获取套餐详情列表", notes="远程购买接口")
+    @ApiOperation(value="通知机器是否可以开唱", notes="远程购买接口")
     @ApiImplicitParam(name = "input", value = "dto对象", required = true, dataType = "OrderDetailInput")
     @RequestMapping(value  ="/cansingit" ,method = RequestMethod.POST)
     public  ActionResult CanSingIt(@RequestBody OrderDetailInput input){
-      Order model   =_orderService.GetOrderDetail(input);
+      Order model   =_orderService.GetOrderDetail(input.orderId);
       if ( model.getState()!=1){
           return  new ActionResult(false,null ,"订单还未支付"   );
       }

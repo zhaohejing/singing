@@ -14,6 +14,6 @@ import java.util.List;
 public interface IOrderRepository extends JpaRepository<Order,Long> {
     @Query("select u from Order u where u.boxId=:boxId and u.creationTime>:a and u.creationTime<=:b ")
     List<Order> findOrders(@Param("boxId")Integer boxId,@Param("a") Date start,@Param("b") Date end);
-    @Query("select u from Order u where u.orderNum=:orderId and u.consumerName=:openId ")
-     Order findOrderByFilter(@Param("orderId") String orderId,@Param("openId")String openId);
+    @Query("select u from Order u where u.orderNum=:orderId  ")
+     Order findOrderByFilter(@Param("orderId") String orderId);
 }

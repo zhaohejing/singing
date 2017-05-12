@@ -27,5 +27,6 @@ public interface IOrderService {
     List<OrderTime> GetOrderList(Integer boxId, Date date);
     Response GetOrderTypeList(Boolean isRemote, Integer boxId);
     Order CreateOrder(OrderInput input);
-    Order GetOrderDetail(OrderDetailInput input);
+    Order GetOrderDetail(String orderId);
+    String Payfor(String boxId,String orderId);
 }
