@@ -8,6 +8,10 @@ import java.util.List;
  */
 public class ResultModel<T> implements Serializable {
 
+    public ResultModel(List<T> list){
+        this.data=list;
+        this.total=(long)list.size();
+    }
     public  ResultModel(List<T> list,Long total){
         this.data=list;
         this.total=total;

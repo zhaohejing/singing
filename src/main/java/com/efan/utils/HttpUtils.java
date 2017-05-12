@@ -9,7 +9,7 @@ import java.net.URL;
 /**
  * http请求帮助类
  */
-public class HttpUtils {
+public   class HttpUtils {
     public static String sendGet(String url) {
         try {
             URL obj = new URL(url);

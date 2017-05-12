@@ -11,6 +11,7 @@ import com.efan.controller.inputs.OrderInput;
 import com.efan.core.entity.Order;
 import com.efan.core.page.ActionResult;
 import com.efan.core.page.PageModel;
+import com.efan.core.page.Response;
 import com.efan.core.page.ResultModel;
 import io.swagger.annotations.ApiImplicitParam;
 import io.swagger.annotations.ApiImplicitParams;
@@ -36,8 +37,8 @@ public class OrderController {
     @ApiOperation(value="获取门店列表", notes="远程购买接口")
     @ApiImplicitParam(name = "point", value = "点位坐标", required = true, dataType = "String")
     @RequestMapping(value  ="/stores" ,method = RequestMethod.POST)
-    public ActionResult RemoteBuy(String point){
-        ResultModel<RemoteDto> result= _orderService.GetRemoteList(point,new PageModel(1,10));
+    public ActionResult RemoteBuy(String x,String y){
+        Response result= _orderService.GetRemoteList(x,y);
         return  new ActionResult(result);
     }
     /*获取包房信息*/
@@ -45,7 +46,7 @@ public class OrderController {
     @ApiImplicitParam(name = "id", value = "点位id", required = true, dataType = "Integer")
     @RequestMapping(value  ="/coupe" ,method = RequestMethod.POST)
     public ActionResult CoupeList(Integer id){
-        ResultModel<RemoteDto> result= _orderService.GetCoupeList(id,new PageModel(1,10));
+        Response result= _orderService.GetCoupeList(id);
         return  new ActionResult(result);
     }
     /*获取包房预定列表*/
@@ -79,7 +80,7 @@ public class OrderController {
     @ApiImplicitParam(name = "input", value = "dto对象", required = true, dataType = "GetPayType")
     @RequestMapping(value  ="/getpaylist" ,method = RequestMethod.POST)
      public  ActionResult GetPayList(@RequestBody GetPayType input){
-        List<OrderType> list=_orderService.GetOrderTypeList(input.isRemote,input.boxId);
+        Response list=_orderService.GetOrderTypeList(input.isRemote,input.boxId);
              return  new ActionResult(list);
      }
 
@@ -95,6 +96,5 @@ public class OrderController {
       }
         return  new ActionResult(true,model.getOrderNum(),"获取成功,可以开唱");
     }
-
 
 }

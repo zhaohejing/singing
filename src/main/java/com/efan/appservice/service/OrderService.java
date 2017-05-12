@@ -8,9 +8,14 @@ import com.efan.controller.inputs.OrderDetailInput;
 import com.efan.controller.inputs.OrderInput;
 import com.efan.core.entity.Order;
 import com.efan.core.page.PageModel;
+import com.efan.core.page.Response;
 import com.efan.core.page.ResultModel;
 import com.efan.repository.IOrderRepository;
+import com.efan.utils.HttpUtils;
+import com.google.gson.Gson;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.beans.factory.annotation.Value;
+import org.springframework.scheduling.annotation.Async;
 import org.springframework.stereotype.Service;
 
 import java.sql.Timestamp;
@@ -24,6 +29,10 @@ import java.util.*;
  */
 @Service
 public class OrderService implements IOrderService {
+    @Value("${efanurl}")
+    private String efanurl;
+    @Value("${returnurl}")
+    private String returnurl;
     private IOrderRepository _orderRepository;
     @Autowired
      public OrderService(IOrderRepository orderRepository){
@@ -32,32 +41,28 @@ public class OrderService implements IOrderService {
      /**
       * 获取门店列表
      * */
-    public ResultModel<RemoteDto> GetRemoteList(String pointName, PageModel input) {
-         List<RemoteDto> result = new ArrayList<RemoteDto>();
-        result.add(new RemoteDto(1,"大望路1","大望路36号1",11,0));
-        result.add(new RemoteDto(2,"大望路2","大望路36号2",22,0));
-        result.add(new RemoteDto(3,"大望路3","大望路36号3",33,0));
-        result.add(new RemoteDto(4,"大望路4","大望路36号4",44,0));
-        result.add(new RemoteDto(5,"大望路5","大望路36号5",55,0));
-        result.add(new RemoteDto(6,"大望路6","大望路36号6",66,0));
-        result.add(new RemoteDto(7,"大望路7","大望路36号7",77,0));
-        result.add(new RemoteDto(8,"大望路8","大望路36号8",88,0));
-        return  new ResultModel<RemoteDto>(result,(long)result.size());
+    public Response GetRemoteList(String x, String y) {
+        String url=efanurl+"api/getSpotsByCoordinate";
+        String parms="?longitude="+x+"&latitude"+y;
+      String result=  HttpUtils.sendPost(url,parms);
+        Response res=null;
+      if (result.indexOf("\"code\":200")!=-1){
+        res =   new Gson().fromJson(result,Response.class);
+      }
+        return  res;
     }
     /**
      * 获取包厢列表
      * */
-    public ResultModel<RemoteDto> GetCoupeList(Integer remoteId, PageModel input) {
-        List<RemoteDto> result = new ArrayList<RemoteDto>();
-        result.add(new RemoteDto(1,"box1","大望路36号1",11,1));
-        result.add(new RemoteDto(2,"box2","大望路36号2",22,1));
-        result.add(new RemoteDto(3,"box3","大望路36号3",33,1));
-        result.add(new RemoteDto(4,"box4","大望路36号4",44,1));
-        result.add(new RemoteDto(5,"box5","大望路36号5",55,1));
-        result.add(new RemoteDto(6,"box6","大望路36号6",66,1));
-        result.add(new RemoteDto(7,"box7","大望路36号7",77,1));
-        result.add(new RemoteDto(8,"box8","大望路36号8",88,1));
-        return  new ResultModel<RemoteDto>(result,(long)result.size());
+    public Response GetCoupeList(Integer remoteId) {
+        String url=efanurl+"api/getMachineListBySpot";
+        String parms="?spotid="+remoteId;
+        String result=  HttpUtils.sendPost(url,parms);
+        Response res=null;
+        if (result.indexOf("\"code\":200")!=-1){
+            res =   new Gson().fromJson(result,Response.class);
+        }
+        return  res;
     }
 
 
@@ -65,7 +70,6 @@ public class OrderService implements IOrderService {
     public List<OrderTime> GetOrderList(Integer boxId, Date date){
         Date start=GenderTime(date,true);
         Date end=GenderTime(date,false);
-
         List<OrderTime> result=new ArrayList<OrderTime>();
           List<Order> list= _orderRepository.findOrders(boxId,start,end);
         for (int i = 0; i <24 ; i++) {
@@ -96,16 +100,15 @@ public class OrderService implements IOrderService {
         return  result;
     }
 ///根据lexington获取套餐详情
-     public  List<OrderType> GetOrderTypeList(Boolean isRemote,Integer boxId){
-            List<OrderType> result=new ArrayList<OrderType>();
-         result.add(new OrderType("28分钟",60.0D,36.0D));
-         result.add(new OrderType("38分钟",80.0D,42.0D));
-         result.add(new OrderType("48分钟",100.0D,48.0D));
-         result.add(new OrderType("58分钟",120.0D,55.0D));
-         if (!isRemote){
-             result.add(new OrderType("一首歌时间",20.0D,13.0D));
+     public  Response GetOrderTypeList(Boolean isRemote,Integer boxId){
+         String url=efanurl+"api/getProductsByRoom";
+         String parms="?roomid="+boxId+"&isremote="+isRemote;
+         String result=  HttpUtils.sendPost(url,parms);
+         Response res=null;
+         if (result.indexOf("\"code\":200")!=-1){
+             res =   new Gson().fromJson(result,Response.class);
          }
-return  result;
+         return  res;
      }
      ///获取订单详情
      public  Order GetOrderDetail(OrderDetailInput input){
@@ -114,6 +117,7 @@ return  result;
      }
 
 //创建订单并调用支付接口
+  //  @Async
     public Order CreateOrder(OrderInput input)  {
         Timestamp date = new Timestamp(System.currentTimeMillis());
       UUID num=   java.util.UUID.randomUUID();
@@ -130,6 +134,7 @@ return  result;
         model.setModifyUserId(1L);
         model.setConsumerName(input.consumerName);
         model.setCreationTime(date);
+        model.setOrderId(input.orderId);
         model.setCreationUserId(1L);
         model.setDelete(false);
         model.setFromTime(input.fromTime);
@@ -137,9 +142,18 @@ return  result;
         model.setMobile(input.consumerName);
         model.setOrderType(input.orderType);
         model.setToTime(input.toTime);
-       return  _orderRepository.save(model);
-
+       Order order=  _orderRepository.save(model);
+       if ( order.getId()>0){
+           //调用微信支付
+           String url="http://wxpay.dev.efanyun.com/order";
+           String parms="?machineCode="+input.boxId+"&productId="+input.orderId+"&notifyUrl="+returnurl;
+           HttpUtils.sendPost(url,parms);
+       }
+          return order;
     }
+
+
+
     private  Date GenderTime(Date time,Boolean isstart){
         Calendar calendar = new GregorianCalendar();
         calendar.setTime(time);

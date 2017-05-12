@@ -53,10 +53,22 @@ public class Order implements Serializable {
     private  double amount;
     //状态
     private  Integer state;
+
 //是否删除
     private Boolean isDelete;
     //是否常用
     private  Boolean isCommon;
+
+    public Integer getOrderId() {
+        return orderId;
+    }
+
+    public void setOrderId(Integer orderId) {
+        this.orderId = orderId;
+    }
+//订单消费类型
+    private  Integer orderId;
+
 
     private Long creationUserId;
 

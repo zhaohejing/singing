@@ -7,6 +7,7 @@ import com.efan.controller.inputs.OrderDetailInput;
 import com.efan.controller.inputs.OrderInput;
 import com.efan.core.entity.Order;
 import com.efan.core.page.PageModel;
+import com.efan.core.page.Response;
 import com.efan.core.page.ResultModel;
 
 import java.util.ArrayList;
@@ -17,14 +18,14 @@ import java.util.List;
  *接口列表
  */
 public interface IOrderService {
-     ResultModel<RemoteDto> GetRemoteList(String pointName, PageModel input) ;
+    Response GetRemoteList(String x, String y) ;
     /**
      * 获取包厢列表
      * */
-     ResultModel<RemoteDto> GetCoupeList(Integer remoteId, PageModel input) ;
+    Response GetCoupeList(Integer remoteId) ;
      //获取预定列表
     List<OrderTime> GetOrderList(Integer boxId, Date date);
-    List<OrderType> GetOrderTypeList(Boolean isRemote, Integer boxId);
+    Response GetOrderTypeList(Boolean isRemote, Integer boxId);
     Order CreateOrder(OrderInput input);
     Order GetOrderDetail(OrderDetailInput input);
 }
