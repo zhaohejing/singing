@@ -34,16 +34,16 @@ public class OrderController {
     @ApiOperation(value="获取门店列表", notes="远程购买接口")
     @ApiImplicitParam(name = "input", value = "dto对象", required = true, dataType = "RemoteInput")
     @RequestMapping(value  ="/stores" ,method = RequestMethod.POST)
-    public ActionResult RemoteBuy(RemoteInput input){
+    public ActionResult RemoteBuy(@RequestBody RemoteInput input){
         Response result= _orderService.GetRemoteList(input);
         return  new ActionResult(result);
     }
     /*获取包房信息*/
     @ApiOperation(value="获取包房信息", notes="远程购买接口")
-    @ApiImplicitParam(name = "id", value = "点位id", required = true, dataType = "Integer")
+    @ApiImplicitParam(name = "spot", value = "点位对象id", required = true, dataType = "GetSpotInput")
     @RequestMapping(value  ="/coupe" ,method = RequestMethod.POST)
-    public ActionResult CoupeList(Integer id){
-        Response result= _orderService.GetCoupeList(id);
+    public ActionResult CoupeList(@RequestBody GetSpotInput spot){
+        Response result= _orderService.GetCoupeList(spot.spotId);
         return  new ActionResult(result);
     }
     /*获取包房预定列表*/

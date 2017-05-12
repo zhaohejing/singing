@@ -23,7 +23,7 @@ public interface IOrderService {
     /**
      * 获取包厢列表
      * */
-    Response GetCoupeList(Integer remoteId) ;
+    Response GetCoupeList(String remoteId) ;
      //获取预定列表
     List<OrderTime> GetOrderList(Integer boxId, Date date);
     Response GetOrderTypeList(Boolean isRemote, Integer boxId);

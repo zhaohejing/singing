@@ -60,7 +60,7 @@ public class OrderService implements IOrderService {
     /**
      * 获取包厢列表
      * */
-    public Response GetCoupeList(Integer remoteId)  {
+    public Response GetCoupeList(String remoteId)  {
         String url=efanurl+"api/getMachineListBySpot";
         String parms="?spot_id="+remoteId;
         String result=  HttpUtils.sendPost(url,parms);
