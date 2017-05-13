@@ -45,7 +45,7 @@ public class OrderService implements IOrderService {
      * */
     public Response GetRemoteList(RemoteInput input) {
         String url=efanurl+"api/getSpotsByCoordinate";
-        String parms="?longitude="+input.x+"&latitude"+input.y+"&page="+input.page;
+        String parms="longitude="+input.x+"&latitude"+input.y+"&page="+input.page;
       String result=  HttpUtils.sendPost(url,parms);
         Response res;
         try{
@@ -62,7 +62,7 @@ public class OrderService implements IOrderService {
      * */
     public Response GetCoupeList(String remoteId)  {
         String url=efanurl+"api/getMachineListBySpot";
-        String parms="?spot_id="+remoteId;
+        String parms="spot_id="+remoteId;
         String result=  HttpUtils.sendPost(url,parms);
         Response res;
         try{
@@ -77,7 +77,7 @@ public class OrderService implements IOrderService {
 
 
     /*获取预定订单列表*/
-    public List<OrderTime> GetOrderList(Integer boxId, Date date){
+    public List<OrderTime> GetOrderList(String boxId, Date date){
         Date start=GenderTime(date,true);
         Date end=GenderTime(date,false);
         List<OrderTime> result=new ArrayList<>();
@@ -110,9 +110,9 @@ public class OrderService implements IOrderService {
         return  result;
     }
 ///根据lexington获取套餐详情
-     public  Response GetOrderTypeList(Boolean isRemote,Integer boxId){
+     public  Response GetOrderTypeList(Boolean isRemote,String boxId){
          String url=efanurl+"api/getProductsByRoom";
-         String parms="?room_id="+boxId+"&isremote="+isRemote;
+         String parms="room_id="+boxId+"&isremote="+isRemote;
          String result=  HttpUtils.sendPost(url,parms);
          Response res;
          try{

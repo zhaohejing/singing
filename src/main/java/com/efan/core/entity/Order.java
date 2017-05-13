@@ -32,7 +32,7 @@ public class Order implements Serializable {
     private  String pointName;
     //包厢Id
     @NotNull
-    private    Integer boxId;
+    private    String boxId;
     //包房编号
     @Column(length = 20)
     private String boxName;
@@ -77,11 +77,11 @@ public class Order implements Serializable {
     private Long modifyUserId;
 
     private Timestamp modifyTime;
-    public Integer getBoxId() {
+    public String getBoxId() {
         return boxId;
     }
 
-    public void setBoxId(Integer boxId) {
+    public void setBoxId(String boxId) {
         this.boxId = boxId;
     }
 

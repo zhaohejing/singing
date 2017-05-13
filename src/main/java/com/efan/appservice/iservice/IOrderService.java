@@ -25,8 +25,8 @@ public interface IOrderService {
      * */
     Response GetCoupeList(String remoteId) ;
      //获取预定列表
-    List<OrderTime> GetOrderList(Integer boxId, Date date);
-    Response GetOrderTypeList(Boolean isRemote, Integer boxId);
+    List<OrderTime> GetOrderList(String boxId, Date date);
+    Response GetOrderTypeList(Boolean isRemote, String boxId);
     Order CreateOrder(OrderInput input);
     Order GetOrderDetail(String orderId);
     String Payfor(String boxId,String orderId);

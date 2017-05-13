@@ -5,5 +5,5 @@ package com.efan.controller.inputs;
  */
 public class GetPayType {
     public  Boolean isRemote;
-    public  Integer boxId;
+    public  String boxId;
 }

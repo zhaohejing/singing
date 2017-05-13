@@ -14,7 +14,7 @@ public class OrderInput {
     //点位名称
     public  String pointName;
     //包厢Id
-    public    Integer boxId;
+    public    String boxId;
     //包房编号
     public String boxName;
     //购买时间段
