@@ -1,6 +1,6 @@
-package com.efan.primaryR;
+package com.efan.repository.primary;
 
-import com.efan.core.entity.Order;
+import com.efan.core.primary.Order;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.data.jpa.repository.Query;
 import org.springframework.data.repository.query.Param;

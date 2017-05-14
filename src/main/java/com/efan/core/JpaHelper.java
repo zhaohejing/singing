@@ -1,6 +1,6 @@
 package com.efan.core;
 
-import com.efan.core.entity.Order;
+import com.efan.core.primary.Order;
 
 import java.util.List;
 

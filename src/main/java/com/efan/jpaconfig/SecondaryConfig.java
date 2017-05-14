@@ -1,4 +1,4 @@
-package com.efan.secondaryR;
+package com.efan.jpaconfig;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Qualifier;
@@ -18,13 +18,14 @@ import java.util.Map;
 
 @Configuration
 @EnableTransactionManagement
-@EnableJpaRepositories(entityManagerFactoryRef="entityManagerFactorySecondary",transactionManagerRef="transactionManagerSecondary",basePackages= { "com.efan.secondaryR" })
-public class RepositorySecondaryConfig {
-    @Autowired
-    private JpaProperties jpaProperties;
+@EnableJpaRepositories(
+        entityManagerFactoryRef="entityManagerFactorySecondary",
+        transactionManagerRef="transactionManagerSecondary",
+        basePackages= { "com.efan.repository.secondary" }) //设置Repository所在位置
+public class SecondaryConfig {
 
     @Autowired @Qualifier("secondaryDataSource")
-    private DataSource secondaryDS;
+    private DataSource secondaryDataSource;
 
     @Bean(name = "entityManagerSecondary")
     public EntityManager entityManager(EntityManagerFactoryBuilder builder) {
@@ -34,12 +35,15 @@ public class RepositorySecondaryConfig {
     @Bean(name = "entityManagerFactorySecondary")
     public LocalContainerEntityManagerFactoryBean entityManagerFactorySecondary (EntityManagerFactoryBuilder builder) {
         return builder
-                .dataSource(secondaryDS)
-                .properties(getVendorProperties(secondaryDS))
-                .packages("com.efan.core.dataEntity")
+                .dataSource(secondaryDataSource)
+                .properties(getVendorProperties(secondaryDataSource))
+                .packages("com.efan.core.secondary") //设置实体类所在位置
                 .persistenceUnit("secondaryPersistenceUnit")
                 .build();
     }
+
+    @Autowired
+    private JpaProperties jpaProperties;
 
     private Map<String, String> getVendorProperties(DataSource dataSource) {
         return jpaProperties.getHibernateProperties(dataSource);

@@ -1,6 +1,6 @@
-package com.efan.primaryR;
+package com.efan.repository.primary;
 
-import com.efan.core.entity.MyTape;
+import com.efan.core.primary.MyTape;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
 import org.springframework.data.jpa.repository.JpaRepository;

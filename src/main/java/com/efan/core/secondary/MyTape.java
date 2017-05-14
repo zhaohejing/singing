@@ -1,4 +1,4 @@
-package com.efan.core.dataEntity;
+package com.efan.core.secondary;
 
 import javax.persistence.*;
 import javax.validation.constraints.NotNull;

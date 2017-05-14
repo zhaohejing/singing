@@ -2,12 +2,12 @@ package com.efan.appservice.service;
 
 import com.efan.appservice.iservice.IMyTapeService;
 import com.efan.controller.dtos.MyTapeDto;
-import com.efan.core.entity.MySongs;
-import com.efan.core.entity.MyTape;
+import com.efan.core.primary.MySongs;
+import com.efan.core.primary.MyTape;
 import com.efan.core.page.FilterModel;
 import com.efan.core.page.ResultModel;
-import com.efan.primaryR.IMySongsRepository;
-import com.efan.primaryR.IMyTapeRepository;
+import com.efan.repository.primary.IMySongsRepository;
+import com.efan.repository.primary.IMyTapeRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.PageRequest;

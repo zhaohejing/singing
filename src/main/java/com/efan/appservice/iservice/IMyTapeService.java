@@ -1,10 +1,9 @@
 package com.efan.appservice.iservice;
 
 import com.efan.controller.dtos.MyTapeDto;
-import com.efan.core.entity.MySongs;
-import com.efan.core.entity.MyTape;
+import com.efan.core.primary.MySongs;
+import com.efan.core.primary.MyTape;
 import com.efan.core.page.FilterModel;
-import com.efan.core.page.PageModel;
 import com.efan.core.page.ResultModel;
 
 /**

@@ -1,4 +1,4 @@
-package com.efan.primaryR;
+package com.efan.jpaconfig;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Qualifier;
@@ -19,39 +19,42 @@ import java.util.Map;
 
 @Configuration
 @EnableTransactionManagement
-@EnableJpaRepositories(entityManagerFactoryRef="entityManagerFactoryPrimary",transactionManagerRef="transactionManagerPrimary",basePackages= { "com.efan.primaryR" })//设置dao（repo）所在位置
-public class RepositoryPrimaryConfig {
-    @Autowired
-    private JpaProperties jpaProperties;
+@EnableJpaRepositories(
+        entityManagerFactoryRef="entityManagerFactoryPrimary",
+        transactionManagerRef="transactionManagerPrimary",
+        basePackages= { "com.efan.repository.primary" }) //设置Repository所在位置
+public class PrimaryConfig {
 
-    @Autowired
-    @Qualifier("primaryDataSource")
-    private DataSource primaryDS;
+    @Autowired @Qualifier("primaryDataSource")
+    private DataSource primaryDataSource;
 
-    @Bean(name = "entityManagerPrimary")
     @Primary
+    @Bean(name = "entityManagerPrimary")
     public EntityManager entityManager(EntityManagerFactoryBuilder builder) {
         return entityManagerFactoryPrimary(builder).getObject().createEntityManager();
     }
 
-    @Bean(name = "entityManagerFactoryPrimary")
     @Primary
+    @Bean(name = "entityManagerFactoryPrimary")
     public LocalContainerEntityManagerFactoryBean entityManagerFactoryPrimary (EntityManagerFactoryBuilder builder) {
         return builder
-                .dataSource(primaryDS)
-                .properties(getVendorProperties(primaryDS))
-                .packages("com.efan.core.entity") //设置实体类所在位置
+                .dataSource(primaryDataSource)
+                .properties(getVendorProperties(primaryDataSource))
+                .packages("com.efan.core.primary") //设置实体类所在位置
                 .persistenceUnit("primaryPersistenceUnit")
                 .build();
     }
+
+    @Autowired
+    private JpaProperties jpaProperties;
 
     private Map<String, String> getVendorProperties(DataSource dataSource) {
         return jpaProperties.getHibernateProperties(dataSource);
     }
 
-    @Bean(name = "transactionManagerPrimary")
     @Primary
-    PlatformTransactionManager transactionManagerPrimary(EntityManagerFactoryBuilder builder) {
+    @Bean(name = "transactionManagerPrimary")
+    public PlatformTransactionManager transactionManagerPrimary(EntityManagerFactoryBuilder builder) {
         return new JpaTransactionManager(entityManagerFactoryPrimary(builder).getObject());
     }
 

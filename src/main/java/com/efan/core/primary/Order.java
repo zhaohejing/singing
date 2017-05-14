@@ -1,4 +1,4 @@
-package com.efan.core.dataEntity;
+package com.efan.core.primary;
 
 
 import javax.persistence.*;

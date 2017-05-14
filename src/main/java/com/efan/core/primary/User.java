@@ -1,4 +1,4 @@
-package com.efan.core.entity;
+package com.efan.core.primary;
 
 import javax.persistence.*;
 import javax.validation.constraints.Max;

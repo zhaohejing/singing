@@ -2,13 +2,11 @@ package com.efan.controller;
 
 import com.efan.appservice.iservice.IMyTapeService;
 import com.efan.controller.dtos.MyTapeDto;
-import com.efan.core.entity.MySongs;
-import com.efan.core.entity.MyTape;
+import com.efan.core.primary.MyTape;
 import com.efan.core.page.ActionResult;
 import com.efan.core.page.FilterModel;
 import com.efan.core.page.ResultModel;
 import io.swagger.annotations.ApiImplicitParam;
-import io.swagger.annotations.ApiImplicitParams;
 import io.swagger.annotations.ApiOperation;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
