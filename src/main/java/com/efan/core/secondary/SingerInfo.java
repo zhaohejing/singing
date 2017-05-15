@@ -10,26 +10,26 @@ import javax.persistence.Id;
  */
 @Entity
 public class SingerInfo {
-    private Short unSingerCode;
+    private Integer unSingerCode;
     private String pszName;
     private String pszSpell;
-    private Short wNameWords;
-    private Short wSingerType;
-    private Short wSingerArea;
-    private Short wNationality;
-    private Short unRanking;
-    private Short unTopRating;
-    private Short unSongs;
-    private Short dwImageExist;
+    private Integer wNameWords;
+    private Integer wSingerType;
+    private Integer wSingerArea;
+    private Integer wNationality;
+    private Integer unRanking;
+    private Integer unTopRating;
+    private Integer unSongs;
+    private Integer dwImageExist;
     private String pszProfile;
 
     @Id
     @Column(name = "unSingerCode", nullable = true)
-    public Short getUnSingerCode() {
+    public Integer getUnSingerCode() {
         return unSingerCode;
     }
 
-    public void setUnSingerCode(Short unSingerCode) {
+    public void setUnSingerCode(Integer unSingerCode) {
         this.unSingerCode = unSingerCode;
     }
 
@@ -55,81 +55,81 @@ public class SingerInfo {
 
     @Basic
     @Column(name = "wNameWords", nullable = true)
-    public Short getwNameWords() {
+    public Integer getwNameWords() {
         return wNameWords;
     }
 
-    public void setwNameWords(Short wNameWords) {
+    public void setwNameWords(Integer wNameWords) {
         this.wNameWords = wNameWords;
     }
 
     @Basic
     @Column(name = "wSingerType", nullable = true)
-    public Short getwSingerType() {
+    public Integer getwSingerType() {
         return wSingerType;
     }
 
-    public void setwSingerType(Short wSingerType) {
+    public void setwSingerType(Integer wSingerType) {
         this.wSingerType = wSingerType;
     }
 
     @Basic
     @Column(name = "wSingerArea", nullable = true)
-    public Short getwSingerArea() {
+    public Integer getwSingerArea() {
         return wSingerArea;
     }
 
-    public void setwSingerArea(Short wSingerArea) {
+    public void setwSingerArea(Integer wSingerArea) {
         this.wSingerArea = wSingerArea;
     }
 
     @Basic
     @Column(name = "wNationality", nullable = true)
-    public Short getwNationality() {
+    public Integer getwNationality() {
         return wNationality;
     }
 
-    public void setwNationality(Short wNationality) {
+    public void setwNationality(Integer wNationality) {
         this.wNationality = wNationality;
     }
 
     @Basic
     @Column(name = "unRanking", nullable = true)
-    public Short getUnRanking() {
+    public Integer getUnRanking() {
         return unRanking;
     }
 
-    public void setUnRanking(Short unRanking) {
+    public void setUnRanking(Integer unRanking) {
         this.unRanking = unRanking;
     }
 
     @Basic
     @Column(name = "unTopRating", nullable = true)
-    public Short getUnTopRating() {
+    public Integer getUnTopRating() {
         return unTopRating;
     }
 
-    public void setUnTopRating(Short unTopRating) {
+    public void setUnTopRating(Integer unTopRating) {
         this.unTopRating = unTopRating;
     }
 
     @Basic
     @Column(name = "unSongs", nullable = true)
-    public Short getUnSongs() {
+    public Integer getUnSongs() {
         return unSongs;
     }
 
-    public void setUnSongs(Short unSongs) {
+    public void setUnSongs(Integer unSongs) {
         this.unSongs = unSongs;
     }
 
     @Basic
     @Column(name = "dwImageExist", nullable = true)
-    public Short getDwImageExist() {
+    public Integer getDwImageExist() {
         return dwImageExist;
     }
 
-    public void setDwImageExist(Short dwImageExist) {
+    public void setDwImageExist(Integer dwImageExist) {
         this.dwImageExist = dwImageExist;
     }
 

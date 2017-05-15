@@ -11,16 +11,16 @@ import java.io.Serializable;
  */
 @Entity
 public class SongStyleInfo {
-    private Short id;
+    private Integer id;
     private String pszName;
 
     @Id
     @Column(name = "ID", nullable = true)
-    public Short getId() {
+    public Integer getId() {
         return id;
     }
 
-    public void setId(Short id) {
+    public void setId(Integer id) {
         this.id = id;
     }
 

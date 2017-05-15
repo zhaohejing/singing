@@ -10,60 +10,60 @@ import javax.persistence.Id;
  */
 @Entity
 public class SongInfo {
-    private Short id;
-    private Short ullSongCode;
-    private Short unSongCode;
+    private Integer id;
+    private Integer ullSongCode;
+    private Integer unSongCode;
     private String pszName;
     private String pszSpell;
-    private Short wNameWords;
-    private Short wLanguage;
-    private Short wCategory;
-    private Short wSingers;
-    private Short wVersions;
-    private Short wStyles;
+    private Integer wNameWords;
+    private Integer wLanguage;
+    private Integer wCategory;
+    private Integer wSingers;
+    private Integer wVersions;
+    private Integer wStyles;
     private String arrSingers;
     private String arrVersions;
     private String arrStyles;
-    private Short unDateTime;
-    private Short unRanking;
-    private Short unTopRating;
+    private Integer unDateTime;
+    private Integer unRanking;
+    private Integer unTopRating;
     private String pszFileName;
-    private Short unFilePath;
-    private Short unDuration;
-    private Short ullFileSize;
-    private Short unMaxBitrate;
-    private Short wEncrypt;
+    private Integer unFilePath;
+    private Integer unDuration;
+    private Integer ullFileSize;
+    private Integer unMaxBitrate;
+    private Integer wEncrypt;
     private String tVideo;
     private String tAccompany;
     private String tOriginal;
 
     @Id
     @Column(name = "ID", nullable = true)
-    public Short getId() {
+    public Integer getId() {
         return id;
     }
 
-    public void setId(Short id) {
+    public void setId(Integer id) {
         this.id = id;
     }
 
     @Basic
     @Column(name = "ullSongCode", nullable = true)
-    public Short getUllSongCode() {
+    public Integer getUllSongCode() {
         return ullSongCode;
     }
 
-    public void setUllSongCode(Short ullSongCode) {
+    public void setUllSongCode(Integer ullSongCode) {
         this.ullSongCode = ullSongCode;
     }
 
     @Basic
     @Column(name = "unSongCode", nullable = true)
-    public Short getUnSongCode() {
+    public Integer getUnSongCode() {
         return unSongCode;
     }
 
-    public void setUnSongCode(Short unSongCode) {
+    public void setUnSongCode(Integer unSongCode) {
         this.unSongCode = unSongCode;
     }
 
@@ -89,61 +89,61 @@ public class SongInfo {
 
     @Basic
     @Column(name = "wNameWords", nullable = true)
-    public Short getwNameWords() {
+    public Integer getwNameWords() {
         return wNameWords;
     }
 
-    public void setwNameWords(Short wNameWords) {
+    public void setwNameWords(Integer wNameWords) {
         this.wNameWords = wNameWords;
     }
 
     @Basic
     @Column(name = "wLanguage", nullable = true)
-    public Short getwLanguage() {
+    public Integer getwLanguage() {
         return wLanguage;
     }
 
-    public void setwLanguage(Short wLanguage) {
+    public void setwLanguage(Integer wLanguage) {
         this.wLanguage = wLanguage;
     }
 
     @Basic
     @Column(name = "wCategory", nullable = true)
-    public Short getwCategory() {
+    public Integer getwCategory() {
         return wCategory;
     }
 
-    public void setwCategory(Short wCategory) {
+    public void setwCategory(Integer wCategory) {
         this.wCategory = wCategory;
     }
 
     @Basic
     @Column(name = "wSingers", nullable = true)
-    public Short getwSingers() {
+    public Integer getwSingers() {
         return wSingers;
     }
 
-    public void setwSingers(Short wSingers) {
+    public void setwSingers(Integer wSingers) {
         this.wSingers = wSingers;
     }
 
     @Basic
     @Column(name = "wVersions", nullable = true)
-    public Short getwVersions() {
+    public Integer getwVersions() {
         return wVersions;
     }
 
-    public void setwVersions(Short wVersions) {
+    public void setwVersions(Integer wVersions) {
         this.wVersions = wVersions;
     }
 
     @Basic
     @Column(name = "wStyles", nullable = true)
-    public Short getwStyles() {
+    public Integer getwStyles() {
         return wStyles;
     }
 
-    public void setwStyles(Short wStyles) {
+    public void setwStyles(Integer wStyles) {
         this.wStyles = wStyles;
     }
 
@@ -179,31 +179,31 @@ public class SongInfo {
 
     @Basic
     @Column(name = "unDateTime", nullable = true)
-    public Short getUnDateTime() {
+    public Integer getUnDateTime() {
         return unDateTime;
     }
 
-    public void setUnDateTime(Short unDateTime) {
+    public void setUnDateTime(Integer unDateTime) {
         this.unDateTime = unDateTime;
     }
 
     @Basic
     @Column(name = "unRanking", nullable = true)
-    public Short getUnRanking() {
+    public Integer getUnRanking() {
         return unRanking;
     }
 
-    public void setUnRanking(Short unRanking) {
+    public void setUnRanking(Integer unRanking) {
         this.unRanking = unRanking;
     }
 
     @Basic
     @Column(name = "unTopRating", nullable = true)
-    public Short getUnTopRating() {
+    public Integer getUnTopRating() {
         return unTopRating;
     }
 
-    public void setUnTopRating(Short unTopRating) {
+    public void setUnTopRating(Integer unTopRating) {
         this.unTopRating = unTopRating;
     }
 
@@ -219,51 +219,51 @@ public class SongInfo {
 
     @Basic
     @Column(name = "unFilePath", nullable = true)
-    public Short getUnFilePath() {
+    public Integer getUnFilePath() {
         return unFilePath;
     }
 
-    public void setUnFilePath(Short unFilePath) {
+    public void setUnFilePath(Integer unFilePath) {
         this.unFilePath = unFilePath;
     }
 
     @Basic
     @Column(name = "unDuration", nullable = true)
-    public Short getUnDuration() {
+    public Integer getUnDuration() {
         return unDuration;
     }
 
-    public void setUnDuration(Short unDuration) {
+    public void setUnDuration(Integer unDuration) {
         this.unDuration = unDuration;
     }
 
     @Basic
     @Column(name = "ullFileSize", nullable = true)
-    public Short getUllFileSize() {
+    public Integer getUllFileSize() {
         return ullFileSize;
     }
 
-    public void setUllFileSize(Short ullFileSize) {
+    public void setUllFileSize(Integer ullFileSize) {
         this.ullFileSize = ullFileSize;
     }
 
     @Basic
     @Column(name = "unMaxBitrate", nullable = true)
-    public Short getUnMaxBitrate() {
+    public Integer getUnMaxBitrate() {
         return unMaxBitrate;
     }
 
-    public void setUnMaxBitrate(Short unMaxBitrate) {
+    public void setUnMaxBitrate(Integer unMaxBitrate) {
         this.unMaxBitrate = unMaxBitrate;
     }
 
     @Basic
     @Column(name = "wEncrypt", nullable = true)
-    public Short getwEncrypt() {
+    public Integer getwEncrypt() {
         return wEncrypt;
     }
 
-    public void setwEncrypt(Short wEncrypt) {
+    public void setwEncrypt(Integer wEncrypt) {
         this.wEncrypt = wEncrypt;
     }
 
