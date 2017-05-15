@@ -1,18 +1,16 @@
 package com.efan.core.secondary;
 
-import javax.persistence.Basic;
-import javax.persistence.Column;
-import javax.persistence.Entity;
-import javax.persistence.Id;
+import javax.persistence.*;
 
 /**
  * Created by 45425 on 2017/5/15.
  */
 @Entity
+@Table(name="songInfo")
 public class SongInfo {
-    private Integer id;
-    private Integer ullSongCode;
-    private Integer unSongCode;
+    private Long id;
+    private Long ullSongCode;
+    private Long unSongCode;
     private String pszName;
     private String pszSpell;
     private Integer wNameWords;
@@ -38,37 +36,37 @@ public class SongInfo {
     private String tOriginal;
 
     @Id
-    @Column(name = "ID", nullable = true)
-    public Integer getId() {
+    @Column(name = "ID", nullable = false)
+    public Long getId() {
         return id;
     }
 
-    public void setId(Integer id) {
+    public void setId(Long id) {
         this.id = id;
     }
 
     @Basic
     @Column(name = "ullSongCode", nullable = true)
-    public Integer getUllSongCode() {
+    public Long getUllSongCode() {
         return ullSongCode;
     }
 
-    public void setUllSongCode(Integer ullSongCode) {
+    public void setUllSongCode(Long ullSongCode) {
         this.ullSongCode = ullSongCode;
     }
 
     @Basic
     @Column(name = "unSongCode", nullable = true)
-    public Integer getUnSongCode() {
+    public Long getUnSongCode() {
         return unSongCode;
     }
 
-    public void setUnSongCode(Integer unSongCode) {
+    public void setUnSongCode(Long unSongCode) {
         this.unSongCode = unSongCode;
     }
 
     @Basic
-    @Column(name = "pszName", nullable = true, length = -1)
+    @Column(name = "pszName", nullable = true, length = 200)
     public String getPszName() {
         return pszName;
     }
@@ -78,7 +76,7 @@ public class SongInfo {
     }
 
     @Basic
-    @Column(name = "pszSpell", nullable = true, length = -1)
+    @Column(name = "pszSpell", nullable = true, length = 200)
     public String getPszSpell() {
         return pszSpell;
     }
@@ -148,7 +146,7 @@ public class SongInfo {
     }
 
     @Basic
-    @Column(name = "arrSingers", nullable = true, length = -1)
+    @Column(name = "arrSingers", nullable = true, length = 200)
     public String getArrSingers() {
         return arrSingers;
     }
@@ -158,7 +156,7 @@ public class SongInfo {
     }
 
     @Basic
-    @Column(name = "arrVersions", nullable = true, length = -1)
+    @Column(name = "arrVersions", nullable = true, length = 200)
     public String getArrVersions() {
         return arrVersions;
     }
@@ -168,7 +166,7 @@ public class SongInfo {
     }
 
     @Basic
-    @Column(name = "arrStyles", nullable = true, length = -1)
+    @Column(name = "arrStyles", nullable = true, length = 200)
     public String getArrStyles() {
         return arrStyles;
     }
@@ -208,7 +206,7 @@ public class SongInfo {
     }
 
     @Basic
-    @Column(name = "pszFileName", nullable = true, length = -1)
+    @Column(name = "pszFileName", nullable = true, length = 200)
     public String getPszFileName() {
         return pszFileName;
     }
@@ -268,7 +266,7 @@ public class SongInfo {
     }
 
     @Basic
-    @Column(name = "tVideo", nullable = true, length = -1)
+    @Column(name = "tVideo", nullable = true, length = 200)
     public String gettVideo() {
         return tVideo;
     }
@@ -278,7 +276,7 @@ public class SongInfo {
     }
 
     @Basic
-    @Column(name = "tAccompany", nullable = true, length = -1)
+    @Column(name = "tAccompany", nullable = true, length = 200)
     public String gettAccompany() {
         return tAccompany;
     }
@@ -288,7 +286,7 @@ public class SongInfo {
     }
 
     @Basic
-    @Column(name = "tOriginal", nullable = true, length = -1)
+    @Column(name = "tOriginal", nullable = true, length = 200)
     public String gettOriginal() {
         return tOriginal;
     }
@@ -304,7 +302,7 @@ public class SongInfo {
 
         SongInfo songInfo = (SongInfo) o;
 
-        if (id != null ? !id.equals(songInfo.id) : songInfo.id != null) return false;
+        if (id != songInfo.id) return false;
         if (ullSongCode != null ? !ullSongCode.equals(songInfo.ullSongCode) : songInfo.ullSongCode != null)
             return false;
         if (unSongCode != null ? !unSongCode.equals(songInfo.unSongCode) : songInfo.unSongCode != null) return false;
@@ -342,7 +340,7 @@ public class SongInfo {
 
     @Override
     public int hashCode() {
-        int result = id != null ? id.hashCode() : 0;
+        int result = (int) (id ^ (id >>> 32));
         result = 31 * result + (ullSongCode != null ? ullSongCode.hashCode() : 0);
         result = 31 * result + (unSongCode != null ? unSongCode.hashCode() : 0);
         result = 31 * result + (pszName != null ? pszName.hashCode() : 0);

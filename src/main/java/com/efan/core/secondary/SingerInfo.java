@@ -1,16 +1,14 @@
 package com.efan.core.secondary;
 
-import javax.persistence.Basic;
-import javax.persistence.Column;
-import javax.persistence.Entity;
-import javax.persistence.Id;
+import javax.persistence.*;
 
 /**
  * Created by 45425 on 2017/5/15.
  */
 @Entity
+@Table(name="singerInfo")
 public class SingerInfo {
-    private Integer unSingerCode;
+    private Long unSingerCode;
     private String pszName;
     private String pszSpell;
     private Integer wNameWords;
@@ -24,17 +22,17 @@ public class SingerInfo {
     private String pszProfile;
 
     @Id
-    @Column(name = "unSingerCode", nullable = true)
-    public Integer getUnSingerCode() {
+    @Column(name = "unSingerCode", nullable = false)
+    public Long getUnSingerCode() {
         return unSingerCode;
     }
 
-    public void setUnSingerCode(Integer unSingerCode) {
+    public void setUnSingerCode(Long unSingerCode) {
         this.unSingerCode = unSingerCode;
     }
 
     @Basic
-    @Column(name = "pszName", nullable = true, length = -1)
+    @Column(name = "pszName", nullable = true, length = 200)
     public String getPszName() {
         return pszName;
     }
@@ -44,7 +42,7 @@ public class SingerInfo {
     }
 
     @Basic
-    @Column(name = "pszSpell", nullable = true, length = -1)
+    @Column(name = "pszSpell", nullable = true, length = 200)
     public String getPszSpell() {
         return pszSpell;
     }
@@ -134,7 +132,7 @@ public class SingerInfo {
     }
 
     @Basic
-    @Column(name = "pszProfile", nullable = true, length = -1)
+    @Column(name = "pszProfile", nullable = true, length = 200)
     public String getPszProfile() {
         return pszProfile;
     }
@@ -150,7 +148,7 @@ public class SingerInfo {
 
         SingerInfo that = (SingerInfo) o;
 
-        if (unSingerCode != null ? !unSingerCode.equals(that.unSingerCode) : that.unSingerCode != null) return false;
+        if (unSingerCode != that.unSingerCode) return false;
         if (pszName != null ? !pszName.equals(that.pszName) : that.pszName != null) return false;
         if (pszSpell != null ? !pszSpell.equals(that.pszSpell) : that.pszSpell != null) return false;
         if (wNameWords != null ? !wNameWords.equals(that.wNameWords) : that.wNameWords != null) return false;
@@ -168,7 +166,7 @@ public class SingerInfo {
 
     @Override
     public int hashCode() {
-        int result = unSingerCode != null ? unSingerCode.hashCode() : 0;
+        int result = (int) (unSingerCode ^ (unSingerCode >>> 32));
         result = 31 * result + (pszName != null ? pszName.hashCode() : 0);
         result = 31 * result + (pszSpell != null ? pszSpell.hashCode() : 0);
         result = 31 * result + (wNameWords != null ? wNameWords.hashCode() : 0);

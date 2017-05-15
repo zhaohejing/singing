@@ -2,6 +2,7 @@ package com.efan.jpaconfig;
 
 
 import org.springframework.beans.factory.annotation.Qualifier;
+import org.springframework.beans.factory.annotation.Value;
 import org.springframework.boot.autoconfigure.jdbc.DataSourceBuilder;
 import org.springframework.boot.context.properties.ConfigurationProperties;
 import org.springframework.context.annotation.Bean;
@@ -25,12 +26,5 @@ public class DataSourceConfig {
         return DataSourceBuilder.create().build();
     }
 
-    @Bean(name = "secondaryDataSource")
-    @Qualifier("secondaryDataSource")
-    @Primary
-    @ConfigurationProperties(prefix="spring.secondary")
-    public DataSource secondaryDataSource() {
-        return DataSourceBuilder.create().build();
-    }
 
 }
