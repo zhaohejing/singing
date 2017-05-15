@@ -1,12 +1,21 @@
 package com.efan.core.secondary;
 
-/**
- * 迪斯科信息
- */
-public class DiscoStyleInfo {
-    //id
-    private  Integer id;
+import javax.persistence.Basic;
+import javax.persistence.Column;
+import javax.persistence.Entity;
+import javax.persistence.Id;
+import java.io.Serializable;
 
+/**
+ * Created by 45425 on 2017/5/15.
+ */
+@Entity
+public class DiscoStyleInfo {
+    private Integer id;
+    private String pszName;
+
+    @Id
+    @Column(name = "ID", nullable = true)
     public Integer getId() {
         return id;
     }
@@ -14,7 +23,9 @@ public class DiscoStyleInfo {
     public void setId(Integer id) {
         this.id = id;
     }
-    //名称
+
+    @Basic
+    @Column(name = "pszName", nullable = true, length = -1)
     public String getPszName() {
         return pszName;
     }
@@ -23,5 +34,23 @@ public class DiscoStyleInfo {
         this.pszName = pszName;
     }
 
-    private String pszName;
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (o == null || getClass() != o.getClass()) return false;
+
+        DiscoStyleInfo that = (DiscoStyleInfo) o;
+
+        if (id != null ? !id.equals(that.id) : that.id != null) return false;
+        if (pszName != null ? !pszName.equals(that.pszName) : that.pszName != null) return false;
+
+        return true;
+    }
+
+    @Override
+    public int hashCode() {
+        int result = id != null ? id.hashCode() : 0;
+        result = 31 * result + (pszName != null ? pszName.hashCode() : 0);
+        return result;
+    }
 }

@@ -43,6 +43,7 @@ public  class JpaHelper {
 
 
     public static List<Order> GetOrderList(Integer boxId, String start, String end) {
+
         EntityManager em = emf.createEntityManager();
         //定义SQL
         StringBuilder sb = new StringBuilder();
