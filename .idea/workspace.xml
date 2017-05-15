@@ -2,15 +2,7 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="f0d0a10e-b853-4aeb-84d6-8ad172c74a8a" name="默认的" comment="">
-      <change type="DELETED" beforePath="$PROJECT_DIR$/src/main/java/com/efan/repository/secondary/IDiscoStyleRepository.java" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/src/main/java/com/efan/repository/secondary/ISingerRepository.java" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/src/main/java/com/efan/repository/secondary/ISongsRepository.java" afterPath="" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/main/java/com/efan/appservice/iservice/IAndSoService.java" afterPath="$PROJECT_DIR$/src/main/java/com/efan/appservice/iservice/IAndSoService.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/main/java/com/efan/appservice/service/AndSoService.java" afterPath="$PROJECT_DIR$/src/main/java/com/efan/appservice/service/AndSoService.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/main/java/com/efan/controller/AndSoController.java" afterPath="$PROJECT_DIR$/src/main/java/com/efan/controller/AndSoController.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/main/java/com/efan/jpaconfig/DataSourceConfig.java" afterPath="$PROJECT_DIR$/src/main/java/com/efan/jpaconfig/DataSourceConfig.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/main/resources/application.properties" afterPath="$PROJECT_DIR$/src/main/resources/application.properties" />
     </list>
     <ignored path="$PROJECT_DIR$/out/" />
     <ignored path="$PROJECT_DIR$/target/" />
@@ -36,8 +28,8 @@
       <file leaf-file-name="AndSoService.java" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/src/main/java/com/efan/appservice/service/AndSoService.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="418">
-              <caret line="27" column="21" lean-forward="false" selection-start-line="27" selection-start-column="21" selection-end-line="27" selection-end-column="21" />
+            <state relative-caret-position="456">
+              <caret line="29" column="0" lean-forward="true" selection-start-line="29" selection-start-column="0" selection-end-line="29" selection-end-column="0" />
               <folding>
                 <element signature="imports" expanded="true" />
                 <marker date="1494832836311" expanded="true" signature="686:714" ph="SELECT * fro... DiscoStyleInfo" />
@@ -841,7 +833,7 @@
       <workItem from="1494826043304" duration="314000" />
       <workItem from="1494826787445" duration="253000" />
       <workItem from="1494827081755" duration="99000" />
-      <workItem from="1494827342494" duration="3635000" />
+      <workItem from="1494827342494" duration="4476000" />
     </task>
     <task id="LOCAL-00001" summary="创建接口列表 修改  实体">
       <created>1494215316819</created>
@@ -1095,11 +1087,18 @@
       <option name="project" value="LOCAL" />
       <updated>1494827499979</updated>
     </task>
-    <option name="localTasksCounter" value="37" />
+    <task id="LOCAL-00037" summary="对接efan接口">
+      <created>1494835244967</created>
+      <option name="number" value="00037" />
+      <option name="presentableId" value="LOCAL-00037" />
+      <option name="project" value="LOCAL" />
+      <updated>1494835244967</updated>
+    </task>
+    <option name="localTasksCounter" value="38" />
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="98737000" />
+    <option name="totallyTimeSpent" value="99578000" />
   </component>
   <component name="ToolWindowManager">
     <frame x="1420" y="-8" width="1554" height="916" extended-state="6" />
@@ -1127,7 +1126,7 @@
       <window_info id="运行" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.3271605" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
       <window_info id="Persistence" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.2490247" sideWeight="0.5050125" order="3" side_tool="true" content_ui="tabs" />
       <window_info id="控制板" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
-      <window_info id="Project" active="true" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.2490247" sideWeight="0.49498746" order="0" side_tool="false" content_ui="combo" />
+      <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.2490247" sideWeight="0.49498746" order="0" side_tool="false" content_ui="combo" />
       <window_info id="Bean Validation" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
       <window_info id="Theme Preview" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
       <window_info id="Favorites" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="2" side_tool="true" content_ui="tabs" />
@@ -1565,8 +1564,8 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/src/main/java/com/efan/appservice/service/AndSoService.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="418">
-          <caret line="27" column="21" lean-forward="false" selection-start-line="27" selection-start-column="21" selection-end-line="27" selection-end-column="21" />
+        <state relative-caret-position="456">
+          <caret line="29" column="0" lean-forward="true" selection-start-line="29" selection-start-column="0" selection-end-line="29" selection-end-column="0" />
           <folding>
             <element signature="imports" expanded="true" />
             <marker date="1494832836311" expanded="true" signature="686:714" ph="SELECT * fro... DiscoStyleInfo" />
