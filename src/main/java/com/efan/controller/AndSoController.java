@@ -36,19 +36,7 @@ public class AndSoController {
     @ApiImplicitParam(name = "input", value = "分页dto", required = true, dataType = "PageModel")
     @RequestMapping(value  ="/hitlist" ,method = RequestMethod.POST)
     public ActionResult HitList(@RequestBody PageModel input){
-        List<SingerDto> list=new ArrayList<SingerDto>();
-
-        list.add(new SingerDto(1,"张学友"));
-        list.add(new SingerDto(2,"莫文蔚"));
-        list.add(new SingerDto(3,"周杰伦"));
-        list.add(new SingerDto(4,"张惠妹"));
-        list.add(new SingerDto(5,"张杰"));
-        list.add(new SingerDto(6,"梁静茹"));
-        list.add(new SingerDto(7,"屠洪刚"));
-        list.add(new SingerDto(8,"那英"));
-        list.add(new SingerDto(9,"韩红"));
-         int total=list.size();
-        return  new ActionResult(new ResultModel<SingerDto>(list, (long) total));
+        return  new ActionResult(_songService.GetDiscoStyle());
     }
     /*歌曲模糊搜索*/
     @ApiOperation(value="歌曲模糊搜索", notes="歌单接口")
