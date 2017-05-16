@@ -2,11 +2,15 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="f0d0a10e-b853-4aeb-84d6-8ad172c74a8a" name="默认的" comment="">
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/src/main/java/com/efan/controller/inputs/GetSongsInput.java" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/src/main/java/com/efan/core/JpaHelper.java" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/src/main/java/com/efan/core/secondary/DiscoStyleInfo.java" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/src/main/java/com/efan/core/secondary/MediaPathInfo.java" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/src/main/java/com/efan/core/secondary/MovieStyleInfo.java" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/src/main/java/com/efan/core/secondary/SingerInfo.java" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/src/main/java/com/efan/core/secondary/SongInfo.java" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/src/main/java/com/efan/core/secondary/SongStyleInfo.java" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/src/main/java/com/efan/core/secondary/SongVerInfo.java" afterPath="" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/main/java/com/efan/appservice/iservice/IAndSoService.java" afterPath="$PROJECT_DIR$/src/main/java/com/efan/appservice/iservice/IAndSoService.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/main/java/com/efan/appservice/service/AndSoService.java" afterPath="$PROJECT_DIR$/src/main/java/com/efan/appservice/service/AndSoService.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/main/java/com/efan/controller/AndSoController.java" afterPath="$PROJECT_DIR$/src/main/java/com/efan/controller/AndSoController.java" />
     </list>
     <ignored path="$PROJECT_DIR$/out/" />
     <ignored path="$PROJECT_DIR$/target/" />
@@ -72,16 +76,6 @@
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="ResultModel.java" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/main/java/com/efan/core/page/ResultModel.java">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="133">
-              <caret line="11" column="23" lean-forward="true" selection-start-line="11" selection-start-column="23" selection-end-line="11" selection-end-column="23" />
-              <folding />
-            </state>
-          </provider>
-        </entry>
-      </file>
       <file leaf-file-name="IAndSoService.java" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/main/java/com/efan/appservice/iservice/IAndSoService.java">
           <provider selected="true" editor-type-id="text-editor">
@@ -95,7 +89,7 @@
       <file leaf-file-name="AndSoController.java" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/src/main/java/com/efan/controller/AndSoController.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="433">
+            <state relative-caret-position="661">
               <caret line="119" column="134" lean-forward="false" selection-start-line="119" selection-start-column="134" selection-end-line="119" selection-end-column="134" />
               <folding />
             </state>
@@ -343,6 +337,10 @@
             </PATH_ELEMENT>
             <PATH_ELEMENT>
               <option name="myItemId" value="java" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="efan" />
               <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
             </PATH_ELEMENT>
           </PATH>
@@ -830,7 +828,7 @@
       <workItem from="1494826787445" duration="253000" />
       <workItem from="1494827081755" duration="99000" />
       <workItem from="1494827342494" duration="5246000" />
-      <workItem from="1494895744346" duration="10055000" />
+      <workItem from="1494895744346" duration="10155000" />
     </task>
     <task id="LOCAL-00001" summary="创建接口列表 修改  实体">
       <created>1494215316819</created>
@@ -1119,11 +1117,18 @@
       <option name="project" value="LOCAL" />
       <updated>1494915357591</updated>
     </task>
-    <option name="localTasksCounter" value="42" />
+    <task id="LOCAL-00042" summary="歌曲接口">
+      <created>1494918462436</created>
+      <option name="number" value="00042" />
+      <option name="presentableId" value="LOCAL-00042" />
+      <option name="project" value="LOCAL" />
+      <updated>1494918462436</updated>
+    </task>
+    <option name="localTasksCounter" value="43" />
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="110403000" />
+    <option name="totallyTimeSpent" value="110503000" />
   </component>
   <component name="ToolWindowManager">
     <frame x="1420" y="-8" width="1554" height="904" extended-state="0" />
@@ -1225,18 +1230,10 @@
     <option name="FILTER_TARGETS" value="false" />
   </component>
   <component name="editorHistoryManager">
-    <entry file="file://$PROJECT_DIR$/src/main/java/com/efan/jpaconfig/SecondaryConfig.java" />
     <entry file="file://$APPLICATION_CONFIG_DIR$/consoles/db/11b322e0-5506-4e38-96a1-f1c9c16d3157/console.sql">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="0">
           <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/com/efan/core/secondary/DiscoStyleInfo.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="200">
-          <caret line="11" column="29" lean-forward="true" selection-start-line="11" selection-start-column="29" selection-end-line="11" selection-end-column="29" />
         </state>
       </provider>
     </entry>
@@ -1557,9 +1554,25 @@
         </state>
       </provider>
     </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/com/efan/core/secondary/DiscoStyleInfo.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="-50">
+          <caret line="11" column="29" lean-forward="true" selection-start-line="11" selection-start-column="29" selection-end-line="11" selection-end-column="29" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/com/efan/core/JpaHelper.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="209">
+          <caret line="18" column="14" lean-forward="false" selection-start-line="18" selection-start-column="14" selection-end-line="18" selection-end-column="14" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
     <entry file="file://$PROJECT_DIR$/src/main/java/com/efan/controller/AndSoController.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="433">
+        <state relative-caret-position="661">
           <caret line="119" column="134" lean-forward="false" selection-start-line="119" selection-start-column="134" selection-end-line="119" selection-end-column="134" />
           <folding />
         </state>
