@@ -2,6 +2,7 @@ package com.efan.appservice.service;
 
 import com.efan.appservice.iservice.IAndSoService;
 import com.efan.controller.inputs.GetSingerInput;
+import com.efan.controller.inputs.GetSongsInput;
 import com.efan.core.page.ResultModel;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Qualifier;
@@ -20,11 +21,7 @@ public class AndSoService implements IAndSoService {
     @Qualifier("secondaryJdbcTemplate")
     public   JdbcTemplate _jdbc;
 
-    //获取diskette分科
-    public ResultModel<Map<String,Object>> GetDiscoStyle(){
-        List<Map<String,Object>> list = _jdbc.queryForList("SELECT * from DiscoStyleInfo");
-        return  new ResultModel<Map<String,Object>>(list,(long)list.size());
-    }
+
     //获取歌手列表
     public ResultModel<Map<String,Object>> GetSingerList(GetSingerInput input){
         StringBuilder sql=new StringBuilder();
@@ -44,19 +41,19 @@ public class AndSoService implements IAndSoService {
             sql.append(" and  wSingerType = "+input.cateId+" ");
             count.append(" and  wSingerType = "+input.cateId+" ");
         }
+
+
         sql.append(" limit  "+input.getPage()+" , "+input.getSize() );
         Long total=_jdbc.queryForObject(count.toString(),Long.class);
         List<Map<String,Object>> list = _jdbc.queryForList(sql.toString());
         return  new ResultModel<Map<String,Object>>(list,total);
     }
     //获取歌曲列表
-    public ResultModel<Map<String,Object>> GetSongsList(GetSingerInput input){
+    public ResultModel<Map<String,Object>> GetSongsList(GetSongsInput input){
         StringBuilder sql=new StringBuilder();
         StringBuilder count=new StringBuilder();
-
         sql.append("SELECT ullSongCode,unSongCode,pszName,pszSpell from SongInfo where 1=1");
         count.append("SELECT count(*) from SongInfo where 1=1");
-
         if (input.filter!=null&& !input.filter.isEmpty()){
             sql.append(" and  pszName like %"+input.filter+"% ");
             count.append(" and  pszName like %"+input.filter+"% ");
@@ -64,6 +61,18 @@ public class AndSoService implements IAndSoService {
         if (input.word!=null&& !input.word.isEmpty()){
             sql.append(" and  pszSpell like %"+input.word+"% ");
             count.append(" and  pszSpell like %"+input.word+"% ");
+        }
+        if (input.cateId!=null&& input.cateId>0){
+            sql.append(" and  arrStyles = "+input.cateId+" ");
+            count.append(" and  arrStyles = "+input.cateId+" ");
+        }
+        if (input.singer!=null&&! input.singer.isEmpty()){
+            sql.append(" and  arrSingers = "+input.singer+" ");
+            count.append(" and  arrSingers = "+input.singer+" ");
+        }
+        if (input.version!=null&&! input.version.isEmpty()){
+            sql.append(" and  arrVersions = "+input.version+" ");
+            count.append(" and  arrVersions = "+input.version+" ");
         }
         sql.append(" limit  "+input.getPage()+" , "+input.getSize() );
         Long total=_jdbc.queryForObject(count.toString(),Long.class);
@@ -77,7 +86,22 @@ public class AndSoService implements IAndSoService {
         List<Map<String,Object>> list = _jdbc.queryForList(sql.toString());
         return  list;
     }
-    //获取歌曲版本
+    //获取热门歌星
+    public List<Map<String,Object>> GetSingerByHot(){
+        StringBuilder sql=new StringBuilder();
+        sql.append("SELECT unSingerCode,pszName,pszSpell from SingerInfo where 1=1  order by unTopRating desc limit 0,20");
+        List<Map<String,Object>> list = _jdbc.queryForList(sql.toString());
+        return  list;
+    }
+    //获取热门歌曲
+    public List<Map<String,Object>> GetSongsByHot(){
+        StringBuilder sql=new StringBuilder();
+        sql.append("SELECT ullSongCode,unSongCode,pszName,pszSpell from SongInfo where 1=1  order by unTopRating desc limit 0,20");
+        List<Map<String,Object>> list = _jdbc.queryForList(sql.toString());
+        return  list;
+    }
+
+    //获取歌曲排行榜
     public List<Map<String,Object>> GetSongsVerList(){
         StringBuilder sql=new StringBuilder();
         sql.append("SELECT ID,pszName from SongVerInfo where 1=1");
