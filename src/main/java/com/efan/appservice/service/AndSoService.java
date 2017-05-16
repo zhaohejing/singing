@@ -1,6 +1,8 @@
 package com.efan.appservice.service;
 
 import com.efan.appservice.iservice.IAndSoService;
+import com.efan.controller.inputs.GetSingerInput;
+import com.efan.core.page.ResultModel;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.jdbc.core.JdbcTemplate;
@@ -19,13 +21,30 @@ public class AndSoService implements IAndSoService {
     public   JdbcTemplate _jdbc;
 
     //获取diskette分科
-    public  List<Map<String,Object>> GetDiscoStyle(){
+    public ResultModel<Map<String,Object>> GetDiscoStyle(){
         List<Map<String,Object>> list = _jdbc.queryForList("SELECT * from DiscoStyleInfo");
-        return  list;
+        return  new ResultModel<Map<String,Object>>(list,(long)list.size());
     }
-    public List<Map<String,Object>> GetSingerList(){
-        List<Map<String,Object>> list = _jdbc.queryForList("SELECT * from DiscoStyleInfo");
-        return  list;
+    //获取歌手列表
+    public ResultModel<Map<String,Object>> GetSingerList(GetSingerInput input){
+        StringBuilder sql=new StringBuilder();
+        StringBuilder count=new StringBuilder();
+
+        sql.append("SELECT unSingerCode,pszName,pszSpell from SingerInfo where 1=1");
+        count.append("SELECT count(*) from SingerInfo where 1=1");
+
+        if (input.filter!=null&& !input.filter.isEmpty()){
+           sql.append(" and  pszName like %"+input.filter+"% ");
+            count.append(" and  pszName like %"+input.filter+"% ");
+        }
+        if (input.word!=null&& !input.word.isEmpty()){
+            sql.append(" and  pszSpell like %"+input.word+"% ");
+            count.append(" and  pszSpell like %"+input.word+"% ");
+        }
+        sql.append(" limit  "+input.getPage()+" , "+input.getSize() );
+        Long total=_jdbc.queryForObject(count.toString(),Long.class);
+        List<Map<String,Object>> list = _jdbc.queryForList(sql.toString());
+        return  new ResultModel<Map<String,Object>>(list,total);
     }
 
 }
