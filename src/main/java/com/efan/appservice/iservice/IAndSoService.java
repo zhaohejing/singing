@@ -12,4 +12,5 @@ import java.util.Map;
 public interface IAndSoService {
     ResultModel<Map<String,Object>> GetDiscoStyle();
     ResultModel<Map<String,Object>> GetSingerList(GetSingerInput input);
+    ResultModel<Map<String,Object>> GetSongsList(GetSingerInput input);
 }

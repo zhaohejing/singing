@@ -46,5 +46,25 @@ public class AndSoService implements IAndSoService {
         List<Map<String,Object>> list = _jdbc.queryForList(sql.toString());
         return  new ResultModel<Map<String,Object>>(list,total);
     }
+    //获取歌曲列表
+    public ResultModel<Map<String,Object>> GetSongsList(GetSingerInput input){
+        StringBuilder sql=new StringBuilder();
+        StringBuilder count=new StringBuilder();
 
+        sql.append("SELECT ullSongCode,unSongCode,pszName,pszSpell from SongInfo where 1=1");
+        count.append("SELECT count(*) from SongInfo where 1=1");
+
+        if (input.filter!=null&& !input.filter.isEmpty()){
+            sql.append(" and  pszName like %"+input.filter+"% ");
+            count.append(" and  pszName like %"+input.filter+"% ");
+        }
+        if (input.word!=null&& !input.word.isEmpty()){
+            sql.append(" and  pszSpell like %"+input.word+"% ");
+            count.append(" and  pszSpell like %"+input.word+"% ");
+        }
+        sql.append(" limit  "+input.getPage()+" , "+input.getSize() );
+        Long total=_jdbc.queryForObject(count.toString(),Long.class);
+        List<Map<String,Object>> list = _jdbc.queryForList(sql.toString());
+        return  new ResultModel<Map<String,Object>>(list,total);
+    }
 }

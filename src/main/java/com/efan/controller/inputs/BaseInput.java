@@ -4,7 +4,6 @@ package com.efan.controller.inputs;
  * Created by 45425 on 2017/5/16.
  */
 public class BaseInput {
-    private Integer page;
     private Integer size;
     private Integer index;
 
@@ -14,9 +13,7 @@ public class BaseInput {
         else return  (index-1)*size;
     }
 
-    public void setPage(Integer page) {
-        this.page = page;
-    }
+
 
     public Integer getIndex() {
         return index;

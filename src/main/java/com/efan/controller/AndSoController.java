@@ -42,19 +42,11 @@ public class AndSoController {
     }
     /*歌曲模糊搜索*/
     @ApiOperation(value="歌曲模糊搜索", notes="歌单接口")
-    @ApiImplicitParam(name = "input", value = "关键词", required = true, dataType = "FilterModel")
+    @ApiImplicitParam(name = "input", value = "{filter:关键词,index:页码,size:页容量 ,word:简写}", required = true, dataType = "GetSingerInput")
     @RequestMapping(value  ="/searchsongs" ,method = RequestMethod.POST)
-    public ActionResult SearchSongs(@RequestBody FilterModel input){
-        List<SongDto> list=new ArrayList<SongDto>();
-        list.add(new SongDto(1,"小苹果"));
-        list.add(new SongDto(2,"情歌"));
-        list.add(new SongDto(3,"绿光"));
-        list.add(new SongDto(5,"爱如潮水"));
-        list.add(new SongDto(6,"暖暖"));
-        list.add(new SongDto(7,"贵妃醉酒"));
-        list.add(new SongDto(8,"相别1997"));
-        int total=list.size();
-        return  new ActionResult(new ResultModel<SongDto>(list, (long) total));
+    public ActionResult SearchSongs(@RequestBody GetSingerInput input){
+        ResultModel<Map<String,Object>> result=_songService.GetSongsList(input);
+        return  new ActionResult(result);
     }
     /*根据分类获取歌星列表*/
     @ApiOperation(value="根据分类获取歌星列表", notes="歌单接口")
