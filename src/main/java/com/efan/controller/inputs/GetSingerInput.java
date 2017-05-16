@@ -8,4 +8,5 @@ import org.springframework.data.redis.core.index.IndexValueTransformer;
 public class GetSingerInput extends BaseInput {
     public String filter;
     public  String word;
+    public Long cateId;
 }

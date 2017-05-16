@@ -29,7 +29,6 @@ public class AndSoService implements IAndSoService {
     public ResultModel<Map<String,Object>> GetSingerList(GetSingerInput input){
         StringBuilder sql=new StringBuilder();
         StringBuilder count=new StringBuilder();
-
         sql.append("SELECT unSingerCode,pszName,pszSpell from SingerInfo where 1=1");
         count.append("SELECT count(*) from SingerInfo where 1=1");
 
@@ -40,6 +39,10 @@ public class AndSoService implements IAndSoService {
         if (input.word!=null&& !input.word.isEmpty()){
             sql.append(" and  pszSpell like %"+input.word+"% ");
             count.append(" and  pszSpell like %"+input.word+"% ");
+        }
+        if (input.cateId!=null&& input.cateId>0){
+            sql.append(" and  wSingerType = "+input.cateId+" ");
+            count.append(" and  wSingerType = "+input.cateId+" ");
         }
         sql.append(" limit  "+input.getPage()+" , "+input.getSize() );
         Long total=_jdbc.queryForObject(count.toString(),Long.class);
@@ -66,5 +69,19 @@ public class AndSoService implements IAndSoService {
         Long total=_jdbc.queryForObject(count.toString(),Long.class);
         List<Map<String,Object>> list = _jdbc.queryForList(sql.toString());
         return  new ResultModel<Map<String,Object>>(list,total);
+    }
+    //获取歌曲分类
+    public List<Map<String,Object>> GetSongsCateList(){
+        StringBuilder sql=new StringBuilder();
+        sql.append("SELECT ID,pszNamefrom SongStyleInfo where 1=1");
+        List<Map<String,Object>> list = _jdbc.queryForList(sql.toString());
+        return  list;
+    }
+    //获取歌曲版本
+    public List<Map<String,Object>> GetSongsVerList(){
+        StringBuilder sql=new StringBuilder();
+        sql.append("SELECT ID,pszName from SongVerInfo where 1=1");
+        List<Map<String,Object>> list = _jdbc.queryForList(sql.toString());
+        return  list;
     }
 }

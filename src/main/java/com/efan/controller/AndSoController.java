@@ -37,8 +37,11 @@ public class AndSoController {
     @ApiOperation(value="热门歌星列表", notes="歌单接口")
     @ApiImplicitParam(name = "input", value = "分页dto", required = true, dataType = "PageModel")
     @RequestMapping(value  ="/hitlist" ,method = RequestMethod.POST)
-    public ActionResult HitList(@RequestBody PageModel input){
-        return  new ActionResult(_songService.GetDiscoStyle());
+    public ActionResult HitList(){
+        GetSingerInput input=new GetSingerInput();
+        input.setIndex(1);input.setSize(20);
+        ResultModel<Map<String,Object>> result=_songService.GetSingerList(input);
+        return  new ActionResult(result);
     }
     /*歌曲模糊搜索*/
     @ApiOperation(value="歌曲模糊搜索", notes="歌单接口")
@@ -77,33 +80,16 @@ public class AndSoController {
     @ApiOperation(value="获取歌曲分类列表", notes="歌单接口")
     @RequestMapping(value  ="/getsongscates" ,method = RequestMethod.POST)
     public ActionResult SongsCates(){
-        List<SongCateDto> list=new ArrayList<SongCateDto>();
-        list.add(new SongCateDto(1,"情歌"));
-        list.add(new SongCateDto(2,"粤语"));
-        list.add(new SongCateDto(3,"国语"));
-        list.add(new SongCateDto(4,"伤感"));
-        list.add(new SongCateDto(5,"民族风"));
-        list.add(new SongCateDto(6,"hitpop"));
-        list.add(new SongCateDto(7,"儿歌"));
-        list.add(new SongCateDto(8,"18"));
-        int total=list.size();
-        return  new ActionResult(new ResultModel<SongCateDto>(list, (long) total));
+        List<Map<String,Object>> result=_songService.GetSongsCateList();
+        return  new ActionResult(result);
     }
     /*获取分类下歌曲列表*/
     @ApiOperation(value="获取分类下歌曲列表", notes="歌单接口")
-    @ApiImplicitParam(name = "cateId", value = "歌曲分类Id", required = true, dataType = "Integer")
+    @ApiImplicitParam(name = "input", value = "{filter:过滤条件,index:页码,size:页容量 ,word:关键词}", required = true, dataType = "GetSingerInput")
     @RequestMapping(value  ="/getsongsbycate" ,method = RequestMethod.POST)
-    public ActionResult GetSongsByCates(Integer cateId){
-        List<SongDto> list=new ArrayList<SongDto>();
-        list.add(new SongDto(1,"小苹果"));
-        list.add(new SongDto(3,"绿光"));
-        list.add(new SongDto(4,"一眼万年"));
-        list.add(new SongDto(5,"爱如潮水"));
-        list.add(new SongDto(6,"暖暖"));
-        list.add(new SongDto(7,"贵妃醉酒"));
-        list.add(new SongDto(8,"相别1997"));
-        int total=list.size();
-        return  new ActionResult(new ResultModel<SongDto>(list, (long) total));
+    public ActionResult GetSongsByCates(@RequestBody GetSingerInput input){
+        ResultModel<Map<String,Object>> result=_songService.GetSongsList(input);
+        return  new ActionResult(result);
     }
     /*获取热点歌曲分类列表*/
     @ApiOperation(value="获取热点歌曲分类列表", notes="歌单接口")

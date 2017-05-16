@@ -12,9 +12,6 @@ public class BaseInput {
         return index*size;
         else return  (index-1)*size;
     }
-
-
-
     public Integer getIndex() {
         return index;
     }

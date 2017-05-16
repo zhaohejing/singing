@@ -13,4 +13,8 @@ public interface IAndSoService {
     ResultModel<Map<String,Object>> GetDiscoStyle();
     ResultModel<Map<String,Object>> GetSingerList(GetSingerInput input);
     ResultModel<Map<String,Object>> GetSongsList(GetSingerInput input);
+    //获取歌曲分类
+     List<Map<String,Object>> GetSongsCateList();
+    //获取歌曲版本
+     List<Map<String,Object>> GetSongsVerList();
 }
