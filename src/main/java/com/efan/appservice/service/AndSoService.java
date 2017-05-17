@@ -91,13 +91,13 @@ public class AndSoService implements IAndSoService {
     public ResultModel<Map<String,Object>> GetSingerByHot(BaseInput input){
         StringBuilder sql=new StringBuilder();
         StringBuilder count=new StringBuilder();
-        sql.append("SELECT unSingerCode,pszName,pszSpell from singerinfo where 1=1   ");
+        sql.append("SELECT unSingerCo,pszName,pszSpell from singerinfo where 1=1   ");
         count.append("SELECT count(*) from singerinfo where 1=1");
         if (input.getFilter()!=null&& !input.getFilter().isEmpty()){
             sql.append(" and  pszName like '%"+input.getFilter()+"%' ");
             count.append(" and  pszName like '%"+input.getFilter()+"%' ");
         }
-        sql.append("order by unTopRating desc");
+        sql.append("order by unTopRatin desc");
         sql.append(" limit  "+input.getPage()+" , "+input.getSize() );
         Long total=_jdbc.queryForObject(count.toString(),Long.class);
         List<Map<String,Object>> list = _jdbc.queryForList(sql.toString());
