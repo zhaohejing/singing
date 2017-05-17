@@ -53,26 +53,26 @@ public class AndSoService implements IAndSoService {
     public ResultModel<Map<String,Object>> GetSongsList(GetSongsInput input){
         StringBuilder sql=new StringBuilder();
         StringBuilder count=new StringBuilder();
-        sql.append("SELECT ullSongCo,unSongCode,pszName,pszSpell from songinfo where 1=1");
+        sql.append("SELECT a.ID, a.ullSongCode,a.unSongCode,a.pszName,a.pszSpell,b.pszName singerName from songinfo a left join singerinfo b on a.arrSingers=b.unSingerCo where 1=1");
         count.append("SELECT count(*) from songinfo where 1=1");
         if (input.getFilter()!=null&& !input.getFilter().isEmpty()){
-            sql.append(" and  pszName like '%"+input.getFilter()+"%' ");
+            sql.append(" and  a.pszName like '%"+input.getFilter()+"%' ");
             count.append(" and  pszName like '%"+input.getFilter()+"%' ");
         }
         if (input.word!=null&& !input.word.isEmpty()){
-            sql.append(" and  pszSpell like '%"+input.word+"%' ");
-            count.append(" and  pszSpell like '%"+input.word+"%' ");
+            sql.append(" and  a.pszSpell like '%"+input.word+"%' ");
+            count.append(" and  a.pszSpell like '%"+input.word+"%' ");
         }
         if (input.cateId!=null&& !input.cateId.isEmpty()){
-            sql.append(" and  arrStyles = '"+input.cateId+"' ");
+            sql.append(" and  a.arrStyles = '"+input.cateId+"' ");
             count.append(" and  arrStyles = '"+input.cateId+"' ");
         }
         if (input.singer!=null&&! input.singer.isEmpty()){
-            sql.append(" and  arrSingers = '"+input.singer+"' ");
+            sql.append(" and  a.arrSingers = '"+input.singer+"' ");
             count.append(" and  arrSingers = '"+input.singer+"' ");
         }
         if (input.version!=null&&! input.version.isEmpty()){
-            sql.append(" and  arrVersions = '"+input.version+"' ");
+            sql.append(" and  a.arrVersions = '"+input.version+"' ");
             count.append(" and  arrVersions = '"+input.version+"' ");
         }
         sql.append(" limit  "+input.getPage()+" , "+input.getSize() );
@@ -108,7 +108,7 @@ public class AndSoService implements IAndSoService {
     public ResultModel<Map<String,Object>> GetSongsByHot(GetSongsInput input){
         StringBuilder sql=new StringBuilder();
         StringBuilder count=new StringBuilder();
-        sql.append("select a.ID,b.pszName,b.pszSpell from topsongs a inner join songinfo b on a.unSongCo=b.unSongCo where 1=1");
+        sql.append("select a.ID,b.pszName,b.pszSpell,c.pszName singerName from topsongs a inner join songinfo b on a.unSongCo=b.unSongCo left join singerinfo c on b.arrSingers=c.unSingerCo where 1=1");
         count.append("select count(*) from topsongs a inner join songinfo b on a.unSongCo=b.unSongCo where 1=1");
         if (input.getFilter()!=null&& !input.getFilter().isEmpty()){
             sql.append(" and  b.pszName like '%"+input.getFilter()+"%' ");

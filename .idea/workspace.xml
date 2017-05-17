@@ -29,13 +29,12 @@
       <file leaf-file-name="AndSoService.java" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/src/main/java/com/efan/appservice/service/AndSoService.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="163">
-              <caret line="67" column="29" lean-forward="false" selection-start-line="67" selection-start-column="29" selection-end-line="67" selection-end-column="29" />
+            <state relative-caret-position="241">
+              <caret line="110" column="157" lean-forward="false" selection-start-line="110" selection-start-column="157" selection-end-line="110" selection-end-column="157" />
               <folding>
-                <element signature="method#GetSongsCateList#0;class#AndSoService#0" expanded="false" />
+                <element signature="method#GetSingerList#0;class#AndSoService#0" expanded="false" />
+                <element signature="method#GetSongsList#0;class#AndSoService#0" expanded="false" />
                 <element signature="method#GetSingerByHot#0;class#AndSoService#0" expanded="false" />
-                <element signature="method#GetSongsByHot#0;class#AndSoService#0" expanded="false" />
-                <element signature="method#GetSongsVerList#0;class#AndSoService#0" expanded="false" />
               </folding>
             </state>
           </provider>
@@ -807,7 +806,7 @@
       <workItem from="1494895744346" duration="10875000" />
       <workItem from="1494923185426" duration="91000" />
       <workItem from="1494923299925" duration="641000" />
-      <workItem from="1494982765623" duration="7975000" />
+      <workItem from="1494982765623" duration="9631000" />
     </task>
     <task id="LOCAL-00001" summary="创建接口列表 修改  实体">
       <created>1494215316819</created>
@@ -1131,11 +1130,18 @@
       <option name="project" value="LOCAL" />
       <updated>1495009414864</updated>
     </task>
-    <option name="localTasksCounter" value="47" />
+    <task id="LOCAL-00047" summary="更换歌曲数据库">
+      <created>1495012903130</created>
+      <option name="number" value="00047" />
+      <option name="presentableId" value="LOCAL-00047" />
+      <option name="project" value="LOCAL" />
+      <updated>1495012903130</updated>
+    </task>
+    <option name="localTasksCounter" value="48" />
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="119930000" />
+    <option name="totallyTimeSpent" value="121586000" />
   </component>
   <component name="ToolWindowManager">
     <frame x="1420" y="-8" width="1554" height="904" extended-state="0" />
@@ -1163,7 +1169,7 @@
       <window_info id="运行" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.32706767" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
       <window_info id="Persistence" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.2490247" sideWeight="0.5050125" order="3" side_tool="true" content_ui="tabs" />
       <window_info id="控制板" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
-      <window_info id="Project" active="true" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.2490247" sideWeight="0.49498746" order="0" side_tool="false" content_ui="combo" />
+      <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.2490247" sideWeight="0.49498746" order="0" side_tool="false" content_ui="combo" />
       <window_info id="Bean Validation" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
       <window_info id="Theme Preview" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
       <window_info id="Favorites" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="2" side_tool="true" content_ui="tabs" />
@@ -1236,7 +1242,7 @@
           <option name="timeStamp" value="14" />
         </line-breakpoint>
       </breakpoints>
-      <option name="time" value="15" />
+      <option name="time" value="16" />
     </breakpoint-manager>
     <watches-manager />
   </component>
@@ -1549,13 +1555,12 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/src/main/java/com/efan/appservice/service/AndSoService.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="163">
-          <caret line="67" column="29" lean-forward="false" selection-start-line="67" selection-start-column="29" selection-end-line="67" selection-end-column="29" />
+        <state relative-caret-position="241">
+          <caret line="110" column="157" lean-forward="false" selection-start-line="110" selection-start-column="157" selection-end-line="110" selection-end-column="157" />
           <folding>
-            <element signature="method#GetSongsCateList#0;class#AndSoService#0" expanded="false" />
+            <element signature="method#GetSingerList#0;class#AndSoService#0" expanded="false" />
+            <element signature="method#GetSongsList#0;class#AndSoService#0" expanded="false" />
             <element signature="method#GetSingerByHot#0;class#AndSoService#0" expanded="false" />
-            <element signature="method#GetSongsByHot#0;class#AndSoService#0" expanded="false" />
-            <element signature="method#GetSongsVerList#0;class#AndSoService#0" expanded="false" />
           </folding>
         </state>
       </provider>
