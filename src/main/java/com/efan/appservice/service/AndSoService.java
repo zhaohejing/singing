@@ -27,7 +27,7 @@ public class AndSoService implements IAndSoService {
     public ResultModel<Map<String,Object>> GetSingerList(GetSingerInput input){
         StringBuilder sql=new StringBuilder();
         StringBuilder count=new StringBuilder();
-        sql.append("SELECT unSingerCode,pszName,pszSpell from singerinfo where 1=1");
+        sql.append("SELECT unSingerCo,pszName,pszSpell from singerinfo where 1=1");
         count.append("SELECT count(*) from singerinfo where 1=1");
 
         if (input.getFilter()!=null&& !input.getFilter().isEmpty()){
@@ -39,8 +39,8 @@ public class AndSoService implements IAndSoService {
             count.append(" and  pszSpell like '%"+input.word+"%' ");
         }
         if (input.cateId!=null&& !input.cateId.isEmpty()){
-            sql.append(" and  wSingerType = '"+input.cateId+"' ");
-            count.append(" and  wSingerType = '"+input.cateId+"' ");
+            sql.append(" and  wSingerTyp = '"+input.cateId+"' ");
+            count.append(" and  wSingerTyp = '"+input.cateId+"' ");
         }
 
 
@@ -53,7 +53,7 @@ public class AndSoService implements IAndSoService {
     public ResultModel<Map<String,Object>> GetSongsList(GetSongsInput input){
         StringBuilder sql=new StringBuilder();
         StringBuilder count=new StringBuilder();
-        sql.append("SELECT ullSongCode,unSongCode,pszName,pszSpell from songinfo where 1=1");
+        sql.append("SELECT ullSongCo,unSongCode,pszName,pszSpell from songinfo where 1=1");
         count.append("SELECT count(*) from songinfo where 1=1");
         if (input.getFilter()!=null&& !input.getFilter().isEmpty()){
             sql.append(" and  pszName like '%"+input.getFilter()+"%' ");
@@ -108,8 +108,8 @@ public class AndSoService implements IAndSoService {
     public ResultModel<Map<String,Object>> GetSongsByHot(GetSongsInput input){
         StringBuilder sql=new StringBuilder();
         StringBuilder count=new StringBuilder();
-        sql.append("select a.ID,b.pszName,b.pszSpell from topsongs a inner join songinfo b on a.unSongCode=b.unSongCode where 1=1");
-        count.append("select count(*) from topsongs a inner join songinfo b on a.unSongCode=b.unSongCode where 1=1");
+        sql.append("select a.ID,b.pszName,b.pszSpell from topsongs a inner join songinfo b on a.unSongCo=b.unSongCo where 1=1");
+        count.append("select count(*) from topsongs a inner join songinfo b on a.unSongCo=b.unSongCo where 1=1");
         if (input.getFilter()!=null&& !input.getFilter().isEmpty()){
             sql.append(" and  b.pszName like '%"+input.getFilter()+"%' ");
             count.append(" and  b.pszName like '%"+input.getFilter()+"%' ");
