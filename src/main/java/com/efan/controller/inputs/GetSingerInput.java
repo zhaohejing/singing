@@ -6,7 +6,6 @@ import org.springframework.data.redis.core.index.IndexValueTransformer;
  * Created by 45425 on 2017/5/16.
  */
 public class GetSingerInput extends BaseInput {
-    public String filter;
     public  String word;
-    public Long cateId;
+    public String cateId;
 }

@@ -7,6 +7,16 @@ public class BaseInput {
     private Integer size;
     private Integer index;
 
+
+
+    private String filter;
+    public String getFilter() {
+        return filter;
+    }
+
+    public void setFilter(String filter) {
+        this.filter = filter;
+    }
     public Integer getPage() {
         if (index<=0)
         return index*size;

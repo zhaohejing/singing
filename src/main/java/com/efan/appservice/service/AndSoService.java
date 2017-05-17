@@ -1,6 +1,7 @@
 package com.efan.appservice.service;
 
 import com.efan.appservice.iservice.IAndSoService;
+import com.efan.controller.inputs.BaseInput;
 import com.efan.controller.inputs.GetSingerInput;
 import com.efan.controller.inputs.GetSongsInput;
 import com.efan.core.page.ResultModel;
@@ -26,20 +27,20 @@ public class AndSoService implements IAndSoService {
     public ResultModel<Map<String,Object>> GetSingerList(GetSingerInput input){
         StringBuilder sql=new StringBuilder();
         StringBuilder count=new StringBuilder();
-        sql.append("SELECT unSingerCode,pszName,pszSpell from SingerInfo where 1=1");
-        count.append("SELECT count(*) from SingerInfo where 1=1");
+        sql.append("SELECT unSingerCode,pszName,pszSpell from singerinfo where 1=1");
+        count.append("SELECT count(*) from singerinfo where 1=1");
 
-        if (input.filter!=null&& !input.filter.isEmpty()){
-           sql.append(" and  pszName like %"+input.filter+"% ");
-            count.append(" and  pszName like %"+input.filter+"% ");
+        if (input.getFilter()!=null&& !input.getFilter().isEmpty()){
+           sql.append(" and  pszName like '%"+input.getFilter()+"%' ");
+            count.append(" and  pszName like '%"+input.getFilter()+"%' ");
         }
         if (input.word!=null&& !input.word.isEmpty()){
-            sql.append(" and  pszSpell like %"+input.word+"% ");
-            count.append(" and  pszSpell like %"+input.word+"% ");
+            sql.append(" and  pszSpell like '%"+input.word+"%' ");
+            count.append(" and  pszSpell like '%"+input.word+"%' ");
         }
-        if (input.cateId!=null&& input.cateId>0){
-            sql.append(" and  wSingerType = "+input.cateId+" ");
-            count.append(" and  wSingerType = "+input.cateId+" ");
+        if (input.cateId!=null&& !input.cateId.isEmpty()){
+            sql.append(" and  wSingerType = '"+input.cateId+"' ");
+            count.append(" and  wSingerType = '"+input.cateId+"' ");
         }
 
 
@@ -52,27 +53,27 @@ public class AndSoService implements IAndSoService {
     public ResultModel<Map<String,Object>> GetSongsList(GetSongsInput input){
         StringBuilder sql=new StringBuilder();
         StringBuilder count=new StringBuilder();
-        sql.append("SELECT ullSongCode,unSongCode,pszName,pszSpell from SongInfo where 1=1");
-        count.append("SELECT count(*) from SongInfo where 1=1");
-        if (input.filter!=null&& !input.filter.isEmpty()){
-            sql.append(" and  pszName like %"+input.filter+"% ");
-            count.append(" and  pszName like %"+input.filter+"% ");
+        sql.append("SELECT ullSongCode,unSongCode,pszName,pszSpell from songinfo where 1=1");
+        count.append("SELECT count(*) from songinfo where 1=1");
+        if (input.getFilter()!=null&& !input.getFilter().isEmpty()){
+            sql.append(" and  pszName like '%"+input.getFilter()+"%' ");
+            count.append(" and  pszName like '%"+input.getFilter()+"%' ");
         }
         if (input.word!=null&& !input.word.isEmpty()){
-            sql.append(" and  pszSpell like %"+input.word+"% ");
-            count.append(" and  pszSpell like %"+input.word+"% ");
+            sql.append(" and  pszSpell like '%"+input.word+"%' ");
+            count.append(" and  pszSpell like '%"+input.word+"%' ");
         }
-        if (input.cateId!=null&& input.cateId>0){
-            sql.append(" and  arrStyles = "+input.cateId+" ");
-            count.append(" and  arrStyles = "+input.cateId+" ");
+        if (input.cateId!=null&& !input.cateId.isEmpty()){
+            sql.append(" and  arrStyles = '"+input.cateId+"' ");
+            count.append(" and  arrStyles = '"+input.cateId+"' ");
         }
         if (input.singer!=null&&! input.singer.isEmpty()){
-            sql.append(" and  arrSingers = "+input.singer+" ");
-            count.append(" and  arrSingers = "+input.singer+" ");
+            sql.append(" and  arrSingers = '"+input.singer+"' ");
+            count.append(" and  arrSingers = '"+input.singer+"' ");
         }
         if (input.version!=null&&! input.version.isEmpty()){
-            sql.append(" and  arrVersions = "+input.version+" ");
-            count.append(" and  arrVersions = "+input.version+" ");
+            sql.append(" and  arrVersions = '"+input.version+"' ");
+            count.append(" and  arrVersions = '"+input.version+"' ");
         }
         sql.append(" limit  "+input.getPage()+" , "+input.getSize() );
         Long total=_jdbc.queryForObject(count.toString(),Long.class);
@@ -82,29 +83,51 @@ public class AndSoService implements IAndSoService {
     //获取歌曲分类
     public List<Map<String,Object>> GetSongsCateList(){
         StringBuilder sql=new StringBuilder();
-        sql.append("SELECT ID,pszNamefrom SongStyleInfo where 1=1");
+        sql.append("SELECT ID,pszName from songstyleinfo where 1=1");
         List<Map<String,Object>> list = _jdbc.queryForList(sql.toString());
         return  list;
     }
     //获取热门歌星
-    public List<Map<String,Object>> GetSingerByHot(){
+    public ResultModel<Map<String,Object>> GetSingerByHot(BaseInput input){
         StringBuilder sql=new StringBuilder();
-        sql.append("SELECT unSingerCode,pszName,pszSpell from SingerInfo where 1=1  order by unTopRating desc limit 0,20");
+        StringBuilder count=new StringBuilder();
+        sql.append("SELECT unSingerCode,pszName,pszSpell from singerinfo where 1=1   ");
+        count.append("SELECT count(*) from singerinfo where 1=1");
+        if (input.getFilter()!=null&& !input.getFilter().isEmpty()){
+            sql.append(" and  pszName like '%"+input.getFilter()+"%' ");
+            count.append(" and  pszName like '%"+input.getFilter()+"%' ");
+        }
+        sql.append("order by unTopRating desc");
+        sql.append(" limit  "+input.getPage()+" , "+input.getSize() );
+        Long total=_jdbc.queryForObject(count.toString(),Long.class);
         List<Map<String,Object>> list = _jdbc.queryForList(sql.toString());
-        return  list;
+        return  new ResultModel<Map<String,Object>>(list,total);
+
     }
     //获取热门歌曲
-    public List<Map<String,Object>> GetSongsByHot(){
+    public ResultModel<Map<String,Object>> GetSongsByHot(GetSongsInput input){
         StringBuilder sql=new StringBuilder();
-        sql.append("SELECT ullSongCode,unSongCode,pszName,pszSpell from SongInfo where 1=1  order by unTopRating desc limit 0,20");
+        StringBuilder count=new StringBuilder();
+        sql.append("select a.ID,b.pszName,b.pszSpell from topsongs a inner join songinfo b on a.unSongCode=b.unSongCode where 1=1");
+        count.append("select count(*) from topsongs a inner join songinfo b on a.unSongCode=b.unSongCode where 1=1");
+        if (input.getFilter()!=null&& !input.getFilter().isEmpty()){
+            sql.append(" and  b.pszName like '%"+input.getFilter()+"%' ");
+            count.append(" and  b.pszName like '%"+input.getFilter()+"%' ");
+        }
+        if (input.word!=null&& !input.word.isEmpty()){
+            sql.append(" and  b.pszSpell like '%"+input.word+"%'");
+            count.append(" and  b.pszSpell like '%"+input.word+"%' ");
+        }
+        sql.append(" limit  "+input.getPage()+" , "+input.getSize() );
+        Long total=_jdbc.queryForObject(count.toString(),Long.class);
         List<Map<String,Object>> list = _jdbc.queryForList(sql.toString());
-        return  list;
+        return  new ResultModel<Map<String,Object>>(list,total);
     }
 
     //获取歌曲排行榜
     public List<Map<String,Object>> GetSongsVerList(){
         StringBuilder sql=new StringBuilder();
-        sql.append("SELECT ID,pszName from SongVerInfo where 1=1");
+        sql.append("SELECT ID,pszName from songverinfo where 1=1");
         List<Map<String,Object>> list = _jdbc.queryForList(sql.toString());
         return  list;
     }

@@ -1,5 +1,6 @@
 package com.efan.appservice.iservice;
 
+import com.efan.controller.inputs.BaseInput;
 import com.efan.controller.inputs.GetSingerInput;
 import com.efan.controller.inputs.GetSongsInput;
 import com.efan.core.page.ResultModel;
@@ -17,6 +18,6 @@ public interface IAndSoService {
      List<Map<String,Object>> GetSongsCateList();
     //获取歌曲版本
      List<Map<String,Object>> GetSongsVerList();
-    List<Map<String,Object>> GetSingerByHot();
-    List<Map<String,Object>> GetSongsByHot();
+    ResultModel<Map<String,Object>> GetSingerByHot(BaseInput input);
+    ResultModel<Map<String,Object>> GetSongsByHot(GetSongsInput input);
 }

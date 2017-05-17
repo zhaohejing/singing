@@ -4,6 +4,7 @@ import com.efan.appservice.iservice.IAndSoService;
 import com.efan.controller.dtos.SingerDto;
 import com.efan.controller.dtos.SongCateDto;
 import com.efan.controller.dtos.SongDto;
+import com.efan.controller.inputs.BaseInput;
 import com.efan.controller.inputs.GetSingerInput;
 import com.efan.controller.inputs.GetSongsInput;
 import com.efan.core.page.ActionResult;
@@ -36,11 +37,10 @@ public class AndSoController {
     }
     /*获取热门歌星列表*/
     @ApiOperation(value="热门歌星列表", notes="歌单接口")
+    @ApiImplicitParam(name = "input", value = "{filter:关键词,index:页码,size:页容量}", required = true, dataType = "BaseInput")
     @RequestMapping(value  ="/hotstarlist" ,method = RequestMethod.POST)
-    public ActionResult HotStarList(){
-        GetSingerInput input=new GetSingerInput();
-        input.setIndex(1);input.setSize(20);
-        List<Map<String,Object>> result=_songService.GetSingerByHot();
+    public ActionResult HotStarList(@RequestBody BaseInput input){
+        ResultModel<Map<String,Object>> result=_songService.GetSingerByHot(input);
         return  new ActionResult(result);
     }
 
