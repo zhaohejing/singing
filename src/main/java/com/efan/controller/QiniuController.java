@@ -1,11 +1,13 @@
 package com.efan.controller;
 
+import com.efan.utils.HttpUtils;
 import com.qiniu.util.Auth;
 import io.swagger.annotations.ApiImplicitParam;
 import io.swagger.annotations.ApiOperation;
 import org.springframework.ui.ModelMap;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 import springfox.documentation.swagger2.annotations.EnableSwagger2;
 
@@ -35,5 +37,20 @@ public class QiniuController {
         }
         return result;
     }
+    @ApiOperation(value="获取微信token", notes="微信接口")
+    @RequestMapping(value = "/getWxToken", method = RequestMethod.POST)
+    public String getWxToken(@RequestParam String code){
+        String url = "https://api.weixin.qq.com/sns/oauth2/access_token?appid=wx734728844b17a945&secret=b21df0dbd7639790820b545e584e82db&code="+code+"&grant_type=authorization_code";
+        String result = HttpUtils.sendPost(url,"");
+        return result;
+    }
+    @ApiOperation(value="获取用户基本信息", notes="微信接口")
+    @RequestMapping(value = "/getuserinfo", method = RequestMethod.POST)
+    public String getUserInfo(@RequestParam String token, @RequestParam String openId){
+        String url = "https://api.weixin.qq.com/sns/userinfo?access_token="+token+"&openid="+openId+"&lang=zh_CN";
+        String result = HttpUtils.sendPost(url,"");
+        return result;
+    }
+
 
 }
