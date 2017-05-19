@@ -157,7 +157,7 @@ public class OrderService implements IOrderService {
         //调用微信支付
         String url="http://wxpay.dev.efanyun.com/order";
         String parms="?machineCode="+boxId+"&productId="+orderId+"&notifyUrl="+returnurl;
-      return   HttpUtils.sendPost(url,parms);
+      return   HttpUtils.sendGet(url+parms);
     }
 
 
