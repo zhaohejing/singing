@@ -71,11 +71,5 @@ public class MyTapeService implements IMyTapeService {
     }
 
 
-    //获取我的点歌列表
-    public ResultModel<MySongs> GetMySongsList(FilterModel model){
-        Pageable pageable = new PageRequest(model.index-1, model.size,null);
-        Page<MySongs> res=  _mySongsRepository.findMySongsBySongNameLikeAndUserKeyEquals(model.filter,model.filter, pageable);
-        List<MySongs> te=res.getContent();
-        return  new ResultModel<MySongs>( res.getContent(),res.getTotalElements());
-    }
+
 }

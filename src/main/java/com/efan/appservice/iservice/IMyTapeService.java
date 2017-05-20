@@ -13,5 +13,4 @@ public interface IMyTapeService {
     MyTape ModifyMyTape(MyTapeDto input);
     ResultModel<MyTape> GetMyTapeList(FilterModel model);
     MyTape UpdateMyTapeState(Long tapeId);
-    ResultModel<MySongs> GetMySongsList(FilterModel model);
 }

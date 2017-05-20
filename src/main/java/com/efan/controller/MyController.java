@@ -32,7 +32,7 @@ public class MyController {
     @ApiImplicitParam(name = "input", value = "{filter:过滤条件,index:页码,size:页容量 }", required = true, dataType = "FilterModel")
     @RequestMapping(value  ="/mysongs" ,method = RequestMethod.POST)
     public ActionResult MySongs(@RequestBody FilterModel input){
-        ResultModel<MySongs> result=_mytapeService.GetMySongsList(input);
+        ResultModel<MySongs> result=_tapeService.GetMySongsList(input);
         return  new ActionResult(result);
     }
     /*创建我点过的歌曲列表*/

@@ -2,12 +2,18 @@ package com.efan.appservice.service;
 
 import com.efan.appservice.iservice.ITapeService;
 import com.efan.controller.inputs.MySongsInput;
+import com.efan.core.page.FilterModel;
+import com.efan.core.page.ResultModel;
 import com.efan.core.primary.MySongs;
 import com.efan.repository.primary.IMySongsRepository;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.PageRequest;
+import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
 
 import java.sql.Timestamp;
+import java.util.List;
 
 /**
  * 歌曲接口列表
@@ -37,6 +43,13 @@ public class TapeService implements ITapeService {
             songs.setModifyUserId(1L);
             songs=_mysongsRepository.save(songs);
        return songs;
+    }
+
+    //获取我的点歌列表
+    public ResultModel<MySongs> GetMySongsList(FilterModel model){
+        Pageable pageable = new PageRequest(model.index-1, model.size,null);
+        Page<MySongs> res=  _mysongsRepository.findAll( pageable);
+        return  new ResultModel<MySongs>( res.getContent(),res.getTotalElements());
     }
 }
 
