@@ -1,9 +1,10 @@
 package com.efan.controller.inputs;
 
+
 import java.sql.Timestamp;
 
 /**
- * Created by 45425 on 2017/5/11.
+ * 订单input
  */
 public class OrderInput {
 

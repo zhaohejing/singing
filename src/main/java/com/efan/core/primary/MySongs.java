@@ -1,8 +1,11 @@
 package com.efan.core.primary;
 
+import org.springframework.beans.factory.annotation.Qualifier;
+
 import javax.persistence.*;
 import javax.validation.constraints.NotNull;
 import java.io.Serializable;
+import java.sql.Timestamp;
 
 /**
  * 我点过的歌
@@ -25,6 +28,26 @@ public class MySongs implements Serializable {
     @Column(length = 50)
     private  String singer;
 
+
+    private  Boolean state;
+
+    private Long creationUserId;
+
+    private Timestamp creationTime;
+
+    private Long modifyUserId;
+
+    private Timestamp modifyTime;
+
+    public String getSongKey() {
+        return songKey;
+    }
+
+    public void setSongKey(String songKey) {
+        this.songKey = songKey;
+    }
+
+    private String songKey;
 
     public Long getId() {
         return id;
@@ -74,11 +97,11 @@ public class MySongs implements Serializable {
         this.creationUserId = creationUserId;
     }
 
-    public String getCreationTime() {
+    public Timestamp getCreationTime() {
         return creationTime;
     }
 
-    public void setCreationTime(String creationTime) {
+    public void setCreationTime(Timestamp creationTime) {
         this.creationTime = creationTime;
     }
 
@@ -90,22 +113,11 @@ public class MySongs implements Serializable {
         this.modifyUserId = modifyUserId;
     }
 
-    public String getModifyTime() {
+    public Timestamp getModifyTime() {
         return modifyTime;
     }
 
-    public void setModifyTime(String modifyTime) {
+    public void setModifyTime(Timestamp modifyTime) {
         this.modifyTime = modifyTime;
     }
-
-    private  Boolean state;
-
-    private Long creationUserId;
-
-    private String creationTime;
-
-    private Long modifyUserId;
-
-    private String modifyTime;
-
 }

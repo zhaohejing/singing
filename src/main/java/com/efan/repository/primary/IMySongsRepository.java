@@ -11,5 +11,6 @@ import org.springframework.stereotype.Repository;
  */
 @Repository
 public interface IMySongsRepository extends JpaRepository<MySongs,Long> {
+
     Page<MySongs> findMySongsBySongNameLikeAndUserKeyEquals(String songName,String userKey, Pageable pageable);
 }

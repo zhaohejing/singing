@@ -1,7 +1,11 @@
 package com.efan.appservice.iservice;
 
+import com.efan.controller.inputs.MySongsInput;
+import com.efan.core.primary.MySongs;
+
 /**
- * Created by 45425 on 2017/5/8.
+ * 录音service
  */
 public interface ITapeService {
+    MySongs CreateMySongs(MySongsInput input);
 }

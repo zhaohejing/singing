@@ -13,8 +13,8 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Service;
 
-import java.sql.Timestamp;
 
+import java.sql.Timestamp;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.*;
@@ -119,8 +119,7 @@ public class OrderService implements IOrderService {
      }
      ///获取订单详情
      public  Order GetOrderDetail(String orderId){
-     Order model=_orderRepository.findOrderByFilter(orderId);
-     return  model;
+     return   _orderRepository.findOrderByFilter(orderId);
      }
 
 //创建订单并调用支付接口
@@ -149,8 +148,7 @@ public class OrderService implements IOrderService {
         model.setMobile(input.consumerName);
         model.setOrderType(input.orderType);
         model.setToTime(input.toTime);
-       Order order=  _orderRepository.save(model);
-          return order;
+      return  _orderRepository.save(model);
     }
 
     public String Payfor(String boxId,String orderId){

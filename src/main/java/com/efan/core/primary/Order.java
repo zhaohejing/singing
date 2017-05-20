@@ -1,13 +1,15 @@
 package com.efan.core.primary;
 
 
+import org.springframework.beans.factory.annotation.Qualifier;
+
 import javax.persistence.*;
 import javax.validation.constraints.NotNull;
 import java.io.Serializable;
 import java.sql.Timestamp;
 
 /**
- * Created by 45425 on 2017/5/4.
+ * 订单实体
  */
 @Entity
 @Table(name="efan_order")
@@ -59,15 +61,15 @@ public class Order implements Serializable {
     //是否常用
     private  Boolean isCommon;
 
-    public Integer getOrderId() {
+    public String getOrderId() {
         return orderId;
     }
 
-    public void setOrderId(Integer orderId) {
+    public void setOrderId(String orderId) {
         this.orderId = orderId;
     }
 //订单消费类型
-    private  Integer orderId;
+    private  String orderId;
 
 
     private Long creationUserId;
