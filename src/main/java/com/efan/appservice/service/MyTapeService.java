@@ -2,6 +2,7 @@ package com.efan.appservice.service;
 
 import com.efan.appservice.iservice.IMyTapeService;
 import com.efan.controller.dtos.MyTapeDto;
+import com.efan.controller.inputs.DeleteInput;
 import com.efan.core.primary.MySongs;
 import com.efan.core.primary.MyTape;
 import com.efan.core.page.FilterModel;
@@ -69,6 +70,11 @@ public class MyTapeService implements IMyTapeService {
     return  _myTapeRepository.save(model );
     }
 
+    //获取我的录音详情
+    public  MyTape GetMyTape(DeleteInput input){
+        MyTape model=_myTapeRepository.findOne(input.id);
+      return  model;
+    }
 
 
 }

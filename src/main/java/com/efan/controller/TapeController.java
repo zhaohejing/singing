@@ -2,6 +2,7 @@ package com.efan.controller;
 
 import com.efan.appservice.iservice.IMyTapeService;
 import com.efan.controller.dtos.MyTapeDto;
+import com.efan.controller.inputs.DeleteInput;
 import com.efan.core.primary.MyTape;
 import com.efan.core.page.ActionResult;
 import com.efan.core.page.FilterModel;
@@ -50,6 +51,14 @@ this._mytapeService=mytapeService;
     @RequestMapping(value  ="/mytapes" ,method = RequestMethod.POST)
     public ActionResult MyTapes(@RequestBody FilterModel input){
         ResultModel<MyTape> result=_mytapeService.GetMyTapeList(input);
+        return  new ActionResult(result);
+    }
+    /*获取我的录音详情*/
+    @ApiOperation(value="获取我的录音详情", notes="我的模块接口")
+    @ApiImplicitParam(name = "input", value = "{id }", required = true, dataType = "DeleteInput")
+    @RequestMapping(value  ="/mytape" ,method = RequestMethod.POST)
+    public ActionResult MyTapes(@RequestBody DeleteInput input){
+        MyTape result=_mytapeService.GetMyTape(input);
         return  new ActionResult(result);
     }
 }

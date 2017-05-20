@@ -61,7 +61,7 @@ public class AndSoService implements IAndSoService {
         }
         if (input.word!=null&& !input.word.isEmpty()){
             sql.append(" and  a.pszSpell like '%"+input.word+"%' ");
-            count.append(" and  a.pszSpell like '%"+input.word+"%' ");
+            count.append(" and  pszSpell like '%"+input.word+"%' ");
         }
         if (input.cateId!=null&& !input.cateId.isEmpty()){
             sql.append(" and  a.arrStyles = '"+input.cateId+"' ");

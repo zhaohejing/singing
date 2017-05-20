@@ -31,6 +31,30 @@ public class MyTape implements Serializable {
     @Column(length = 50)
     private  String songtime;
 
+    public String getImageUrl() {
+        return imageUrl;
+    }
+
+    public void setImageUrl(String imageUrl) {
+        this.imageUrl = imageUrl;
+    }
+
+    public String getRemark() {
+        return remark;
+    }
+
+    public void setRemark(String remark) {
+        this.remark = remark;
+    }
+
+    //时长
+    @Column(length = 150)
+    private  String imageUrl;
+    //留言
+    @Column(length = 150)
+    private  String remark;
+
+
     public Long getCreationUserId() {
         return creationUserId;
     }
