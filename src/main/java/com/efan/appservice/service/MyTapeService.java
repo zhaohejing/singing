@@ -60,7 +60,6 @@ public class MyTapeService implements IMyTapeService {
     public ResultModel<MyTape> GetMyTapeList(FilterModel model){
         Pageable pageable = new PageRequest(model.index-1, model.size,null);
       Page<MyTape> res=  _myTapeRepository.findMyTapeBySongKey(model.filter, pageable);
-      List<MyTape> te=res.getContent();
       return  new ResultModel<MyTape>( res.getContent(),res.getTotalElements());
     }
 //更新我的录音上传状态

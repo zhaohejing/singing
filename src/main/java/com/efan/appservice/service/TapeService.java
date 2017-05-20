@@ -45,6 +45,10 @@ public class TapeService implements ITapeService {
        return songs;
     }
 
+     public  void DeleteMySongs(Long id){
+        _mysongsRepository.delete(id);
+     }
+
     //获取我的点歌列表
     public ResultModel<MySongs> GetMySongsList(FilterModel model){
         Pageable pageable = new PageRequest(model.index-1, model.size,null);

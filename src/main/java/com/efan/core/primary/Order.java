@@ -26,6 +26,19 @@ public class Order implements Serializable {
     //消费者名称
     @Column(length = 200)
     private  String consumerName;
+
+    public String getUserKey() {
+        return userKey;
+    }
+
+    public void setUserKey(String userKey) {
+        this.userKey = userKey;
+    }
+
+    //消费者唯一id
+    @NotNull
+    @Column(length = 200)
+    private  String userKey;
     //手机
     @Column(length = 13)
     private  String mobile;

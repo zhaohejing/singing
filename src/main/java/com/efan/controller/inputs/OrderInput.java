@@ -12,6 +12,9 @@ public class OrderInput {
     public   String consumerName;
     //手机
     public  String mobile;
+    //用户唯一id
+    public  String userKey;
+
     //点位名称
     public  String pointName;
     //包厢Id

@@ -1,8 +1,10 @@
 package com.efan.appservice.iservice;
 
 import com.efan.controller.dtos.OrderTime;
+import com.efan.controller.inputs.BaseInput;
 import com.efan.controller.inputs.OrderInput;
 import com.efan.controller.inputs.RemoteInput;
+import com.efan.core.page.ResultModel;
 import com.efan.core.primary.Order;
 import com.efan.core.page.Response;
 
@@ -24,4 +26,5 @@ public interface IOrderService {
     Order CreateOrder(OrderInput input);
     Order GetOrderDetail(String orderId);
     String Payfor(String boxId,String orderId);
+    ResultModel<Order> GetMyOrders(BaseInput input);
 }

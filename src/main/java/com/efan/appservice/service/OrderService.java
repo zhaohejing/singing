@@ -2,8 +2,11 @@ package com.efan.appservice.service;
 
 import com.efan.appservice.iservice.IOrderService;
 import com.efan.controller.dtos.OrderTime;
+import com.efan.controller.inputs.BaseInput;
 import com.efan.controller.inputs.OrderInput;
 import com.efan.controller.inputs.RemoteInput;
+import com.efan.core.page.ResultModel;
+import com.efan.core.primary.MyTape;
 import com.efan.core.primary.Order;
 import com.efan.core.page.Response;
 import com.efan.repository.primary.IOrderRepository;
@@ -11,6 +14,9 @@ import com.efan.utils.HttpUtils;
 import com.google.gson.Gson;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.PageRequest;
+import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
 
 
@@ -121,7 +127,12 @@ public class OrderService implements IOrderService {
      public  Order GetOrderDetail(String orderId){
      return   _orderRepository.findOrderByFilter(orderId);
      }
+    public ResultModel<Order> GetMyOrders(BaseInput input){
+        Pageable pageable = new PageRequest(input.getIndex()-1, input.getSize(),null);
+        Page<Order> res=  _orderRepository.findAllByUserKey(input.getFilter(), pageable);
+        return  new ResultModel<Order>( res.getContent(),res.getTotalElements());
 
+    }
 //创建订单并调用支付接口
   //  @Async
     public Order CreateOrder(OrderInput input)  {
@@ -135,6 +146,7 @@ public class OrderService implements IOrderService {
         model.setOrderNum(num.toString());
         model.setCommon(false);
         model.setPointName(input.pointName);
+        model.setUserKey(input.userKey);
         model.setState(0);
         model.setPurchaseTime(pars);
         model.setModifyUserId(1L);

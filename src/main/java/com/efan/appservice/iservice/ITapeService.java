@@ -12,4 +12,5 @@ public interface ITapeService {
     ResultModel<MySongs> GetMySongsList(FilterModel model);
 
     MySongs CreateMySongs(MySongsInput input);
+    void DeleteMySongs(Long id);
 }
