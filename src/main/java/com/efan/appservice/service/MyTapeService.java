@@ -25,11 +25,9 @@ import java.util.List;
 @Service
 public class MyTapeService implements IMyTapeService {
     private IMyTapeRepository _myTapeRepository;
-    private IMySongsRepository _mySongsRepository;
     @Autowired
-    public MyTapeService(IMyTapeRepository myTapeRepository,IMySongsRepository mySongsRepository){
+    public MyTapeService(IMyTapeRepository myTapeRepository){
         this._myTapeRepository= myTapeRepository;
-        this._mySongsRepository=mySongsRepository;
     }
 //添加或编辑我的录音
     public MyTape ModifyMyTape(MyTapeDto input){

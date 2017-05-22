@@ -4,9 +4,6 @@
     <list default="true" id="f0d0a10e-b853-4aeb-84d6-8ad172c74a8a" name="默认的" comment="">
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/main/java/com/efan/appservice/service/MyTapeService.java" afterPath="$PROJECT_DIR$/src/main/java/com/efan/appservice/service/MyTapeService.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/main/java/com/efan/controller/dtos/MyTapeDto.java" afterPath="$PROJECT_DIR$/src/main/java/com/efan/controller/dtos/MyTapeDto.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/main/java/com/efan/core/primary/MyTape.java" afterPath="$PROJECT_DIR$/src/main/java/com/efan/core/primary/MyTape.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/main/java/com/efan/repository/primary/IMyTapeRepository.java" afterPath="$PROJECT_DIR$/src/main/java/com/efan/repository/primary/IMyTapeRepository.java" />
     </list>
     <ignored path="$PROJECT_DIR$/out/" />
     <ignored path="$PROJECT_DIR$/target/" />
@@ -29,45 +26,11 @@
   <component name="ExecutionTargetManager" SELECTED_TARGET="default_target" />
   <component name="FileEditorManager">
     <leaf SIDE_TABS_SIZE_LIMIT_KEY="300">
-      <file leaf-file-name="OrderInput.java" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/main/java/com/efan/controller/inputs/OrderInput.java">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="532">
-              <caret line="28" column="30" lean-forward="false" selection-start-line="28" selection-start-column="30" selection-end-line="28" selection-end-column="30" />
-              <folding />
-            </state>
-          </provider>
-        </entry>
-      </file>
       <file leaf-file-name="MyTape.java" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/main/java/com/efan/core/primary/MyTape.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="190">
-              <caret line="12" column="7" lean-forward="false" selection-start-line="12" selection-start-column="7" selection-end-line="12" selection-end-column="7" />
-              <folding>
-                <element signature="imports" expanded="false" />
-              </folding>
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="AndSoController.java" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/main/java/com/efan/controller/AndSoController.java">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="532">
-              <caret line="49" column="43" lean-forward="false" selection-start-line="49" selection-start-column="43" selection-end-line="49" selection-end-column="43" />
-              <folding>
-                <element signature="imports" expanded="false" />
-              </folding>
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="pom.xml" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/pom.xml">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="1900">
-              <caret line="100" column="20" lean-forward="false" selection-start-line="100" selection-start-column="20" selection-end-line="100" selection-end-column="20" />
+            <state relative-caret-position="152">
+              <caret line="19" column="27" lean-forward="false" selection-start-line="19" selection-start-column="19" selection-end-line="19" selection-end-column="27" />
               <folding />
             </state>
           </provider>
@@ -76,50 +39,50 @@
       <file leaf-file-name="workspace.xml" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/.idea/workspace.xml">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="-805">
-              <caret line="1522" column="40" lean-forward="false" selection-start-line="1522" selection-start-column="40" selection-end-line="1522" selection-end-column="40" />
+            <state relative-caret-position="1589">
+              <caret line="1648" column="40" lean-forward="false" selection-start-line="1648" selection-start-column="40" selection-end-line="1648" selection-end-column="40" />
               <folding>
-                <marker date="1495442248552" expanded="true" signature="89778:89821" ph="..." />
-                <marker date="1495442248552" expanded="true" signature="89778:89839" ph="..." />
-                <marker date="1495442248552" expanded="true" signature="89778:89852" ph="..." />
-                <marker date="1495442248552" expanded="true" signature="89778:89867" ph="..." />
-                <marker date="1495442248552" expanded="true" signature="89902:92403" ph="..." />
-                <marker date="1495442248552" expanded="true" signature="89915:92388" ph="..." />
-                <marker date="1495442248552" expanded="true" signature="89969:90264" ph="..." />
-                <marker date="1495442248552" expanded="true" signature="89988:90249" ph="..." />
-                <marker date="1495442248552" expanded="true" signature="90051:90229" ph="..." />
-                <marker date="1495442248552" expanded="true" signature="90091:90195" ph="..." />
-                <marker date="1495442248552" expanded="true" signature="90112:90173" ph="..." />
-                <marker date="1495442248552" expanded="true" signature="90314:90623" ph="..." />
-                <marker date="1495442248552" expanded="true" signature="90333:90608" ph="..." />
-                <marker date="1495442248552" expanded="true" signature="90410:90588" ph="..." />
-                <marker date="1495442248552" expanded="true" signature="90450:90554" ph="..." />
-                <marker date="1495442248552" expanded="true" signature="90471:90532" ph="..." />
-                <marker date="1495442248552" expanded="true" signature="90674:90939" ph="..." />
-                <marker date="1495442248552" expanded="true" signature="90693:90924" ph="..." />
-                <marker date="1495442248552" expanded="true" signature="90726:90904" ph="..." />
-                <marker date="1495442248552" expanded="true" signature="90766:90870" ph="..." />
-                <marker date="1495442248552" expanded="true" signature="90787:90848" ph="..." />
-                <marker date="1495442248552" expanded="true" signature="90982:91288" ph="..." />
-                <marker date="1495442248552" expanded="true" signature="91001:91273" ph="..." />
-                <marker date="1495442248552" expanded="true" signature="91075:91253" ph="..." />
-                <marker date="1495442248552" expanded="true" signature="91115:91219" ph="..." />
-                <marker date="1495442248552" expanded="true" signature="91136:91197" ph="..." />
-                <marker date="1495442248552" expanded="true" signature="91339:91654" ph="..." />
-                <marker date="1495442248552" expanded="true" signature="91358:91639" ph="..." />
-                <marker date="1495442248552" expanded="true" signature="91441:91619" ph="..." />
-                <marker date="1495442248552" expanded="true" signature="91481:91585" ph="..." />
-                <marker date="1495442248552" expanded="true" signature="91502:91563" ph="..." />
-                <marker date="1495442248552" expanded="true" signature="91689:91995" ph="..." />
-                <marker date="1495442248552" expanded="true" signature="91708:91980" ph="..." />
-                <marker date="1495442248552" expanded="true" signature="91782:91960" ph="..." />
-                <marker date="1495442248552" expanded="true" signature="91822:91926" ph="..." />
-                <marker date="1495442248552" expanded="true" signature="91843:91904" ph="..." />
-                <marker date="1495442248552" expanded="true" signature="92047:92374" ph="..." />
-                <marker date="1495442248552" expanded="true" signature="92066:92359" ph="..." />
-                <marker date="1495442248552" expanded="true" signature="92161:92339" ph="..." />
-                <marker date="1495442248552" expanded="true" signature="92201:92305" ph="..." />
-                <marker date="1495442248552" expanded="true" signature="92222:92283" ph="..." />
+                <marker date="1495443485622" expanded="true" signature="105527:105544" ph="..." />
+                <marker date="1495443485622" expanded="true" signature="105527:105562" ph="..." />
+                <marker date="1495443485622" expanded="true" signature="105527:105575" ph="..." />
+                <marker date="1495443485622" expanded="true" signature="105527:105590" ph="..." />
+                <marker date="1495443485622" expanded="true" signature="105625:108126" ph="..." />
+                <marker date="1495443485622" expanded="true" signature="105638:108111" ph="..." />
+                <marker date="1495443485622" expanded="true" signature="105692:105987" ph="..." />
+                <marker date="1495443485622" expanded="true" signature="105711:105972" ph="..." />
+                <marker date="1495443485622" expanded="true" signature="105774:105952" ph="..." />
+                <marker date="1495443485622" expanded="true" signature="105814:105918" ph="..." />
+                <marker date="1495443485622" expanded="true" signature="105835:105896" ph="..." />
+                <marker date="1495443485622" expanded="true" signature="106037:106346" ph="..." />
+                <marker date="1495443485622" expanded="true" signature="106056:106331" ph="..." />
+                <marker date="1495443485622" expanded="true" signature="106133:106311" ph="..." />
+                <marker date="1495443485622" expanded="true" signature="106173:106277" ph="..." />
+                <marker date="1495443485622" expanded="true" signature="106194:106255" ph="..." />
+                <marker date="1495443485622" expanded="true" signature="106397:106662" ph="..." />
+                <marker date="1495443485622" expanded="true" signature="106416:106647" ph="..." />
+                <marker date="1495443485622" expanded="true" signature="106449:106627" ph="..." />
+                <marker date="1495443485622" expanded="true" signature="106489:106593" ph="..." />
+                <marker date="1495443485622" expanded="true" signature="106510:106571" ph="..." />
+                <marker date="1495443485622" expanded="true" signature="106705:107011" ph="..." />
+                <marker date="1495443485622" expanded="true" signature="106724:106996" ph="..." />
+                <marker date="1495443485622" expanded="true" signature="106798:106976" ph="..." />
+                <marker date="1495443485622" expanded="true" signature="106838:106942" ph="..." />
+                <marker date="1495443485622" expanded="true" signature="106859:106920" ph="..." />
+                <marker date="1495443485622" expanded="true" signature="107062:107377" ph="..." />
+                <marker date="1495443485622" expanded="true" signature="107081:107362" ph="..." />
+                <marker date="1495443485622" expanded="true" signature="107164:107342" ph="..." />
+                <marker date="1495443485622" expanded="true" signature="107204:107308" ph="..." />
+                <marker date="1495443485622" expanded="true" signature="107225:107286" ph="..." />
+                <marker date="1495443485622" expanded="true" signature="107412:107718" ph="..." />
+                <marker date="1495443485622" expanded="true" signature="107431:107703" ph="..." />
+                <marker date="1495443485622" expanded="true" signature="107505:107683" ph="..." />
+                <marker date="1495443485622" expanded="true" signature="107545:107649" ph="..." />
+                <marker date="1495443485622" expanded="true" signature="107566:107627" ph="..." />
+                <marker date="1495443485622" expanded="true" signature="107770:108097" ph="..." />
+                <marker date="1495443485622" expanded="true" signature="107789:108082" ph="..." />
+                <marker date="1495443485622" expanded="true" signature="107884:108062" ph="..." />
+                <marker date="1495443485622" expanded="true" signature="107924:108028" ph="..." />
+                <marker date="1495443485622" expanded="true" signature="107945:108006" ph="..." />
               </folding>
             </state>
           </provider>
@@ -135,46 +98,70 @@
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="TapeService.java" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/main/java/com/efan/appservice/service/TapeService.java">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="152">
-              <caret line="21" column="13" lean-forward="false" selection-start-line="21" selection-start-column="13" selection-end-line="21" selection-end-column="13" />
-              <folding>
-                <element signature="imports" expanded="false" />
-                <element signature="e#820#821#0" expanded="false" />
-                <element signature="e#877#878#0" expanded="false" />
-                <element signature="method#CreateMySongs#0;class#TapeService#0" expanded="false" />
-                <element signature="e#1567#1568#0" expanded="false" />
-                <element signature="e#1613#1614#0" expanded="false" />
-              </folding>
-            </state>
-          </provider>
-        </entry>
-      </file>
       <file leaf-file-name="MyTapeService.java" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/main/java/com/efan/appservice/service/MyTapeService.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="1159">
-              <caret line="78" column="5" lean-forward="false" selection-start-line="78" selection-start-column="5" selection-end-line="78" selection-end-column="5" />
+            <state relative-caret-position="152">
+              <caret line="43" column="42" lean-forward="true" selection-start-line="43" selection-start-column="42" selection-end-line="43" selection-end-column="42" />
               <folding>
-                <element signature="imports" expanded="false" />
+                <element signature="e#990#991#0" expanded="true" />
+                <element signature="e#1046#1047#0" expanded="true" />
               </folding>
             </state>
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="MyTapeDto.java" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/main/java/com/efan/controller/dtos/MyTapeDto.java">
+      <file leaf-file-name="TapeController.java" pinned="false" current-in-tab="true">
+        <entry file="file://$PROJECT_DIR$/src/main/java/com/efan/controller/TapeController.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="399">
-              <caret line="21" column="8" lean-forward="false" selection-start-line="21" selection-start-column="8" selection-end-line="21" selection-end-column="8" />
+            <state relative-caret-position="162">
+              <caret line="46" column="5" lean-forward="true" selection-start-line="46" selection-start-column="5" selection-end-line="46" selection-end-column="5" />
               <folding />
             </state>
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="IMyTapeRepository.java" pinned="false" current-in-tab="true">
+      <file leaf-file-name="MyController.java" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/src/main/java/com/efan/controller/MyController.java">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="209">
+              <caret line="27" column="1" lean-forward="false" selection-start-line="27" selection-start-column="1" selection-end-line="27" selection-end-column="42" />
+              <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="MethodProxy.class" pinned="false" current-in-tab="false">
+        <entry file="jar://$MAVEN_REPOSITORY$/org/springframework/spring-core/4.3.8.RELEASE/spring-core-4.3.8.RELEASE.jar!/org/springframework/cglib/proxy/MethodProxy.class">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="174">
+              <caret line="106" column="0" lean-forward="false" selection-start-line="106" selection-start-column="0" selection-end-line="106" selection-end-column="0" />
+              <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="ExposeInvocationInterceptor.class" pinned="false" current-in-tab="false">
+        <entry file="jar://$MAVEN_REPOSITORY$/org/springframework/spring-aop/4.3.8.RELEASE/spring-aop-4.3.8.RELEASE.jar!/org/springframework/aop/interceptor/ExposeInvocationInterceptor.class">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="174">
+              <caret line="40" column="0" lean-forward="false" selection-start-line="40" selection-start-column="0" selection-end-line="40" selection-end-column="0" />
+              <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="CglibAopProxy.class" pinned="false" current-in-tab="false">
+        <entry file="jar://$MAVEN_REPOSITORY$/org/springframework/spring-aop/4.3.8.RELEASE/spring-aop-4.3.8.RELEASE.jar!/org/springframework/aop/framework/CglibAopProxy.class">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="175">
+              <caret line="518" column="0" lean-forward="false" selection-start-line="518" selection-start-column="0" selection-end-line="518" selection-end-column="0" />
+              <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="IMyTapeRepository.java" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/main/java/com/efan/repository/primary/IMyTapeRepository.java">
           <provider selected="true" editor-type-id="text-editor">
             <state relative-caret-position="228">
@@ -232,7 +219,6 @@
   <component name="IdeDocumentHistory">
     <option name="CHANGED_PATHS">
       <list>
-        <option value="$PROJECT_DIR$/src/main/java/com/efan/controller/inputs/OrderDetailInput.java" />
         <option value="$PROJECT_DIR$/src/main/java/com/efan/controller/inputs/RemoteInput.java" />
         <option value="$PROJECT_DIR$/src/main/java/com/efan/appservice/iservice/IOrderService.java" />
         <option value="$PROJECT_DIR$/src/main/java/com/efan/controller/OrderController.java" />
@@ -283,6 +269,7 @@
         <option value="$PROJECT_DIR$/src/main/java/com/efan/controller/QiniuController.java" />
         <option value="$PROJECT_DIR$/src/main/java/com/efan/controller/inputs/OrderInput.java" />
         <option value="$PROJECT_DIR$/.idea/workspace.xml" />
+        <option value="$PROJECT_DIR$/src/main/java/com/efan/appservice/service/MyTapeService.java" />
       </list>
     </option>
   </component>
@@ -367,6 +354,10 @@
             </PATH_ELEMENT>
             <PATH_ELEMENT>
               <option name="myItemId" value="src" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="main" />
               <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
             </PATH_ELEMENT>
           </PATH>
@@ -860,14 +851,7 @@
       <workItem from="1494982765623" duration="9652000" />
       <workItem from="1495070924987" duration="1261000" />
       <workItem from="1495156892321" duration="4771000" />
-      <workItem from="1495442039781" duration="213000" />
-    </task>
-    <task id="LOCAL-00001" summary="创建接口列表 修改  实体">
-      <created>1494215316819</created>
-      <option name="number" value="00001" />
-      <option name="presentableId" value="LOCAL-00001" />
-      <option name="project" value="LOCAL" />
-      <updated>1494215316819</updated>
+      <workItem from="1495442039781" duration="1389000" />
     </task>
     <task id="LOCAL-00002" summary="添加接口">
       <created>1494217590359</created>
@@ -1205,11 +1189,18 @@
       <option name="project" value="LOCAL" />
       <updated>1495157628175</updated>
     </task>
-    <option name="localTasksCounter" value="50" />
+    <task id="LOCAL-00050" summary="xiugai jiekou">
+      <created>1495442277506</created>
+      <option name="number" value="00050" />
+      <option name="presentableId" value="LOCAL-00050" />
+      <option name="project" value="LOCAL" />
+      <updated>1495442277508</updated>
+    </task>
+    <option name="localTasksCounter" value="51" />
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="127863000" />
+    <option name="totallyTimeSpent" value="129039000" />
   </component>
   <component name="ToolWindowManager">
     <frame x="1420" y="-8" width="1554" height="904" extended-state="0" />
@@ -1274,7 +1265,8 @@
     <MESSAGE value="歌曲接口" />
     <MESSAGE value="跨域添加" />
     <MESSAGE value="更换歌曲数据库" />
-    <option name="LAST_COMMIT_MESSAGE" value="更换歌曲数据库" />
+    <MESSAGE value="xiugai jiekou" />
+    <option name="LAST_COMMIT_MESSAGE" value="xiugai jiekou" />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>
@@ -1303,8 +1295,14 @@
           <properties />
           <option name="timeStamp" value="16" />
         </line-breakpoint>
+        <line-breakpoint enabled="true" type="java-line">
+          <url>file://$PROJECT_DIR$/src/main/java/com/efan/appservice/service/MyTapeService.java</url>
+          <line>33</line>
+          <properties />
+          <option name="timeStamp" value="18" />
+        </line-breakpoint>
       </breakpoints>
-      <option name="time" value="17" />
+      <option name="time" value="19" />
     </breakpoint-manager>
     <watches-manager />
   </component>
@@ -1313,28 +1311,6 @@
     <option name="FILTER_TARGETS" value="false" />
   </component>
   <component name="editorHistoryManager">
-    <entry file="file://$PROJECT_DIR$/../MyBatis-Spring-Boot-master/src/main/java/tk/mybatis/springboot/druid/DruidAutoConfiguration.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="646">
-          <caret line="53" column="0" lean-forward="true" selection-start-line="1" selection-start-column="0" selection-end-line="53" selection-end-column="0" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/../MyBatis-Spring-Boot-master/pom.xml">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="627">
-          <caret line="93" column="21" lean-forward="false" selection-start-line="76" selection-start-column="3" selection-end-line="93" selection-end-column="21" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/../MyBatis-Spring-Boot-master/src/main/resources/application.properties">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="38">
-          <caret line="2" column="0" lean-forward="false" selection-start-line="2" selection-start-column="0" selection-end-line="9" selection-end-column="25" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/com/efan/jpaconfig/DruidAutoConfiguration.java" />
     <entry file="file://$PROJECT_DIR$/src/main/java/com/efan/jpaconfig/DruidProperties.java" />
     <entry file="file://$PROJECT_DIR$/pom.xml">
       <provider selected="true" editor-type-id="text-editor">
@@ -1345,20 +1321,6 @@
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/src/main/java/com/efan/repository/secondary/JdbcHelper.java" />
-    <entry file="jar://$MAVEN_REPOSITORY$/org/springframework/spring-core/4.3.8.RELEASE/spring-core-4.3.8.RELEASE.jar!/org/springframework/cglib/proxy/MethodProxy.class">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="174">
-          <caret line="106" column="0" lean-forward="false" selection-start-line="106" selection-start-column="0" selection-end-line="106" selection-end-column="0" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="jar://$MAVEN_REPOSITORY$/org/springframework/spring-aop/4.3.8.RELEASE/spring-aop-4.3.8.RELEASE.jar!/org/springframework/aop/interceptor/ExposeInvocationInterceptor.class">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="174">
-          <caret line="40" column="0" lean-forward="false" selection-start-line="40" selection-start-column="0" selection-end-line="40" selection-end-column="0" />
-        </state>
-      </provider>
-    </entry>
     <entry file="jar://$MAVEN_REPOSITORY$/org/springframework/spring-aop/4.3.8.RELEASE/spring-aop-4.3.8.RELEASE.jar!/org/springframework/aop/framework/AdvisedSupport.class">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="174">
@@ -1370,13 +1332,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="380">
           <caret line="30" column="0" lean-forward="false" selection-start-line="30" selection-start-column="0" selection-end-line="30" selection-end-column="0" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="jar://$MAVEN_REPOSITORY$/org/springframework/spring-aop/4.3.8.RELEASE/spring-aop-4.3.8.RELEASE.jar!/org/springframework/aop/framework/CglibAopProxy.class">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="175">
-          <caret line="518" column="0" lean-forward="false" selection-start-line="518" selection-start-column="0" selection-end-line="518" selection-end-column="0" />
         </state>
       </provider>
     </entry>
@@ -1429,16 +1384,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/com/efan/appservice/service/MyTapeService.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="1159">
-          <caret line="78" column="5" lean-forward="false" selection-start-line="78" selection-start-column="5" selection-end-line="78" selection-end-column="5" />
-          <folding>
-            <element signature="imports" expanded="false" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/src/main/java/com/efan/core/page/ResultModel.java">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="133">
@@ -1450,13 +1395,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="342">
           <caret line="32" column="0" lean-forward="false" selection-start-line="32" selection-start-column="0" selection-end-line="32" selection-end-column="0" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/com/efan/controller/MyController.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="361">
-          <caret line="27" column="1" lean-forward="false" selection-start-line="27" selection-start-column="1" selection-end-line="27" selection-end-column="124" />
         </state>
       </provider>
     </entry>
@@ -1684,50 +1622,50 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/.idea/workspace.xml">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="-805">
-          <caret line="1522" column="40" lean-forward="false" selection-start-line="1522" selection-start-column="40" selection-end-line="1522" selection-end-column="40" />
+        <state relative-caret-position="1589">
+          <caret line="1648" column="40" lean-forward="false" selection-start-line="1648" selection-start-column="40" selection-end-line="1648" selection-end-column="40" />
           <folding>
-            <marker date="1495442248552" expanded="true" signature="89778:89821" ph="..." />
-            <marker date="1495442248552" expanded="true" signature="89778:89839" ph="..." />
-            <marker date="1495442248552" expanded="true" signature="89778:89852" ph="..." />
-            <marker date="1495442248552" expanded="true" signature="89778:89867" ph="..." />
-            <marker date="1495442248552" expanded="true" signature="89902:92403" ph="..." />
-            <marker date="1495442248552" expanded="true" signature="89915:92388" ph="..." />
-            <marker date="1495442248552" expanded="true" signature="89969:90264" ph="..." />
-            <marker date="1495442248552" expanded="true" signature="89988:90249" ph="..." />
-            <marker date="1495442248552" expanded="true" signature="90051:90229" ph="..." />
-            <marker date="1495442248552" expanded="true" signature="90091:90195" ph="..." />
-            <marker date="1495442248552" expanded="true" signature="90112:90173" ph="..." />
-            <marker date="1495442248552" expanded="true" signature="90314:90623" ph="..." />
-            <marker date="1495442248552" expanded="true" signature="90333:90608" ph="..." />
-            <marker date="1495442248552" expanded="true" signature="90410:90588" ph="..." />
-            <marker date="1495442248552" expanded="true" signature="90450:90554" ph="..." />
-            <marker date="1495442248552" expanded="true" signature="90471:90532" ph="..." />
-            <marker date="1495442248552" expanded="true" signature="90674:90939" ph="..." />
-            <marker date="1495442248552" expanded="true" signature="90693:90924" ph="..." />
-            <marker date="1495442248552" expanded="true" signature="90726:90904" ph="..." />
-            <marker date="1495442248552" expanded="true" signature="90766:90870" ph="..." />
-            <marker date="1495442248552" expanded="true" signature="90787:90848" ph="..." />
-            <marker date="1495442248552" expanded="true" signature="90982:91288" ph="..." />
-            <marker date="1495442248552" expanded="true" signature="91001:91273" ph="..." />
-            <marker date="1495442248552" expanded="true" signature="91075:91253" ph="..." />
-            <marker date="1495442248552" expanded="true" signature="91115:91219" ph="..." />
-            <marker date="1495442248552" expanded="true" signature="91136:91197" ph="..." />
-            <marker date="1495442248552" expanded="true" signature="91339:91654" ph="..." />
-            <marker date="1495442248552" expanded="true" signature="91358:91639" ph="..." />
-            <marker date="1495442248552" expanded="true" signature="91441:91619" ph="..." />
-            <marker date="1495442248552" expanded="true" signature="91481:91585" ph="..." />
-            <marker date="1495442248552" expanded="true" signature="91502:91563" ph="..." />
-            <marker date="1495442248552" expanded="true" signature="91689:91995" ph="..." />
-            <marker date="1495442248552" expanded="true" signature="91708:91980" ph="..." />
-            <marker date="1495442248552" expanded="true" signature="91782:91960" ph="..." />
-            <marker date="1495442248552" expanded="true" signature="91822:91926" ph="..." />
-            <marker date="1495442248552" expanded="true" signature="91843:91904" ph="..." />
-            <marker date="1495442248552" expanded="true" signature="92047:92374" ph="..." />
-            <marker date="1495442248552" expanded="true" signature="92066:92359" ph="..." />
-            <marker date="1495442248552" expanded="true" signature="92161:92339" ph="..." />
-            <marker date="1495442248552" expanded="true" signature="92201:92305" ph="..." />
-            <marker date="1495442248552" expanded="true" signature="92222:92283" ph="..." />
+            <marker date="1495443485622" expanded="true" signature="105527:105544" ph="..." />
+            <marker date="1495443485622" expanded="true" signature="105527:105562" ph="..." />
+            <marker date="1495443485622" expanded="true" signature="105527:105575" ph="..." />
+            <marker date="1495443485622" expanded="true" signature="105527:105590" ph="..." />
+            <marker date="1495443485622" expanded="true" signature="105625:108126" ph="..." />
+            <marker date="1495443485622" expanded="true" signature="105638:108111" ph="..." />
+            <marker date="1495443485622" expanded="true" signature="105692:105987" ph="..." />
+            <marker date="1495443485622" expanded="true" signature="105711:105972" ph="..." />
+            <marker date="1495443485622" expanded="true" signature="105774:105952" ph="..." />
+            <marker date="1495443485622" expanded="true" signature="105814:105918" ph="..." />
+            <marker date="1495443485622" expanded="true" signature="105835:105896" ph="..." />
+            <marker date="1495443485622" expanded="true" signature="106037:106346" ph="..." />
+            <marker date="1495443485622" expanded="true" signature="106056:106331" ph="..." />
+            <marker date="1495443485622" expanded="true" signature="106133:106311" ph="..." />
+            <marker date="1495443485622" expanded="true" signature="106173:106277" ph="..." />
+            <marker date="1495443485622" expanded="true" signature="106194:106255" ph="..." />
+            <marker date="1495443485622" expanded="true" signature="106397:106662" ph="..." />
+            <marker date="1495443485622" expanded="true" signature="106416:106647" ph="..." />
+            <marker date="1495443485622" expanded="true" signature="106449:106627" ph="..." />
+            <marker date="1495443485622" expanded="true" signature="106489:106593" ph="..." />
+            <marker date="1495443485622" expanded="true" signature="106510:106571" ph="..." />
+            <marker date="1495443485622" expanded="true" signature="106705:107011" ph="..." />
+            <marker date="1495443485622" expanded="true" signature="106724:106996" ph="..." />
+            <marker date="1495443485622" expanded="true" signature="106798:106976" ph="..." />
+            <marker date="1495443485622" expanded="true" signature="106838:106942" ph="..." />
+            <marker date="1495443485622" expanded="true" signature="106859:106920" ph="..." />
+            <marker date="1495443485622" expanded="true" signature="107062:107377" ph="..." />
+            <marker date="1495443485622" expanded="true" signature="107081:107362" ph="..." />
+            <marker date="1495443485622" expanded="true" signature="107164:107342" ph="..." />
+            <marker date="1495443485622" expanded="true" signature="107204:107308" ph="..." />
+            <marker date="1495443485622" expanded="true" signature="107225:107286" ph="..." />
+            <marker date="1495443485622" expanded="true" signature="107412:107718" ph="..." />
+            <marker date="1495443485622" expanded="true" signature="107431:107703" ph="..." />
+            <marker date="1495443485622" expanded="true" signature="107505:107683" ph="..." />
+            <marker date="1495443485622" expanded="true" signature="107545:107649" ph="..." />
+            <marker date="1495443485622" expanded="true" signature="107566:107627" ph="..." />
+            <marker date="1495443485622" expanded="true" signature="107770:108097" ph="..." />
+            <marker date="1495443485622" expanded="true" signature="107789:108082" ph="..." />
+            <marker date="1495443485622" expanded="true" signature="107884:108062" ph="..." />
+            <marker date="1495443485622" expanded="true" signature="107924:108028" ph="..." />
+            <marker date="1495443485622" expanded="true" signature="107945:108006" ph="..." />
           </folding>
         </state>
       </provider>
@@ -1736,6 +1674,88 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="228">
           <caret line="16" column="0" lean-forward="true" selection-start-line="16" selection-start-column="0" selection-end-line="16" selection-end-column="0" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/com/efan/core/primary/MyTape.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="152">
+          <caret line="19" column="27" lean-forward="false" selection-start-line="19" selection-start-column="19" selection-end-line="19" selection-end-column="27" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/com/efan/appservice/service/MyTapeService.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="152">
+          <caret line="43" column="42" lean-forward="true" selection-start-line="43" selection-start-column="42" selection-end-line="43" selection-end-column="42" />
+          <folding>
+            <element signature="e#990#991#0" expanded="true" />
+            <element signature="e#1046#1047#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/com/efan/appservice/service/TapeService.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="152">
+          <caret line="21" column="13" lean-forward="false" selection-start-line="21" selection-start-column="13" selection-end-line="21" selection-end-column="13" />
+          <folding>
+            <element signature="imports" expanded="false" />
+            <element signature="e#820#821#0" expanded="false" />
+            <element signature="e#877#878#0" expanded="false" />
+            <element signature="method#CreateMySongs#0;class#TapeService#0" expanded="false" />
+            <element signature="e#1567#1568#0" expanded="false" />
+            <element signature="e#1613#1614#0" expanded="false" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/com/efan/controller/dtos/MyTapeDto.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="399">
+          <caret line="21" column="8" lean-forward="false" selection-start-line="21" selection-start-column="8" selection-end-line="21" selection-end-column="8" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="jar://$MAVEN_REPOSITORY$/org/springframework/spring-core/4.3.8.RELEASE/spring-core-4.3.8.RELEASE.jar!/org/springframework/cglib/proxy/MethodProxy.class">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="174">
+          <caret line="106" column="0" lean-forward="false" selection-start-line="106" selection-start-column="0" selection-end-line="106" selection-end-column="0" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="jar://$MAVEN_REPOSITORY$/org/springframework/spring-aop/4.3.8.RELEASE/spring-aop-4.3.8.RELEASE.jar!/org/springframework/aop/interceptor/ExposeInvocationInterceptor.class">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="174">
+          <caret line="40" column="0" lean-forward="false" selection-start-line="40" selection-start-column="0" selection-end-line="40" selection-end-column="0" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="jar://$MAVEN_REPOSITORY$/org/springframework/spring-aop/4.3.8.RELEASE/spring-aop-4.3.8.RELEASE.jar!/org/springframework/aop/framework/CglibAopProxy.class">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="175">
+          <caret line="518" column="0" lean-forward="false" selection-start-line="518" selection-start-column="0" selection-end-line="518" selection-end-column="0" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/com/efan/controller/MyController.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="209">
+          <caret line="27" column="1" lean-forward="false" selection-start-line="27" selection-start-column="1" selection-end-line="27" selection-end-column="42" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/com/efan/controller/TapeController.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="162">
+          <caret line="46" column="5" lean-forward="true" selection-start-line="46" selection-start-column="5" selection-end-line="46" selection-end-column="5" />
           <folding />
         </state>
       </provider>
