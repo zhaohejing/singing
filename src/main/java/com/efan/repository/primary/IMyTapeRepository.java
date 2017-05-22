@@ -11,5 +11,6 @@ import org.springframework.stereotype.Repository;
  */
 @Repository
 public interface IMyTapeRepository extends JpaRepository<MyTape,Long> {
-    Page<MyTape> findMyTapeBySongKey(String songKey,Pageable pageable);
+    Page<MyTape> findMyTapeByUserKey(String userKey,Pageable pageable);
+
 }

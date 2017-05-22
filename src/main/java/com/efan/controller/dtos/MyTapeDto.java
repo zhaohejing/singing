@@ -8,8 +8,9 @@ package com.efan.controller.dtos;
 public class MyTapeDto {
 
     public Long id;
-    //唯一标识
-    public String songKey;
+    public String qiniuUrl;
+    //用户唯一标识
+    public String userKey;
     //歌曲名称
     public  String  songName;
     //演唱者
@@ -17,6 +18,11 @@ public class MyTapeDto {
     //原唱
     public  String originalSinger;
     //时长
-    public  String songtime;
-
+    public  String songTime;
+    //图片
+    public  String userImage;
+    //图片
+    public  String songImage;
+    //留言
+    public  String remark;
 }

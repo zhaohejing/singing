@@ -14,10 +14,14 @@ public class MyTape implements Serializable {
     @NotNull
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
-    //唯一标识
+    //骑牛url
     @NotNull
     @Column(length = 50)
-    private String songKey;
+    private String qiniuUrl;
+    //用户唯一标识
+    @NotNull
+    @Column(length = 50)
+    private String userKey;
     //歌曲名称
     @Column(length = 50)
     private  String  songName;
@@ -29,70 +33,19 @@ public class MyTape implements Serializable {
     private  String originalSinger;
     //时长
     @Column(length = 50)
-    private  String songtime;
-
-    public String getImageUrl() {
-        return imageUrl;
-    }
-
-    public void setImageUrl(String imageUrl) {
-        this.imageUrl = imageUrl;
-    }
-
-    public String getRemark() {
-        return remark;
-    }
-
-    public void setRemark(String remark) {
-        this.remark = remark;
-    }
-
-    //时长
+    private  String songTime;
+    //图片
     @Column(length = 150)
-    private  String imageUrl;
+    private  String userImage;
+    //图片
+    @Column(length = 150)
+    private  String songImage;
     //留言
     @Column(length = 150)
     private  String remark;
-
-
-    public Long getCreationUserId() {
-        return creationUserId;
-    }
-
-    public void setCreationUserId(Long creationUserId) {
-        this.creationUserId = creationUserId;
-    }
-
-    public String getCreationTime() {
-        return creationTime;
-    }
-
-    public void setCreationTime(String creationTime) {
-        this.creationTime = creationTime;
-    }
-
-    public Long getModifyUserId() {
-        return modifyUserId;
-    }
-
-    public void setModifyUserId(Long modifyUserId) {
-        this.modifyUserId = modifyUserId;
-    }
-
-    public String getModifyTime() {
-        return modifyTime;
-    }
-
-    public void setModifyTime(String modifyTime) {
-        this.modifyTime = modifyTime;
-    }
-
-    private Long creationUserId;
-
+    //是否已上传
+    private  Boolean state;
     private String creationTime;
-
-    private Long modifyUserId;
-
     private String modifyTime;
 
     public Long getId() {
@@ -103,12 +56,20 @@ public class MyTape implements Serializable {
         this.id = id;
     }
 
-    public String getSongKey() {
-        return songKey;
+    public String getQiniuUrl() {
+        return qiniuUrl;
     }
 
-    public void setSongKey(String songKey) {
-        this.songKey = songKey;
+    public void setQiniuUrl(String qiniuUrl) {
+        this.qiniuUrl = qiniuUrl;
+    }
+
+    public String getUserKey() {
+        return userKey;
+    }
+
+    public void setUserKey(String userKey) {
+        this.userKey = userKey;
     }
 
     public String getSongName() {
@@ -135,12 +96,36 @@ public class MyTape implements Serializable {
         this.originalSinger = originalSinger;
     }
 
-    public String getSongtime() {
-        return songtime;
+    public String getSongTime() {
+        return songTime;
     }
 
-    public void setSongtime(String songtime) {
-        this.songtime = songtime;
+    public void setSongTime(String songTime) {
+        this.songTime = songTime;
+    }
+
+    public String getUserImage() {
+        return userImage;
+    }
+
+    public void setUserImage(String userImage) {
+        this.userImage = userImage;
+    }
+
+    public String getSongImage() {
+        return songImage;
+    }
+
+    public void setSongImage(String songImage) {
+        this.songImage = songImage;
+    }
+
+    public String getRemark() {
+        return remark;
+    }
+
+    public void setRemark(String remark) {
+        this.remark = remark;
     }
 
     public Boolean getState() {
@@ -151,6 +136,19 @@ public class MyTape implements Serializable {
         this.state = state;
     }
 
-    //是否已上传
-    private  Boolean state;
+    public String getCreationTime() {
+        return creationTime;
+    }
+
+    public void setCreationTime(String creationTime) {
+        this.creationTime = creationTime;
+    }
+
+    public String getModifyTime() {
+        return modifyTime;
+    }
+
+    public void setModifyTime(String modifyTime) {
+        this.modifyTime = modifyTime;
+    }
 }

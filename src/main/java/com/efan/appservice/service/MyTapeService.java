@@ -40,8 +40,12 @@ public class MyTapeService implements IMyTapeService {
             model.setSongName(input.songName);
             model.setOriginalSinger(input.originalSinger);
             model.setSinger(input.singer);
-            model.setSongKey(input.songKey);
-            model.setSongtime(input.songtime);
+            model.setUserKey(input.userKey);
+            model.setUserImage(input.userImage);
+            model.setQiniuUrl(input.qiniuUrl);
+            model.setRemark(input.remark);
+            model.setSongImage(input.songImage);
+            model.setSongTime(input.songTime);
             model.setCreationTime(df.format(new Date()));
             model.setState(false);
           return   _myTapeRepository.save(model);
@@ -50,8 +54,12 @@ public class MyTapeService implements IMyTapeService {
             mod.setSongName(input.songName);
             mod.setOriginalSinger(input.originalSinger);
             mod.setSinger(input.singer);
-            mod.setSongtime(input.songtime);
-            mod.setSongKey(input.songKey);
+            mod.setUserKey(input.userKey);
+            mod.setUserImage(input.userImage);
+            mod.setQiniuUrl(input.qiniuUrl);
+            mod.setRemark(input.remark);
+            mod.setSongImage(input.songImage);
+            mod.setSongTime(input.songTime);
             mod.setModifyTime(df.format(new Date()));
             mod.setState(false);
             return   _myTapeRepository.save(mod);
@@ -60,7 +68,7 @@ public class MyTapeService implements IMyTapeService {
 //获取我的录音列表
     public ResultModel<MyTape> GetMyTapeList(FilterModel model){
         Pageable pageable = new PageRequest(model.index-1, model.size,null);
-      Page<MyTape> res=  _myTapeRepository.findMyTapeBySongKey(model.filter, pageable);
+      Page<MyTape> res=  _myTapeRepository.findMyTapeByUserKey(model.filter, pageable);
       return  new ResultModel<MyTape>( res.getContent(),res.getTotalElements());
     }
 //更新我的录音上传状态
