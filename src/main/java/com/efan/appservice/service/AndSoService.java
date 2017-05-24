@@ -132,38 +132,50 @@ public class AndSoService implements IAndSoService {
      public ResultModel<Map<String,Object>> GetSingerCate(){
         List<Map<String,Object>> result=new ArrayList<>();
              Map<String,Object> a=new HashMap<String,Object>();
-                a.put("1","男");
-                result.add(a);
-         a=new HashMap<String,Object>();
-         a.put("2","女");
+                a.put("id",1);
+                  a.put("name","男");
+
          result.add(a);
          a=new HashMap<String,Object>();
-         a.put("3","乐队");
+         a.put("id",2);
+         a.put("name","女");
+
          result.add(a);
          a=new HashMap<String,Object>();
-         a.put("4","其他");
+         a.put("id",3);
+         a.put("name","乐队");
          result.add(a);
          a=new HashMap<String,Object>();
-         a.put("5","娱乐节目");
+         a.put("id",4);
+         a.put("name","其他");
+         result.add(a);
+         a=new HashMap<String,Object>();
+         a.put("id",5);
+         a.put("name","娱乐节目");
          result.add(a);
          return  new ResultModel<Map<String, Object>>(result);
      }
     public ResultModel<Map<String,Object>> GetSingerArea(){
         List<Map<String,Object>> result=new ArrayList<>();
         Map<String,Object> a=new HashMap<String,Object>();
-        a.put("1","大陆");
+        a.put("id",1);
+        a.put("name","大陆");
         result.add(a);
         a=new HashMap<String,Object>();
-        a.put("2","港台");
+        a.put("id",2);
+        a.put("name","港台");
         result.add(a);
         a=new HashMap<String,Object>();
-        a.put("3","日韩");
+        a.put("id",3);
+        a.put("name","日韩");
         result.add(a);
         a=new HashMap<String,Object>();
-        a.put("4","欧美");
+        a.put("id",4);
+        a.put("name","欧美");
         result.add(a);
         a=new HashMap<String,Object>();
-        a.put("5","其他");
+        a.put("id",5);
+        a.put("name","其他");
         result.add(a);
         return  new ResultModel<Map<String, Object>>(result);
     }
