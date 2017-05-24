@@ -2,7 +2,18 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="f0d0a10e-b853-4aeb-84d6-8ad172c74a8a" name="默认的" comment="">
+      <change type="DELETED" beforePath="$PROJECT_DIR$/.idea/libraries/Maven__io_springfox_springfox_core_2_6_1.xml" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/.idea/libraries/Maven__io_springfox_springfox_schema_2_6_1.xml" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/.idea/libraries/Maven__io_springfox_springfox_spi_2_6_1.xml" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/.idea/libraries/Maven__io_springfox_springfox_spring_web_2_6_1.xml" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/.idea/libraries/Maven__io_springfox_springfox_swagger2_2_6_1.xml" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/.idea/libraries/Maven__io_springfox_springfox_swagger_common_2_6_1.xml" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/.idea/libraries/Maven__io_springfox_springfox_swagger_ui_2_6_1.xml" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/.idea/libraries/Maven__io_swagger_swagger_annotations_1_5_10.xml" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/.idea/libraries/Maven__io_swagger_swagger_models_1_5_10.xml" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/.idea/libraries/Maven__org_mapstruct_mapstruct_1_0_0_Final.xml" afterPath="" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/singings.iml" afterPath="$PROJECT_DIR$/singings.iml" />
     </list>
     <ignored path="$PROJECT_DIR$/out/" />
     <ignored path="$PROJECT_DIR$/target/" />
@@ -28,7 +39,7 @@
       <file leaf-file-name="MyTape.java" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/main/java/com/efan/core/primary/MyTape.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="152">
+            <state relative-caret-position="323">
               <caret line="19" column="27" lean-forward="false" selection-start-line="19" selection-start-column="19" selection-end-line="19" selection-end-column="27" />
               <folding />
             </state>
@@ -38,50 +49,50 @@
       <file leaf-file-name="workspace.xml" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/.idea/workspace.xml">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="316">
-              <caret line="1581" column="40" lean-forward="false" selection-start-line="1581" selection-start-column="40" selection-end-line="1581" selection-end-column="40" />
+            <state relative-caret-position="28595">
+              <caret line="1505" column="16" lean-forward="false" selection-start-line="1505" selection-start-column="16" selection-end-line="1505" selection-end-column="16" />
               <folding>
-                <marker date="1495443528557" expanded="true" signature="101752:101769" ph="..." />
-                <marker date="1495443528557" expanded="true" signature="101752:101787" ph="..." />
-                <marker date="1495443528557" expanded="true" signature="101752:101800" ph="..." />
-                <marker date="1495443528557" expanded="true" signature="101752:101815" ph="..." />
-                <marker date="1495443528557" expanded="true" signature="101850:104351" ph="..." />
-                <marker date="1495443528557" expanded="true" signature="101863:104336" ph="..." />
-                <marker date="1495443528557" expanded="true" signature="101917:102212" ph="..." />
-                <marker date="1495443528557" expanded="true" signature="101936:102197" ph="..." />
-                <marker date="1495443528557" expanded="true" signature="101999:102177" ph="..." />
-                <marker date="1495443528557" expanded="true" signature="102039:102143" ph="..." />
-                <marker date="1495443528557" expanded="true" signature="102060:102121" ph="..." />
-                <marker date="1495443528557" expanded="true" signature="102262:102571" ph="..." />
-                <marker date="1495443528557" expanded="true" signature="102281:102556" ph="..." />
-                <marker date="1495443528557" expanded="true" signature="102358:102536" ph="..." />
-                <marker date="1495443528557" expanded="true" signature="102398:102502" ph="..." />
-                <marker date="1495443528557" expanded="true" signature="102419:102480" ph="..." />
-                <marker date="1495443528557" expanded="true" signature="102622:102887" ph="..." />
-                <marker date="1495443528557" expanded="true" signature="102641:102872" ph="..." />
-                <marker date="1495443528557" expanded="true" signature="102674:102852" ph="..." />
-                <marker date="1495443528557" expanded="true" signature="102714:102818" ph="..." />
-                <marker date="1495443528557" expanded="true" signature="102735:102796" ph="..." />
-                <marker date="1495443528557" expanded="true" signature="102930:103236" ph="..." />
-                <marker date="1495443528557" expanded="true" signature="102949:103221" ph="..." />
-                <marker date="1495443528557" expanded="true" signature="103023:103201" ph="..." />
-                <marker date="1495443528557" expanded="true" signature="103063:103167" ph="..." />
-                <marker date="1495443528557" expanded="true" signature="103084:103145" ph="..." />
-                <marker date="1495443528557" expanded="true" signature="103287:103602" ph="..." />
-                <marker date="1495443528557" expanded="true" signature="103306:103587" ph="..." />
-                <marker date="1495443528557" expanded="true" signature="103389:103567" ph="..." />
-                <marker date="1495443528557" expanded="true" signature="103429:103533" ph="..." />
-                <marker date="1495443528557" expanded="true" signature="103450:103511" ph="..." />
-                <marker date="1495443528557" expanded="true" signature="103637:103943" ph="..." />
-                <marker date="1495443528557" expanded="true" signature="103656:103928" ph="..." />
-                <marker date="1495443528557" expanded="true" signature="103730:103908" ph="..." />
-                <marker date="1495443528557" expanded="true" signature="103770:103874" ph="..." />
-                <marker date="1495443528557" expanded="true" signature="103791:103852" ph="..." />
-                <marker date="1495443528557" expanded="true" signature="103995:104322" ph="..." />
-                <marker date="1495443528557" expanded="true" signature="104014:104307" ph="..." />
-                <marker date="1495443528557" expanded="true" signature="104109:104287" ph="..." />
-                <marker date="1495443528557" expanded="true" signature="104149:104253" ph="..." />
-                <marker date="1495443528557" expanded="true" signature="104170:104231" ph="..." />
+                <marker date="1495628895780" expanded="true" signature="92044:92061" ph="..." />
+                <marker date="1495628895780" expanded="true" signature="92044:92079" ph="..." />
+                <marker date="1495628895780" expanded="true" signature="92044:92092" ph="..." />
+                <marker date="1495628895780" expanded="true" signature="92044:92107" ph="..." />
+                <marker date="1495628895780" expanded="true" signature="92142:94643" ph="..." />
+                <marker date="1495628895780" expanded="true" signature="92155:94628" ph="..." />
+                <marker date="1495628895780" expanded="true" signature="92209:92504" ph="..." />
+                <marker date="1495628895780" expanded="true" signature="92228:92489" ph="..." />
+                <marker date="1495628895780" expanded="true" signature="92291:92469" ph="..." />
+                <marker date="1495628895780" expanded="true" signature="92331:92435" ph="..." />
+                <marker date="1495628895780" expanded="true" signature="92352:92413" ph="..." />
+                <marker date="1495628895780" expanded="true" signature="92554:92863" ph="..." />
+                <marker date="1495628895780" expanded="true" signature="92573:92848" ph="..." />
+                <marker date="1495628895780" expanded="true" signature="92650:92828" ph="..." />
+                <marker date="1495628895780" expanded="true" signature="92690:92794" ph="..." />
+                <marker date="1495628895780" expanded="true" signature="92711:92772" ph="..." />
+                <marker date="1495628895780" expanded="true" signature="92914:93179" ph="..." />
+                <marker date="1495628895780" expanded="true" signature="92933:93164" ph="..." />
+                <marker date="1495628895780" expanded="true" signature="92966:93144" ph="..." />
+                <marker date="1495628895780" expanded="true" signature="93006:93110" ph="..." />
+                <marker date="1495628895780" expanded="true" signature="93027:93088" ph="..." />
+                <marker date="1495628895780" expanded="true" signature="93222:93528" ph="..." />
+                <marker date="1495628895780" expanded="true" signature="93241:93513" ph="..." />
+                <marker date="1495628895780" expanded="true" signature="93315:93493" ph="..." />
+                <marker date="1495628895780" expanded="true" signature="93355:93459" ph="..." />
+                <marker date="1495628895780" expanded="true" signature="93376:93437" ph="..." />
+                <marker date="1495628895780" expanded="true" signature="93579:93894" ph="..." />
+                <marker date="1495628895780" expanded="true" signature="93598:93879" ph="..." />
+                <marker date="1495628895780" expanded="true" signature="93681:93859" ph="..." />
+                <marker date="1495628895780" expanded="true" signature="93721:93825" ph="..." />
+                <marker date="1495628895780" expanded="true" signature="93742:93803" ph="..." />
+                <marker date="1495628895780" expanded="true" signature="93929:94235" ph="..." />
+                <marker date="1495628895780" expanded="true" signature="93948:94220" ph="..." />
+                <marker date="1495628895780" expanded="true" signature="94022:94200" ph="..." />
+                <marker date="1495628895780" expanded="true" signature="94062:94166" ph="..." />
+                <marker date="1495628895780" expanded="true" signature="94083:94144" ph="..." />
+                <marker date="1495628895780" expanded="true" signature="94287:94614" ph="..." />
+                <marker date="1495628895780" expanded="true" signature="94306:94599" ph="..." />
+                <marker date="1495628895780" expanded="true" signature="94401:94579" ph="..." />
+                <marker date="1495628895780" expanded="true" signature="94441:94545" ph="..." />
+                <marker date="1495628895780" expanded="true" signature="94462:94523" ph="..." />
               </folding>
             </state>
           </provider>
@@ -100,12 +111,9 @@
       <file leaf-file-name="MyTapeService.java" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/src/main/java/com/efan/appservice/service/MyTapeService.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="361">
-              <caret line="78" column="14" lean-forward="true" selection-start-line="78" selection-start-column="14" selection-end-line="78" selection-end-column="14" />
-              <folding>
-                <element signature="e#990#991#0" expanded="true" />
-                <element signature="e#1046#1047#0" expanded="true" />
-              </folding>
+            <state relative-caret-position="162">
+              <caret line="53" column="40" lean-forward="true" selection-start-line="53" selection-start-column="40" selection-end-line="53" selection-end-column="40" />
+              <folding />
             </state>
           </provider>
         </entry>
@@ -113,8 +121,8 @@
       <file leaf-file-name="TapeController.java" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/main/java/com/efan/controller/TapeController.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="162">
-              <caret line="46" column="5" lean-forward="true" selection-start-line="46" selection-start-column="5" selection-end-line="46" selection-end-column="5" />
+            <state relative-caret-position="646">
+              <caret line="46" column="5" lean-forward="false" selection-start-line="46" selection-start-column="5" selection-end-line="46" selection-end-column="5" />
               <folding />
             </state>
           </provider>
@@ -133,7 +141,7 @@
       <file leaf-file-name="MethodProxy.class" pinned="false" current-in-tab="false">
         <entry file="jar://$MAVEN_REPOSITORY$/org/springframework/spring-core/4.3.8.RELEASE/spring-core-4.3.8.RELEASE.jar!/org/springframework/cglib/proxy/MethodProxy.class">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="174">
+            <state relative-caret-position="1729">
               <caret line="106" column="0" lean-forward="false" selection-start-line="106" selection-start-column="0" selection-end-line="106" selection-end-column="0" />
               <folding />
             </state>
@@ -143,7 +151,7 @@
       <file leaf-file-name="ExposeInvocationInterceptor.class" pinned="false" current-in-tab="false">
         <entry file="jar://$MAVEN_REPOSITORY$/org/springframework/spring-aop/4.3.8.RELEASE/spring-aop-4.3.8.RELEASE.jar!/org/springframework/aop/interceptor/ExposeInvocationInterceptor.class">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="174">
+            <state relative-caret-position="589">
               <caret line="40" column="0" lean-forward="false" selection-start-line="40" selection-start-column="0" selection-end-line="40" selection-end-column="0" />
               <folding />
             </state>
@@ -153,7 +161,7 @@
       <file leaf-file-name="CglibAopProxy.class" pinned="false" current-in-tab="false">
         <entry file="jar://$MAVEN_REPOSITORY$/org/springframework/spring-aop/4.3.8.RELEASE/spring-aop-4.3.8.RELEASE.jar!/org/springframework/aop/framework/CglibAopProxy.class">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="175">
+            <state relative-caret-position="8968">
               <caret line="518" column="0" lean-forward="false" selection-start-line="518" selection-start-column="0" selection-end-line="518" selection-end-column="0" />
               <folding />
             </state>
@@ -164,7 +172,7 @@
         <entry file="file://$PROJECT_DIR$/src/main/java/com/efan/repository/primary/IMyTapeRepository.java">
           <provider selected="true" editor-type-id="text-editor">
             <state relative-caret-position="228">
-              <caret line="16" column="0" lean-forward="true" selection-start-line="16" selection-start-column="0" selection-end-line="16" selection-end-column="0" />
+              <caret line="16" column="0" lean-forward="false" selection-start-line="16" selection-start-column="0" selection-end-line="16" selection-end-column="0" />
               <folding />
             </state>
           </provider>
@@ -218,7 +226,6 @@
   <component name="IdeDocumentHistory">
     <option name="CHANGED_PATHS">
       <list>
-        <option value="$PROJECT_DIR$/src/main/java/com/efan/controller/inputs/RemoteInput.java" />
         <option value="$PROJECT_DIR$/src/main/java/com/efan/appservice/iservice/IOrderService.java" />
         <option value="$PROJECT_DIR$/src/main/java/com/efan/controller/OrderController.java" />
         <option value="$MAVEN_REPOSITORY$/org/springframework/data/spring-data-jpa/1.11.3.RELEASE/spring-data-jpa-1.11.3.RELEASE.jar!/org/springframework/data/jpa/repository/JpaRepository.class" />
@@ -269,6 +276,7 @@
         <option value="$PROJECT_DIR$/src/main/java/com/efan/controller/inputs/OrderInput.java" />
         <option value="$PROJECT_DIR$/.idea/workspace.xml" />
         <option value="$PROJECT_DIR$/src/main/java/com/efan/appservice/service/MyTapeService.java" />
+        <option value="$PROJECT_DIR$/src/main/java/com/efan/core/primary/MyTape.java" />
       </list>
     </option>
   </component>
@@ -286,10 +294,10 @@
     </option>
   </component>
   <component name="ProjectFrameBounds">
-    <option name="x" value="1420" />
+    <option name="x" value="-8" />
     <option name="y" value="-8" />
-    <option name="width" value="1554" />
-    <option name="height" value="904" />
+    <option name="width" value="1936" />
+    <option name="height" value="1066" />
   </component>
   <component name="ProjectInspectionProfilesVisibleTreeState">
     <entry key="Project Default">
@@ -332,16 +340,13 @@
       <pane id="PackagesPane" />
       <pane id="ProjectPane">
         <subPane>
-          <PATH>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="singings" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="singings" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-          </PATH>
+          <expand>
+            <path>
+              <item name="singing" type="b2602c69:ProjectViewProjectNode" />
+              <item name="singing" type="462c0819:PsiDirectoryNode" />
+            </path>
+          </expand>
+          <select />
         </subPane>
       </pane>
       <pane id="Scratches" />
@@ -379,12 +384,109 @@
     </option>
   </component>
   <component name="RunManager" selected="Spring Boot.SingingApplication">
+    <configuration name="SingingApplication" type="SpringBootApplicationConfigurationType" factoryName="Spring Boot">
+      <extension name="coverage" enabled="false" merge="false" sample_coverage="true" runner="idea" />
+      <option name="SPRING_BOOT_MAIN_CLASS" value="com.efan.SingsApplication" />
+      <option name="ALTERNATIVE_JRE_PATH" />
+      <module name="singings" />
+      <envs />
+    </configuration>
+    <configuration default="true" type="Applet" factoryName="小应用程序">
+      <option name="HTML_USED" value="false" />
+      <option name="WIDTH" value="400" />
+      <option name="HEIGHT" value="300" />
+      <option name="POLICY_FILE" value="$APPLICATION_HOME_DIR$/bin/appletviewer.policy" />
+      <module />
+    </configuration>
+    <configuration default="true" type="Remote" factoryName="远程">
+      <option name="USE_SOCKET_TRANSPORT" value="true" />
+      <option name="SERVER_MODE" value="false" />
+      <option name="SHMEM_ADDRESS" value="javadebug" />
+      <option name="HOST" value="localhost" />
+      <option name="PORT" value="5005" />
+    </configuration>
+    <configuration default="true" type="Application" factoryName="应用程序">
+      <extension name="coverage" enabled="false" merge="false" sample_coverage="true" runner="idea" />
+      <option name="MAIN_CLASS_NAME" />
+      <option name="VM_PARAMETERS" />
+      <option name="PROGRAM_PARAMETERS" />
+      <option name="WORKING_DIRECTORY" value="$PROJECT_DIR$" />
+      <option name="ALTERNATIVE_JRE_PATH_ENABLED" value="false" />
+      <option name="ALTERNATIVE_JRE_PATH" />
+      <option name="ENABLE_SWING_INSPECTOR" value="false" />
+      <option name="ENV_VARIABLES" />
+      <option name="PASS_PARENT_ENVS" value="true" />
+      <module name="" />
+      <envs />
+    </configuration>
+    <configuration default="true" type="GrailsRunConfigurationType" factoryName="Grails">
+      <setting name="vmparams" value="" />
+      <setting name="cmdLine" value="run-app" />
+      <setting name="passParentEnv" value="true" />
+      <setting name="launchBrowser" value="true" />
+      <setting name="launchBrowserUrl" value="" />
+      <setting name="depsClasspath" value="false" />
+    </configuration>
+    <configuration default="true" type="js.build_tools.gulp" factoryName="Gulp.js">
+      <node-interpreter>project</node-interpreter>
+      <node-options />
+      <gulpfile />
+      <tasks />
+      <arguments />
+      <envs />
+    </configuration>
+    <configuration default="true" type="JUnit" factoryName="JUnit">
+      <extension name="coverage" enabled="false" merge="false" sample_coverage="true" runner="idea" />
+      <module name="" />
+      <option name="ALTERNATIVE_JRE_PATH_ENABLED" value="false" />
+      <option name="ALTERNATIVE_JRE_PATH" />
+      <option name="PACKAGE_NAME" />
+      <option name="MAIN_CLASS_NAME" />
+      <option name="METHOD_NAME" />
+      <option name="TEST_OBJECT" value="class" />
+      <option name="VM_PARAMETERS" value="-ea" />
+      <option name="PARAMETERS" />
+      <option name="WORKING_DIRECTORY" value="$MODULE_DIR$" />
+      <option name="ENV_VARIABLES" />
+      <option name="PASS_PARENT_ENVS" value="true" />
+      <option name="TEST_SEARCH_SCOPE">
+        <value defaultName="singleModule" />
+      </option>
+      <envs />
+      <patterns />
+    </configuration>
     <configuration default="true" type="#org.jetbrains.idea.devkit.run.PluginConfigurationType" factoryName="Plugin">
       <module name="" />
       <option name="VM_PARAMETERS" value="-Xmx512m -Xms256m -XX:MaxPermSize=250m -ea" />
       <option name="PROGRAM_PARAMETERS" />
       <predefined_log_file id="idea.log" enabled="true" />
-      <method />
+    </configuration>
+    <configuration default="true" type="TestNG" factoryName="TestNG">
+      <extension name="coverage" enabled="false" merge="false" sample_coverage="true" runner="idea" />
+      <module name="" />
+      <option name="ALTERNATIVE_JRE_PATH_ENABLED" value="false" />
+      <option name="ALTERNATIVE_JRE_PATH" />
+      <option name="SUITE_NAME" />
+      <option name="PACKAGE_NAME" />
+      <option name="MAIN_CLASS_NAME" />
+      <option name="METHOD_NAME" />
+      <option name="GROUP_NAME" />
+      <option name="TEST_OBJECT" value="CLASS" />
+      <option name="VM_PARAMETERS" value="-ea" />
+      <option name="PARAMETERS" />
+      <option name="WORKING_DIRECTORY" value="$MODULE_DIR$" />
+      <option name="OUTPUT_DIRECTORY" />
+      <option name="ANNOTATION_TYPE" />
+      <option name="ENV_VARIABLES" />
+      <option name="PASS_PARENT_ENVS" value="true" />
+      <option name="TEST_SEARCH_SCOPE">
+        <value defaultName="singleModule" />
+      </option>
+      <option name="USE_DEFAULT_REPORTERS" value="false" />
+      <option name="PROPERTIES_FILE" />
+      <envs />
+      <properties />
+      <listeners />
     </configuration>
     <configuration default="true" type="AndroidRunConfigurationType" factoryName="Android App">
       <module name="" />
@@ -439,29 +541,6 @@
         <option name="SUPPORT_LIB_ENABLED" value="true" />
         <option name="INSTRUMENTATION_ENABLED" value="true" />
       </Profilers>
-      <method />
-    </configuration>
-    <configuration default="true" type="Applet" factoryName="小应用程序">
-      <option name="HTML_USED" value="false" />
-      <option name="WIDTH" value="400" />
-      <option name="HEIGHT" value="300" />
-      <option name="POLICY_FILE" value="$APPLICATION_HOME_DIR$/bin/appletviewer.policy" />
-      <module />
-      <method />
-    </configuration>
-    <configuration default="true" type="Application" factoryName="应用程序">
-      <extension name="coverage" enabled="false" merge="false" sample_coverage="true" runner="idea" />
-      <option name="MAIN_CLASS_NAME" />
-      <option name="VM_PARAMETERS" />
-      <option name="PROGRAM_PARAMETERS" />
-      <option name="WORKING_DIRECTORY" value="$PROJECT_DIR$" />
-      <option name="ALTERNATIVE_JRE_PATH_ENABLED" value="false" />
-      <option name="ALTERNATIVE_JRE_PATH" />
-      <option name="ENABLE_SWING_INSPECTOR" value="false" />
-      <option name="ENV_VARIABLES" />
-      <option name="PASS_PARENT_ENVS" value="true" />
-      <module name="" />
-      <envs />
       <method />
     </configuration>
     <configuration default="true" type="ArquillianJUnit" factoryName="" nameIsGenerated="true">
@@ -610,36 +689,6 @@
       </ExternalSystemSettings>
       <method />
     </configuration>
-    <configuration default="true" type="GrailsRunConfigurationType" factoryName="Grails">
-      <setting name="vmparams" value="" />
-      <setting name="cmdLine" value="run-app" />
-      <setting name="passParentEnv" value="true" />
-      <setting name="launchBrowser" value="true" />
-      <setting name="launchBrowserUrl" value="" />
-      <setting name="depsClasspath" value="false" />
-      <method />
-    </configuration>
-    <configuration default="true" type="JUnit" factoryName="JUnit">
-      <extension name="coverage" enabled="false" merge="false" sample_coverage="true" runner="idea" />
-      <module name="" />
-      <option name="ALTERNATIVE_JRE_PATH_ENABLED" value="false" />
-      <option name="ALTERNATIVE_JRE_PATH" />
-      <option name="PACKAGE_NAME" />
-      <option name="MAIN_CLASS_NAME" />
-      <option name="METHOD_NAME" />
-      <option name="TEST_OBJECT" value="class" />
-      <option name="VM_PARAMETERS" value="-ea" />
-      <option name="PARAMETERS" />
-      <option name="WORKING_DIRECTORY" value="$MODULE_DIR$" />
-      <option name="ENV_VARIABLES" />
-      <option name="PASS_PARENT_ENVS" value="true" />
-      <option name="TEST_SEARCH_SCOPE">
-        <value defaultName="singleModule" />
-      </option>
-      <envs />
-      <patterns />
-      <method />
-    </configuration>
     <configuration default="true" type="JarApplication" factoryName="JAR 应用程序">
       <extension name="coverage" enabled="false" merge="false" sample_coverage="true" runner="idea" />
       <envs />
@@ -705,54 +754,9 @@
     <configuration default="true" type="NodeJSConfigurationType" factoryName="Node.js" path-to-node="project" working-dir="">
       <method />
     </configuration>
-    <configuration default="true" type="Remote" factoryName="远程">
-      <option name="USE_SOCKET_TRANSPORT" value="true" />
-      <option name="SERVER_MODE" value="false" />
-      <option name="SHMEM_ADDRESS" value="javadebug" />
-      <option name="HOST" value="localhost" />
-      <option name="PORT" value="5005" />
-      <method />
-    </configuration>
     <configuration default="true" type="SpringBootApplicationConfigurationType" factoryName="Spring Boot">
       <extension name="coverage" enabled="false" merge="false" sample_coverage="true" runner="idea" />
       <module name="" />
-      <envs />
-      <method />
-    </configuration>
-    <configuration default="true" type="TestNG" factoryName="TestNG">
-      <extension name="coverage" enabled="false" merge="false" sample_coverage="true" runner="idea" />
-      <module name="" />
-      <option name="ALTERNATIVE_JRE_PATH_ENABLED" value="false" />
-      <option name="ALTERNATIVE_JRE_PATH" />
-      <option name="SUITE_NAME" />
-      <option name="PACKAGE_NAME" />
-      <option name="MAIN_CLASS_NAME" />
-      <option name="METHOD_NAME" />
-      <option name="GROUP_NAME" />
-      <option name="TEST_OBJECT" value="CLASS" />
-      <option name="VM_PARAMETERS" value="-ea" />
-      <option name="PARAMETERS" />
-      <option name="WORKING_DIRECTORY" value="$MODULE_DIR$" />
-      <option name="OUTPUT_DIRECTORY" />
-      <option name="ANNOTATION_TYPE" />
-      <option name="ENV_VARIABLES" />
-      <option name="PASS_PARENT_ENVS" value="true" />
-      <option name="TEST_SEARCH_SCOPE">
-        <value defaultName="singleModule" />
-      </option>
-      <option name="USE_DEFAULT_REPORTERS" value="false" />
-      <option name="PROPERTIES_FILE" />
-      <envs />
-      <properties />
-      <listeners />
-      <method />
-    </configuration>
-    <configuration default="true" type="js.build_tools.gulp" factoryName="Gulp.js">
-      <node-interpreter>project</node-interpreter>
-      <node-options />
-      <gulpfile />
-      <tasks />
-      <arguments />
       <envs />
       <method />
     </configuration>
@@ -782,17 +786,6 @@
     <configuration default="true" type="osgi.bnd.run" factoryName="Test Launcher (JUnit)">
       <method />
     </configuration>
-    <configuration default="false" name="SingingApplication" type="SpringBootApplicationConfigurationType" factoryName="Spring Boot">
-      <extension name="coverage" enabled="false" merge="false" sample_coverage="true" runner="idea" />
-      <option name="SPRING_BOOT_MAIN_CLASS" value="com.efan.SingsApplication" />
-      <option name="ALTERNATIVE_JRE_PATH" />
-      <module name="singings" />
-      <envs />
-      <method />
-    </configuration>
-    <list size="1">
-      <item index="0" class="java.lang.String" itemvalue="Spring Boot.SingingApplication" />
-    </list>
   </component>
   <component name="ShelveChangesManager" show_recycled="false">
     <option name="remove_strategy" value="false" />
@@ -833,6 +826,7 @@
       <workItem from="1495070924987" duration="1261000" />
       <workItem from="1495156892321" duration="4771000" />
       <workItem from="1495442039781" duration="2023000" />
+      <workItem from="1495628792702" duration="133000" />
     </task>
     <task id="LOCAL-00003" summary="添加接口">
       <created>1494217735558</created>
@@ -1181,15 +1175,13 @@
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="129673000" />
+    <option name="totallyTimeSpent" value="129806000" />
   </component>
   <component name="ToolWindowManager">
-    <frame x="1420" y="-8" width="1554" height="904" extended-state="0" />
+    <frame x="-8" y="-8" width="1936" height="1066" extended-state="6" />
     <layout>
-      <window_info id="Nl-Palette" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
       <window_info id="Event Log" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.3283208" sideWeight="0.5026008" order="7" side_tool="true" content_ui="tabs" />
       <window_info id="Maven Projects" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
-      <window_info id="Properties" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
       <window_info id="Capture Tool" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
       <window_info id="设计师" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
       <window_info id="Database" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.32899868" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
@@ -1203,19 +1195,21 @@
       <window_info id="Java Enterprise" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="8" side_tool="false" content_ui="tabs" />
       <window_info id="Capture Analysis" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
       <window_info id="Version Control" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="false" weight="0.33" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
-      <window_info id="消息" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.32581455" sideWeight="0.4973992" order="7" side_tool="false" content_ui="tabs" />
+      <window_info id="消息" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.32565445" sideWeight="0.4973992" order="7" side_tool="false" content_ui="tabs" />
       <window_info id="Spring" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
       <window_info id="Terminal" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
-      <window_info id="运行" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.32706767" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
+      <window_info id="运行" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.32670158" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
       <window_info id="Persistence" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.2490247" sideWeight="0.5050125" order="3" side_tool="true" content_ui="tabs" />
       <window_info id="控制板" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
-      <window_info id="Project" active="true" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.2490247" sideWeight="0.49498746" order="0" side_tool="false" content_ui="combo" />
+      <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.19947916" sideWeight="0.49498746" order="0" side_tool="false" content_ui="combo" />
       <window_info id="Bean Validation" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
       <window_info id="Theme Preview" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
       <window_info id="Favorites" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="2" side_tool="true" content_ui="tabs" />
       <window_info id="Cvs" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="4" side_tool="false" content_ui="tabs" />
+      <window_info id="Nl-Palette" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
       <window_info id="Message" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="0" side_tool="false" content_ui="tabs" />
       <window_info id="Commander" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.4" sideWeight="0.5" order="0" side_tool="false" content_ui="tabs" />
+      <window_info id="Properties" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
       <window_info id="Hierarchy" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="2" side_tool="false" content_ui="combo" />
       <window_info id="Debug" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.4" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
       <window_info id="Inspection" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.4" sideWeight="0.5" order="5" side_tool="false" content_ui="tabs" />
@@ -1251,32 +1245,6 @@
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>
-      <breakpoints>
-        <line-breakpoint enabled="true" type="java-line">
-          <url>file://$PROJECT_DIR$/src/main/java/com/efan/controller/OrderController.java</url>
-          <line>47</line>
-          <properties />
-          <option name="timeStamp" value="8" />
-        </line-breakpoint>
-        <line-breakpoint enabled="true" type="java-line">
-          <url>file://$PROJECT_DIR$/src/main/java/com/efan/controller/AndSoController.java</url>
-          <line>42</line>
-          <properties />
-          <option name="timeStamp" value="12" />
-        </line-breakpoint>
-        <line-breakpoint enabled="true" type="java-line">
-          <url>file://$PROJECT_DIR$/src/main/java/com/efan/appservice/service/OrderService.java</url>
-          <line>106</line>
-          <properties />
-          <option name="timeStamp" value="14" />
-        </line-breakpoint>
-        <line-breakpoint enabled="true" type="java-line">
-          <url>file://$PROJECT_DIR$/src/main/java/com/efan/controller/OrderController.java</url>
-          <line>64</line>
-          <properties />
-          <option name="timeStamp" value="16" />
-        </line-breakpoint>
-      </breakpoints>
       <option name="time" value="19" />
     </breakpoint-manager>
     <watches-manager />
@@ -1501,13 +1469,7 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/../cycle/src/main/java/com/gxq/controller/EfanController.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="228">
-          <caret line="72" column="2" lean-forward="false" selection-start-line="72" selection-start-column="2" selection-end-line="80" selection-end-column="5" />
-        </state>
-      </provider>
-    </entry>
+    <entry file="file://$PROJECT_DIR$/../cycle/src/main/java/com/gxq/controller/EfanController.java" />
     <entry file="file://$PROJECT_DIR$/src/main/java/com/efan/controller/QiniuController.java">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="321">
@@ -1533,7 +1495,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="532">
           <caret line="28" column="30" lean-forward="false" selection-start-line="28" selection-start-column="30" selection-end-line="28" selection-end-column="30" />
-          <folding />
         </state>
       </provider>
     </entry>
@@ -1541,49 +1502,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="171">
           <caret line="14" column="13" lean-forward="false" selection-start-line="14" selection-start-column="13" selection-end-line="14" selection-end-column="13" />
-          <folding>
-            <element signature="imports" expanded="false" />
-            <element signature="e#833#834#0" expanded="false" />
-            <element signature="e#863#864#0" expanded="false" />
-            <element signature="e#909#910#0" expanded="false" />
-            <element signature="e#947#948#0" expanded="false" />
-            <element signature="e#1003#1004#0" expanded="false" />
-            <element signature="e#1028#1029#0" expanded="false" />
-            <element signature="e#1062#1063#0" expanded="false" />
-            <element signature="e#1090#1091#0" expanded="false" />
-            <element signature="e#1124#1125#0" expanded="false" />
-            <element signature="e#1154#1155#0" expanded="false" />
-            <element signature="e#1200#1201#0" expanded="false" />
-            <element signature="e#1238#1239#0" expanded="false" />
-            <element signature="e#1273#1274#0" expanded="false" />
-            <element signature="e#1304#1305#0" expanded="false" />
-            <element signature="e#1352#1353#0" expanded="false" />
-            <element signature="e#1392#1393#0" expanded="false" />
-            <element signature="e#1425#1426#0" expanded="false" />
-            <element signature="e#1454#1455#0" expanded="false" />
-            <element signature="e#1498#1499#0" expanded="false" />
-            <element signature="e#1534#1535#0" expanded="false" />
-            <element signature="e#1567#1568#0" expanded="false" />
-            <element signature="e#1595#1596#0" expanded="false" />
-            <element signature="e#1638#1639#0" expanded="false" />
-            <element signature="e#1672#1673#0" expanded="false" />
-            <element signature="e#1711#1712#0" expanded="false" />
-            <element signature="e#1748#1749#0" expanded="false" />
-            <element signature="e#1806#1807#0" expanded="false" />
-            <element signature="e#1858#1859#0" expanded="false" />
-            <element signature="e#1900#1901#0" expanded="false" />
-            <element signature="e#1935#1936#0" expanded="false" />
-            <element signature="e#1994#1995#0" expanded="false" />
-            <element signature="e#2042#2043#0" expanded="false" />
-            <element signature="e#2079#2080#0" expanded="false" />
-            <element signature="e#2114#2115#0" expanded="false" />
-            <element signature="e#2168#2169#0" expanded="false" />
-            <element signature="e#2216#2217#0" expanded="false" />
-            <element signature="e#2256#2257#0" expanded="false" />
-            <element signature="e#2289#2290#0" expanded="false" />
-            <element signature="e#2344#2345#0" expanded="false" />
-            <element signature="e#2388#2389#0" expanded="false" />
-          </folding>
         </state>
       </provider>
     </entry>
@@ -1597,50 +1515,50 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/.idea/workspace.xml">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="316">
-          <caret line="1581" column="40" lean-forward="false" selection-start-line="1581" selection-start-column="40" selection-end-line="1581" selection-end-column="40" />
+        <state relative-caret-position="28595">
+          <caret line="1505" column="16" lean-forward="false" selection-start-line="1505" selection-start-column="16" selection-end-line="1505" selection-end-column="16" />
           <folding>
-            <marker date="1495443528557" expanded="true" signature="101752:101769" ph="..." />
-            <marker date="1495443528557" expanded="true" signature="101752:101787" ph="..." />
-            <marker date="1495443528557" expanded="true" signature="101752:101800" ph="..." />
-            <marker date="1495443528557" expanded="true" signature="101752:101815" ph="..." />
-            <marker date="1495443528557" expanded="true" signature="101850:104351" ph="..." />
-            <marker date="1495443528557" expanded="true" signature="101863:104336" ph="..." />
-            <marker date="1495443528557" expanded="true" signature="101917:102212" ph="..." />
-            <marker date="1495443528557" expanded="true" signature="101936:102197" ph="..." />
-            <marker date="1495443528557" expanded="true" signature="101999:102177" ph="..." />
-            <marker date="1495443528557" expanded="true" signature="102039:102143" ph="..." />
-            <marker date="1495443528557" expanded="true" signature="102060:102121" ph="..." />
-            <marker date="1495443528557" expanded="true" signature="102262:102571" ph="..." />
-            <marker date="1495443528557" expanded="true" signature="102281:102556" ph="..." />
-            <marker date="1495443528557" expanded="true" signature="102358:102536" ph="..." />
-            <marker date="1495443528557" expanded="true" signature="102398:102502" ph="..." />
-            <marker date="1495443528557" expanded="true" signature="102419:102480" ph="..." />
-            <marker date="1495443528557" expanded="true" signature="102622:102887" ph="..." />
-            <marker date="1495443528557" expanded="true" signature="102641:102872" ph="..." />
-            <marker date="1495443528557" expanded="true" signature="102674:102852" ph="..." />
-            <marker date="1495443528557" expanded="true" signature="102714:102818" ph="..." />
-            <marker date="1495443528557" expanded="true" signature="102735:102796" ph="..." />
-            <marker date="1495443528557" expanded="true" signature="102930:103236" ph="..." />
-            <marker date="1495443528557" expanded="true" signature="102949:103221" ph="..." />
-            <marker date="1495443528557" expanded="true" signature="103023:103201" ph="..." />
-            <marker date="1495443528557" expanded="true" signature="103063:103167" ph="..." />
-            <marker date="1495443528557" expanded="true" signature="103084:103145" ph="..." />
-            <marker date="1495443528557" expanded="true" signature="103287:103602" ph="..." />
-            <marker date="1495443528557" expanded="true" signature="103306:103587" ph="..." />
-            <marker date="1495443528557" expanded="true" signature="103389:103567" ph="..." />
-            <marker date="1495443528557" expanded="true" signature="103429:103533" ph="..." />
-            <marker date="1495443528557" expanded="true" signature="103450:103511" ph="..." />
-            <marker date="1495443528557" expanded="true" signature="103637:103943" ph="..." />
-            <marker date="1495443528557" expanded="true" signature="103656:103928" ph="..." />
-            <marker date="1495443528557" expanded="true" signature="103730:103908" ph="..." />
-            <marker date="1495443528557" expanded="true" signature="103770:103874" ph="..." />
-            <marker date="1495443528557" expanded="true" signature="103791:103852" ph="..." />
-            <marker date="1495443528557" expanded="true" signature="103995:104322" ph="..." />
-            <marker date="1495443528557" expanded="true" signature="104014:104307" ph="..." />
-            <marker date="1495443528557" expanded="true" signature="104109:104287" ph="..." />
-            <marker date="1495443528557" expanded="true" signature="104149:104253" ph="..." />
-            <marker date="1495443528557" expanded="true" signature="104170:104231" ph="..." />
+            <marker date="1495628895780" expanded="true" signature="92044:92061" ph="..." />
+            <marker date="1495628895780" expanded="true" signature="92044:92079" ph="..." />
+            <marker date="1495628895780" expanded="true" signature="92044:92092" ph="..." />
+            <marker date="1495628895780" expanded="true" signature="92044:92107" ph="..." />
+            <marker date="1495628895780" expanded="true" signature="92142:94643" ph="..." />
+            <marker date="1495628895780" expanded="true" signature="92155:94628" ph="..." />
+            <marker date="1495628895780" expanded="true" signature="92209:92504" ph="..." />
+            <marker date="1495628895780" expanded="true" signature="92228:92489" ph="..." />
+            <marker date="1495628895780" expanded="true" signature="92291:92469" ph="..." />
+            <marker date="1495628895780" expanded="true" signature="92331:92435" ph="..." />
+            <marker date="1495628895780" expanded="true" signature="92352:92413" ph="..." />
+            <marker date="1495628895780" expanded="true" signature="92554:92863" ph="..." />
+            <marker date="1495628895780" expanded="true" signature="92573:92848" ph="..." />
+            <marker date="1495628895780" expanded="true" signature="92650:92828" ph="..." />
+            <marker date="1495628895780" expanded="true" signature="92690:92794" ph="..." />
+            <marker date="1495628895780" expanded="true" signature="92711:92772" ph="..." />
+            <marker date="1495628895780" expanded="true" signature="92914:93179" ph="..." />
+            <marker date="1495628895780" expanded="true" signature="92933:93164" ph="..." />
+            <marker date="1495628895780" expanded="true" signature="92966:93144" ph="..." />
+            <marker date="1495628895780" expanded="true" signature="93006:93110" ph="..." />
+            <marker date="1495628895780" expanded="true" signature="93027:93088" ph="..." />
+            <marker date="1495628895780" expanded="true" signature="93222:93528" ph="..." />
+            <marker date="1495628895780" expanded="true" signature="93241:93513" ph="..." />
+            <marker date="1495628895780" expanded="true" signature="93315:93493" ph="..." />
+            <marker date="1495628895780" expanded="true" signature="93355:93459" ph="..." />
+            <marker date="1495628895780" expanded="true" signature="93376:93437" ph="..." />
+            <marker date="1495628895780" expanded="true" signature="93579:93894" ph="..." />
+            <marker date="1495628895780" expanded="true" signature="93598:93879" ph="..." />
+            <marker date="1495628895780" expanded="true" signature="93681:93859" ph="..." />
+            <marker date="1495628895780" expanded="true" signature="93721:93825" ph="..." />
+            <marker date="1495628895780" expanded="true" signature="93742:93803" ph="..." />
+            <marker date="1495628895780" expanded="true" signature="93929:94235" ph="..." />
+            <marker date="1495628895780" expanded="true" signature="93948:94220" ph="..." />
+            <marker date="1495628895780" expanded="true" signature="94022:94200" ph="..." />
+            <marker date="1495628895780" expanded="true" signature="94062:94166" ph="..." />
+            <marker date="1495628895780" expanded="true" signature="94083:94144" ph="..." />
+            <marker date="1495628895780" expanded="true" signature="94287:94614" ph="..." />
+            <marker date="1495628895780" expanded="true" signature="94306:94599" ph="..." />
+            <marker date="1495628895780" expanded="true" signature="94401:94579" ph="..." />
+            <marker date="1495628895780" expanded="true" signature="94441:94545" ph="..." />
+            <marker date="1495628895780" expanded="true" signature="94462:94523" ph="..." />
           </folding>
         </state>
       </provider>
@@ -1648,14 +1566,14 @@
     <entry file="file://$PROJECT_DIR$/src/main/java/com/efan/repository/primary/IMyTapeRepository.java">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="228">
-          <caret line="16" column="0" lean-forward="true" selection-start-line="16" selection-start-column="0" selection-end-line="16" selection-end-column="0" />
+          <caret line="16" column="0" lean-forward="false" selection-start-line="16" selection-start-column="0" selection-end-line="16" selection-end-column="0" />
           <folding />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/src/main/java/com/efan/core/primary/MyTape.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="152">
+        <state relative-caret-position="323">
           <caret line="19" column="27" lean-forward="false" selection-start-line="19" selection-start-column="19" selection-end-line="19" selection-end-column="27" />
           <folding />
         </state>
@@ -1665,14 +1583,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="152">
           <caret line="21" column="13" lean-forward="false" selection-start-line="21" selection-start-column="13" selection-end-line="21" selection-end-column="13" />
-          <folding>
-            <element signature="imports" expanded="false" />
-            <element signature="e#820#821#0" expanded="false" />
-            <element signature="e#877#878#0" expanded="false" />
-            <element signature="method#CreateMySongs#0;class#TapeService#0" expanded="false" />
-            <element signature="e#1567#1568#0" expanded="false" />
-            <element signature="e#1613#1614#0" expanded="false" />
-          </folding>
         </state>
       </provider>
     </entry>
@@ -1686,7 +1596,7 @@
     </entry>
     <entry file="jar://$MAVEN_REPOSITORY$/org/springframework/spring-core/4.3.8.RELEASE/spring-core-4.3.8.RELEASE.jar!/org/springframework/cglib/proxy/MethodProxy.class">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="174">
+        <state relative-caret-position="1729">
           <caret line="106" column="0" lean-forward="false" selection-start-line="106" selection-start-column="0" selection-end-line="106" selection-end-column="0" />
           <folding />
         </state>
@@ -1694,7 +1604,7 @@
     </entry>
     <entry file="jar://$MAVEN_REPOSITORY$/org/springframework/spring-aop/4.3.8.RELEASE/spring-aop-4.3.8.RELEASE.jar!/org/springframework/aop/interceptor/ExposeInvocationInterceptor.class">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="174">
+        <state relative-caret-position="589">
           <caret line="40" column="0" lean-forward="false" selection-start-line="40" selection-start-column="0" selection-end-line="40" selection-end-column="0" />
           <folding />
         </state>
@@ -1702,7 +1612,7 @@
     </entry>
     <entry file="jar://$MAVEN_REPOSITORY$/org/springframework/spring-aop/4.3.8.RELEASE/spring-aop-4.3.8.RELEASE.jar!/org/springframework/aop/framework/CglibAopProxy.class">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="175">
+        <state relative-caret-position="8968">
           <caret line="518" column="0" lean-forward="false" selection-start-line="518" selection-start-column="0" selection-end-line="518" selection-end-column="0" />
           <folding />
         </state>
@@ -1718,20 +1628,17 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/src/main/java/com/efan/controller/TapeController.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="162">
-          <caret line="46" column="5" lean-forward="true" selection-start-line="46" selection-start-column="5" selection-end-line="46" selection-end-column="5" />
+        <state relative-caret-position="646">
+          <caret line="46" column="5" lean-forward="false" selection-start-line="46" selection-start-column="5" selection-end-line="46" selection-end-column="5" />
           <folding />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/src/main/java/com/efan/appservice/service/MyTapeService.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="361">
-          <caret line="78" column="14" lean-forward="true" selection-start-line="78" selection-start-column="14" selection-end-line="78" selection-end-column="14" />
-          <folding>
-            <element signature="e#990#991#0" expanded="true" />
-            <element signature="e#1046#1047#0" expanded="true" />
-          </folding>
+        <state relative-caret-position="162">
+          <caret line="53" column="40" lean-forward="true" selection-start-line="53" selection-start-column="40" selection-end-line="53" selection-end-column="40" />
+          <folding />
         </state>
       </provider>
     </entry>
