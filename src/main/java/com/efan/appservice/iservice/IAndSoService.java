@@ -5,6 +5,8 @@ import com.efan.controller.inputs.GetSingerInput;
 import com.efan.controller.inputs.GetSongsInput;
 import com.efan.core.page.ResultModel;
 
+import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
@@ -20,4 +22,7 @@ public interface IAndSoService {
      List<Map<String,Object>> GetSongsVerList();
     ResultModel<Map<String,Object>> GetSingerByHot(BaseInput input);
     ResultModel<Map<String,Object>> GetSongsByHot(GetSongsInput input);
+
+     ResultModel<Map<String,Object>> GetSingerCate();
+     ResultModel<Map<String,Object>> GetSingerArea();
 }

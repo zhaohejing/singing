@@ -7,5 +7,7 @@ import org.springframework.data.redis.core.index.IndexValueTransformer;
  */
 public class GetSingerInput extends BaseInput {
     public  String word;
-    public String cateId;
+    public Integer cate;
+    public Integer area;
+
 }

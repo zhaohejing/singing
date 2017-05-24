@@ -10,6 +10,8 @@ import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.jdbc.core.JdbcTemplate;
 import org.springframework.stereotype.Service;
 
+import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
@@ -38,11 +40,14 @@ public class AndSoService implements IAndSoService {
             sql.append(" and  pszSpell like '%"+input.word+"%' ");
             count.append(" and  pszSpell like '%"+input.word+"%' ");
         }
-        if (input.cateId!=null&& !input.cateId.isEmpty()){
-            sql.append(" and  wSingerTyp = '"+input.cateId+"' ");
-            count.append(" and  wSingerTyp = '"+input.cateId+"' ");
+        if (input.cate>0){
+            sql.append(" and  wSingerType = '"+input.cate+"' ");
+            count.append(" and  wSingerType = '"+input.cate+"' ");
         }
-
+        if (input.area>0){
+            sql.append(" and  wSingerArea = '"+input.area+"' ");
+            count.append(" and  wSingerArea = '"+input.area+"' ");
+        }
 
         sql.append(" limit  "+input.getPage()+" , "+input.getSize() );
         Long total=_jdbc.queryForObject(count.toString(),Long.class);
@@ -124,6 +129,44 @@ public class AndSoService implements IAndSoService {
         return  new ResultModel<Map<String,Object>>(list,total);
     }
 
+     public ResultModel<Map<String,Object>> GetSingerCate(){
+        List<Map<String,Object>> result=new ArrayList<>();
+             Map<String,Object> a=new HashMap<String,Object>();
+                a.put("1","男");
+                result.add(a);
+         a=new HashMap<String,Object>();
+         a.put("2","女");
+         result.add(a);
+         a=new HashMap<String,Object>();
+         a.put("3","乐队");
+         result.add(a);
+         a=new HashMap<String,Object>();
+         a.put("4","其他");
+         result.add(a);
+         a=new HashMap<String,Object>();
+         a.put("5","娱乐节目");
+         result.add(a);
+         return  new ResultModel<Map<String, Object>>(result);
+     }
+    public ResultModel<Map<String,Object>> GetSingerArea(){
+        List<Map<String,Object>> result=new ArrayList<>();
+        Map<String,Object> a=new HashMap<String,Object>();
+        a.put("1","大陆");
+        result.add(a);
+        a=new HashMap<String,Object>();
+        a.put("2","港台");
+        result.add(a);
+        a=new HashMap<String,Object>();
+        a.put("3","日韩");
+        result.add(a);
+        a=new HashMap<String,Object>();
+        a.put("4","欧美");
+        result.add(a);
+        a=new HashMap<String,Object>();
+        a.put("5","其他");
+        result.add(a);
+        return  new ResultModel<Map<String, Object>>(result);
+    }
     //获取歌曲排行榜
     public List<Map<String,Object>> GetSongsVerList(){
         StringBuilder sql=new StringBuilder();

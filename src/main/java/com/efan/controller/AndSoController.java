@@ -44,6 +44,20 @@ public class AndSoController {
         return  new ActionResult(result);
     }
 
+    /*获取歌星分类*/
+    @ApiOperation(value="获取歌星分类", notes="歌单接口")
+    @RequestMapping(value  ="/singercate" ,method = RequestMethod.POST)
+    public ActionResult getSingerCate(){
+        ResultModel<Map<String,Object>> result=_songService.GetSingerCate();
+        return  new ActionResult(result);
+    }
+    /*获取歌星区域*/
+    @ApiOperation(value="获取歌星区域", notes="歌单接口")
+    @RequestMapping(value  ="/singerarea" ,method = RequestMethod.POST)
+    public ActionResult getSingerArea(){
+        ResultModel<Map<String,Object>> result=_songService.GetSingerArea();
+        return  new ActionResult(result);
+    }
     /*歌曲模糊搜索*/
     @ApiOperation(value="歌曲模糊搜索", notes="歌单接口")
     @ApiImplicitParam(name = "input", value = "{filter:关键词,index:页码,size:页容量 ,word:简写}", required = true, dataType = "GetSongsInput")
@@ -106,6 +120,7 @@ public class AndSoController {
         List<Map<String,Object>> result=_songService.GetSongsVerList();
         return  new ActionResult(result);
     }
+
     /*获取排行榜歌曲列表*/
     @ApiOperation(value="获取排行榜歌曲列表", notes="歌单接口")
     @ApiImplicitParam(name = "input", value = "{filter:过滤条件,index:页码,size:页容量 ,word:关键词}", required = true, dataType = "GetSongsInput")
