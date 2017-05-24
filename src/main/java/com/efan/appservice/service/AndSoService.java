@@ -41,12 +41,12 @@ public class AndSoService implements IAndSoService {
             count.append(" and  pszSpell like '%"+input.word+"%' ");
         }
         if (input.cate>0){
-            sql.append(" and  wSingerType = '"+input.cate+"' ");
-            count.append(" and  wSingerType = '"+input.cate+"' ");
+            sql.append(" and  wSingerTyp = '"+input.cate+"' ");
+            count.append(" and  wSingerTyp = '"+input.cate+"' ");
         }
         if (input.area>0){
-            sql.append(" and  wSingerArea = '"+input.area+"' ");
-            count.append(" and  wSingerArea = '"+input.area+"' ");
+            sql.append(" and  wSingerAre = '"+input.area+"' ");
+            count.append(" and  wSingerAre = '"+input.area+"' ");
         }
 
         sql.append(" limit  "+input.getPage()+" , "+input.getSize() );
