@@ -11,7 +11,9 @@ import com.efan.core.page.ResultModel;
  * Created by 45425 on 2017/5/8.
  */
 public interface IMyTapeService {
-    MyTape ModifyMyTape(MyTapeDto input);
+     MyTape InsertMyTape(MyTapeDto input);
+    //添加或编辑我的录音
+     MyTape ModifyMyTape(MyTapeDto input);
     ResultModel<MyTape> GetMyTapeList(FilterModel model);
     MyTape UpdateMyTapeState(Long tapeId);
     MyTape GetMyTape(DeleteInput input);

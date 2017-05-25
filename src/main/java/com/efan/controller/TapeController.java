@@ -28,11 +28,11 @@ this._mytapeService=mytapeService;
     @ApiOperation(value="创建我的原唱歌曲", notes="我的模块接口")
     @RequestMapping(value  ="/insertTape" ,method = RequestMethod.POST)
     public ActionResult InsertTape(@RequestBody MyTapeDto input){
-        MyTape result=_mytapeService.ModifyMyTape(input);
+        MyTape result=_mytapeService.InsertMyTape(input);
         return  new ActionResult(result);
     }
-    /*通知设备上传文件并获取到唯一id*/
-    @ApiOperation(value="通知设备上传文件并获取到唯一id", notes="我的模块接口")
+    /*设备上传文件 获取到qiniu的路径 保存*/
+    @ApiOperation(value="设备上传文件 获取到qiniu的路径 保存", notes="我的模块接口")
     @RequestMapping(value  ="/notifyupload" ,method = RequestMethod.POST)
     public ActionResult NotifyUploadSongs(@RequestBody MyTapeDto input){
         MyTape result=_mytapeService.ModifyMyTape(input);

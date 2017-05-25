@@ -30,7 +30,7 @@ public class MyTapeService implements IMyTapeService {
         this._myTapeRepository= myTapeRepository;
     }
 //添加或编辑我的录音
-    public MyTape ModifyMyTape(MyTapeDto input){
+    public MyTape InsertMyTape(MyTapeDto input){
         SimpleDateFormat df = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");//设置日期格式
         if (input.id<=0){
             MyTape model=new MyTape();
@@ -62,6 +62,15 @@ public class MyTapeService implements IMyTapeService {
             mod.setState(false);
             return   _myTapeRepository.save(mod);
         }
+    }
+    //添加或编辑我的录音
+    public MyTape ModifyMyTape(MyTapeDto input){
+        SimpleDateFormat df = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");//设置日期格式
+            MyTape mod=_myTapeRepository.findOne(input.id );
+            mod.setQiniuUrl(input.qiniuUrl);
+            mod.setModifyTime(df.format(new Date()));
+            return   _myTapeRepository.save(mod);
+
     }
 //获取我的录音列表
     public ResultModel<MyTape> GetAllMyTapeList(FilterModel model){
