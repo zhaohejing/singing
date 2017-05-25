@@ -53,7 +53,7 @@ this._mytapeService=mytapeService;
         ResultModel<MyTape> result=_mytapeService.GetMyTapeList(input);
         return  new ActionResult(result);
     }
-    /*获取我的录音列表*/
+    /*获取我的全部录音列表*/
     @ApiOperation(value="获取我的全部录音列表", notes="我的模块接口")
     @ApiImplicitParam(name = "input", value = "{filter:过滤条件,index:页码,size:页容量 }", required = true, dataType = "FilterModel")
     @RequestMapping(value  ="/myalltapes" ,method = RequestMethod.POST)
