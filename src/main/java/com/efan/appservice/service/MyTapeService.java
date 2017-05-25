@@ -64,11 +64,18 @@ public class MyTapeService implements IMyTapeService {
         }
     }
 //获取我的录音列表
-    public ResultModel<MyTape> GetMyTapeList(FilterModel model){
+    public ResultModel<MyTape> GetAllMyTapeList(FilterModel model){
         Pageable pageable = new PageRequest(model.index-1, model.size,null);
       Page<MyTape> res=  _myTapeRepository.findMyTapeByUserKey(model.filter, pageable);
       return  new ResultModel<MyTape>( res.getContent(),res.getTotalElements());
     }
+    public ResultModel<MyTape> GetMyTapeList(FilterModel model){
+        Pageable pageable = new PageRequest(model.index-1, model.size,null);
+        Page<MyTape> res=  _myTapeRepository.findMyTapeByUserKeyAndState(model.filter,true, pageable);
+        return  new ResultModel<MyTape>( res.getContent(),res.getTotalElements());
+    }
+
+
 //更新我的录音上传状态
     public  MyTape UpdateMyTapeState(Long tapeId){
      MyTape model=_myTapeRepository.findOne(tapeId);
