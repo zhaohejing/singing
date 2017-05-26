@@ -1,6 +1,9 @@
 package com.efan.controller;
 
+import com.efan.core.page.ActionResult;
 import com.efan.utils.HttpUtils;
+import com.efan.utils.TokenSingleton;
+import com.google.gson.Gson;
 import com.qiniu.util.Auth;
 import io.swagger.annotations.ApiImplicitParam;
 import io.swagger.annotations.ApiOperation;
@@ -10,6 +13,8 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 import springfox.documentation.swagger2.annotations.EnableSwagger2;
+
+import java.util.Map;
 
 
 @RestController
@@ -37,13 +42,37 @@ public class QiniuController {
         }
         return result;
     }
+
+
     @ApiOperation(value="获取微信token", notes="微信接口")
     @RequestMapping(value = "/getWxToken", method = RequestMethod.POST)
-    public String getWxToken(@RequestParam String code){
-        String url = "https://api.weixin.qq.com/sns/oauth2/access_token?appid=wx734728844b17a945&secret=b21df0dbd7639790820b545e584e82db&code="+code+"&grant_type=authorization_code";
-        String result = HttpUtils.sendPost(url,"");
-        return result;
+    public ActionResult getWxToken(@RequestParam String code){
+       String token=  getToken(code);
+       return  new ActionResult(token);
     }
+    @ApiOperation(value="获取微信ticket", notes="微信接口")
+    @RequestMapping(value = "/getWxTicket", method = RequestMethod.POST)
+    public ActionResult getWxTicket(@RequestParam String token){
+        String ticket=  getTicket(token);
+        return  new ActionResult(ticket);
+    }
+    @ApiOperation(value="获取微信signature", notes="微信接口")
+    @RequestMapping(value = "/getWxSignature", method = RequestMethod.POST)
+    public ActionResult getWxSignature(@RequestParam String code,@RequestParam String noncestr,@RequestParam String timestamp,@RequestParam String url){
+        String token=getToken(code);
+        if (    token.isEmpty()){
+            return  new ActionResult(false,"请先获取token");
+
+        }
+        String ticket=getTicket(token);
+        if (    ticket.isEmpty()){
+            return  new ActionResult(false,"请先获取ticket");
+
+        }
+        String signNature=  getSignature(noncestr,timestamp,url,ticket);
+        return  new ActionResult(signNature);
+    }
+
     @ApiOperation(value="获取用户基本信息", notes="微信接口")
     @RequestMapping(value = "/getuserinfo", method = RequestMethod.POST)
     public String getUserInfo(@RequestParam String token, @RequestParam String openId){
@@ -51,6 +80,59 @@ public class QiniuController {
         String result = HttpUtils.sendPost(url,"");
         return result;
     }
+     /*获取token*/
+    public  String getToken(String code){
+        if (TokenSingleton.getInstance().getWxToken() != null &&TokenSingleton.getInstance().getTokenTime()>System.currentTimeMillis()){
+            return TokenSingleton.getInstance().getWxToken();
+        }
+        String url = "https://api.weixin.qq.com/sns/oauth2/access_token?appid=wx734728844b17a945&secret=b21df0dbd7639790820b545e584e82db&code="+code+"&grant_type=authorization_code";
+        String result = HttpUtils.sendPost(url,"");
 
+        Gson gson = new Gson();
 
+        Map map = gson.fromJson(result,Map.class);
+
+        String access_token = (String) map.get("access_token");
+        Double expires_in = (Double) map.get("expires_in");
+        //获取当前时间戳
+        long sjc = System.currentTimeMillis();
+        //设置token
+        TokenSingleton.getInstance().setWxToken(access_token);
+        //设置token过期时间
+        TokenSingleton.getInstance().setTokenTime(sjc + expires_in.longValue()*1000);
+        return access_token;
+    }
+
+    public  String getTicket(String token){
+        if (TokenSingleton.getInstance().getTicket() != null &&TokenSingleton.getInstance().getTicketTime()>System.currentTimeMillis()){
+            return TokenSingleton.getInstance().getTicket();
+        }
+        String url = "https://api.weixin.qq.com/cgi-bin/ticket/getticket?access_token="+token+"&type=jsapi";
+        String result = HttpUtils.sendPost(url,"");
+
+        Gson gson = new Gson();
+
+        Map map = gson.fromJson(result,Map.class);
+
+        String ticket = (String) map.get("ticket");
+        Double expires_in = (Double) map.get("expires_in");
+        //获取当前时间戳
+        long sjc = System.currentTimeMillis();
+        //设置token
+        TokenSingleton.getInstance().setTicket(ticket);
+        //设置token过期时间
+        TokenSingleton.getInstance().setTicketTime(sjc + expires_in.longValue()*1000);
+        return ticket;
+    }
+    public  String getSignature(String noncestr,String timestamp,String url,String ticket ){
+
+        String str = "jsapi_ticket=" + ticket +
+                "&noncestr=" + noncestr +
+                "&timestamp=" + timestamp +
+                "&url=" + url;
+        //sha1加密
+        String signature =HttpUtils.SHA1(str);
+    return  signature;
+
+    }
 }
