@@ -86,7 +86,7 @@ public class QiniuController {
         }
 
         String url = "https://api.weixin.qq.com/sns/oauth2/access_token?appid=wx734728844b17a945&secret=b21df0dbd7639790820b545e584e82db&code="+code+"&grant_type=authorization_code";
-        String result = HttpUtils.sendGet(url);
+        String result = HttpUtils.sendPost(url,"");
 
         Gson gson = new Gson();
 
@@ -112,7 +112,7 @@ public class QiniuController {
         }
 
         String url = "https://api.weixin.qq.com/cgi-bin/ticket/getticket?access_token="+token+"&type=jsapi";
-        String result = HttpUtils.sendGet(url);
+        String result = HttpUtils.sendPost(url,"");
 
         Gson gson = new Gson();
 
