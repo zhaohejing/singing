@@ -60,9 +60,8 @@ public class QiniuController {
     @RequestMapping(value = "/getWxSignature", method = RequestMethod.POST)
     public ActionResult getWxSignature(@RequestParam String code,@RequestParam String noncestr,@RequestParam String timestamp,@RequestParam String url){
         String token=getToken(code);
-        if (    token.isEmpty()){
+        if (token.isEmpty()){
             return  new ActionResult(false,"请先获取token");
-
         }
         String ticket=getTicket(token);
         if (    ticket.isEmpty()){
@@ -81,18 +80,22 @@ public class QiniuController {
         return result;
     }
      /*获取token*/
-    public  String getToken(String code){
+     private  String getToken(String code){
         if (TokenSingleton.getInstance().getWxToken() != null &&TokenSingleton.getInstance().getTokenTime()>System.currentTimeMillis()){
             return TokenSingleton.getInstance().getWxToken();
         }
+
         String url = "https://api.weixin.qq.com/sns/oauth2/access_token?appid=wx734728844b17a945&secret=b21df0dbd7639790820b545e584e82db&code="+code+"&grant_type=authorization_code";
-        String result = HttpUtils.sendPost(url,"");
+        String result = HttpUtils.sendGet(url);
 
         Gson gson = new Gson();
 
         Map map = gson.fromJson(result,Map.class);
 
         String access_token = (String) map.get("access_token");
+        if(access_token==null   ){
+            return  "";
+        }
         Double expires_in = (Double) map.get("expires_in");
         //获取当前时间戳
         long sjc = System.currentTimeMillis();
@@ -103,18 +106,26 @@ public class QiniuController {
         return access_token;
     }
 
-    public  String getTicket(String token){
+    private  String getTicket(String token){
         if (TokenSingleton.getInstance().getTicket() != null &&TokenSingleton.getInstance().getTicketTime()>System.currentTimeMillis()){
             return TokenSingleton.getInstance().getTicket();
         }
+
         String url = "https://api.weixin.qq.com/cgi-bin/ticket/getticket?access_token="+token+"&type=jsapi";
-        String result = HttpUtils.sendPost(url,"");
+        String result = HttpUtils.sendGet(url);
 
         Gson gson = new Gson();
 
         Map map = gson.fromJson(result,Map.class);
 
         String ticket = (String) map.get("ticket");
+        Double error = (Double) map.get("errcode");
+        if (error>0){
+              TokenSingleton.getInstance().setWxToken("");
+         }
+        if(ticket==null ){
+            return  "";
+        }
         Double expires_in = (Double) map.get("expires_in");
         //获取当前时间戳
         long sjc = System.currentTimeMillis();
@@ -124,7 +135,7 @@ public class QiniuController {
         TokenSingleton.getInstance().setTicketTime(sjc + expires_in.longValue()*1000);
         return ticket;
     }
-    public  String getSignature(String noncestr,String timestamp,String url,String ticket ){
+    private   String getSignature(String noncestr,String timestamp,String url,String ticket ){
 
         String str = "jsapi_ticket=" + ticket +
                 "&noncestr=" + noncestr +
