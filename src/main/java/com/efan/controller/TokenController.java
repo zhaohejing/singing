@@ -73,7 +73,8 @@ public class TokenController {
 
     @ApiOperation(value="获取用户基本信息", notes="微信接口")
     @RequestMapping(value = "/getuserinfo", method = RequestMethod.POST)
-    public String getUserInfo(@RequestParam String token, @RequestParam String openId){
+    public String getUserInfo(@RequestParam String code, @RequestParam String openId){
+        String token = getAccessToken(code);
         String url = "https://api.weixin.qq.com/sns/userinfo?access_token="+token+"&openid="+openId+"&lang=zh_CN";
         String result = HttpUtils.sendPost(url,"");
         return result;
@@ -110,33 +111,17 @@ public class TokenController {
     }
     /*获取access_token*/
     private  String getAccessToken(String code){
-        if (TokenSingleton.getInstance().getAccess_Token() != null &&TokenSingleton.getInstance().getAccess_Time()>System.currentTimeMillis()){
-            return TokenSingleton.getInstance().getWxToken();
-        }
-
         String url = "https://api.weixin.qq.com/sns/oauth2/access_token?appid="+appId+"&secret="+secret+"&code="+code+"&grant_type=authorization_code";
         String result = HttpUtils.sendPost(url,"");
-
         Gson gson = new Gson();
-
         Map map = gson.fromJson(result,Map.class);
-
         String access_token = (String) map.get("access_token");
         Double error = (Double) map.get("errcode");
-
         if (error!=null&& error>0){
             String message=(String)map.get("errmsg");
             //  TokenSingleton.getInstance().setWxToken("");
             return "";
         }
-
-        Double expires_in = (Double) map.get("expires_in");
-        //获取当前时间戳
-        long sjc = System.currentTimeMillis();
-        //设置token
-        TokenSingleton.getInstance().setAccess_Token(access_token);
-        //设置token过期时间
-        TokenSingleton.getInstance().setAccess_Time(sjc + expires_in.longValue()*1000);
         return access_token;
     }
     private  String getTicket(String token){
