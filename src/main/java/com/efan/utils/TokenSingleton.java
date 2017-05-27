@@ -6,11 +6,36 @@ package com.efan.utils;
 public class TokenSingleton {
 
     private static TokenSingleton instance;
+    public static synchronized TokenSingleton getInstance() {
+        if (instance == null) {
+            instance = new TokenSingleton();
+        }
+        return instance;
+    }
 
     private String wxToken;
+private  String  access_Token;
+private  Long access_Time;
+
+    public String getAccess_Token() {
+        return access_Token;
+    }
+
+    public void setAccess_Token(String access_Token) {
+        this.access_Token = access_Token;
+    }
+
+    public Long getAccess_Time() {
+        return access_Time;
+    }
+
+    public void setAccess_Time(Long access_Time) {
+        this.access_Time = access_Time;
+    }
 
     private long tokenTime;
-
+    private long ticketTime;
+    private  String ticket;
     public long getTokenTime() {
         return tokenTime;
     }
@@ -27,7 +52,7 @@ public class TokenSingleton {
         this.ticketTime = ticketTime;
     }
 
-    private long ticketTime;
+
 
     public String getTicket() {
         return ticket;
@@ -37,15 +62,9 @@ public class TokenSingleton {
         this.ticket = ticket;
     }
 
-    private  String ticket;
+
     private TokenSingleton (){}
 
-    public static synchronized TokenSingleton getInstance() {
-        if (instance == null) {
-            instance = new TokenSingleton();
-        }
-        return instance;
-    }
 
     public String getWxToken() {
         return wxToken;

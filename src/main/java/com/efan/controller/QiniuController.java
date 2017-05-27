@@ -44,10 +44,10 @@ public class QiniuController {
     }
 
 
-    @ApiOperation(value="获取微信token", notes="微信接口")
-    @RequestMapping(value = "/getWxToken", method = RequestMethod.POST)
-    public ActionResult getWxToken(@RequestParam String code){
-       String token=  getToken(code);
+    @ApiOperation(value="获取微信access_token", notes="微信接口")
+    @RequestMapping(value = "/getWxAccessToken", method = RequestMethod.POST)
+    public ActionResult getWxAccessToken(@RequestParam String code){
+       String token=  getAccessToken(code);
        return  new ActionResult(token);
     }
     @ApiOperation(value="获取微信ticket", notes="微信接口")
@@ -58,8 +58,8 @@ public class QiniuController {
     }
     @ApiOperation(value="获取微信signature", notes="微信接口")
     @RequestMapping(value = "/getWxSignature", method = RequestMethod.POST)
-    public ActionResult getWxSignature(@RequestParam String code,@RequestParam String noncestr,@RequestParam String timestamp,@RequestParam String url){
-        String token=getToken(code);
+    public ActionResult getWxSignature(@RequestParam String noncestr,@RequestParam String timestamp,@RequestParam String url){
+        String token=getToken();
         if (token.isEmpty()){
             return  new ActionResult(false,"请先获取token");
         }
@@ -80,12 +80,12 @@ public class QiniuController {
         return result;
     }
      /*获取token*/
-     private  String getToken(String code){
+     private  String getToken(){
         if (TokenSingleton.getInstance().getWxToken() != null &&TokenSingleton.getInstance().getTokenTime()>System.currentTimeMillis()){
             return TokenSingleton.getInstance().getWxToken();
         }
 
-        String url = "https://api.weixin.qq.com/sns/oauth2/access_token?appid=wx734728844b17a945&secret=b21df0dbd7639790820b545e584e82db&code="+code+"&grant_type=authorization_code";
+        String url = "https://api.weixin.qq.com/cgi-bin/token?grant_type=client_credential&appid=wx734728844b17a945&secret=ffb4f97615ce2f63f3b4c87101fe8d87";
         String result = HttpUtils.sendPost(url,"");
 
         Gson gson = new Gson();
@@ -93,9 +93,13 @@ public class QiniuController {
         Map map = gson.fromJson(result,Map.class);
 
         String access_token = (String) map.get("access_token");
-        if(access_token==null   ){
-            return  "";
-        }
+         Double error = (Double) map.get("errcode");
+
+         if (error!=null&& error>0){
+             String message=(String)map.get("errmsg");
+           //  TokenSingleton.getInstance().setWxToken("");
+             return "";
+         }
         Double expires_in = (Double) map.get("expires_in");
         //获取当前时间戳
         long sjc = System.currentTimeMillis();
@@ -105,7 +109,37 @@ public class QiniuController {
         TokenSingleton.getInstance().setTokenTime(sjc + expires_in.longValue()*1000);
         return access_token;
     }
+    /*获取access_token*/
+    private  String getAccessToken(String code){
+        if (TokenSingleton.getInstance().getAccess_Token() != null &&TokenSingleton.getInstance().getAccess_Time()>System.currentTimeMillis()){
+            return TokenSingleton.getInstance().getWxToken();
+        }
 
+        String url = "https://api.weixin.qq.com/sns/oauth2/access_token?appid=wx734728844b17a945&secret=ffb4f97615ce2f63f3b4c87101fe8d87&code="+code+"&grant_type=authorization_code";
+        String result = HttpUtils.sendPost(url,"");
+
+        Gson gson = new Gson();
+
+        Map map = gson.fromJson(result,Map.class);
+
+        String access_token = (String) map.get("access_token");
+        Double error = (Double) map.get("errcode");
+
+        if (error!=null&& error>0){
+            String message=(String)map.get("errmsg");
+            //  TokenSingleton.getInstance().setWxToken("");
+            return "";
+        }
+
+        Double expires_in = (Double) map.get("expires_in");
+        //获取当前时间戳
+        long sjc = System.currentTimeMillis();
+        //设置token
+        TokenSingleton.getInstance().setAccess_Token(access_token);
+        //设置token过期时间
+        TokenSingleton.getInstance().setAccess_Time(sjc + expires_in.longValue()*1000);
+        return access_token;
+    }
     private  String getTicket(String token){
         if (TokenSingleton.getInstance().getTicket() != null &&TokenSingleton.getInstance().getTicketTime()>System.currentTimeMillis()){
             return TokenSingleton.getInstance().getTicket();
@@ -120,12 +154,13 @@ public class QiniuController {
 
         String ticket = (String) map.get("ticket");
         Double error = (Double) map.get("errcode");
-        if (error>0){
+
+        if (error!=null&&error>0){
+          //  String message=(String)map.get("errmsg");
               TokenSingleton.getInstance().setWxToken("");
+              return "";
          }
-        if(ticket==null ){
-            return  "";
-        }
+
         Double expires_in = (Double) map.get("expires_in");
         //获取当前时间戳
         long sjc = System.currentTimeMillis();
