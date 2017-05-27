@@ -51,7 +51,7 @@ public class TokenController {
     @ApiOperation(value="获取微信access_token", notes="微信接口")
     @RequestMapping(value = "/getWxAccessToken", method = RequestMethod.POST)
     public ActionResult getWxAccessToken(@RequestParam String code){
-       String token=  getAccessToken(code);
+       Map token=  getAccessToken(code);
        return  new ActionResult(token);
     }
 
@@ -73,8 +73,11 @@ public class TokenController {
 
     @ApiOperation(value="获取用户基本信息", notes="微信接口")
     @RequestMapping(value = "/getuserinfo", method = RequestMethod.POST)
-    public String getUserInfo(@RequestParam String code, @RequestParam String openId){
-        String token = getAccessToken(code);
+    public String getUserInfo(@RequestParam String token, @RequestParam String openId){
+      /*  if (token.isEmpty()){
+        }
+        Map map = getAccessToken(code);
+        String access_token = (String) map.get("access_token");*/
         String url = "https://api.weixin.qq.com/sns/userinfo?access_token="+token+"&openid="+openId+"&lang=zh_CN";
         String result = HttpUtils.sendPost(url,"");
         return result;
@@ -110,19 +113,21 @@ public class TokenController {
         return access_token;
     }
     /*获取access_token*/
-    private  String getAccessToken(String code){
+    private  Map getAccessToken(String code){
         String url = "https://api.weixin.qq.com/sns/oauth2/access_token?appid="+appId+"&secret="+secret+"&code="+code+"&grant_type=authorization_code";
         String result = HttpUtils.sendPost(url,"");
         Gson gson = new Gson();
         Map map = gson.fromJson(result,Map.class);
         String access_token = (String) map.get("access_token");
+        String openId = (String) map.get("openid");
+
         Double error = (Double) map.get("errcode");
         if (error!=null&& error>0){
             String message=(String)map.get("errmsg");
             //  TokenSingleton.getInstance().setWxToken("");
-            return "";
+            return null ;
         }
-        return access_token;
+        return map;
     }
     private  String getTicket(String token){
         if (TokenSingleton.getInstance().getTicket() != null &&TokenSingleton.getInstance().getTicketTime()>System.currentTimeMillis()){
