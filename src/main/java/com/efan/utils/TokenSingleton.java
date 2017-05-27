@@ -14,24 +14,6 @@ public class TokenSingleton {
     }
 
     private String wxToken;
-private  String  access_Token;
-private  Long access_Time;
-
-    public String getAccess_Token() {
-        return access_Token;
-    }
-
-    public void setAccess_Token(String access_Token) {
-        this.access_Token = access_Token;
-    }
-
-    public Long getAccess_Time() {
-        return access_Time;
-    }
-
-    public void setAccess_Time(Long access_Time) {
-        this.access_Time = access_Time;
-    }
 
     private long tokenTime;
     private long ticketTime;
