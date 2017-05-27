@@ -5,7 +5,6 @@ import com.efan.utils.HttpUtils;
 import com.efan.utils.TokenSingleton;
 import com.google.gson.Gson;
 import com.qiniu.util.Auth;
-import io.swagger.annotations.ApiImplicitParam;
 import io.swagger.annotations.ApiOperation;
 import org.springframework.ui.ModelMap;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -50,12 +49,7 @@ public class QiniuController {
        String token=  getAccessToken(code);
        return  new ActionResult(token);
     }
-    @ApiOperation(value="获取微信ticket", notes="微信接口")
-    @RequestMapping(value = "/getWxTicket", method = RequestMethod.POST)
-    public ActionResult getWxTicket(@RequestParam String token){
-        String ticket=  getTicket(token);
-        return  new ActionResult(ticket);
-    }
+
     @ApiOperation(value="获取微信signature", notes="微信接口")
     @RequestMapping(value = "/getWxSignature", method = RequestMethod.POST)
     public ActionResult getWxSignature(@RequestParam String noncestr,@RequestParam String timestamp,@RequestParam String url){
