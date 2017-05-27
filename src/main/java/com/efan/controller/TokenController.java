@@ -6,6 +6,7 @@ import com.efan.utils.TokenSingleton;
 import com.google.gson.Gson;
 import com.qiniu.util.Auth;
 import io.swagger.annotations.ApiOperation;
+import org.springframework.beans.factory.annotation.Value;
 import org.springframework.ui.ModelMap;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
@@ -17,20 +18,24 @@ import java.util.Map;
 
 
 @RestController
-@RequestMapping("/api/qiniu")
+@RequestMapping("/api/token")
 @EnableSwagger2
-public class QiniuController {
-    @ApiOperation(value="获取气牛token", notes="七牛接口")
-    @RequestMapping(value = "/token", method = RequestMethod.POST)
+public class TokenController {
+    @Value("${appId}")
+    private String appId;
+    @Value("${secret}")
+    private String secret;
+    @Value("${accessKey}")
+    private String accessKey;
+    @Value("${secretKey}")
+    private String secretKey;
+    @ApiOperation(value="获取七牛token", notes="七牛接口")
+    @RequestMapping(value = "/qnToken", method = RequestMethod.POST)
     public ModelMap token(){
-        String accessKey = "o_qxXubM6dRAw_VHd5UqDoaRsAZpB0kGeJeg9AQe";
-        String secretKey = "XAQWoZ_tCokwcUobnP9ntJN2bjju5xlCl9vxicne";
         String bucket = "resource";
         Auth auth = Auth.create(accessKey, secretKey);
         String upToken = auth.uploadToken(bucket);
-
         ModelMap result = new ModelMap();
-
         if(upToken != null){
             result.put("result","1");
             result.put("errorMsg","获取成功");
@@ -79,7 +84,7 @@ public class QiniuController {
             return TokenSingleton.getInstance().getWxToken();
         }
 
-        String url = "https://api.weixin.qq.com/cgi-bin/token?grant_type=client_credential&appid=wx734728844b17a945&secret=ffb4f97615ce2f63f3b4c87101fe8d87";
+        String url = "https://api.weixin.qq.com/cgi-bin/token?grant_type=client_credential&appid="+appId+"&secret="+secret;
         String result = HttpUtils.sendPost(url,"");
 
         Gson gson = new Gson();
@@ -109,7 +114,7 @@ public class QiniuController {
             return TokenSingleton.getInstance().getWxToken();
         }
 
-        String url = "https://api.weixin.qq.com/sns/oauth2/access_token?appid=wx734728844b17a945&secret=ffb4f97615ce2f63f3b4c87101fe8d87&code="+code+"&grant_type=authorization_code";
+        String url = "https://api.weixin.qq.com/sns/oauth2/access_token?appid="+appId+"&secret="+secret+"&code="+code+"&grant_type=authorization_code";
         String result = HttpUtils.sendPost(url,"");
 
         Gson gson = new Gson();
