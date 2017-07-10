@@ -51,7 +51,14 @@ public class MyController {
         List<MySongs> result=_tapeService.GetMySongsByUserKey(input);
         return  new ActionResult(result);
     }
-
+    /*更新我的歌单状态*/
+    @ApiOperation(value="更新我的歌单状态", notes="我的模块接口")
+    @ApiImplicitParam(name = "input", value = "id", required = true, dataType = "DeleteInput")
+    @RequestMapping(value  ="/updatestate" ,method = RequestMethod.POST)
+    public ActionResult UpdateMySongsState(@RequestBody DeleteInput input){
+       _tapeService.UpdateMySongsState(input);
+        return  new ActionResult(true);
+    }
     /*创建我点过的歌曲列表*/
     @ApiOperation(value="创建我点过的歌曲列表", notes="我的模块接口")
     @ApiImplicitParam(name = "input", value = "mysongsinput", required = true, dataType = "MySongsInput")

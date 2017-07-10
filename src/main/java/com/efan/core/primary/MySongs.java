@@ -27,8 +27,8 @@ public class MySongs implements Serializable {
     //演唱者
     @Column(length = 50)
     private  String singer;
-
-
+    @Column(length = 50)
+    private String songKey;
     private  Boolean state;
 
     private Long creationUserId;
@@ -47,7 +47,7 @@ public class MySongs implements Serializable {
         this.songKey = songKey;
     }
 
-    private String songKey;
+
 
     public Long getId() {
         return id;
