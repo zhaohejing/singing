@@ -3,10 +3,7 @@ package com.efan.controller;
 import com.efan.appservice.iservice.IMyTapeService;
 import com.efan.appservice.iservice.IOrderService;
 import com.efan.appservice.iservice.ITapeService;
-import com.efan.controller.inputs.BaseInput;
-import com.efan.controller.inputs.DeleteInput;
-import com.efan.controller.inputs.MySongsInput;
-import com.efan.controller.inputs.OrderDetailInput;
+import com.efan.controller.inputs.*;
 import com.efan.core.primary.MySongs;
 import com.efan.core.page.ActionResult;
 import com.efan.core.page.FilterModel;
@@ -17,6 +14,8 @@ import io.swagger.annotations.ApiImplicitParam;
 import io.swagger.annotations.ApiOperation;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
+
+import java.util.List;
 
 
 /**
@@ -43,6 +42,16 @@ public class MyController {
         ResultModel<MySongs> result=_tapeService.GetMySongsList(input);
         return  new ActionResult(result);
     }
+
+    /*获取我的歌单列表*/
+    @ApiOperation(value="获取我的歌单列表", notes="我的模块接口")
+    @ApiImplicitParam(name = "input", value = "用户openId", required = true, dataType = "KeyInput")
+    @RequestMapping(value  ="/getmysongs" ,method = RequestMethod.POST)
+    public ActionResult MySongsBake(@RequestBody KeyInput input){
+        List<MySongs> result=_tapeService.GetMySongsByUserKey(input);
+        return  new ActionResult(result);
+    }
+
     /*创建我点过的歌曲列表*/
     @ApiOperation(value="创建我点过的歌曲列表", notes="我的模块接口")
     @ApiImplicitParam(name = "input", value = "mysongsinput", required = true, dataType = "MySongsInput")

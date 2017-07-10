@@ -8,6 +8,8 @@ import org.springframework.data.jpa.repository.Query;
 import org.springframework.data.repository.query.Param;
 import org.springframework.stereotype.Repository;
 
+import java.util.List;
+
 /**
  * Created by 45425 on 2017/5/12.
  */
@@ -15,5 +17,5 @@ import org.springframework.stereotype.Repository;
 public interface IMySongsRepository extends JpaRepository<MySongs,Long> {
     Page<MySongs> findMySongsBySongNameLikeAndUserKeyEquals(String songName,String userKey, Pageable pageable);
     Page<MySongs> findAll (Pageable pageable);
-
+    List<MySongs> findAllByUserKeyEquals(String userKey);
 }

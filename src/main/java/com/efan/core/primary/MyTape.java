@@ -37,6 +37,18 @@ public class MyTape implements Serializable {
     //图片
     @Column(length = 150)
     private  String userImage;
+
+    public String getOrderId() {
+        return orderId;
+    }
+
+    public void setOrderId(String orderId) {
+        this.orderId = orderId;
+    }
+
+    @NotNull
+    @Column(length = 150,unique = true)
+    private  String orderId;
     //图片
     @Column(length = 150)
     private  String songImage;

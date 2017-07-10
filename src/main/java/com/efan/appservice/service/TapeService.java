@@ -1,6 +1,7 @@
 package com.efan.appservice.service;
 
 import com.efan.appservice.iservice.ITapeService;
+import com.efan.controller.inputs.KeyInput;
 import com.efan.controller.inputs.MySongsInput;
 import com.efan.core.page.FilterModel;
 import com.efan.core.page.ResultModel;
@@ -43,6 +44,11 @@ public class TapeService implements ITapeService {
             songs.setModifyUserId(1L);
             songs=_mysongsRepository.save(songs);
        return songs;
+    }
+
+    public List<MySongs> GetMySongsByUserKey(KeyInput input){
+            List<MySongs> result=_mysongsRepository.findAllByUserKeyEquals(input.userKey);
+            return  result;
     }
 
      public  void DeleteMySongs(Long id){
