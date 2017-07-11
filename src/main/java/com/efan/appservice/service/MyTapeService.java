@@ -3,6 +3,7 @@ package com.efan.appservice.service;
 import com.efan.appservice.iservice.IMyTapeService;
 import com.efan.controller.dtos.MyTapeDto;
 import com.efan.controller.inputs.DeleteInput;
+import com.efan.controller.inputs.MyTapeMachine;
 import com.efan.core.primary.MyTape;
 import com.efan.core.page.FilterModel;
 import com.efan.core.page.ResultModel;
@@ -15,6 +16,9 @@ import org.springframework.stereotype.Service;
 
 import java.text.SimpleDateFormat;
 import java.util.Date;
+import java.util.HashMap;
+import java.util.Map;
+
 /**
  * 我的录音 歌曲接口
  */
@@ -26,9 +30,11 @@ public class MyTapeService implements IMyTapeService {
         this._myTapeRepository= myTapeRepository;
     }
 //添加或编辑我的录音
-    public MyTape InsertMyTape(MyTapeDto input){
+    public Map<String,Object> InsertMyTape(MyTapeMachine input){
+        Map<String,Object> map=new HashMap();
+        map.put("tag",input.tag);
+        map.put("stbId",input.stbId);
         SimpleDateFormat df = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");//设置日期格式
-        if (input.id<=0){
             MyTape model=new MyTape();
             model.setId(0L);
             model.setSongName(input.songName);
@@ -43,22 +49,13 @@ public class MyTapeService implements IMyTapeService {
             model.setSongTime(input.songTime);
             model.setCreationTime(df.format(new Date()));
             model.setState(false);
-          return   _myTapeRepository.save(model);
-        }else   {
-            MyTape mod=_myTapeRepository.findOne(input.id );
-            mod.setSongName(input.songName);
-            mod.setOriginalSinger(input.originalSinger);
-            mod.setSinger(input.singer);
-            mod.setUserKey(input.userKey);
-            mod.setUserImage(input.userImage);
-            mod.setQiniuUrl(input.qiniuUrl);
-            mod.setRemark(input.remark);
-            mod.setSongImage(input.songImage);
-            mod.setSongTime(input.songTime);
-            mod.setModifyTime(df.format(new Date()));
-            mod.setState(false);
-            return   _myTapeRepository.save(mod);
-        }
+          model=   _myTapeRepository.save(model);
+          if (model.getId()>0){
+              map.put("operation","ok");
+          }else{
+              map.put("operation","failed");
+          }
+        return map;
     }
     //添加或编辑我的录音
     public MyTape ModifyMyTape(MyTapeDto input){
@@ -80,7 +77,6 @@ public class MyTapeService implements IMyTapeService {
         Page<MyTape> res=  _myTapeRepository.findMyTapeByUserKeyAndState(model.filter,true, pageable);
         return  new ResultModel<MyTape>( res.getContent(),res.getTotalElements());
     }
-
 
 //更新我的录音上传状态
     public  MyTape UpdateMyTapeState(Long tapeId){

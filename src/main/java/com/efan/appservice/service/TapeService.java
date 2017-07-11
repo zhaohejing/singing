@@ -4,6 +4,7 @@ import com.efan.appservice.iservice.ITapeService;
 import com.efan.controller.inputs.DeleteInput;
 import com.efan.controller.inputs.KeyInput;
 import com.efan.controller.inputs.MySongsInput;
+import com.efan.controller.inputs.songSubInput;
 import com.efan.core.page.FilterModel;
 import com.efan.core.page.ResultModel;
 import com.efan.core.primary.MySongs;
@@ -15,7 +16,9 @@ import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
 
 import java.sql.Timestamp;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 /**
  * 歌曲接口列表
@@ -47,16 +50,26 @@ public class TapeService implements ITapeService {
        return songs;
     }
 
-    public List<MySongs> GetMySongsByUserKey(KeyInput input){
-            List<MySongs> result=_mysongsRepository.findAllByUserKeyEqualsAndStateEquals(input.userKey,Boolean.TRUE);
-            return  result;
+    public  Map<String,Object> GetMySongsByUserKey(KeyInput input){
+        Map<String,Object> map=new HashMap();
+        map.put("tag",input.tag);
+        map.put("stbId",input.stbId);
+        List<MySongs> result=_mysongsRepository.findAllByUserKeyEqualsAndStateEquals(input.openid,Boolean.TRUE);
+        map.put("list",result);
+        return  map;
     }
-    public void UpdateMySongsState(DeleteInput input){
-        MySongs songs=_mysongsRepository.findOne(input.id);
+
+    public Map<String,Object>  UpdateMySongsState(songSubInput input){
+        Map<String,Object> map=new HashMap();
+        map.put("tag",input.tag);
+        map.put("stbId",input.stbId);
+        MySongs songs=_mysongsRepository.findOne(input.songSubId);
         if (songs!=null){
             songs.setState(false);
             _mysongsRepository.saveAndFlush(songs);
+            map.put("operation","ok");
         }
+        return map;
     }
      public  void DeleteMySongs(Long id){
         _mysongsRepository.delete(id);

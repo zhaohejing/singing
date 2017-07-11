@@ -16,6 +16,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
+import java.util.Map;
 
 
 /**
@@ -47,17 +48,17 @@ public class MyController {
     @ApiOperation(value="获取我的歌单列表", notes="我的模块接口")
     @ApiImplicitParam(name = "input", value = "用户openId", required = true, dataType = "KeyInput")
     @RequestMapping(value  ="/getmysongs" ,method = RequestMethod.POST)
-    public ActionResult MySongsBake(@RequestBody KeyInput input){
-        List<MySongs> result=_tapeService.GetMySongsByUserKey(input);
-        return  new ActionResult(result);
+    public Map<String,Object> MySongsBake(@RequestBody KeyInput input){
+        Map<String,Object> result=_tapeService.GetMySongsByUserKey(input);
+        return  result;
     }
     /*更新我的歌单状态*/
     @ApiOperation(value="更新我的歌单状态", notes="我的模块接口")
-    @ApiImplicitParam(name = "input", value = "id", required = true, dataType = "DeleteInput")
+    @ApiImplicitParam(name = "input", value = "id", required = true, dataType = "songSubInput")
     @RequestMapping(value  ="/updatestate" ,method = RequestMethod.POST)
-    public ActionResult UpdateMySongsState(@RequestBody DeleteInput input){
-       _tapeService.UpdateMySongsState(input);
-        return  new ActionResult(true);
+    public Map<String,Object> UpdateMySongsState(@RequestBody songSubInput input){
+     Map<String,Object> res=  _tapeService.UpdateMySongsState(input);
+        return   res;
     }
     /*创建我点过的歌曲列表*/
     @ApiOperation(value="创建我点过的歌曲列表", notes="我的模块接口")
