@@ -42,13 +42,20 @@ public class MyController {
         ResultModel<MySongs> result=_tapeService.GetMySongsList(input);
         return  new ActionResult(result);
     }
-
+    /*获取我的歌单列表*/
+    @ApiOperation(value="获取我的点歌的数量", notes="我的模块接口")
+    @ApiImplicitParam(name = "input", value = "用户openId", required = true, dataType = "KeyInput")
+    @RequestMapping(value  ="/mysongscount" ,method = RequestMethod.POST)
+    public ActionResult MySongsCount(@RequestBody KeyInput input){
+        ResultModel<MySongs> result=_tapeService.GetMySongsByUserKey(input);
+        return  new ActionResult(result.getTotal());
+    }
     /*获取我的歌单列表*/
     @ApiOperation(value="获取我的歌单列表", notes="我的模块接口")
     @ApiImplicitParam(name = "input", value = "用户openId", required = true, dataType = "KeyInput")
     @RequestMapping(value  ="/getmysongs" ,method = RequestMethod.POST)
     public ActionResult MySongsBake(@RequestBody KeyInput input){
-        List<MySongs> result=_tapeService.GetMySongsByUserKey(input);
+        ResultModel<MySongs> result=_tapeService.GetMySongsByUserKey(input);
         return  new ActionResult(result);
     }
     /*更新我的歌单状态*/

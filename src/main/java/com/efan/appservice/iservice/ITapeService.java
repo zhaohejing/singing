@@ -17,7 +17,7 @@ public interface ITapeService {
 
     MySongs CreateMySongs(MySongsInput input);
 
-     List<MySongs> GetMySongsByUserKey(KeyInput input);
+    ResultModel<MySongs> GetMySongsByUserKey(KeyInput input);
      //更新歌单状态
      void UpdateMySongsState(DeleteInput input);
     void DeleteMySongs(Long id);

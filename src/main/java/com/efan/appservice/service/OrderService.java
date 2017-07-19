@@ -20,6 +20,8 @@ import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
 
 
+import java.lang.reflect.Array;
+import java.lang.reflect.Field;
 import java.sql.Timestamp;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
@@ -71,9 +73,38 @@ public class OrderService implements IOrderService {
            res.code=1000;
            res.message=result;
         }
+        if(res.code==200){
+               List<Map<String,Object> > temp= res.respBody;
+            for (int i = 0; i <temp.size() ; i++) {
+              Object key=  temp.get(i).get("machine_id");
+                Long time=GetLessTime((String)key );
+                temp.get(i).put("time",time);
+            }
+            res.respBody=temp;
+        }
         return  res;
     }
-
+    private  Long GetLessTime(String boxId){
+        Date start =GetCurrentDate(true);
+        Date end=GetCurrentDate(false);
+         List<Order> orders=_orderRepository.findOrders(boxId,start,end);
+         Long total=0L;
+        for (int i = 0; i < orders.size(); i++) {
+           Long min= (orders.get(i).getToTime().getTime() -orders.get(i).getFromTime().getTime())/1000;
+           total+= min;
+        }
+       Long less= (end.getTime()-start.getTime())/1000-total;
+          return  less;
+    }
+    private   Map<String,Object> Obj2Map(Object obj) throws Exception{
+        Map<String,Object> map=new HashMap<String, Object>();
+        Field[] fields = obj.getClass().getDeclaredFields();
+        for(Field field:fields){
+            field.setAccessible(true);
+            map.put(field.getName(), field.get(obj));
+        }
+        return map;
+    }
 
     /*获取预定订单列表*/
     public List<OrderTime> GetOrderList(String boxId, Date date){
@@ -180,12 +211,24 @@ public class OrderService implements IOrderService {
             calendar.set(Calendar.SECOND,0);
             calendar.set(Calendar.MILLISECOND,0);
         }else   {
+
             calendar.set(Calendar.HOUR,23);
             calendar.set(Calendar.MINUTE,59);
             calendar.set(Calendar.SECOND,59);
             calendar.set(Calendar.MILLISECOND,999);
         }
         return  calendar.getTime();
+    }
+    private  Date GetCurrentDate(Boolean start){
+        Calendar calendar1 = Calendar.getInstance();
+        if (start){
+            calendar1.set(calendar1.get(Calendar.YEAR), calendar1.get(Calendar.MONTH), calendar1.get(Calendar.DAY_OF_MONTH),
+                    calendar1.get(Calendar.HOUR_OF_DAY), calendar1.get(Calendar.MINUTE), calendar1.get(Calendar.SECOND));
+        }else {
+            calendar1.set(calendar1.get(Calendar.YEAR), calendar1.get(Calendar.MONTH), calendar1.get(Calendar.DAY_OF_MONTH),
+                    23, 59, 59);
+        }
+        return  calendar1.getTime();
     }
     private  String getTimeDifference(Timestamp a, Timestamp b) {
         SimpleDateFormat timeformat = new SimpleDateFormat("yyyy-MM-dd,HH:mm:ss");
