@@ -3,6 +3,7 @@ package com.efan.controller;
 import com.efan.appservice.iservice.IMyTapeService;
 import com.efan.controller.dtos.MyTapeDto;
 import com.efan.controller.inputs.DeleteInput;
+import com.efan.controller.inputs.MyTapeMachine;
 import com.efan.core.primary.MyTape;
 import com.efan.core.page.ActionResult;
 import com.efan.core.page.FilterModel;
@@ -11,6 +12,8 @@ import io.swagger.annotations.ApiImplicitParam;
 import io.swagger.annotations.ApiOperation;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
+
+import java.util.Map;
 
 
 /**
@@ -27,9 +30,9 @@ this._mytapeService=mytapeService;
     /*创建我的原唱歌曲*/
     @ApiOperation(value="创建我的原唱歌曲", notes="我的模块接口")
     @RequestMapping(value  ="/insertTape" ,method = RequestMethod.POST)
-    public ActionResult InsertTape(@RequestBody MyTapeDto input){
-        MyTape result=_mytapeService.InsertMyTape(input);
-        return  new ActionResult(result);
+    public  Map<String,Object> InsertTape(@RequestBody MyTapeMachine input){
+        Map<String,Object> result=_mytapeService.InsertMyTape(input);
+        return  result;
     }
     /*设备上传文件 获取到qiniu的路径 保存*/
     @ApiOperation(value="设备上传文件 获取到qiniu的路径 保存", notes="我的模块接口")

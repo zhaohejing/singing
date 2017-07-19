@@ -78,12 +78,17 @@ public class OrderController {
     /**
      * 通知机器是否可以开唱*/
     @ApiOperation(value="通知机器是否可以开唱", notes="远程购买接口")
-    @ApiImplicitParam(name = "input", value = "dto对象", required = true, dataType = "OrderDetailInput")
+    @ApiImplicitParam(name = "input", value = "dto对象", required = true, dataType = "CanSingInput")
     @RequestMapping(value  ="/cansingit" ,method = RequestMethod.POST)
-    public  ActionResult CanSingIt(@RequestBody OrderDetailInput input){
-      Order model   =_orderService.GetOrderDetail(input.orderId);
+    public  ActionResult CanSingIt(@RequestBody CanSingInput input){
+      Order model   =_orderService.GetOrderDetail(input.openId,input.machineId);
+      if (model==null){
+          return  new ActionResult(false,input.url ,"没有你的订单"   );
+      }
       if ( model.getState()!=1){
           return  new ActionResult(false,null ,"订单还未支付"   );
+      }else if(!model.getUserKey().equals(input.openId)){
+          return  new ActionResult(false,null ,"该时段已被其他用户预定！" );
       }
         return  new ActionResult(true,model.getOrderNum(),"获取成功,可以开唱");
     }

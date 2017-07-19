@@ -155,8 +155,12 @@ public class OrderService implements IOrderService {
          return  res;
      }
      ///获取订单详情
-     public  Order GetOrderDetail(String orderId){
-     return   _orderRepository.findOrderByFilter(orderId);
+     public  Order GetOrderDetail(String openId,String machineId){
+         SimpleDateFormat df = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");//设置日期格式
+
+     List<Order> list=   _orderRepository.findOrdersbyFilter(openId,machineId,new Date());
+            Order order=list.get(0);
+            return  order;
      }
     public ResultModel<Order> GetMyOrders(BaseInput input){
         Pageable pageable = new PageRequest(input.getIndex()-1, input.getSize(),null);

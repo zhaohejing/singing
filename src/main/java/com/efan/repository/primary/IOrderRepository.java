@@ -17,6 +17,7 @@ public interface IOrderRepository extends JpaRepository<Order,Long> {
     List<Order> findOrders(@Param("boxId")String boxId,@Param("a") Date start,@Param("b") Date end);
     @Query("select u from Order u where u.orderNum=:orderId  ")
      Order findOrderByFilter(@Param("orderId") String orderId);
-
+    @Query("select u from Order u where u.boxId=:boxId and u.userKey=:userKey  and u.creationTime>:a  order by  u.creationTime ")
+    List<Order> findOrdersbyFilter(@Param("boxId")String boxId,@Param("userKey")String userKey,   @Param("a") Date start);
     Page<Order> findAllByUserKey(String userKey, Pageable pageable   );
 }
