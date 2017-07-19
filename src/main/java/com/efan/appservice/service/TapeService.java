@@ -48,7 +48,7 @@ public class TapeService implements ITapeService {
     }
 
     public ResultModel<MySongs> GetMySongsByUserKey(KeyInput input){
-            List<MySongs> result=_mysongsRepository.findAllByUserKeyEqualsAndStateEquals(input.userKey,Boolean.TRUE);
+            List<MySongs> result=_mysongsRepository.findAllByUserKeyEqualsAndStateEquals(input.openid,Boolean.TRUE);
             return  new ResultModel<MySongs>(result,(long)result.size());
     }
 
