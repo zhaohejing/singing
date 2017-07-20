@@ -1,6 +1,6 @@
 package com.efan.controller.inputs;
 
-public class songSubInput {
+public class SongSubInput {
     public String tag;
     public String stbId;
     public String identify;

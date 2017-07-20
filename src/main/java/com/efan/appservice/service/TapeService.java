@@ -1,9 +1,9 @@
 package com.efan.appservice.service;
 
 import com.efan.appservice.iservice.ITapeService;
-import com.efan.controller.inputs.DeleteInput;
 import com.efan.controller.inputs.KeyInput;
 import com.efan.controller.inputs.MySongsInput;
+import com.efan.controller.inputs.SongSubInput;
 import com.efan.core.page.FilterModel;
 import com.efan.core.page.ResultModel;
 import com.efan.core.primary.MySongs;
@@ -15,7 +15,9 @@ import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
 
 import java.sql.Timestamp;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 /**
  * 歌曲接口列表
@@ -48,17 +50,34 @@ public class TapeService implements ITapeService {
     }
 
     public ResultModel<MySongs> GetMySongsByUserKey(KeyInput input){
-            List<MySongs> result=_mysongsRepository.findAllByUserKeyEqualsAndStateEquals(input.openid,Boolean.TRUE);
+            List<MySongs> result=_mysongsRepository.findAllByUserKeyEqualsAndStateEquals(input.openid,true);
             return  new ResultModel<MySongs>(result,(long)result.size());
     }
 
-
-    public void UpdateMySongsState(DeleteInput input){
-        MySongs songs=_mysongsRepository.findOne(input.id);
+    public Map<String,Object> GetMySongsByUser(KeyInput input){
+        Map<String,Object> map=new HashMap<>();
+        List<MySongs> result=_mysongsRepository.findAllByUserKeyEqualsAndStateEquals(input.openid,true);
+       // return  new ResultModel<MySongs>(result,(long)result.size());
+        map.put("tag",input.tag);
+        map.put("stbId",input.stbId);
+        map.put("identify",input.identify);
+        map.put("List",result);
+        return  map;
+    }
+    public Map<String,Object> UpdateMySongsState(SongSubInput input){
+        Map<String,Object> map=new HashMap<>();
+        map.put("tag",input.tag);
+        map.put("stbId",input.stbId);
+        map.put("identify",input.identify);
+        MySongs songs=_mysongsRepository.findOne(input.songSubId);
         if (songs!=null){
             songs.setState(false);
             _mysongsRepository.saveAndFlush(songs);
+            map.put("operation","ok");
+        }else{
+            map.put("operation","failed");
         }
+        return map;
     }
      public  void DeleteMySongs(Long id){
         _mysongsRepository.delete(id);
@@ -67,7 +86,7 @@ public class TapeService implements ITapeService {
     //获取我的点歌列表
     public ResultModel<MySongs> GetMySongsList(FilterModel model){
         Pageable pageable = new PageRequest(model.index-1, model.size,null);
-        Page<MySongs> res=  _mysongsRepository.findAll( pageable);
+        Page<MySongs> res=  _mysongsRepository.findAllByUserKeyEqualsAndStateEquals(model.filter,true, pageable);
         return  new ResultModel<MySongs>( res.getContent(),res.getTotalElements());
     }
 

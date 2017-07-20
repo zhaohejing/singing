@@ -60,9 +60,9 @@ public class MyController {
     }
     /*更新我的歌单状态*/
     @ApiOperation(value="更新我的歌单状态", notes="我的模块接口")
-    @ApiImplicitParam(name = "input", value = "id", required = true, dataType = "DeleteInput")
+    @ApiImplicitParam(name = "input", value = "id", required = true, dataType = "SongSubInput")
     @RequestMapping(value  ="/updatestate" ,method = RequestMethod.POST)
-    public ActionResult UpdateMySongsState(@RequestBody DeleteInput input){
+    public ActionResult UpdateMySongsState(@RequestBody SongSubInput input){
        _tapeService.UpdateMySongsState(input);
         return  new ActionResult(true);
     }

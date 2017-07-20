@@ -1,13 +1,14 @@
 package com.efan.appservice.iservice;
 
-import com.efan.controller.inputs.DeleteInput;
 import com.efan.controller.inputs.KeyInput;
 import com.efan.controller.inputs.MySongsInput;
+import com.efan.controller.inputs.SongSubInput;
 import com.efan.core.page.FilterModel;
 import com.efan.core.page.ResultModel;
 import com.efan.core.primary.MySongs;
 
 import java.util.List;
+import java.util.Map;
 
 /**
  * 录音service
@@ -19,6 +20,8 @@ public interface ITapeService {
 
     ResultModel<MySongs> GetMySongsByUserKey(KeyInput input);
      //更新歌单状态
-     void UpdateMySongsState(DeleteInput input);
+     Map<String,Object> UpdateMySongsState(SongSubInput input);
     void DeleteMySongs(Long id);
+    //efan毁掉 我的歌曲列表
+    Map<String,Object> GetMySongsByUser(KeyInput input);
 }
