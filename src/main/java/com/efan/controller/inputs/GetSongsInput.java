@@ -8,4 +8,5 @@ public class GetSongsInput extends BaseInput {
     public  String singer;
     public  String version;
     public String cateId;
+    public String userKey;
 }

@@ -5,6 +5,9 @@ import com.efan.controller.inputs.BaseInput;
 import com.efan.controller.inputs.GetSingerInput;
 import com.efan.controller.inputs.GetSongsInput;
 import com.efan.core.page.ResultModel;
+import com.efan.core.primary.MySongs;
+import com.efan.repository.primary.IMySongsRepository;
+import com.efan.repository.primary.IMyTapeRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.jdbc.core.JdbcTemplate;
@@ -23,8 +26,11 @@ public class AndSoService implements IAndSoService {
     @Autowired
     @Qualifier("secondaryJdbcTemplate")
     public   JdbcTemplate _jdbc;
-
-
+    private IMySongsRepository _mySongsRepository;
+    @Autowired
+    public  AndSoService(IMySongsRepository mySongsRepository){
+        _mySongsRepository=mySongsRepository;
+    }
     //获取歌手列表
     public ResultModel<Map<String,Object>> GetSingerList(GetSingerInput input){
         StringBuilder sql=new StringBuilder();
@@ -83,7 +89,8 @@ public class AndSoService implements IAndSoService {
         sql.append(" limit  "+input.getPage()+" , "+input.getSize() );
         Long total=_jdbc.queryForObject(count.toString(),Long.class);
         List<Map<String,Object>> list = _jdbc.queryForList(sql.toString());
-        return  new ResultModel<Map<String,Object>>(list,total);
+        List<Map<String,Object>> res=GenderIsTick(list,input.userKey);
+        return  new ResultModel<Map<String,Object>>(res,total);
     }
     //获取歌曲分类
     public List<Map<String,Object>> GetSongsCateList(){
@@ -126,7 +133,8 @@ public class AndSoService implements IAndSoService {
         sql.append(" limit  "+input.getPage()+" , "+input.getSize() );
         Long total=_jdbc.queryForObject(count.toString(),Long.class);
         List<Map<String,Object>> list = _jdbc.queryForList(sql.toString());
-        return  new ResultModel<Map<String,Object>>(list,total);
+        List<Map<String,Object>> res=GenderIsTick(list,input.userKey);
+        return  new ResultModel<Map<String,Object>>(res,total);
     }
 
      public ResultModel<Map<String,Object>> GetSingerCate(){
@@ -186,4 +194,21 @@ public class AndSoService implements IAndSoService {
         List<Map<String,Object>> list = _jdbc.queryForList(sql.toString());
         return  list;
     }
+
+    private List<Map<String,Object>> GenderIsTick(List<Map<String,Object>> list,String userKey ){
+            List<MySongs> result=_mySongsRepository.findAllByUserKeyEqualsAndStateEquals(userKey,true);
+        for (int i = 0; i < list.size(); i++) {
+            Boolean ispick=false;
+            for (int j = 0; j < result.size(); j++) {
+                Object left=list.get(i).get("ID");
+                String right=result.get(j).getSongKey();
+                if (left.toString().equals(right)){
+            ispick=true;
+                }
+            }
+            list.get(i).put("pick",ispick);
+        }
+        return  list;
+    }
+
 }
