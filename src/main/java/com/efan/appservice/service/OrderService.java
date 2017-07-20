@@ -95,8 +95,7 @@ public class OrderService implements IOrderService {
         }
        Long less= (end.getTime()-start.getTime())/1000-total;
         if(less>0){
-            DecimalFormat df = new DecimalFormat("#.00");
-         return   df.format(less/3600);
+         return  new DecimalFormat("#.00").format(less/3600);
         }
           return  "0";
     }
