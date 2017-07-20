@@ -5,10 +5,10 @@ import com.efan.controller.dtos.OrderTime;
 import com.efan.controller.inputs.BaseInput;
 import com.efan.controller.inputs.OrderInput;
 import com.efan.controller.inputs.RemoteInput;
+import com.efan.core.page.ListResponse;
+import com.efan.core.page.ObjectResponse;
 import com.efan.core.page.ResultModel;
-import com.efan.core.primary.MyTape;
 import com.efan.core.primary.Order;
-import com.efan.core.page.Response;
 import com.efan.repository.primary.IOrderRepository;
 import com.efan.utils.HttpUtils;
 import com.google.gson.Gson;
@@ -20,8 +20,7 @@ import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
 
 
-import java.lang.reflect.Array;
-import java.lang.reflect.Field;
+
 import java.sql.Timestamp;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
@@ -44,15 +43,15 @@ public class OrderService implements IOrderService {
      /**
       * 获取门店列表
      * */
-    public Response GetRemoteList(RemoteInput input) {
+    public ObjectResponse GetRemoteList(RemoteInput input) {
         String url=efanurl+"api/getSpotsByCoordinate";
         String parms="longitude="+input.x+"&latitude"+input.y+"&page="+input.page;
       String result=  HttpUtils.sendPost(url,parms);
-        Response res;
+        ObjectResponse res;
         try{
-            res =   new Gson().fromJson(result,Response.class);
+            res =   new Gson().fromJson(result,ObjectResponse.class);
         }catch (Exception e){
-            res=new Response();
+            res=new ObjectResponse();
             res.code=1000;
             res.message=result;
         }
@@ -61,17 +60,17 @@ public class OrderService implements IOrderService {
     /**
      * 获取包厢列表
      * */
-    public Response GetCoupeList(String remoteId)  {
+    public ListResponse GetCoupeList(String remoteId)  {
         String url=efanurl+"api/getMachineListBySpot";
         String parms="spot_id="+remoteId;
         String result=  HttpUtils.sendPost(url,parms);
-        Response res;
+        ListResponse res;
         try{
-            res =   new Gson().fromJson(result,Response.class);
+            res =   new Gson().fromJson(result,ListResponse.class);
         }catch (Exception e){
-           res=new Response();
+           res=new ListResponse();
            res.code=1000;
-           res.message=result;
+           res.message=e.getMessage();
         }
         if(res.code==200){
                List<Map<String,Object> > temp= res.respBody;
@@ -96,15 +95,7 @@ public class OrderService implements IOrderService {
        Long less= (end.getTime()-start.getTime())/1000-total;
           return  less;
     }
-    private   Map<String,Object> Obj2Map(Object obj) throws Exception{
-        Map<String,Object> map=new HashMap<String, Object>();
-        Field[] fields = obj.getClass().getDeclaredFields();
-        for(Field field:fields){
-            field.setAccessible(true);
-            map.put(field.getName(), field.get(obj));
-        }
-        return map;
-    }
+
 
     /*获取预定订单列表*/
     public List<OrderTime> GetOrderList(String boxId, Date date){
@@ -140,17 +131,17 @@ public class OrderService implements IOrderService {
         return  result;
     }
 ///根据lexington获取套餐详情
-     public  Response GetOrderTypeList(Boolean isRemote,String boxId){
+     public  ObjectResponse GetOrderTypeList(Boolean isRemote,String boxId){
          String url=efanurl+"api/getProductsByRoom";
          String parms="room_id="+boxId+"&isremote="+isRemote;
          String result=  HttpUtils.sendPost(url,parms);
-         Response res;
+         ObjectResponse res;
          try{
-             res =   new Gson().fromJson(result,Response.class);
+             res =   new Gson().fromJson(result,ObjectResponse.class);
          }catch (Exception e){
-             res=new Response();
+             res=new ObjectResponse();
              res.code=1000;
-             res.message=result;
+             res.message=e.getMessage();
          }
          return  res;
      }

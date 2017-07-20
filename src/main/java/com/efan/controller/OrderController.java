@@ -3,9 +3,10 @@ package com.efan.controller;
 import com.efan.appservice.iservice.IOrderService;
 import com.efan.controller.dtos.OrderTime;
 import com.efan.controller.inputs.*;
+import com.efan.core.page.ListResponse;
+import com.efan.core.page.ObjectResponse;
 import com.efan.core.primary.Order;
 import com.efan.core.page.ActionResult;
-import com.efan.core.page.Response;
 import io.swagger.annotations.ApiImplicitParam;
 import io.swagger.annotations.ApiOperation;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -29,7 +30,7 @@ public class OrderController {
     @ApiImplicitParam(name = "input", value = "dto对象", required = true, dataType = "RemoteInput")
     @RequestMapping(value  ="/stores" ,method = RequestMethod.POST)
     public ActionResult RemoteBuy(@RequestBody RemoteInput input){
-        Response result= _orderService.GetRemoteList(input);
+        ObjectResponse result= _orderService.GetRemoteList(input);
         return  new ActionResult(result);
     }
     /*获取包房信息*/
@@ -37,7 +38,7 @@ public class OrderController {
     @ApiImplicitParam(name = "spot", value = "点位对象id", required = true, dataType = "GetSpotInput")
     @RequestMapping(value  ="/coupe" ,method = RequestMethod.POST)
     public ActionResult CoupeList(@RequestBody GetSpotInput spot){
-        Response result= _orderService.GetCoupeList(spot.spotId);
+        ListResponse result= _orderService.GetCoupeList(spot.spotId);
         return  new ActionResult(result);
     }
     /*获取包房预定列表*/
@@ -71,7 +72,7 @@ public class OrderController {
     @ApiImplicitParam(name = "input", value = "dto对象", required = true, dataType = "GetPayType")
     @RequestMapping(value  ="/getpaylist" ,method = RequestMethod.POST)
      public  ActionResult GetPayList(@RequestBody GetPayType input){
-        Response list=_orderService.GetOrderTypeList(input.isRemote,input.boxId);
+        ObjectResponse list=_orderService.GetOrderTypeList(input.isRemote,input.boxId);
              return  new ActionResult(list);
      }
 
