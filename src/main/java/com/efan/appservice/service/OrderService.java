@@ -22,6 +22,7 @@ import org.springframework.stereotype.Service;
 
 
 import java.sql.Timestamp;
+import java.text.DecimalFormat;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.*;
@@ -76,14 +77,14 @@ public class OrderService implements IOrderService {
                List<Map<String,Object> > temp= res.respBody;
             for (int i = 0; i <temp.size() ; i++) {
               Object key=  temp.get(i).get("machine_id");
-                Long time=GetLessTime((String)key );
+                String time=GetLessTime((String)key );
                 temp.get(i).put("time",time);
             }
             res.respBody=temp;
         }
         return  res;
     }
-    private  Long GetLessTime(String boxId){
+    private  String GetLessTime(String boxId){
         Date start =GetCurrentDate(true);
         Date end=GetCurrentDate(false);
          List<Order> orders=_orderRepository.findOrders(boxId,start,end);
@@ -93,7 +94,11 @@ public class OrderService implements IOrderService {
            total+= min;
         }
        Long less= (end.getTime()-start.getTime())/1000-total;
-          return  less;
+        if(less>0){
+            DecimalFormat df = new DecimalFormat("#.00");
+         return   df.format(less/3600);
+        }
+          return  "0";
     }
 
 

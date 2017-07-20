@@ -194,7 +194,7 @@ public class AndSoService implements IAndSoService {
         List<Map<String,Object>> list = _jdbc.queryForList(sql.toString());
         return  list;
     }
-
+    //获取用户是否已点歌状态
     private List<Map<String,Object>> GenderIsTick(List<Map<String,Object>> list,String userKey ){
             List<MySongs> result=_mySongsRepository.findAllByUserKeyEqualsAndStateEquals(userKey,true);
         for (int i = 0; i < list.size(); i++) {
