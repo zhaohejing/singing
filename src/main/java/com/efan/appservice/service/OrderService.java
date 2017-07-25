@@ -46,8 +46,12 @@ public class OrderService implements IOrderService {
      * */
     public ObjectResponse GetRemoteList(RemoteInput input) {
         String url=efanurl+"api/getSpotsByCoordinate";
-        String parms="longitude="+input.y+"&latitude"+input.x+"&page="+input.page;
-      String result=  HttpUtils.sendPost(url,parms);
+    /*    Map<String,String> parm=new HashMap<>();
+        parm.put("longitude",input.y);
+        parm.put("latitude",input.x );
+        parm.put("page",input.page);*/
+        String parm="longitude="+input.y+"&latitude"+input.x+"&page="+input.page;
+      String result=  HttpUtils.sendPost(url,parm);
         ObjectResponse res;
         try{
             res =   new Gson().fromJson(result,ObjectResponse.class);
