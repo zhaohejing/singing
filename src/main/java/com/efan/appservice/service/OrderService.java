@@ -111,7 +111,16 @@ public class OrderService implements IOrderService {
         Date end=GenderTime(date,false);
         List<OrderTime> result=new ArrayList<>();
           List<Order> list= _orderRepository.findOrders(boxId,start,end);
+          Integer nowHour=new Date().getHours();
         for (int i = 0; i <24 ; i++) {
+            if (nowHour>i){
+                result.add(new OrderTime(i,i+1,60));
+                continue;
+            }else if(nowHour==i){
+                result.add(new OrderTime(i,i+1,new Date().getMinutes()));
+                continue;
+            }
+
             Integer count=0;
             for (int j = 0; j < list.size(); j++) {
                 Order temp=list.get(j);
@@ -206,7 +215,17 @@ public class OrderService implements IOrderService {
 
 
     private  Date GenderTime(Date time,Boolean isstart){
-        Calendar calendar = new GregorianCalendar();
+        Calendar calendar1 = Calendar.getInstance();
+        calendar1.setTime(time);
+        if (isstart){
+            calendar1.set(calendar1.get(Calendar.YEAR), calendar1.get(Calendar.MONTH), calendar1.get(Calendar.DAY_OF_MONTH),
+                    calendar1.get(Calendar.HOUR_OF_DAY), calendar1.get(Calendar.MINUTE), calendar1.get(Calendar.SECOND));
+        }else {
+            calendar1.set(calendar1.get(Calendar.YEAR), calendar1.get(Calendar.MONTH), calendar1.get(Calendar.DAY_OF_MONTH),
+                    23, 59, 59);
+        }
+        return  calendar1.getTime();
+       /* Calendar calendar = new GregorianCalendar();
         calendar.setTime(time);
         if (isstart){
             calendar.set(Calendar.HOUR,0);
@@ -220,7 +239,7 @@ public class OrderService implements IOrderService {
             calendar.set(Calendar.SECOND,59);
             calendar.set(Calendar.MILLISECOND,999);
         }
-        return  calendar.getTime();
+        return  calendar.getTime();*/
     }
     private  Date GetCurrentDate(Boolean start){
         Calendar calendar1 = Calendar.getInstance();
