@@ -12,6 +12,8 @@ import com.efan.core.primary.Order;
 import com.efan.repository.primary.IOrderRepository;
 import com.efan.utils.HttpUtils;
 import com.google.gson.Gson;
+import org.apache.logging.log4j.LogManager;
+import org.apache.logging.log4j.Logger;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.data.domain.Page;
@@ -37,6 +39,7 @@ public class OrderService implements IOrderService {
     @Value("${returnurl}")
     private String returnurl;
     private IOrderRepository _orderRepository;
+    private Logger logger = LogManager.getLogger(getClass());
     @Autowired
      public OrderService(IOrderRepository orderRepository){
          this._orderRepository=orderRepository;
@@ -51,7 +54,9 @@ public class OrderService implements IOrderService {
         parm.put("latitude",input.x );
         parm.put("page",input.page);*/
         String parm="longitude="+input.y+"&latitude"+input.x+"&page="+input.page;
+
       String result=  HttpUtils.sendPost(url,parm);
+        logger.warn("logitude:"+input.y+",latitude:"+input.x+"result:"+result);
         ObjectResponse res;
         try{
             res =   new Gson().fromJson(result,ObjectResponse.class);
