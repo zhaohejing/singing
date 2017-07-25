@@ -79,10 +79,10 @@ public class OrderService implements IOrderService {
         }
         if(res.code==200){
                List<Map<String,Object> > temp= res.respBody;
-            for (int i = 0; i <temp.size() ; i++) {
-              Object key=  temp.get(i).get("machine_id");
-                String time=GetLessTime((String)key );
-                temp.get(i).put("time",time);
+            for (Map<String, Object> aTemp : temp) {
+                Object key = aTemp.get("machine_id");
+                String time = GetLessTime((String) key);
+                aTemp.put("time", time);
             }
             res.respBody=temp;
         }
@@ -93,9 +93,9 @@ public class OrderService implements IOrderService {
         Date end=GetCurrentDate(false);
          List<Order> orders=_orderRepository.findOrders(boxId,start,end);
          Long total=0L;
-        for (int i = 0; i < orders.size(); i++) {
-           Long min= (orders.get(i).getToTime().getTime() -orders.get(i).getFromTime().getTime())/1000;
-           total+= min;
+        for (Order order : orders) {
+            Long min = (order.getToTime().getTime() - order.getFromTime().getTime()) / 1000;
+            total += min;
         }
        Long less= (end.getTime()-start.getTime())/1000-total;
         if(less>0){
@@ -107,41 +107,47 @@ public class OrderService implements IOrderService {
 
     /*获取预定订单列表*/
     public List<OrderTime> GetOrderList(String boxId, Date date){
+        Calendar now =Calendar.getInstance();
         Date start=GenderTime(date,true);
         Date end=GenderTime(date,false);
         List<OrderTime> result=new ArrayList<>();
           List<Order> list= _orderRepository.findOrders(boxId,start,end);
-          Integer nowHour=new Date().getHours();
+          Integer nowHour=now.get(Calendar.HOUR_OF_DAY);
         for (int i = 0; i <24 ; i++) {
             if (nowHour>i){
                 result.add(new OrderTime(i,i+1,60));
                 continue;
             }else if(nowHour==i){
-                result.add(new OrderTime(i,i+1,new Date().getMinutes()));
+                result.add(new OrderTime(i,i+1,now.get(Calendar.MINUTE)));
                 continue;
             }
 
             Integer count=0;
-            for (int j = 0; j < list.size(); j++) {
-                Order temp=list.get(j);
-               Timestamp from = temp.getFromTime();
-                Integer hour=  from.getHours();
-                Integer min=  from.getMinutes();
+            for (Order temp : list) {
+                Timestamp from = temp.getFromTime();
+                Calendar left = Calendar.getInstance();
+                left.setTime(from);
+                Integer hour = left.get(Calendar.HOUR_OF_DAY);
+                Integer min = left.get(Calendar.MINUTE);
+
                 Timestamp to = temp.getToTime();
-                Integer tohour=  to.getHours();
-                Integer tomin=  to.getMinutes();
-                if (i==hour){
-                    if (i==tohour){
-                        count+=(tomin-min);
-                    }else {
-                        count+=(60-min);
+                Calendar right = Calendar.getInstance();
+                right.setTime(to);
+
+                Integer thor = right.get(Calendar.HOUR_OF_DAY);
+                Integer tobin = right.get(Calendar.MINUTE);
+                if (i == hour) {
+                    if (i == thor) {
+                        count += (tobin - min);
+                    } else {
+                        count += (60 - min);
                     }
+                }
+                if (i == thor) {
+                    if (hour < thor) {
+                        count += tobin;
                     }
-                    if (i==tohour){
-                        if (hour<tohour){
-                            count+=tomin;
-                        }
-                    }
+                }
             }
             result.add(new OrderTime(i,i+1,count));
         }
@@ -167,13 +173,12 @@ public class OrderService implements IOrderService {
          SimpleDateFormat df = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");//设置日期格式
 
      List<Order> list=   _orderRepository.findOrdersbyFilter(openId,machineId,new Date());
-            Order order=list.get(0);
-            return  order;
+         return list.get(0);
      }
     public ResultModel<Order> GetMyOrders(BaseInput input){
         Pageable pageable = new PageRequest(input.getIndex()-1, input.getSize(),null);
         Page<Order> res=  _orderRepository.findAllByUserKey(input.getFilter(), pageable);
-        return  new ResultModel<Order>( res.getContent(),res.getTotalElements());
+        return new ResultModel<>(res.getContent(), res.getTotalElements());
 
     }
 //创建订单并调用支付接口
