@@ -46,7 +46,7 @@ public class OrderService implements IOrderService {
      * */
     public ObjectResponse GetRemoteList(RemoteInput input) {
         String url=efanurl+"api/getSpotsByCoordinate";
-        String parms="longitude="+input.x+"&latitude"+input.y+"&page="+input.page;
+        String parms="longitude="+input.y+"&latitude"+input.x+"&page="+input.page;
       String result=  HttpUtils.sendPost(url,parms);
         ObjectResponse res;
         try{
