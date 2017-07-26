@@ -31,5 +31,5 @@ public interface IOrderService {
     String Payfor(String boxId,String orderId);
     ResultModel<Order> GetMyOrders(BaseInput input);
       boolean VilidatePay(ValidatePayInput input);
-    boolean VilidateOrder(String machineCode, Timestamp from , Timestamp to );
+    boolean VilidateOrder(String machineCode,Date from ,Date to );
 }

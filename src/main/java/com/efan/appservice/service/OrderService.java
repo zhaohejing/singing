@@ -192,7 +192,10 @@ public class OrderService implements IOrderService {
     public Order CreateOrder(OrderInput input)  {
         Timestamp date = new Timestamp(System.currentTimeMillis());
       UUID num=   java.util.UUID.randomUUID();
-      String pars=getTimeDifference(input.fromTime,input.toTime);
+      Timestamp ff=DateToTimestamp(input.fromTime);
+        Timestamp tt=DateToTimestamp(input.toTime);
+
+        String pars=getTimeDifference(ff,tt);
         Order model=new Order();
         model.setAmount(input.amount);
         model.setBoxId(input.boxId);
@@ -212,12 +215,12 @@ public class OrderService implements IOrderService {
         if(input.fromTime.getTime()<date.getTime()){
             model.setFromTime(date);
         }else{
-            model.setFromTime(input.fromTime);
+            model.setFromTime(ff);
         }
         model.setModifyTime(date);
         model.setMobile(input.consumerName);
         model.setOrderType(input.orderType);
-        model.setToTime(input.toTime);
+        model.setToTime(tt);
       return  _orderRepository.save(model);
     }
 
@@ -237,7 +240,7 @@ public class OrderService implements IOrderService {
         List<Order> res=_orderRepository.findOrdersbyKey(input.machineCode,input.fromTime,end);
       return  res.size()>0;
     }
-    public  boolean VilidateOrder(String machineCode,Timestamp from ,Timestamp to ){
+    public  boolean VilidateOrder(String machineCode,Date from ,Date to ){
         List<Order> res=_orderRepository.findOrdersbyKey(machineCode,from,to);
         return res.size()<=0;
     }
@@ -268,6 +271,12 @@ public class OrderService implements IOrderService {
             calendar.set(Calendar.MILLISECOND,999);
         }
         return  calendar.getTime();*/
+    }
+    private Timestamp DateToTimestamp(Date date){
+        String time = "";
+        SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
+        time = sdf.format(date);
+       return Timestamp.valueOf(time);
     }
     private  Date GetCurrentDate(Boolean start){
         Calendar calendar1 = Calendar.getInstance();

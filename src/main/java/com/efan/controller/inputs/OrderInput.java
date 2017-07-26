@@ -1,6 +1,7 @@
 package com.efan.controller.inputs;
 
 
+import java.sql.Date;
 import java.sql.Timestamp;
 
 /**
@@ -22,9 +23,9 @@ public class OrderInput {
     //包房编号
     public String boxName;
     //购买时间段
-    public Timestamp fromTime;
+    public Date fromTime;
     //购买时间段
-    public Timestamp toTime;
+    public Date toTime;
     //订单类型
     public  Integer orderType;
     //金额
