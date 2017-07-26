@@ -8,7 +8,7 @@
         </Console>
         <!-- 按日期每天生成log文件 -->
         <RollingFile name="RollingFile" fileName="log/vote.log"
-                     filePattern="log/vote-%d{yyyy-MM-dd hh:mm:ss}.log">
+                     filePattern="log/vote-%d{yyyy-MM-dd hh}.log">
             <PatternLayout pattern="%d %p %C{1.} [%t] %m%n"/>
             <Policies>
                 <TimeBasedTriggeringPolicy interval="10"/>

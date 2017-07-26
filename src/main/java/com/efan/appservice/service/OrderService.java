@@ -190,7 +190,6 @@ public class OrderService implements IOrderService {
 //创建订单并调用支付接口
   //  @Async
     public Order CreateOrder(OrderInput input)  {
-
         Timestamp date = new Timestamp(System.currentTimeMillis());
       UUID num=   java.util.UUID.randomUUID();
       String pars=getTimeDifference(input.fromTime,input.toTime);
@@ -207,7 +206,7 @@ public class OrderService implements IOrderService {
         model.setModifyUserId(1L);
         model.setConsumerName(input.consumerName);
         model.setCreationTime(date);
-        model.setOrderId(input.orderId);
+      //  model.setOrderId(input.orderId);
         model.setCreationUserId(1L);
         model.setDelete(false);
         if(input.fromTime.getTime()<date.getTime()){

@@ -74,7 +74,7 @@ public class Order implements Serializable {
     //是否常用
     private  Boolean isCommon;
 
-    public String getOrderId() {
+  /*  public String getOrderId() {
         return orderId;
     }
 
@@ -82,7 +82,7 @@ public class Order implements Serializable {
         this.orderId = orderId;
     }
 //订单消费类型
-    private  String orderId;
+    private  String orderId;*/
 
 
     private Long creationUserId;

@@ -29,5 +29,5 @@ public class OrderInput {
     public  Integer orderType;
     //金额
     public  double amount;
-    public  String orderId;
+ //   public  String orderId;
 }
