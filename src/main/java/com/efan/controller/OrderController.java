@@ -97,5 +97,12 @@ public class OrderController {
       }
         return  new ActionResult(true,model.getOrderNum(),"获取成功,可以开唱");
     }
-
+    /**
+     * 支付成功修改订单状态*/
+    @ApiOperation(value="支付成功修改订单状态", notes="远程购买接口")
+    @RequestMapping(value  ="/paystate" ,method = RequestMethod.POST)
+    public  ActionResult UpdatePayState(String order){
+        Order model   =_orderService.UpdateOrderState(order);
+        return  new ActionResult(model!=null&& model.getState()==1);
+    }
 }

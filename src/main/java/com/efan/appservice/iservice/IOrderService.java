@@ -28,8 +28,10 @@ public interface IOrderService {
     ObjectResponse GetOrderTypeList(Boolean isRemote, String boxId);
     Order CreateOrder(OrderInput input);
     Order GetOrderDetail(String openId,String machineId);
-    String Payfor(String boxId,String orderId);
     ResultModel<Order> GetMyOrders(BaseInput input);
       boolean vilidatePay(ValidatePayInput input);
     boolean VilidateOrder(String machineCode,Date from ,Date to );
+    /** 更新订单状态
+     */
+     Order UpdateOrderState(String order);
 }

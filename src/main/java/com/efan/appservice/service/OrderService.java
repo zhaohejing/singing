@@ -232,13 +232,15 @@ public class OrderService implements IOrderService {
         model.setToTime(tt);
       return  _orderRepository.save(model);
     }
-    /** 支付
+    /** 更新订单状态
       */
-    public String Payfor(String boxId,String orderId){
-        //调用微信支付
-        String url="http://wxpay.dev.efanyun.com/order";
-        String parms="?machineCode="+boxId+"&productId="+orderId+"&notifyUrl="+returnurl;
-      return   HttpUtils.sendGet(url+parms);
+    public Order UpdateOrderState(String order){
+      Order or=_orderRepository.findByOrderNumEquals(order);
+      if (or!=null){
+           or.setState(1);
+       or=   _orderRepository.saveAndFlush(or);
+      }
+      return  or;
     }
     /** 验证支付
      */
