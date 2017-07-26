@@ -5,6 +5,7 @@ import com.efan.controller.dtos.OrderTime;
 import com.efan.controller.inputs.BaseInput;
 import com.efan.controller.inputs.OrderInput;
 import com.efan.controller.inputs.RemoteInput;
+import com.efan.controller.inputs.ValidatePayInput;
 import com.efan.core.page.ListResponse;
 import com.efan.core.page.ObjectResponse;
 import com.efan.core.page.ResultModel;
@@ -189,6 +190,7 @@ public class OrderService implements IOrderService {
 //创建订单并调用支付接口
   //  @Async
     public Order CreateOrder(OrderInput input)  {
+
         Timestamp date = new Timestamp(System.currentTimeMillis());
       UUID num=   java.util.UUID.randomUUID();
       String pars=getTimeDifference(input.fromTime,input.toTime);
@@ -208,7 +210,11 @@ public class OrderService implements IOrderService {
         model.setOrderId(input.orderId);
         model.setCreationUserId(1L);
         model.setDelete(false);
-        model.setFromTime(input.fromTime);
+        if(input.fromTime.getTime()<date.getTime()){
+            model.setFromTime(date);
+        }else{
+            model.setFromTime(input.fromTime);
+        }
         model.setModifyTime(date);
         model.setMobile(input.consumerName);
         model.setOrderType(input.orderType);
@@ -222,7 +228,20 @@ public class OrderService implements IOrderService {
         String parms="?machineCode="+boxId+"&productId="+orderId+"&notifyUrl="+returnurl;
       return   HttpUtils.sendGet(url+parms);
     }
-
+    public  boolean VilidatePay(ValidatePayInput input){
+        Timestamp now = new Timestamp(System.currentTimeMillis());
+       input.fromTime=input.fromTime.getTime()<now.getTime()?now:input.fromTime;
+       Calendar c=Calendar.getInstance();
+       c.setTime(input.fromTime);
+        c.add(Calendar.MINUTE,input.keepLive);
+       Date end= c.getTime() ;
+        List<Order> res=_orderRepository.findOrdersbyKey(input.machineCode,input.fromTime,end);
+      return  res.size()>0;
+    }
+    public  boolean VilidateOrder(String machineCode,Timestamp from ,Timestamp to ){
+        List<Order> res=_orderRepository.findOrdersbyKey(machineCode,from,to);
+        return res.size()<=0;
+    }
 
     private  Date GenderTime(Date time,Boolean isstart){
         Calendar calendar1 = Calendar.getInstance();

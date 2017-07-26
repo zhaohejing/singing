@@ -54,16 +54,20 @@ public class OrderController {
     @ApiImplicitParam(name = "input", value = "dto对象", required = true, dataType = "OrderInput")
     @RequestMapping(value  ="/createorder" ,method = RequestMethod.POST)
     public ActionResult CreateOrder(@RequestBody OrderInput input){
+        boolean canCreate=_orderService.VilidateOrder(input.boxId,input.fromTime,input.toTime);
+        if(!canCreate){
+            return  new ActionResult(false,"当前时段已有订单");
+        }
         Order res=_orderService.CreateOrder(input);
         return  new ActionResult(res);
     }
 
     /*支付接口*/
-    @ApiOperation(value="调用支付", notes="远程购买接口")
-    @ApiImplicitParam(name = "input", value = "dto对象", required = true, dataType = "OrderDetailInput")
-    @RequestMapping(value  ="/payfor" ,method = RequestMethod.POST)
-    public ActionResult PayFor(@RequestBody OrderDetailInput input){
-        String res= _orderService.Payfor(input.boxId,input.orderId);
+    @ApiOperation(value="验证是否可以支付", notes="远程购买接口")
+    @ApiImplicitParam(name = "input", value = "dto对象", required = true, dataType = "ValidatePayInput")
+    @RequestMapping(value  ="/canpay" ,method = RequestMethod.POST)
+    public ActionResult PayFor(@RequestBody ValidatePayInput input){
+        boolean res= _orderService.VilidatePay(input);
         return  new ActionResult(res);
     }
 /**
