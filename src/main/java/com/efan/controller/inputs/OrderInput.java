@@ -30,5 +30,6 @@ public class OrderInput {
     public  Integer orderType;
     //金额
     public  double amount;
- //   public  String orderId;
+    //购买时长
+    public  Integer purchaseTime;
 }

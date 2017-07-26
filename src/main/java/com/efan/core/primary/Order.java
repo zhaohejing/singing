@@ -21,7 +21,7 @@ public class Order implements Serializable {
 
     //   订单号
     @NotNull
-    @Column(length = 20)
+    @Column(length = 50)
     private  String orderNum;
     //消费者名称
     @Column(length = 200)
@@ -60,9 +60,7 @@ public class Order implements Serializable {
     //订单类型
     private  Integer orderType;
     //购买时长
-    @Column(length = 20)
-    @NotNull
-    private  String purchaseTime;
+    private  Integer purchaseTime;
     //金额
     @NotNull
     private  double amount;
@@ -172,11 +170,11 @@ public class Order implements Serializable {
         this.orderType = orderType;
     }
 
-    public String getPurchaseTime() {
+    public Integer getPurchaseTime() {
         return purchaseTime;
     }
 
-    public void setPurchaseTime(String purchasetime) {
+    public void setPurchaseTime(Integer purchasetime) {
         this.purchaseTime = purchasetime;
     }
 

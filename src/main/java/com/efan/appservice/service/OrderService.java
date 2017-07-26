@@ -192,31 +192,39 @@ public class OrderService implements IOrderService {
     public Order CreateOrder(OrderInput input)  {
         Timestamp date = new Timestamp(System.currentTimeMillis());
       UUID num=   java.util.UUID.randomUUID();
-      Timestamp ff=DateToTimestamp(input.fromTime);
-        Timestamp tt=DateToTimestamp(input.toTime);
 
-        String pars=getTimeDifference(ff,tt);
+      Timestamp ff= DateToTimestamp( input.fromTime.getTime()<date.getTime()?date:input.fromTime);
+
+
+        Calendar c=Calendar.getInstance();
+        c.setTime(ff);
+        if(input.purchaseTime<60){
+            c.add(Calendar.MINUTE,input.purchaseTime);
+        }else if(input.purchaseTime>=60&&input.purchaseTime<24*60){
+          Integer hour=  input.purchaseTime/60;
+          c.add(Calendar.HOUR_OF_DAY,hour );
+          c.add(Calendar.MINUTE,input.purchaseTime-hour*60);
+        }
+        Date end= c.getTime() ;
+        Timestamp tt=DateToTimestamp(end);
         Order model=new Order();
         model.setAmount(input.amount);
         model.setBoxId(input.boxId);
         model.setBoxName(input.boxName);
+        model.setToTime(tt);
+        model.setFromTime(ff);
+        model.setId(0L);
         model.setOrderNum(num.toString());
         model.setCommon(false);
         model.setPointName(input.pointName);
         model.setUserKey(input.userKey);
         model.setState(0);
-        model.setPurchaseTime(pars);
+        model.setPurchaseTime(input.purchaseTime);
         model.setModifyUserId(1L);
         model.setConsumerName(input.consumerName);
         model.setCreationTime(date);
-      //  model.setOrderId(input.orderId);
         model.setCreationUserId(1L);
         model.setDelete(false);
-        if(input.fromTime.getTime()<date.getTime()){
-            model.setFromTime(date);
-        }else{
-            model.setFromTime(ff);
-        }
         model.setModifyTime(date);
         model.setMobile(input.consumerName);
         model.setOrderType(input.orderType);
