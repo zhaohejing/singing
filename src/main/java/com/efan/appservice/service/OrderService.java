@@ -100,10 +100,10 @@ public class OrderService implements IOrderService {
          List<Order> orders=_orderRepository.findOrders(boxId,start,end);
          Long total=0L;
         for (Order order : orders) {
-            Long min = (order.getToTime().getTime() - order.getFromTime().getTime()) / 1000;
-            total += min;
+           // Long min = (order.getToTime().getTime() - order.getFromTime().getTime()) / 1000;
+            total += order.getPurchaseTime();
         }
-       Long less= (end.getTime()-start.getTime())/1000-total;
+       Long less= (end.getTime()-start.getTime())/1000-total*60;
         if(less>0){
          return  new DecimalFormat("#.00").format(less/3600);
         }
@@ -181,6 +181,7 @@ public class OrderService implements IOrderService {
      List<Order> list=   _orderRepository.findOrdersbyFilter(openId,machineId,new Date());
          return list.get(0);
      }
+     /*获取我的订单*/
     public ResultModel<Order> GetMyOrders(BaseInput input){
         Pageable pageable = new PageRequest(input.getIndex()-1, input.getSize(),null);
         Page<Order> res=  _orderRepository.findAllByUserKey(input.getFilter(), pageable);
@@ -231,14 +232,17 @@ public class OrderService implements IOrderService {
         model.setToTime(tt);
       return  _orderRepository.save(model);
     }
-
+    /** 支付
+      */
     public String Payfor(String boxId,String orderId){
         //调用微信支付
         String url="http://wxpay.dev.efanyun.com/order";
         String parms="?machineCode="+boxId+"&productId="+orderId+"&notifyUrl="+returnurl;
       return   HttpUtils.sendGet(url+parms);
     }
-    public  boolean VilidatePay(ValidatePayInput input){
+    /** 验证支付
+     */
+    public  boolean vilidatePay(ValidatePayInput input){
         Timestamp now = new Timestamp(System.currentTimeMillis());
        input.fromTime=input.fromTime.getTime()<now.getTime()?now:input.fromTime;
        Calendar c=Calendar.getInstance();
@@ -248,6 +252,8 @@ public class OrderService implements IOrderService {
         List<Order> res=_orderRepository.findOrdersbyKey(input.machineCode,input.fromTime,end);
       return  res.size()>0;
     }
+    /** 验证订单
+      */
     public  boolean VilidateOrder(String machineCode,Date from ,Date to ){
         List<Order> res=_orderRepository.findOrdersbyKey(machineCode,from,to);
         return res.size()<=0;
@@ -281,9 +287,8 @@ public class OrderService implements IOrderService {
         return  calendar.getTime();*/
     }
     private Timestamp DateToTimestamp(Date date){
-        String time = "";
         SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
-        time = sdf.format(date);
+        String   time = sdf.format(date);
        return Timestamp.valueOf(time);
     }
     private  Date GetCurrentDate(Boolean start){
@@ -297,28 +302,5 @@ public class OrderService implements IOrderService {
         }
         return  calendar1.getTime();
     }
-    private  String getTimeDifference(Timestamp a, Timestamp b) {
-        SimpleDateFormat timeformat = new SimpleDateFormat("yyyy-MM-dd,HH:mm:ss");
-        long t1 = 0L;
-        long t2 = 0L;
-        try {
-            t1 = timeformat.parse(getTimeStampNumberFormat(a)).getTime();
-        } catch (ParseException e) {
-            e.printStackTrace();
-        }
-        try {
-            t2 = timeformat.parse(getTimeStampNumberFormat(b)).getTime();
-        } catch (ParseException e) {
-            e.printStackTrace();
-        }
-        //因为t1-t2得到的是毫秒级,所以要初3600000得出小时.算天数或秒同理
-        int hours=(int) ((t1 - t2)/3600000);
-        int minutes=(int) (((t1 - t2)/1000-hours*3600)/60);
-        int second=(int) ((t1 - t2)/1000-hours*3600-minutes*60);
-        return ""+  hours*60+minutes+(second/60);
-    }
-    private  String getTimeStampNumberFormat(Timestamp formatTime) {
-        SimpleDateFormat m_format = new SimpleDateFormat("yyyy-MM-dd,HH:mm:ss", new Locale("zh", "cn"));
-        return m_format.format(formatTime);
-    }
+
 }

@@ -67,7 +67,7 @@ public class OrderController {
     @ApiImplicitParam(name = "input", value = "dto对象", required = true, dataType = "ValidatePayInput")
     @RequestMapping(value  ="/canpay" ,method = RequestMethod.POST)
     public ActionResult PayFor(@RequestBody ValidatePayInput input){
-        boolean res= _orderService.VilidatePay(input);
+        boolean res= _orderService.vilidatePay(input);
         return  new ActionResult(res);
     }
 /**

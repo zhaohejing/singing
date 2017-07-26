@@ -30,6 +30,6 @@ public interface IOrderService {
     Order GetOrderDetail(String openId,String machineId);
     String Payfor(String boxId,String orderId);
     ResultModel<Order> GetMyOrders(BaseInput input);
-      boolean VilidatePay(ValidatePayInput input);
+      boolean vilidatePay(ValidatePayInput input);
     boolean VilidateOrder(String machineCode,Date from ,Date to );
 }
