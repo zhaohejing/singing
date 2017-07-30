@@ -42,13 +42,14 @@ public class OrderController {
         return  new ActionResult(result);
     }
     /*获取包房预定列表*/
-    @ApiOperation(value="获取包房预定清单", notes="远程购买接口")
+    @ApiOperation(value="获取到店包房预定清单", notes="到店购买接口")
     @ApiImplicitParam(name = "input", value = "dto对象", required = true, dataType = "GetOrderInput")
     @RequestMapping(value  ="/booking" ,method = RequestMethod.POST)
     public ActionResult Booking(@RequestBody GetOrderInput input){
         List<OrderTime> res =_orderService.GetOrderList(input.boxId, input.date);
         return  new ActionResult(res);
     }
+
     /*创建支付订单*/
     @ApiOperation(value="创建订单", notes="远程购买接口")
     @ApiImplicitParam(name = "input", value = "dto对象", required = true, dataType = "OrderInput")
@@ -72,7 +73,7 @@ public class OrderController {
     }
 /**
  * 获取套餐详情*/
-    @ApiOperation(value="获取套餐详情列表", notes="远程购买接口")
+    @ApiOperation(value="获取套餐详情列表", notes="到店购买接口")
     @ApiImplicitParam(name = "input", value = "dto对象", required = true, dataType = "GetPayType")
     @RequestMapping(value  ="/getpaylist" ,method = RequestMethod.POST)
      public  ActionResult GetPayList(@RequestBody GetPayType input){

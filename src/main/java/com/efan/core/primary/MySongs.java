@@ -28,7 +28,7 @@ public class MySongs implements Serializable {
     @Column(length = 50)
     private  String singer;
     @Column(length = 50)
-    private String songKey;
+    private Integer songKey;
     private  Boolean state;
 
     private Long creationUserId;
@@ -39,11 +39,11 @@ public class MySongs implements Serializable {
 
     private Timestamp modifyTime;
 
-    public String getSongKey() {
+    public Integer getSongKey() {
         return songKey;
     }
 
-    public void setSongKey(String songKey) {
+    public void setSongKey(Integer songKey) {
         this.songKey = songKey;
     }
 

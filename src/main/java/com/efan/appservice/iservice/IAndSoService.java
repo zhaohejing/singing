@@ -25,4 +25,5 @@ public interface IAndSoService {
 
      ResultModel<Map<String,Object>> GetSingerCate();
      ResultModel<Map<String,Object>> GetSingerArea();
+    List<Map<String ,Object>> GetHotSongsList();
 }

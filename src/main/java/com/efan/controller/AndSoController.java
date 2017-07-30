@@ -105,11 +105,10 @@ public class AndSoController {
         return  new ActionResult(result);
     }
     /*获取热点歌曲分类下歌曲*/
-    @ApiOperation(value="获取热点歌曲分类下歌曲", notes="歌单接口")
-    @ApiImplicitParam(name = "input", value = "{filter:过滤条件,index:页码,size:页容量 ,word:关键词}", required = true, dataType = "GetSongsInput")
-    @RequestMapping(value  ="/gethotsongsbycate" ,method = RequestMethod.POST)
-    public ActionResult GetSongsByHotCates(@RequestBody GetSongsInput input){
-        ResultModel<Map<String,Object>> result=_songService.GetSongsList(input);
+    @ApiOperation(value="获取热点歌曲", notes="歌单接口")
+    @RequestMapping(value  ="/hotsongs" ,method = RequestMethod.POST)
+    public ActionResult HotSongs(){
+        List<Map<String,Object>> result=_songService.GetHotSongsList();
         return  new ActionResult(result);
     }
 

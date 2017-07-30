@@ -161,8 +161,8 @@ public class OrderService implements IOrderService {
     }
 ///根据lexington获取套餐详情
      public  ObjectResponse GetOrderTypeList(Boolean isRemote,String boxId){
-         String url=efanurl+"api/getProductsByRoom";
-         String parms="room_id="+boxId+"&isremote="+isRemote;
+         String url=isRemote?efanurl+"api/getProductsByRoomRemote": efanurl+"api/getProductsByRoom";
+         String parms="room_id="+boxId;
          String result=  HttpUtils.sendPost(url,parms);
          ObjectResponse res;
          try{

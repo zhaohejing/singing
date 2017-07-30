@@ -8,6 +8,7 @@ import com.efan.core.page.ResultModel;
 import com.efan.core.primary.MySongs;
 import com.efan.repository.primary.IMySongsRepository;
 import com.efan.repository.primary.IMyTapeRepository;
+import com.sun.corba.se.spi.ior.ObjectKey;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.jdbc.core.JdbcTemplate;
@@ -201,8 +202,8 @@ public class AndSoService implements IAndSoService {
             Boolean ispick=false;
             for (int j = 0; j < result.size(); j++) {
                 Object left=list.get(i).get("ID");
-                String right=result.get(j).getSongKey();
-                if (left.toString().equals(right)){
+                Integer right=result.get(j).getSongKey();
+                if (left.toString().equals(right.toString())){
             ispick=true;
                 }
             }
@@ -211,4 +212,10 @@ public class AndSoService implements IAndSoService {
         return  list;
     }
 
+    public List<Map<String ,Object>> GetHotSongsList(){
+        StringBuilder sb=new StringBuilder();
+        sb.append("select b.ID, b.ullSongCode,b.unSongCode,b.pszName,b.pszSpell,c.pszName singerName from topsongs a inner join songinfo b on a.unSongCode= b.unSongCode left join singerinfo c on b.arrSingers=c.unSingerCo order by a.SN;");
+        List<Map<String,Object>> list = _jdbc.queryForList(sb.toString());
+        return  list;
+    }
 }
