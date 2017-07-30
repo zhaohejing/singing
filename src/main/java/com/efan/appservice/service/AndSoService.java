@@ -212,10 +212,11 @@ public class AndSoService implements IAndSoService {
         return  list;
     }
 
-    public List<Map<String ,Object>> GetHotSongsList(){
+    public List<Map<String ,Object>> GetHotSongsList(String userKey){
         StringBuilder sb=new StringBuilder();
         sb.append("select b.ID, b.ullSongCode,b.unSongCode,b.pszName,b.pszSpell,c.pszName singerName from topsongs a inner join songinfo b on a.unSongCode= b.unSongCode left join singerinfo c on b.arrSingers=c.unSingerCo order by a.SN;");
         List<Map<String,Object>> list = _jdbc.queryForList(sb.toString());
-        return  list;
+        List<Map<String,Object>> res=GenderIsTick(list,userKey);
+        return  res;
     }
 }

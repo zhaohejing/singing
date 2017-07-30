@@ -107,8 +107,8 @@ public class AndSoController {
     /*获取热点歌曲分类下歌曲*/
     @ApiOperation(value="获取热点歌曲", notes="歌单接口")
     @RequestMapping(value  ="/hotsongs" ,method = RequestMethod.POST)
-    public ActionResult HotSongs(){
-        List<Map<String,Object>> result=_songService.GetHotSongsList();
+    public ActionResult HotSongs(String userKey){
+        List<Map<String,Object>> result=_songService.GetHotSongsList(userKey);
         return  new ActionResult(result);
     }
 
