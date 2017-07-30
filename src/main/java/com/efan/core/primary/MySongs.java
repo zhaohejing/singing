@@ -27,6 +27,15 @@ public class MySongs implements Serializable {
     //演唱者
     @Column(length = 50)
     private  String singer;
+
+    public Integer getSongKey() {
+        return songKey;
+    }
+
+    public void setSongKey(Integer songKey) {
+        this.songKey = songKey;
+    }
+
     @Column(length = 50)
     private Integer songKey;
     private  Boolean state;
@@ -38,14 +47,6 @@ public class MySongs implements Serializable {
     private Long modifyUserId;
 
     private Timestamp modifyTime;
-
-    public Integer getSongKey() {
-        return songKey;
-    }
-
-    public void setSongKey(Integer songKey) {
-        this.songKey = songKey;
-    }
 
 
 

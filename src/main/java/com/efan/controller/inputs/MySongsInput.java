@@ -8,9 +8,7 @@ public class MySongsInput {
     //用户唯一id
 
     public String userKey;
-
     public  String  songName;
-
     public  String singer;
     public Integer songKey;
 }
