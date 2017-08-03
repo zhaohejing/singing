@@ -20,13 +20,13 @@ import java.util.List;
 import java.util.Map;
 
 /**
- * Created by 45425 on 2017/5/10.
+ * 歌曲查询service
  */
 @Service
 public class AndSoService implements IAndSoService {
     @Autowired
     @Qualifier("secondaryJdbcTemplate")
-    public   JdbcTemplate _jdbc;
+    private    JdbcTemplate _jdbc;
     private IMySongsRepository _mySongsRepository;
     @Autowired
     public  AndSoService(IMySongsRepository mySongsRepository){
@@ -40,26 +40,26 @@ public class AndSoService implements IAndSoService {
         count.append("SELECT count(*) from singerinfo where 1=1");
 
         if (input.getFilter()!=null&& !input.getFilter().isEmpty()){
-           sql.append(" and  pszName like '%"+input.getFilter()+"%' ");
-            count.append(" and  pszName like '%"+input.getFilter()+"%' ");
+           sql.append(" and  pszName like '%").append(input.getFilter()).append("%' ");
+            count.append(" and  pszName like '%").append(input.getFilter()).append("%' ");
         }
         if (input.word!=null&& !input.word.isEmpty()){
-            sql.append(" and  pszSpell like '%"+input.word+"%' ");
-            count.append(" and  pszSpell like '%"+input.word+"%' ");
+            sql.append(" and  pszSpell like '%").append(input.word).append("%' ");
+            count.append(" and  pszSpell like '%").append(input.word).append("%' ");
         }
         if (input.cate>0){
-            sql.append(" and  wSingerType = '"+input.cate+"' ");
-            count.append(" and  wSingerType = '"+input.cate+"' ");
+            sql.append(" and  wSingerType = '").append(input.cate).append("' ");
+            count.append(" and  wSingerType = '").append(input.cate).append("' ");
         }
      /*   if (input.area>0){
             sql.append(" and  wSingerAre = '"+input.area+"' ");
             count.append(" and  wSingerAre = '"+input.area+"' ");
         }*/
 
-        sql.append(" limit  "+input.getPage()+" , "+input.getSize() );
+        sql.append(" limit  ").append(input.getPage()).append(" , ").append(input.getSize());
         Long total=_jdbc.queryForObject(count.toString(),Long.class);
         List<Map<String,Object>> list = _jdbc.queryForList(sql.toString());
-        return  new ResultModel<Map<String,Object>>(list,total);
+        return new ResultModel<>(list, total);
     }
     //获取歌曲列表
     public ResultModel<Map<String,Object>> GetSongsList(GetSongsInput input){
@@ -68,37 +68,34 @@ public class AndSoService implements IAndSoService {
         sql.append("SELECT ID,unSongCode ullSongCode,unSongCodex unSongCode,pszName,pszSpell,pszSingers singerName  from songinfo  where 1=1");
         count.append("SELECT count(*) from songinfo where 1=1");
         if (input.getFilter()!=null&& !input.getFilter().isEmpty()){
-            sql.append(" and  pszName like '%"+input.getFilter()+"%' ");
-            count.append(" and  pszName like '%"+input.getFilter()+"%' ");
+            sql.append(" and  pszName like '%").append(input.getFilter()).append("%' ");
+            count.append(" and  pszName like '%").append(input.getFilter()).append("%' ");
         }
         if (input.word!=null&& !input.word.isEmpty()){
-            sql.append(" and  pszSpell like '%"+input.word+"%' ");
-            count.append(" and  pszSpell like '%"+input.word+"%' ");
+            sql.append(" and  pszSpell like '%").append(input.word).append("%' ");
+            count.append(" and  pszSpell like '%").append(input.word).append("%' ");
         }
         if (input.cateId!=null&& !input.cateId.isEmpty()){
-            sql.append(" and  a.arrStyles = '"+input.cateId+"' ");
-            count.append(" and  arrStyles = '"+input.cateId+"' ");
+            sql.append(" and  arrStyles = '").append(input.cateId).append("' ");
+            count.append(" and  arrStyles = '").append(input.cateId).append("' ");
         }
         if (input.singer!=null&&! input.singer.isEmpty()){
-            sql.append(" and  pszSingers like '%"+input.singer+"%' ");
-            count.append(" and  pszSingers like '%"+input.singer+"%' ");
+            sql.append(" and  pszSingers like '%").append(input.singer).append("%' ");
+            count.append(" and  pszSingers like '%").append(input.singer).append("%' ");
         }
        /* if (input.version!=null&&! input.version.isEmpty()){
             sql.append(" and  a.arrVersions = '"+input.version+"' ");
             count.append(" and  arrVersions = '"+input.version+"' ");
         }*/
-        sql.append(" limit  "+input.getPage()+" , "+input.getSize() );
+        sql.append(" limit  ").append(input.getPage()).append(" , ").append(input.getSize());
         Long total=_jdbc.queryForObject(count.toString(),Long.class);
         List<Map<String,Object>> list = _jdbc.queryForList(sql.toString());
         List<Map<String,Object>> res=GenderIsTick(list,input.userKey);
-        return  new ResultModel<Map<String,Object>>(res,total);
+        return new ResultModel<>(res, total);
     }
     //获取歌曲分类
     public List<Map<String,Object>> GetSongsCateList(){
-        StringBuilder sql=new StringBuilder();
-        sql.append("SELECT ID,pszName from songstyleinfo where 1=1");
-        List<Map<String,Object>> list = _jdbc.queryForList(sql.toString());
-        return  list;
+        return  _jdbc.queryForList("SELECT ID,pszName from songstyleinfo where 1=1");
     }
     //获取热门歌星
     public ResultModel<Map<String,Object>> GetSingerByHot(BaseInput input){
@@ -107,14 +104,14 @@ public class AndSoService implements IAndSoService {
         sql.append("SELECT  unSingerCode unSingerCo ,pszName,pszSpell from singerinfo a where 1=1   ");
         count.append("SELECT count(*) from singerinfo where 1=1");
         if (input.getFilter()!=null&& !input.getFilter().isEmpty()){
-            sql.append(" and  pszName like '%"+input.getFilter()+"%' ");
-            count.append(" and  pszName like '%"+input.getFilter()+"%' ");
+            sql.append(" and  pszName like '%").append(input.getFilter()).append("%' ");
+            count.append(" and  pszName like '%").append(input.getFilter()).append("%' ");
         }
         sql.append("order by unRanking desc");
-        sql.append(" limit  "+input.getPage()+" , "+input.getSize() );
+        sql.append(" limit  ").append(input.getPage()).append(" , ").append(input.getSize());
         Long total=_jdbc.queryForObject(count.toString(),Long.class);
         List<Map<String,Object>> list = _jdbc.queryForList(sql.toString());
-        return  new ResultModel<Map<String,Object>>(list,total);
+        return new ResultModel<>(list, total);
 
     }
     //获取热门歌曲
@@ -124,99 +121,94 @@ public class AndSoService implements IAndSoService {
         sql.append(" SELECT ID,unSongCode ullSongCode,unSongCodex unSongCode,pszName,pszSpell,pszSingers singerName from songinfo  where 1=1");
         count.append("select count(*) from songinfo  where 1=1");
         if (input.getFilter()!=null&& !input.getFilter().isEmpty()){
-            sql.append(" and  pszName like '%"+input.getFilter()+"%' ");
-            count.append(" and  pszName like '%"+input.getFilter()+"%' ");
+            sql.append(" and  pszName like '%").append(input.getFilter()).append("%' ");
+            count.append(" and  pszName like '%").append(input.getFilter()).append("%' ");
         }
         if (input.word!=null&& !input.word.isEmpty()){
-            sql.append(" and  pszSpell like '%"+input.word+"%'");
-            count.append(" and  pszSpell like '%"+input.word+"%' ");
+            sql.append(" and  pszSpell like '%").append(input.word).append("%'");
+            count.append(" and  pszSpell like '%").append(input.word).append("%' ");
         }
         sql.append(" order by unRanking desc ");
-        sql.append(" limit  "+input.getPage()+" , "+input.getSize() );
+        sql.append(" limit  ").append(input.getPage()).append(" , ").append(input.getSize());
         Long total=_jdbc.queryForObject(count.toString(),Long.class);
         List<Map<String,Object>> list = _jdbc.queryForList(sql.toString());
         List<Map<String,Object>> res=GenderIsTick(list,input.userKey);
-        return  new ResultModel<Map<String,Object>>(res,total);
+        return new ResultModel<>(res, total);
     }
 
      public ResultModel<Map<String,Object>> GetSingerCate(){
         List<Map<String,Object>> result=new ArrayList<>();
-             Map<String,Object> a=new HashMap<String,Object>();
+             Map<String,Object> a= new HashMap<>();
                 a.put("id",1);
                   a.put("name","男");
 
          result.add(a);
-         a=new HashMap<String,Object>();
+         a= new HashMap<>();
          a.put("id",2);
          a.put("name","女");
 
          result.add(a);
-         a=new HashMap<String,Object>();
+         a= new HashMap<>();
          a.put("id",3);
          a.put("name","乐队");
          result.add(a);
-         a=new HashMap<String,Object>();
+         a= new HashMap<>();
          a.put("id",4);
          a.put("name","其他");
          result.add(a);
-         a=new HashMap<String,Object>();
+         a= new HashMap<>();
          a.put("id",5);
          a.put("name","娱乐节目");
          result.add(a);
-         return  new ResultModel<Map<String, Object>>(result);
+         return new ResultModel<>(result);
      }
     public ResultModel<Map<String,Object>> GetSingerArea(){
         List<Map<String,Object>> result=new ArrayList<>();
-        Map<String,Object> a=new HashMap<String,Object>();
+        Map<String,Object> a= new HashMap<>();
         a.put("id",1);
         a.put("name","大陆");
         result.add(a);
-        a=new HashMap<String,Object>();
+        a= new HashMap<>();
         a.put("id",2);
         a.put("name","港台");
         result.add(a);
-        a=new HashMap<String,Object>();
+        a= new HashMap<>();
         a.put("id",3);
         a.put("name","日韩");
         result.add(a);
-        a=new HashMap<String,Object>();
+        a= new HashMap<>();
         a.put("id",4);
         a.put("name","欧美");
         result.add(a);
-        a=new HashMap<String,Object>();
+        a= new HashMap<>();
         a.put("id",5);
         a.put("name","其他");
         result.add(a);
-        return  new ResultModel<Map<String, Object>>(result);
+        return new ResultModel<>(result);
     }
     //获取歌曲排行榜
     public List<Map<String,Object>> GetSongsVerList(){
-        StringBuilder sql=new StringBuilder();
-        sql.append("SELECT ID,pszName from songverinfo where 1=1");
-        List<Map<String,Object>> list = _jdbc.queryForList(sql.toString());
-        return  list;
+        return  _jdbc.queryForList("SELECT ID,pszName from songverinfo where 1=1");
     }
     //获取用户是否已点歌状态
     private List<Map<String,Object>> GenderIsTick(List<Map<String,Object>> list,String userKey ){
             List<MySongs> result=_mySongsRepository.findAllByUserKeyEqualsAndStateEquals(userKey,true);
-        for (int i = 0; i < list.size(); i++) {
-            Boolean ispick=false;
-            for (int j = 0; j < result.size(); j++) {
-                Object left=list.get(i).get("ID");
-                Integer right=result.get(j).getSongKey();
-                if (left.toString().equals(right.toString())){
-            ispick=true;
+        for (Map<String, Object> aList : list) {
+            Boolean impact = false;
+            for (MySongs aResult : result) {
+                Object left = aList.get("ID");
+                Integer right = aResult.getSongKey();
+                if (left.toString().equals(right.toString())) {
+                    impact = true;
                 }
             }
-            list.get(i).put("pick",ispick);
+            aList.put("pick", impact);
         }
         return  list;
     }
 
     public List<Map<String ,Object>> GetHotSongsList(String userKey){
-        StringBuilder sb=new StringBuilder();
-        sb.append("select ID,unSongCode ullSongCode,unSongCodex unSongCode,pszName,pszSpell,pszSingers singerName  FROM songinfo ORDER BY unRanking DESC LIMIT 0, 20");
-        List<Map<String,Object>> list = _jdbc.queryForList(sb.toString());
+        List<Map<String,Object>> list = _jdbc.queryForList("select ID,unSongCode ullSongCode,unSongCodex unSongCode,pszName,pszSpell,pszSingers singerName  FROM songinfo ORDER BY unRanking DESC LIMIT 0, 20");
         List<Map<String,Object>> res=GenderIsTick(list,userKey);
         return  res;
     }
