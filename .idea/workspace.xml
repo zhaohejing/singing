@@ -1,10 +1,9 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="ChangeListManager">
-    <list default="true" id="f0d0a10e-b853-4aeb-84d6-8ad172c74a8a" name="默认的" comment="接口修改">
+    <list default="true" id="f0d0a10e-b853-4aeb-84d6-8ad172c74a8a" name="默认的" comment="">
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/main/java/com/efan/appservice/service/AndSoService.java" afterPath="$PROJECT_DIR$/src/main/java/com/efan/appservice/service/AndSoService.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/main/java/com/efan/controller/MyController.java" afterPath="$PROJECT_DIR$/src/main/java/com/efan/controller/MyController.java" />
     </list>
     <ignored path="$PROJECT_DIR$/out/" />
     <ignored path="$PROJECT_DIR$/target/" />
@@ -142,15 +141,17 @@
       <file leaf-file-name="AndSoService.java" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/src/main/java/com/efan/appservice/service/AndSoService.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="340">
-              <caret line="198" column="17" lean-forward="true" selection-start-line="198" selection-start-column="17" selection-end-line="198" selection-end-column="17" />
+            <state relative-caret-position="293">
+              <caret line="220" column="20" lean-forward="true" selection-start-line="220" selection-start-column="20" selection-end-line="220" selection-end-column="20" />
               <folding>
-                <element signature="method#GetSingerList#0;class#AndSoService#0" expanded="false" />
+                <element signature="method#GetSingerByHot#0;class#AndSoService#0" expanded="false" />
                 <element signature="method#GetSongsByHot#0;class#AndSoService#0" expanded="false" />
                 <element signature="method#GetSingerCate#0;class#AndSoService#0" expanded="false" />
-                <element signature="e#6953#6968#0" expanded="true" />
+                <element signature="e#6992#7007#0" expanded="true" />
                 <element signature="method#GetSingerArea#0;class#AndSoService#0" expanded="false" />
-                <element signature="e#7768#7783#0" expanded="true" />
+                <element signature="e#7807#7822#0" expanded="true" />
+                <element signature="method#GetSongsVerList#0;class#AndSoService#0" expanded="false" />
+                <element signature="method#GenderIsTick#0;class#AndSoService#0" expanded="false" />
               </folding>
             </state>
           </provider>
@@ -853,13 +854,6 @@
       <workItem from="1501402865469" duration="134000" />
       <workItem from="1501403082407" duration="1170000" />
     </task>
-    <task id="LOCAL-00016" summary="删除测试模块">
-      <created>1494317001986</created>
-      <option name="number" value="00016" />
-      <option name="presentableId" value="LOCAL-00016" />
-      <option name="project" value="LOCAL" />
-      <updated>1494317001986</updated>
-    </task>
     <task id="LOCAL-00017" summary="删除测试模块">
       <created>1494324265570</created>
       <option name="number" value="00017" />
@@ -1196,11 +1190,18 @@
       <option name="project" value="LOCAL" />
       <updated>1501403707073</updated>
     </task>
-    <option name="localTasksCounter" value="65" />
+    <task id="LOCAL-00065" summary="接口修改">
+      <created>1501723281879</created>
+      <option name="number" value="00065" />
+      <option name="presentableId" value="LOCAL-00065" />
+      <option name="project" value="LOCAL" />
+      <updated>1501723281880</updated>
+    </task>
+    <option name="localTasksCounter" value="66" />
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="153990000" />
+    <option name="totallyTimeSpent" value="155071000" />
   </component>
   <component name="ToolWindowManager">
     <frame x="1420" y="-8" width="1554" height="916" extended-state="6" />
@@ -1228,7 +1229,7 @@
       <window_info id="运行" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.32457292" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
       <window_info id="Persistence" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.2490247" sideWeight="0.5050125" order="3" side_tool="true" content_ui="tabs" />
       <window_info id="控制板" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
-      <window_info id="Project" active="true" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.22029373" sideWeight="0.49498746" order="0" side_tool="false" content_ui="combo" />
+      <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.22029373" sideWeight="0.49498746" order="0" side_tool="false" content_ui="combo" />
       <window_info id="Bean Validation" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
       <window_info id="Theme Preview" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
       <window_info id="Favorites" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="2" side_tool="true" content_ui="tabs" />
@@ -1731,15 +1732,17 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/src/main/java/com/efan/appservice/service/AndSoService.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="340">
-          <caret line="198" column="17" lean-forward="true" selection-start-line="198" selection-start-column="17" selection-end-line="198" selection-end-column="17" />
+        <state relative-caret-position="293">
+          <caret line="220" column="20" lean-forward="true" selection-start-line="220" selection-start-column="20" selection-end-line="220" selection-end-column="20" />
           <folding>
-            <element signature="method#GetSingerList#0;class#AndSoService#0" expanded="false" />
+            <element signature="method#GetSingerByHot#0;class#AndSoService#0" expanded="false" />
             <element signature="method#GetSongsByHot#0;class#AndSoService#0" expanded="false" />
             <element signature="method#GetSingerCate#0;class#AndSoService#0" expanded="false" />
-            <element signature="e#6953#6968#0" expanded="true" />
+            <element signature="e#6992#7007#0" expanded="true" />
             <element signature="method#GetSingerArea#0;class#AndSoService#0" expanded="false" />
-            <element signature="e#7768#7783#0" expanded="true" />
+            <element signature="e#7807#7822#0" expanded="true" />
+            <element signature="method#GetSongsVerList#0;class#AndSoService#0" expanded="false" />
+            <element signature="method#GenderIsTick#0;class#AndSoService#0" expanded="false" />
           </folding>
         </state>
       </provider>

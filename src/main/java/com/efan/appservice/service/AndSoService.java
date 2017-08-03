@@ -36,7 +36,7 @@ public class AndSoService implements IAndSoService {
     public ResultModel<Map<String,Object>> GetSingerList(GetSingerInput input){
         StringBuilder sql=new StringBuilder();
         StringBuilder count=new StringBuilder();
-        sql.append("SELECT unSingerCode,pszName,pszSpell,wNameWords,wSingerType,unRanking from singerinfo where 1=1");
+        sql.append("SELECT unSingerCode unSingerCo ,pszName,pszSpell from singerinfo where 1=1");
         count.append("SELECT count(*) from singerinfo where 1=1");
 
         if (input.getFilter()!=null&& !input.getFilter().isEmpty()){
@@ -65,7 +65,7 @@ public class AndSoService implements IAndSoService {
     public ResultModel<Map<String,Object>> GetSongsList(GetSongsInput input){
         StringBuilder sql=new StringBuilder();
         StringBuilder count=new StringBuilder();
-        sql.append("SELECT ID,unSongCode,unSongCodex,pszName,pszSpell,pszSingers from songinfo  where 1=1");
+        sql.append("SELECT ID,unSongCode ullSongCode,unSongCodex unSongCode,pszName,pszSpell,pszSingers singerName  from songinfo  where 1=1");
         count.append("SELECT count(*) from songinfo where 1=1");
         if (input.getFilter()!=null&& !input.getFilter().isEmpty()){
             sql.append(" and  pszName like '%"+input.getFilter()+"%' ");
@@ -104,7 +104,7 @@ public class AndSoService implements IAndSoService {
     public ResultModel<Map<String,Object>> GetSingerByHot(BaseInput input){
         StringBuilder sql=new StringBuilder();
         StringBuilder count=new StringBuilder();
-        sql.append("SELECT unSingerCode,pszName,pszSpell,wSingerType,unRanking from singerinfo a where 1=1   ");
+        sql.append("SELECT  unSingerCode unSingerCo ,pszName,pszSpell from singerinfo a where 1=1   ");
         count.append("SELECT count(*) from singerinfo where 1=1");
         if (input.getFilter()!=null&& !input.getFilter().isEmpty()){
             sql.append(" and  pszName like '%"+input.getFilter()+"%' ");
@@ -121,7 +121,7 @@ public class AndSoService implements IAndSoService {
     public ResultModel<Map<String,Object>> GetSongsByHot(GetSongsInput input){
         StringBuilder sql=new StringBuilder();
         StringBuilder count=new StringBuilder();
-        sql.append(" SELECT ID,unSongCode,unSongCodex,pszName,pszSpell,pszSingers from songinfo  where 1=1");
+        sql.append(" SELECT ID,unSongCode ullSongCode,unSongCodex unSongCode,pszName,pszSpell,pszSingers singerName from songinfo  where 1=1");
         count.append("select count(*) from songinfo  where 1=1");
         if (input.getFilter()!=null&& !input.getFilter().isEmpty()){
             sql.append(" and  pszName like '%"+input.getFilter()+"%' ");
@@ -215,7 +215,7 @@ public class AndSoService implements IAndSoService {
 
     public List<Map<String ,Object>> GetHotSongsList(String userKey){
         StringBuilder sb=new StringBuilder();
-        sb.append("select a.ID,a.unSongCode,a.unSongCodex,a.pszName,a.pszSpell,a.pszSingers,a.unRanking,a.arrStyles FROM songinfo AS a ORDER BY a.unRanking DESC LIMIT 0, 20");
+        sb.append("select ID,unSongCode ullSongCode,unSongCodex unSongCode,pszName,pszSpell,pszSingers singerName  FROM songinfo ORDER BY unRanking DESC LIMIT 0, 20");
         List<Map<String,Object>> list = _jdbc.queryForList(sb.toString());
         List<Map<String,Object>> res=GenderIsTick(list,userKey);
         return  res;
