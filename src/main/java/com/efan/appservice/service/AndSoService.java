@@ -36,7 +36,7 @@ public class AndSoService implements IAndSoService {
     public ResultModel<Map<String,Object>> GetSingerList(GetSingerInput input){
         StringBuilder sql=new StringBuilder();
         StringBuilder count=new StringBuilder();
-        sql.append("SELECT unSingerCo,pszName,pszSpell from singerinfo where 1=1");
+        sql.append("SELECT unSingerCode,pszName,pszSpell,wNameWords,wSingerType,unRanking from singerinfo where 1=1");
         count.append("SELECT count(*) from singerinfo where 1=1");
 
         if (input.getFilter()!=null&& !input.getFilter().isEmpty()){
@@ -48,13 +48,13 @@ public class AndSoService implements IAndSoService {
             count.append(" and  pszSpell like '%"+input.word+"%' ");
         }
         if (input.cate>0){
-            sql.append(" and  wSingerTyp = '"+input.cate+"' ");
-            count.append(" and  wSingerTyp = '"+input.cate+"' ");
+            sql.append(" and  wSingerType = '"+input.cate+"' ");
+            count.append(" and  wSingerType = '"+input.cate+"' ");
         }
-        if (input.area>0){
+     /*   if (input.area>0){
             sql.append(" and  wSingerAre = '"+input.area+"' ");
             count.append(" and  wSingerAre = '"+input.area+"' ");
-        }
+        }*/
 
         sql.append(" limit  "+input.getPage()+" , "+input.getSize() );
         Long total=_jdbc.queryForObject(count.toString(),Long.class);
@@ -65,14 +65,14 @@ public class AndSoService implements IAndSoService {
     public ResultModel<Map<String,Object>> GetSongsList(GetSongsInput input){
         StringBuilder sql=new StringBuilder();
         StringBuilder count=new StringBuilder();
-        sql.append("SELECT a.ID, a.ullSongCode,a.unSongCode,a.pszName,a.pszSpell,b.pszName singerName from songinfo a left join singerinfo b on a.arrSingers=b.unSingerCo where 1=1");
+        sql.append("SELECT ID,unSongCode,unSongCodex,pszName,pszSpell,pszSingers from songinfo  where 1=1");
         count.append("SELECT count(*) from songinfo where 1=1");
         if (input.getFilter()!=null&& !input.getFilter().isEmpty()){
-            sql.append(" and  a.pszName like '%"+input.getFilter()+"%' ");
+            sql.append(" and  pszName like '%"+input.getFilter()+"%' ");
             count.append(" and  pszName like '%"+input.getFilter()+"%' ");
         }
         if (input.word!=null&& !input.word.isEmpty()){
-            sql.append(" and  a.pszSpell like '%"+input.word+"%' ");
+            sql.append(" and  pszSpell like '%"+input.word+"%' ");
             count.append(" and  pszSpell like '%"+input.word+"%' ");
         }
         if (input.cateId!=null&& !input.cateId.isEmpty()){
@@ -80,13 +80,13 @@ public class AndSoService implements IAndSoService {
             count.append(" and  arrStyles = '"+input.cateId+"' ");
         }
         if (input.singer!=null&&! input.singer.isEmpty()){
-            sql.append(" and  a.arrSingers = '"+input.singer+"' ");
-            count.append(" and  arrSingers = '"+input.singer+"' ");
+            sql.append(" and  pszSingers like '%"+input.singer+"%' ");
+            count.append(" and  pszSingers like '%"+input.singer+"%' ");
         }
-        if (input.version!=null&&! input.version.isEmpty()){
+       /* if (input.version!=null&&! input.version.isEmpty()){
             sql.append(" and  a.arrVersions = '"+input.version+"' ");
             count.append(" and  arrVersions = '"+input.version+"' ");
-        }
+        }*/
         sql.append(" limit  "+input.getPage()+" , "+input.getSize() );
         Long total=_jdbc.queryForObject(count.toString(),Long.class);
         List<Map<String,Object>> list = _jdbc.queryForList(sql.toString());
@@ -104,13 +104,13 @@ public class AndSoService implements IAndSoService {
     public ResultModel<Map<String,Object>> GetSingerByHot(BaseInput input){
         StringBuilder sql=new StringBuilder();
         StringBuilder count=new StringBuilder();
-        sql.append("SELECT unSingerCo,pszName,pszSpell from singerinfo where 1=1   ");
+        sql.append("SELECT unSingerCode,pszName,pszSpell,wSingerType,unRanking from singerinfo a where 1=1   ");
         count.append("SELECT count(*) from singerinfo where 1=1");
         if (input.getFilter()!=null&& !input.getFilter().isEmpty()){
             sql.append(" and  pszName like '%"+input.getFilter()+"%' ");
             count.append(" and  pszName like '%"+input.getFilter()+"%' ");
         }
-        sql.append("order by unTopRatin desc");
+        sql.append("order by unRanking desc");
         sql.append(" limit  "+input.getPage()+" , "+input.getSize() );
         Long total=_jdbc.queryForObject(count.toString(),Long.class);
         List<Map<String,Object>> list = _jdbc.queryForList(sql.toString());
@@ -121,16 +121,17 @@ public class AndSoService implements IAndSoService {
     public ResultModel<Map<String,Object>> GetSongsByHot(GetSongsInput input){
         StringBuilder sql=new StringBuilder();
         StringBuilder count=new StringBuilder();
-        sql.append("select a.ID,b.pszName,b.pszSpell,c.pszName singerName from topsongs a inner join songinfo b on a.unSongCo=b.unSongCo left join singerinfo c on b.arrSingers=c.unSingerCo where 1=1");
-        count.append("select count(*) from topsongs a inner join songinfo b on a.unSongCo=b.unSongCo where 1=1");
+        sql.append(" SELECT ID,unSongCode,unSongCodex,pszName,pszSpell,pszSingers from songinfo  where 1=1");
+        count.append("select count(*) from songinfo  where 1=1");
         if (input.getFilter()!=null&& !input.getFilter().isEmpty()){
-            sql.append(" and  b.pszName like '%"+input.getFilter()+"%' ");
-            count.append(" and  b.pszName like '%"+input.getFilter()+"%' ");
+            sql.append(" and  pszName like '%"+input.getFilter()+"%' ");
+            count.append(" and  pszName like '%"+input.getFilter()+"%' ");
         }
         if (input.word!=null&& !input.word.isEmpty()){
-            sql.append(" and  b.pszSpell like '%"+input.word+"%'");
-            count.append(" and  b.pszSpell like '%"+input.word+"%' ");
+            sql.append(" and  pszSpell like '%"+input.word+"%'");
+            count.append(" and  pszSpell like '%"+input.word+"%' ");
         }
+        sql.append(" order by unRanking desc ");
         sql.append(" limit  "+input.getPage()+" , "+input.getSize() );
         Long total=_jdbc.queryForObject(count.toString(),Long.class);
         List<Map<String,Object>> list = _jdbc.queryForList(sql.toString());
@@ -214,7 +215,7 @@ public class AndSoService implements IAndSoService {
 
     public List<Map<String ,Object>> GetHotSongsList(String userKey){
         StringBuilder sb=new StringBuilder();
-        sb.append("select b.ID, b.ullSongCode,b.unSongCode,b.pszName,b.pszSpell,c.pszName singerName from topsongs a inner join songinfo b on a.unSongCode= b.unSongCode left join singerinfo c on b.arrSingers=c.unSingerCo order by a.SN;");
+        sb.append("select a.ID,a.unSongCode,a.unSongCodex,a.pszName,a.pszSpell,a.pszSingers,a.unRanking,a.arrStyles FROM songinfo AS a ORDER BY a.unRanking DESC LIMIT 0, 20");
         List<Map<String,Object>> list = _jdbc.queryForList(sb.toString());
         List<Map<String,Object>> res=GenderIsTick(list,userKey);
         return  res;
