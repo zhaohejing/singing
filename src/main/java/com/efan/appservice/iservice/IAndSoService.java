@@ -22,7 +22,8 @@ public interface IAndSoService {
     //获取歌曲版本
      List<Map<String,Object>> GetSongsVerList();
     ResultModel<Map<String,Object>> GetSingerByHot(BaseInput input);
-
+    //获取热点分类
+     List<Map<String,Object>> GetHotCateList();
     ///获取排行榜下的歌曲
       ResultModel<Map<String,Object>> GetSongsByVendor(VendorInput input);
      ResultModel<Map<String,Object>> GetSingerCate();

@@ -98,6 +98,11 @@ public class AndSoService implements IAndSoService {
     public List<Map<String,Object>> GetSongsCateList(){
         return  _jdbc.queryForList("SELECT ID,pszName from songstyleinfo where 1=1");
     }
+    //获取热点分类
+    public List<Map<String,Object>> GetHotCateList(){
+        return  _jdbc.queryForList(" SELECT * FROM singerinfo WHERE wSingerType=40 ORDER BY unRanking DESC");
+    }
+
     //获取热门歌星
     public ResultModel<Map<String,Object>> GetSingerByHot(BaseInput input){
         StringBuilder sql=new StringBuilder();

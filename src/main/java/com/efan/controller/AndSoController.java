@@ -96,7 +96,7 @@ public class AndSoController {
     @ApiOperation(value="获取热点歌曲分类列表", notes="歌单接口")
     @RequestMapping(value  ="/gethotsongscate" ,method = RequestMethod.POST)
     public ActionResult GetSongsHotCates(){
-        List<Map<String,Object>> result=_songService.GetSongsCateList();
+        List<Map<String,Object>> result=_songService.GetHotCateList();
         return  new ActionResult(result);
     }
     /*获取热点歌曲分类下歌曲*/
