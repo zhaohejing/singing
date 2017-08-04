@@ -27,5 +27,5 @@ public interface IAndSoService {
     ///获取排行榜下的歌曲
       ResultModel<Map<String,Object>> GetSongsByVendor(VendorInput input);
      ResultModel<Map<String,Object>> GetSingerCate();
-    List<Map<String ,Object>> GetHotSongsList(String userKey);
+    List<Map<String ,Object>> GetHotSongsList(String userKey,String cate);
 }
