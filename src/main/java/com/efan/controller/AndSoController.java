@@ -7,6 +7,7 @@ import com.efan.controller.dtos.SongDto;
 import com.efan.controller.inputs.BaseInput;
 import com.efan.controller.inputs.GetSingerInput;
 import com.efan.controller.inputs.GetSongsInput;
+import com.efan.controller.inputs.VendorInput;
 import com.efan.core.page.ActionResult;
 import com.efan.core.page.FilterModel;
 import com.efan.core.page.PageModel;
@@ -51,13 +52,7 @@ public class AndSoController {
         ResultModel<Map<String,Object>> result=_songService.GetSingerCate();
         return  new ActionResult(result);
     }
-    /*获取歌星区域*/
-    @ApiOperation(value="获取歌星区域", notes="歌单接口")
-    @RequestMapping(value  ="/singerarea" ,method = RequestMethod.POST)
-    public ActionResult getSingerArea(){
-        ResultModel<Map<String,Object>> result=_songService.GetSingerArea();
-        return  new ActionResult(result);
-    }
+
     /*歌曲模糊搜索*/
     @ApiOperation(value="歌曲模糊搜索", notes="歌单接口")
     @ApiImplicitParam(name = "input", value = "{filter:关键词,index:页码,size:页容量 ,word:简写}", required = true, dataType = "GetSongsInput")
@@ -122,10 +117,10 @@ public class AndSoController {
 
     /*获取排行榜歌曲列表*/
     @ApiOperation(value="获取排行榜歌曲列表", notes="歌单接口")
-    @ApiImplicitParam(name = "input", value = "{filter:过滤条件,index:页码,size:页容量 ,word:关键词}", required = true, dataType = "GetSongsInput")
-    @RequestMapping(value  ="/getrankingsongs" ,method = RequestMethod.POST)
-    public ActionResult GetRankingSongs(@RequestBody GetSongsInput input){
-        ResultModel<Map<String,Object>> result=_songService.GetSongsList(input);
+    @ApiImplicitParam(name = "input", value = "{filter:过滤条件,index:页码,size:页容量 ,word:关键词}", required = true, dataType = "VendorInput")
+    @RequestMapping(value  ="/vendorsongs" ,method = RequestMethod.POST)
+    public ActionResult GetRankingSongs(@RequestBody VendorInput input){
+        ResultModel<Map<String,Object>> result=_songService.GetSongsByVendor(input);
         return  new ActionResult(result);
     }
 

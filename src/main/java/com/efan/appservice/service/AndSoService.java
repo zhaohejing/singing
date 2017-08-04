@@ -4,6 +4,7 @@ import com.efan.appservice.iservice.IAndSoService;
 import com.efan.controller.inputs.BaseInput;
 import com.efan.controller.inputs.GetSingerInput;
 import com.efan.controller.inputs.GetSongsInput;
+import com.efan.controller.inputs.VendorInput;
 import com.efan.core.page.ResultModel;
 import com.efan.core.primary.MySongs;
 import com.efan.repository.primary.IMySongsRepository;
@@ -80,8 +81,8 @@ public class AndSoService implements IAndSoService {
             count.append(" and  arrStyles = '").append(input.cateId).append("' ");
         }
         if (input.singer!=null&&! input.singer.isEmpty()){
-            sql.append(" and  pszSingers like '%").append(input.singer).append("%' ");
-            count.append(" and  pszSingers like '%").append(input.singer).append("%' ");
+            sql.append(" and  arrSingers like '%").append(input.singer).append("%' ");
+            count.append(" and  arrSingers like '%").append(input.singer).append("%' ");
         }
        /* if (input.version!=null&&! input.version.isEmpty()){
             sql.append(" and  a.arrVersions = '"+input.version+"' ");
@@ -101,8 +102,8 @@ public class AndSoService implements IAndSoService {
     public ResultModel<Map<String,Object>> GetSingerByHot(BaseInput input){
         StringBuilder sql=new StringBuilder();
         StringBuilder count=new StringBuilder();
-        sql.append("SELECT  unSingerCode unSingerCo ,pszName,pszSpell from singerinfo a where 1=1   ");
-        count.append("SELECT count(*) from singerinfo where 1=1");
+        sql.append("SELECT  unSingerCode unSingerCo ,pszName,pszSpell from singerinfo  where 1=1  and wSingerType<>40 ");
+        count.append("SELECT count(*) from singerinfo where 1=1  and wSingerType<>40 ");
         if (input.getFilter()!=null&& !input.getFilter().isEmpty()){
             sql.append(" and  pszName like '%").append(input.getFilter()).append("%' ");
             count.append(" and  pszName like '%").append(input.getFilter()).append("%' ");
@@ -114,81 +115,82 @@ public class AndSoService implements IAndSoService {
         return new ResultModel<>(list, total);
 
     }
-    //获取热门歌曲
-    public ResultModel<Map<String,Object>> GetSongsByHot(GetSongsInput input){
-        StringBuilder sql=new StringBuilder();
-        StringBuilder count=new StringBuilder();
-        sql.append(" SELECT ID,unSongCode ullSongCode,unSongCodex unSongCode,pszName,pszSpell,pszSingers singerName from songinfo  where 1=1");
-        count.append("select count(*) from songinfo  where 1=1");
-        if (input.getFilter()!=null&& !input.getFilter().isEmpty()){
-            sql.append(" and  pszName like '%").append(input.getFilter()).append("%' ");
-            count.append(" and  pszName like '%").append(input.getFilter()).append("%' ");
-        }
-        if (input.word!=null&& !input.word.isEmpty()){
-            sql.append(" and  pszSpell like '%").append(input.word).append("%'");
-            count.append(" and  pszSpell like '%").append(input.word).append("%' ");
-        }
-        sql.append(" order by unRanking desc ");
-        sql.append(" limit  ").append(input.getPage()).append(" , ").append(input.getSize());
-        Long total=_jdbc.queryForObject(count.toString(),Long.class);
-        List<Map<String,Object>> list = _jdbc.queryForList(sql.toString());
-        List<Map<String,Object>> res=GenderIsTick(list,input.userKey);
-        return new ResultModel<>(res, total);
-    }
 
+    //获取歌曲分类
      public ResultModel<Map<String,Object>> GetSingerCate(){
         List<Map<String,Object>> result=new ArrayList<>();
              Map<String,Object> a= new HashMap<>();
-                a.put("id",1);
-                  a.put("name","男");
+             a.put("id",11);
+             a.put("name","内地男歌手");
 
          result.add(a);
          a= new HashMap<>();
-         a.put("id",2);
-         a.put("name","女");
+         a.put("id",21);
+         a.put("name","内地女歌手");
+         result.add(a);
 
-         result.add(a);
          a= new HashMap<>();
-         a.put("id",3);
-         a.put("name","乐队");
+         a.put("id",12);
+         a.put("name","港台男歌手");
          result.add(a);
+
          a= new HashMap<>();
-         a.put("id",4);
-         a.put("name","其他");
+         a.put("id",22);
+         a.put("name","港台女歌手");
          result.add(a);
+
          a= new HashMap<>();
-         a.put("id",5);
+         a.put("id",13);
+         a.put("name","日韩男歌手");
+         result.add(a);
+
+         a= new HashMap<>();
+         a.put("id",23);
+         a.put("name","日韩女歌手");
+         result.add(a);
+
+         a= new HashMap<>();
+         a.put("id",14);
+         a.put("name","欧美男歌手");
+         result.add(a);
+
+         a= new HashMap<>();
+         a.put("id",24);
+         a.put("name","欧美女歌手");
+         result.add(a);
+
+         a= new HashMap<>();
+         a.put("id",30);
+         a.put("name","乐队组合");
+         result.add(a);
+
+         a= new HashMap<>();
+         a.put("id",40);
          a.put("name","娱乐节目");
          result.add(a);
          return new ResultModel<>(result);
      }
-    public ResultModel<Map<String,Object>> GetSingerArea(){
-        List<Map<String,Object>> result=new ArrayList<>();
-        Map<String,Object> a= new HashMap<>();
-        a.put("id",1);
-        a.put("name","大陆");
-        result.add(a);
-        a= new HashMap<>();
-        a.put("id",2);
-        a.put("name","港台");
-        result.add(a);
-        a= new HashMap<>();
-        a.put("id",3);
-        a.put("name","日韩");
-        result.add(a);
-        a= new HashMap<>();
-        a.put("id",4);
-        a.put("name","欧美");
-        result.add(a);
-        a= new HashMap<>();
-        a.put("id",5);
-        a.put("name","其他");
-        result.add(a);
-        return new ResultModel<>(result);
-    }
+///获取排行榜下的歌曲
+     public  ResultModel<Map<String,Object>> GetSongsByVendor(VendorInput input){
+         StringBuilder sql=new StringBuilder();
+         StringBuilder count=new StringBuilder();
+         sql.append("SELECT b.*  FROM rankingsongs a INNER JOIN songinfo b ON a.unSongCode = b.unSongCode AND a.unSongCodex = b.unSongCodex where 1=1");
+         count.append("SELECT count(1) FROM rankingsongs a INNER JOIN songinfo b ON a.unSongCode = b.unSongCode AND a.unSongCodex = b.unSongCodex where 1=1");
+
+         if (input.getFilter()!=null&& !input.getFilter().isEmpty()){
+             sql.append(" and a.unVenderId= ").append(input.getFilter());
+             count.append(" and a.unVenderId= ").append(input.getFilter());
+         }
+         sql.append(" limit  ").append(input.getPage()).append(" , ").append(input.getSize());
+         Long total=_jdbc.queryForObject(count.toString(),Long.class);
+         List<Map<String,Object>> list = _jdbc.queryForList(sql.toString());
+         List<Map<String,Object>> res=GenderIsTick(list,input.userKey);
+         return new ResultModel<>(res, total);
+     }
+
     //获取歌曲排行榜
     public List<Map<String,Object>> GetSongsVerList(){
-        return  _jdbc.queryForList("SELECT ID,pszName from songverinfo where 1=1");
+        return  _jdbc.queryForList("SELECT ID,pszName from vendor where 1=1");
     }
     //获取用户是否已点歌状态
     private List<Map<String,Object>> GenderIsTick(List<Map<String,Object>> list,String userKey ){
