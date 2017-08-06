@@ -215,7 +215,7 @@ public class AndSoService implements IAndSoService {
     }
 
     public List<Map<String ,Object>> GetHotSongsList(String userKey,String cate){
-        List<Map<String,Object>> list = _jdbc.queryForList("select ID,unSongCode ullSongCode,unSongCodex unSongCode,pszName,pszSpell,pszSingers singerName  FROM songinfo" +
+        List<Map<String,Object>> list = _jdbc.queryForList("select ID,unSongCode ullSongCode,unSongCodex unSongCode,pszName,pszSpell,pszSingers singerName  FROM songinfo " +
                 "where  arrSingers like '%"+cate+"%' ORDER BY unRanking DESC LIMIT 0, 20");
         List<Map<String,Object>> res=GenderIsTick(list,userKey);
         return  res;
