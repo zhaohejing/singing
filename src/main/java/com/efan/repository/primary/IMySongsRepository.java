@@ -1,6 +1,7 @@
 package com.efan.repository.primary;
 
 import com.efan.core.primary.MySongs;
+import com.efan.core.primary.MyTape;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
 import org.springframework.data.jpa.repository.JpaRepository;
@@ -15,9 +16,9 @@ import java.util.List;
  */
 @Repository
 public interface IMySongsRepository extends JpaRepository<MySongs,Long> {
-    Page<MySongs> findMySongsBySongNameLikeAndUserKeyEquals(String songName,String userKey, Pageable pageable);
     Page<MySongs> findAll (Pageable pageable);
-    List<MySongs> findAllByUserKeyEqualsAndStateEquals(String userKey,Boolean state);
-    Page<MySongs> findAllByUserKeyEqualsAndStateEquals(String userKey,Boolean state,Pageable pageable);
+    List<MySongs> findAllByUserKeyEqualsAndStateEqualsOrderBySortDesc(String userKey,Boolean state);
+    Page<MySongs> findAllByUserKeyEqualsAndStateEqualsOrderBySortDesc(String userKey,Boolean state,Pageable pageable);
     List<MySongs> findAllByUserKeyEqualsAndSongKeyEquals(String userKey,Integer songsKey);
+    List<MySongs> findAllByUserKeyOrderBySortDesc(String userKey);
 }

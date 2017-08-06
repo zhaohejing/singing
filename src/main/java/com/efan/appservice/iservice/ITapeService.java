@@ -25,4 +25,6 @@ public interface ITapeService {
     //efan毁掉 我的歌曲列表
     Map<String,Object> GetMySongsByUser(KeyInput input);
     Integer GetMySongsCount(String userKey,Integer songsId);
+    //排序我的歌单
+    MySongs  SortMyTape(String userKey,Long tapeId);
 }

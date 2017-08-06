@@ -199,7 +199,7 @@ public class AndSoService implements IAndSoService {
     }
     //获取用户是否已点歌状态
     private List<Map<String,Object>> GenderIsTick(List<Map<String,Object>> list,String userKey ){
-            List<MySongs> result=_mySongsRepository.findAllByUserKeyEqualsAndStateEquals(userKey,true);
+            List<MySongs> result=_mySongsRepository.findAllByUserKeyEqualsAndStateEqualsOrderBySortDesc(userKey,true);
         for (Map<String, Object> aList : list) {
             Boolean impact = false;
             for (MySongs aResult : result) {

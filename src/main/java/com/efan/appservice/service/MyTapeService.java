@@ -46,7 +46,6 @@ public class MyTapeService implements IMyTapeService {
             model.setUserImage(input.userImage);
             model.setQiniuUrl(input.qiniuUrl);
             model.setRemark(input.remark);
-            model.setSort(1);
             model.setSongImage(input.songImage);
             model.setSongTime(input.songTime);
             model.setCreationTime(df.format(new Date()));
@@ -91,18 +90,6 @@ public class MyTapeService implements IMyTapeService {
     public  MyTape GetMyTape(DeleteInput input){
         MyTape model=_myTapeRepository.findOne(input.id);
       return  model;
-    }
-    //排序我的歌单
-    public  void  SortMyTape(String userKey,Long tapeId){
-        List<MyTape> list=_myTapeRepository.findMyTapeByUserKeyOrderBySortDesc(userKey);
-        MyTape first=list.get(0);
-        Integer sort=1;
-         if (first!=null){
-             sort=first.getSort()==null?0:(first.getSort()+1);
-         }
-         MyTape cur=_myTapeRepository.findOne(tapeId);
-         cur.setSort(sort);
-         _myTapeRepository.saveAndFlush(cur );
     }
 
 }

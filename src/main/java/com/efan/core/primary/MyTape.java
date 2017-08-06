@@ -38,15 +38,7 @@ public class MyTape implements Serializable {
     @Column(length = 150)
     private  String userImage;
 
-    public Integer getSort() {
-        return sort;
-    }
 
-    public void setSort(Integer sort) {
-        this.sort = sort;
-    }
-
-    private  Integer sort;
     public String getOrderId() {
         return orderId;
     }

@@ -21,6 +21,5 @@ public interface IMyTapeService {
     MyTape UpdateMyTapeState(Long tapeId);
     MyTape GetMyTape(DeleteInput input);
     ResultModel<MyTape> GetAllMyTapeList(FilterModel model);
-    //排序我的歌单
-      void  SortMyTape(String userKey,Long tapeId);
+
 }

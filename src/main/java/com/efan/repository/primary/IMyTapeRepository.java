@@ -16,5 +16,5 @@ public interface IMyTapeRepository extends JpaRepository<MyTape,Long> {
     Page<MyTape> findMyTapeByUserKey(String userKey,Pageable pageable);
     Page<MyTape> findMyTapeByUserKeyAndState(String userKey,Boolean state,Pageable pageable);
 
-    List<MyTape> findMyTapeByUserKeyOrderBySortDesc(String userKey);
+
 }

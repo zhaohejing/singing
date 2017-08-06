@@ -31,7 +31,15 @@ public class MySongs implements Serializable {
     public Integer getSongKey() {
         return songKey;
     }
+    public Integer getSort() {
+        return sort;
+    }
 
+    public void setSort(Integer sort) {
+        this.sort = sort;
+    }
+
+    private  Integer sort;
     public void setSongKey(Integer songKey) {
         this.songKey = songKey;
     }

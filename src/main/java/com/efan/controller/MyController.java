@@ -48,6 +48,14 @@ public class MyController {
         ResultModel<MySongs> result=_tapeService.GetMySongsByUserKey(input);
         return  new ActionResult(result.getTotal());
     }
+    /*排序我的歌单*/
+    @ApiOperation(value="排序我的歌单", notes="我的模块接口")
+    @RequestMapping(value  ="/sortmytape" ,method = RequestMethod.POST)
+    @ApiImplicitParam(name = "input", value = "{userkey:用户openid,filter:我的歌单的id}", required = true, dataType = "UserKeyInput")
+    public ActionResult SortMyTape(@RequestBody UserKeyInput input){
+      MySongs res=  _tapeService.SortMyTape(input.userKey,input.tapeId);
+        return  new ActionResult(res);
+    }
     /*获取我的歌单列表*/
     @ApiOperation(value="获取我的歌单列表", notes="我的模块接口")
     @ApiImplicitParam(name = "input", value = "用户openId", required = true, dataType = "KeyInput")

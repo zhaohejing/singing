@@ -49,14 +49,7 @@ this._mytapeService=mytapeService;
         MyTape result=_mytapeService.UpdateMyTapeState(id);
         return  new ActionResult(result);
     }
-    /*排序我的歌单*/
-    @ApiOperation(value="排序我的歌单", notes="我的模块接口")
-    @RequestMapping(value  ="/sortmytape" ,method = RequestMethod.POST)
-    @ApiImplicitParam(name = "input", value = "{userkey:用户openid,filter:我的歌单的id}", required = true, dataType = "UserKeyInput")
-    public ActionResult SortMyTape(@RequestBody UserKeyInput input){
-        _mytapeService.SortMyTape(input.userKey,input.tapeId);
-        return  new ActionResult(true);
-    }
+
     /*获取我的录音列表*/
     @ApiOperation(value="获取我的以保留录音列表", notes="我的模块接口")
     @ApiImplicitParam(name = "input", value = "{filter:过滤条件,index:页码,size:页容量 }", required = true, dataType = "FilterModel")

@@ -7,6 +7,7 @@ import com.efan.controller.inputs.SongSubInput;
 import com.efan.core.page.FilterModel;
 import com.efan.core.page.ResultModel;
 import com.efan.core.primary.MySongs;
+import com.efan.core.primary.MyTape;
 import com.efan.repository.primary.IMySongsRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
@@ -55,13 +56,13 @@ public class TapeService implements ITapeService {
     }
 
     public ResultModel<MySongs> GetMySongsByUserKey(KeyInput input){
-            List<MySongs> result=_mysongsRepository.findAllByUserKeyEqualsAndStateEquals(input.openid,true);
+            List<MySongs> result=_mysongsRepository.findAllByUserKeyEqualsAndStateEqualsOrderBySortDesc(input.openid,true);
             return  new ResultModel<MySongs>(result,(long)result.size());
     }
 
     public Map<String,Object> GetMySongsByUser(KeyInput input){
         Map<String,Object> map=new HashMap<>();
-        List<MySongs> result=_mysongsRepository.findAllByUserKeyEqualsAndStateEquals(input.openid,true);
+        List<MySongs> result=_mysongsRepository.findAllByUserKeyEqualsAndStateEqualsOrderBySortDesc(input.openid,true);
        // return  new ResultModel<MySongs>(result,(long)result.size());
         map.put("tag",input.tag);
         map.put("stbId",input.stbId);
@@ -91,8 +92,20 @@ public class TapeService implements ITapeService {
     //获取我的点歌列表
     public ResultModel<MySongs> GetMySongsList(FilterModel model){
         Pageable pageable = new PageRequest(model.index-1, model.size,null);
-        Page<MySongs> res=  _mysongsRepository.findAllByUserKeyEqualsAndStateEquals(model.filter,true, pageable);
+        Page<MySongs> res=  _mysongsRepository.findAllByUserKeyEqualsAndStateEqualsOrderBySortDesc(model.filter,true, pageable);
         return  new ResultModel<MySongs>( res.getContent(),res.getTotalElements());
+    }
+    //排序我的歌单
+    public  MySongs  SortMyTape(String userKey,Long tapeId){
+        List<MySongs> list=_mysongsRepository.findAllByUserKeyOrderBySortDesc(userKey);
+        MySongs first=list.get(0);
+        Integer sort=1;
+        if (first!=null){
+            sort=first.getSort()==null?0:(first.getSort()+1);
+        }
+        MySongs cur=_mysongsRepository.findOne(tapeId);
+        cur.setSort(sort);
+      return  _mysongsRepository.saveAndFlush(cur );
     }
 
 }
