@@ -4,10 +4,7 @@ import com.efan.appservice.iservice.IAndSoService;
 import com.efan.controller.dtos.SingerDto;
 import com.efan.controller.dtos.SongCateDto;
 import com.efan.controller.dtos.SongDto;
-import com.efan.controller.inputs.BaseInput;
-import com.efan.controller.inputs.GetSingerInput;
-import com.efan.controller.inputs.GetSongsInput;
-import com.efan.controller.inputs.VendorInput;
+import com.efan.controller.inputs.*;
 import com.efan.core.page.ActionResult;
 import com.efan.core.page.FilterModel;
 import com.efan.core.page.PageModel;
@@ -102,8 +99,9 @@ public class AndSoController {
     /*获取热点歌曲分类下歌曲*/
     @ApiOperation(value="获取热点歌曲", notes="歌单接口")
     @RequestMapping(value  ="/hotsongs" ,method = RequestMethod.POST)
-    public ActionResult HotSongs(String userKey,String cate){
-        List<Map<String,Object>> result=_songService.GetHotSongsList(userKey,cate);
+    @ApiImplicitParam(name = "input", value = "{userkey：openid,filter ;分类类型}", required = true, dataType = "UserKeyInput")
+    public ActionResult HotSongs(@RequestBody UserKeyInput input){
+        List<Map<String,Object>> result=_songService.GetHotSongsList(input.userKey,input.cate);
         return  new ActionResult(result);
     }
 

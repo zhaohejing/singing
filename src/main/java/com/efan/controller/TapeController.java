@@ -4,6 +4,7 @@ import com.efan.appservice.iservice.IMyTapeService;
 import com.efan.controller.dtos.MyTapeDto;
 import com.efan.controller.inputs.DeleteInput;
 import com.efan.controller.inputs.MyTapeMachine;
+import com.efan.controller.inputs.UserKeyInput;
 import com.efan.core.primary.MyTape;
 import com.efan.core.page.ActionResult;
 import com.efan.core.page.FilterModel;
@@ -47,6 +48,14 @@ this._mytapeService=mytapeService;
     public ActionResult UpdateMyTapeState(@RequestParam Long id){
         MyTape result=_mytapeService.UpdateMyTapeState(id);
         return  new ActionResult(result);
+    }
+    /*排序我的歌单*/
+    @ApiOperation(value="排序我的歌单", notes="我的模块接口")
+    @RequestMapping(value  ="/sortmytape" ,method = RequestMethod.POST)
+    @ApiImplicitParam(name = "input", value = "{userkey:用户openid,filter:我的歌单的id}", required = true, dataType = "UserKeyInput")
+    public ActionResult SortMyTape(@RequestBody UserKeyInput input){
+        _mytapeService.SortMyTape(input.userKey,input.tapeId);
+        return  new ActionResult(true);
     }
     /*获取我的录音列表*/
     @ApiOperation(value="获取我的以保留录音列表", notes="我的模块接口")
