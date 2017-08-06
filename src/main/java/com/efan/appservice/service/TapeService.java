@@ -45,6 +45,7 @@ public class TapeService implements ITapeService {
             songs.setState(true);
             songs.setSongKey(input.songKey);
             songs.setModifyTime(date);
+            songs.setSort(1);
             songs.setModifyUserId(1L);
             songs=_mysongsRepository.save(songs);
        return songs;
@@ -57,7 +58,7 @@ public class TapeService implements ITapeService {
 
     public ResultModel<MySongs> GetMySongsByUserKey(KeyInput input){
             List<MySongs> result=_mysongsRepository.findAllByUserKeyEqualsAndStateEqualsOrderBySortDesc(input.openid,true);
-            return  new ResultModel<MySongs>(result,(long)result.size());
+            return  new ResultModel<>(result,(long)result.size());
     }
 
     public Map<String,Object> GetMySongsByUser(KeyInput input){
@@ -93,7 +94,7 @@ public class TapeService implements ITapeService {
     public ResultModel<MySongs> GetMySongsList(FilterModel model){
         Pageable pageable = new PageRequest(model.index-1, model.size,null);
         Page<MySongs> res=  _mysongsRepository.findAllByUserKeyEqualsAndStateEqualsOrderBySortDesc(model.filter,true, pageable);
-        return  new ResultModel<MySongs>( res.getContent(),res.getTotalElements());
+        return  new ResultModel<>( res.getContent(),res.getTotalElements());
     }
     //排序我的歌单
     public  MySongs  SortMyTape(String userKey,Long tapeId){
