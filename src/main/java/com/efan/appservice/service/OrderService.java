@@ -175,7 +175,8 @@ public class OrderService implements IOrderService {
      public  Order GetOrderDetail(String openId,String machineId){
          SimpleDateFormat df = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");//设置日期格式
 
-     List<Order> list=   _orderRepository.findOrdersbyFilter(openId,machineId,new Date());
+     List<Order> list=   _orderRepository.findOrdersbyFilter(machineId,openId,new Date());
+     if(list.size()==0)return null;
          return list.get(0);
      }
      /*获取我的订单*/
