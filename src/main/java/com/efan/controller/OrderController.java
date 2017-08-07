@@ -92,7 +92,7 @@ public class OrderController {
           return  new ActionResult(false,input.url ,"没有你的订单"   );
       }
       if ( model.getState()!=1){
-          return  new ActionResult(false,null ,"订单还未支付"   );
+          return  new ActionResult(false,input.url ,"订单还未支付"   );
       }else if(!model.getUserKey().equals(input.openId)){
           return  new ActionResult(false,null ,"该时段已被其他用户预定！" );
       }
