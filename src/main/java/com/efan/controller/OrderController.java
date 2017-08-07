@@ -101,9 +101,10 @@ public class OrderController {
     /**
      * 支付成功修改订单状态*/
     @ApiOperation(value="支付成功修改订单状态", notes="远程购买接口")
+    @ApiImplicitParam(name = "input", value = "{order:订单号,state:支付状态}", required = true, dataType = "OrderStateInput")
     @RequestMapping(value  ="/paystate" ,method = RequestMethod.POST)
-    public  ActionResult UpdatePayState(String order){
-        Order model   =_orderService.UpdateOrderState(order);
-        return  new ActionResult(model!=null&& model.getState()==1);
+    public  ActionResult UpdatePayState(@RequestBody OrderStateInput input){
+        Order model   =_orderService.UpdateOrderState(input);
+        return  new ActionResult(model);
     }
 }

@@ -2,10 +2,7 @@ package com.efan.appservice.service;
 
 import com.efan.appservice.iservice.IOrderService;
 import com.efan.controller.dtos.OrderTime;
-import com.efan.controller.inputs.BaseInput;
-import com.efan.controller.inputs.OrderInput;
-import com.efan.controller.inputs.RemoteInput;
-import com.efan.controller.inputs.ValidatePayInput;
+import com.efan.controller.inputs.*;
 import com.efan.core.page.ListResponse;
 import com.efan.core.page.ObjectResponse;
 import com.efan.core.page.ResultModel;
@@ -234,10 +231,10 @@ public class OrderService implements IOrderService {
     }
     /** 更新订单状态
       */
-    public Order UpdateOrderState(String order){
-      Order or=_orderRepository.findByOrderNumEquals(order);
+    public Order UpdateOrderState(OrderStateInput input){
+      Order or=_orderRepository.findByOrderNumEquals(input.order);
       if (or!=null){
-           or.setState(1);
+           or.setState(input.state);
        or=   _orderRepository.saveAndFlush(or);
       }
       return  or;

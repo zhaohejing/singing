@@ -1,10 +1,7 @@
 package com.efan.appservice.iservice;
 
 import com.efan.controller.dtos.OrderTime;
-import com.efan.controller.inputs.BaseInput;
-import com.efan.controller.inputs.OrderInput;
-import com.efan.controller.inputs.RemoteInput;
-import com.efan.controller.inputs.ValidatePayInput;
+import com.efan.controller.inputs.*;
 import com.efan.core.page.ListResponse;
 import com.efan.core.page.ObjectResponse;
 import com.efan.core.page.ResultModel;
@@ -33,5 +30,5 @@ public interface IOrderService {
     boolean VilidateOrder(String machineCode,Date from ,Date to );
     /** 更新订单状态
      */
-     Order UpdateOrderState(String order);
+     Order UpdateOrderState(OrderStateInput input);
 }
