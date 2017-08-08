@@ -37,7 +37,7 @@ public class AndSoService implements IAndSoService {
     public ResultModel<Map<String,Object>> GetSingerList(GetSingerInput input){
         StringBuilder sql=new StringBuilder();
         StringBuilder count=new StringBuilder();
-        sql.append("SELECT unSingerCode unSingerCo ,pszName,pszSpell from singerinfo where 1=1");
+        sql.append("SELECT unSingerCode unSingerCo ,pszName,pszSpell from singerinfo where 1=1 and wSingerType<>40 ");
         count.append("SELECT count(*) from singerinfo where 1=1");
 
         if (input.getFilter()!=null&& !input.getFilter().isEmpty()){
@@ -56,7 +56,7 @@ public class AndSoService implements IAndSoService {
             sql.append(" and  wSingerAre = '"+input.area+"' ");
             count.append(" and  wSingerAre = '"+input.area+"' ");
         }*/
-
+        sql.append(" order by unRanking desc ");
         sql.append(" limit  ").append(input.getPage()).append(" , ").append(input.getSize());
         Long total=_jdbc.queryForObject(count.toString(),Long.class);
         List<Map<String,Object>> list = _jdbc.queryForList(sql.toString());
