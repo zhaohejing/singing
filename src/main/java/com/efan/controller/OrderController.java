@@ -96,6 +96,9 @@ public class OrderController {
       }else if(!model.getUserKey().equals(input.openId)){
           return  new ActionResult(false,null ,"该时段已被其他用户预定！" );
       }
+      //通知开平
+      _orderService.TalkSingIt(model);
+    _orderService.OutProductIn(model);
         return  new ActionResult(true,model.getOrderNum(),"获取成功,可以开唱");
     }
     /**

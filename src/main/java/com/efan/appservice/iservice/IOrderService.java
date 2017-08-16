@@ -31,4 +31,7 @@ public interface IOrderService {
     /** 更新订单状态
      */
      Order UpdateOrderState(OrderStateInput input);
+    boolean TalkSingIt(Order input);
+    //毁掉
+     boolean OutProductIn(Order input);
 }

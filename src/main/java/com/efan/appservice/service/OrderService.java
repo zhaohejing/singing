@@ -173,7 +173,6 @@ public class OrderService implements IOrderService {
      }
      ///获取订单详情
      public  Order GetOrderDetail(String openId,String machineId){
-         SimpleDateFormat df = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");//设置日期格式
 
      List<Order> list=   _orderRepository.findOrdersbyFilter(machineId,openId,new Date());
      if(list.size()==0)return null;
@@ -252,6 +251,54 @@ public class OrderService implements IOrderService {
         List<Order> res=_orderRepository.findOrdersbyKey(input.machineCode,input.fromTime,end);
       return  res.size()>0;
     }
+    public boolean TalkSingIt(Order input) {
+        Map<String,String> map=new HashMap<>();
+        map.put("tag","roomControl");
+        map.put("stbId","813828307");
+        map.put("identify","efanyun.com");
+        map.put("openid",input.getUserKey());
+        map.put("orderid",input.getOrderNum());
+        map.put("serImage",input.getConsumerName());
+        map.put("singer",input.getConsumerName());
+        map.put("method","open");
+        map.put("mode","sale");
+        map.put("duration",input.getPurchaseTime().toString());
+
+        String result=   HttpUtils.sendPost("https://cloud.xungevod.com:11443/kiosk/operation.html",map);;
+        ObjectResponse res;
+        try{
+            res =   new Gson().fromJson(result,ObjectResponse.class);
+            return  true;
+        }catch (Exception e){
+         return  false;
+        }
+
+    }
+    //毁掉
+    public boolean OutProductIn(Order input){
+        SimpleDateFormat df = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");//设置日期格式
+
+        List<Map<String,String>> temp=new ArrayList<>();
+        Map<String,String> map=new HashMap<>();
+        map.put("orderNumber",input.getOrderNum());
+        map.put("machineCode",input.getBoxId());
+        map.put("productId",input.getOrderType().toString());
+        map.put("vendoutDate",df.format(new Date()));
+        map.put("payChannel","WX");
+        map.put("vendoutStatus","VENDOUT_SUCCESS");
+        temp.add(map);
+
+        Map<String,String > t=new HashMap<>();
+        t.put("","");
+        String result=   HttpUtils.sendPost("https://openapi.efanyun.com/vendout/report/ktv",t);
+        ObjectResponse res;
+        try{
+            res =   new Gson().fromJson(result,ObjectResponse.class);
+            return  true;
+        }catch (Exception e){
+            return  false;
+        }
+    }
     /** 验证订单
       */
     public  boolean VilidateOrder(String machineCode,Date from ,Date to ){
@@ -270,21 +317,7 @@ public class OrderService implements IOrderService {
                     23, 59, 59);
         }
         return  calendar1.getTime();
-       /* Calendar calendar = new GregorianCalendar();
-        calendar.setTime(time);
-        if (isstart){
-            calendar.set(Calendar.HOUR,0);
-            calendar.set(Calendar.MINUTE,0);
-            calendar.set(Calendar.SECOND,0);
-            calendar.set(Calendar.MILLISECOND,0);
-        }else   {
 
-            calendar.set(Calendar.HOUR,23);
-            calendar.set(Calendar.MINUTE,59);
-            calendar.set(Calendar.SECOND,59);
-            calendar.set(Calendar.MILLISECOND,999);
-        }
-        return  calendar.getTime();*/
     }
     private Timestamp DateToTimestamp(Date date){
         SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
