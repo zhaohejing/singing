@@ -6,6 +6,7 @@ import com.efan.core.page.ListResponse;
 import com.efan.core.page.ObjectResponse;
 import com.efan.core.page.ResultModel;
 import com.efan.core.primary.Order;
+import org.json.JSONException;
 
 import java.sql.Timestamp;
 import java.util.Date;
@@ -34,4 +35,6 @@ public interface IOrderService {
     boolean TalkSingIt(Order input);
     //毁掉
      boolean OutProductIn(Order input);
+     boolean OutProductInAsync(Order input) throws JSONException;
+    String ChangeRoomId(String deviceCode);
 }

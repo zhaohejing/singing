@@ -3,6 +3,7 @@ package com.efan.appservice.service;
 import com.efan.appservice.iservice.IOrderService;
 import com.efan.controller.dtos.OrderTime;
 import com.efan.controller.inputs.*;
+import com.efan.core.page.ChangeResponse;
 import com.efan.core.page.ListResponse;
 import com.efan.core.page.ObjectResponse;
 import com.efan.core.page.ResultModel;
@@ -13,6 +14,9 @@ import com.google.gson.Gson;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 
+import org.json.JSONArray;
+import org.json.JSONException;
+import org.json.JSONObject;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.data.domain.Page;
@@ -240,6 +244,21 @@ public class OrderService implements IOrderService {
       }
       return  or;
     }
+    public String ChangeRoomId(String deviceCode){
+        String url=efanurl+"api/getRoomIdByDeviceCode";
+        String parms="device_code="+deviceCode;
+        String result=  HttpUtils.sendPost(url,parms);
+        ChangeResponse res;
+        try{
+            res =   new Gson().fromJson(result,ChangeResponse.class);
+        }catch (Exception e){
+         return    e.getMessage();
+        }
+        if(res.code==200){
+          return  res.room_id;
+        }
+        return  "";
+    }
     /** 验证支付
      */
     public  boolean vilidatePay(ValidatePayInput input){
@@ -300,14 +319,8 @@ public class OrderService implements IOrderService {
             return  false;
         }
     }
-  /*  public boolean OutProductInAsync(Order input){
+    public boolean OutProductInAsync(Order input) throws JSONException {
         SimpleDateFormat df = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");//设置日期格式
-        List<Map<String,String>> temp=new ArrayList<>();
-        Map<String,String> map=new HashMap<>();
-
-        temp.add(map);
-
-        Map<String,String> t=new HashMap<>();
         JSONArray arr=new JSONArray();
         JSONObject obj=new JSONObject();
         obj.put("orderNumber",input.getOrderNum());
@@ -316,8 +329,8 @@ public class OrderService implements IOrderService {
         obj.put("vendoutDate",df.format(new Date()));
         obj.put("payChannel","WX");
         obj.put("vendoutStatus","VENDOUT_SUCCESS");
-        t.put("", new Gson().toJson(temp));
-        String result=   HttpUtils.postObj("https://openapi.efanyun.com/vendout/report/ktv",t);
+      arr.put(obj);
+        String result=   HttpUtils.postObj("https://openapi.efanyun.com/vendout/report/ktv",arr);
         ObjectResponse res;
         try{
             res =   new Gson().fromJson(result,ObjectResponse.class);
@@ -325,7 +338,7 @@ public class OrderService implements IOrderService {
         }catch (Exception e){
             return  false;
         }
-    }*/
+    }
     /** 验证订单
       */
     public  boolean VilidateOrder(String machineCode,Date from ,Date to ){

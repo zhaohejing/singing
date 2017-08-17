@@ -2,6 +2,8 @@ package com.efan.utils;
 
 
 
+import org.json.JSONArray;
+
 import java.io.*;
 import java.net.HttpURLConnection;
 import java.net.MalformedURLException;
@@ -163,7 +165,7 @@ public   class HttpUtils {
         return reStr;
     }
 
-/*    public static String postObj(String urlStr, JSONArray arr) {
+   public static String postObj(String urlStr, JSONArray arr) {
         String result="";
         try {
             //创建连接
@@ -176,7 +178,7 @@ public   class HttpUtils {
             connection.setUseCaches(false);
             connection.setInstanceFollowRedirects(true);
             connection.setRequestProperty("Content-Type",
-                    "application/x-www-form-urlencoded");
+                    "application/json");
             connection.connect();
             //POST请求
             DataOutputStream out = new DataOutputStream(
@@ -206,7 +208,7 @@ public   class HttpUtils {
         }
         return result;
 
-    }*/
+    }
     public static String SHA1(String str) {
         try {
             MessageDigest digest = java.security.MessageDigest.getInstance("SHA-1"); //如果是SHA加密只需要将"SHA-1"改成"SHA"即可
