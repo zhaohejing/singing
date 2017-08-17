@@ -244,7 +244,7 @@ public class OrderService implements IOrderService {
       }
       return  or;
     }
-    public String ChangeRoomId(String deviceCode){
+    public String ChangeToRoomId(String deviceCode){
         String url=efanurl+"api/getRoomIdByDeviceCode";
         String parms="device_code="+deviceCode;
         String result=  HttpUtils.sendPost(url,parms);
@@ -259,9 +259,24 @@ public class OrderService implements IOrderService {
         }
         return  "";
     }
+    public String ChangeToDevice_code(String room_id){
+        String url=efanurl+"api/getDeviceCodeByRoomId";
+        String parms="room_id="+room_id;
+        String result=  HttpUtils.sendPost(url,parms);
+        ChangeResponse res;
+        try{
+            res =   new Gson().fromJson(result,ChangeResponse.class);
+        }catch (Exception e){
+            return    e.getMessage();
+        }
+        if(res.code==200){
+            return  res.device_code;
+        }
+        return  "";
+    }
     /** 验证支付
      */
-    public  boolean vilidatePay(ValidatePayInput input){
+    public  boolean vilidatePay(ValidatePayInput input) {
         Timestamp now = new Timestamp(System.currentTimeMillis());
        input.fromTime=input.fromTime.getTime()<now.getTime()?now:input.fromTime;
        Calendar c=Calendar.getInstance();
@@ -271,46 +286,19 @@ public class OrderService implements IOrderService {
         List<Order> res=_orderRepository.findOrdersbyKey(input.machineCode,input.fromTime,end);
       return  res.size()>0;
     }
-    public boolean TalkSingIt(Order input) {
-        Map<String,String> map=new HashMap<>();
+    public boolean TalkSingIt(Order input) throws JSONException {
+        JSONObject map=new JSONObject();
         map.put("tag","roomControl");
-        map.put("stbId","813828307");
+        map.put("stbId",input.getBoxId());
         map.put("identify","efanyun.com");
         map.put("openid",input.getUserKey());
         map.put("orderid",input.getOrderNum());
         map.put("serImage",input.getConsumerName());
         map.put("singer",input.getConsumerName());
         map.put("method","open");
-        map.put("mode","operation");
-        map.put("duration",input.getPurchaseTime().toString());
-
-        String result=   HttpUtils.sendPost("https://cloud.xungevod.com:11443/kiosk/operation.html",map);
-        ObjectResponse res;
-        try{
-            res =   new Gson().fromJson(result,ObjectResponse.class);
-            return  true;
-        }catch (Exception e){
-         return  false;
-        }
-
-    }
-    //毁掉
-    public boolean OutProductIn(Order input){
-        SimpleDateFormat df = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");//设置日期格式
-        List<Map<String,String>> temp=new ArrayList<>();
-        Map<String,String> map=new HashMap<>();
-        map.put("orderNumber",input.getOrderNum());
-        map.put("machineCode",input.getBoxId());
-        map.put("productId",input.getOrderType().toString());
-        map.put("vendoutDate",df.format(new Date()));
-        map.put("payChannel","WX");
-        map.put("vendoutStatus","VENDOUT_SUCCESS");
-        temp.add(map);
-
-        Map<String,String> t=new HashMap<>();
-
-        t.put("", new Gson().toJson(temp));
-        String result=   HttpUtils.sendPost("https://openapi.efanyun.com/vendout/report/ktv",t);
+        map.put("mode","sale");
+        map.put("duration",input.getPurchaseTime());
+        String result=   HttpUtils.postObj("https://cloud.xungevod.com:11443/kiosk/operation.html",map);
         ObjectResponse res;
         try{
             res =   new Gson().fromJson(result,ObjectResponse.class);
@@ -319,6 +307,8 @@ public class OrderService implements IOrderService {
             return  false;
         }
     }
+    //毁掉
+
     public boolean OutProductInAsync(Order input) throws JSONException {
         SimpleDateFormat df = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");//设置日期格式
         JSONArray arr=new JSONArray();
@@ -330,7 +320,7 @@ public class OrderService implements IOrderService {
         obj.put("payChannel","WX");
         obj.put("vendoutStatus","VENDOUT_SUCCESS");
       arr.put(obj);
-        String result=   HttpUtils.postObj("https://openapi.efanyun.com/vendout/report/ktv",arr);
+        String result=   HttpUtils.postObj("http://openapi.efanyun.com/vendout/report/ktv",arr);
         ObjectResponse res;
         try{
             res =   new Gson().fromJson(result,ObjectResponse.class);

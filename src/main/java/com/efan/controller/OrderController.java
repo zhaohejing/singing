@@ -88,11 +88,11 @@ public class OrderController {
     @ApiImplicitParam(name = "input", value = "dto对象", required = true, dataType = "CanSingInput")
     @RequestMapping(value  ="/cansingit" ,method = RequestMethod.POST)
     public  ActionResult CanSingIt(@RequestBody CanSingInput input) throws JSONException{
-        String device=_orderService.ChangeRoomId(input.machineId);
-        if (device.isEmpty()){
-            return  new ActionResult(false,null ,"设备id转换失败！" );
-        }
-
+       String device=_orderService.ChangeToRoomId(input.machineId);
+       if (device.isEmpty()){
+           return  new ActionResult(false,null ,"设备id转换失败！" );
+       }
+       // device= input.machineId;
       Order model   =_orderService.GetOrderDetail(input.openId,device);
       if (model==null){
           return  new ActionResult(false,input.url ,"没有你的订单"   );
@@ -104,9 +104,10 @@ public class OrderController {
       }
 
       //通知开平
+        model.setBoxId(input.machineId);
       _orderService.TalkSingIt(model);
-    _orderService.OutProductIn(model);
-    _orderService.OutProductInAsync(model   );
+   // _orderService.OutProductIn(model);
+    _orderService.OutProductInAsync(model);
         return  new ActionResult(true,model.getOrderNum(),"获取成功,可以开唱");
     }
     /**

@@ -7,4 +7,6 @@ public class ChangeResponse {
     public Integer code;
     public String message;
     public String room_id;
+    public String device_code;
+
 }
