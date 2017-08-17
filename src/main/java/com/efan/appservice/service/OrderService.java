@@ -277,7 +277,6 @@ public class OrderService implements IOrderService {
     //毁掉
     public boolean OutProductIn(Order input){
         SimpleDateFormat df = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");//设置日期格式
-
         List<Map<String,String>> temp=new ArrayList<>();
         Map<String,String> map=new HashMap<>();
         map.put("orderNumber",input.getOrderNum());
@@ -288,8 +287,9 @@ public class OrderService implements IOrderService {
         map.put("vendoutStatus","VENDOUT_SUCCESS");
         temp.add(map);
 
-        Map<String,String > t=new HashMap<>();
-        t.put("","");
+        Map<String,String> t=new HashMap<>();
+
+        t.put("", new Gson().toJson(temp));
         String result=   HttpUtils.sendPost("https://openapi.efanyun.com/vendout/report/ktv",t);
         ObjectResponse res;
         try{
