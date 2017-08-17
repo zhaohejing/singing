@@ -1,5 +1,7 @@
 package com.efan.utils;
 
+
+
 import java.io.*;
 import java.net.HttpURLConnection;
 import java.net.MalformedURLException;
@@ -161,7 +163,50 @@ public   class HttpUtils {
         return reStr;
     }
 
+/*    public static String postObj(String urlStr, JSONArray arr) {
+        String result="";
+        try {
+            //创建连接
+            URL url = new URL(urlStr);
+            HttpURLConnection connection = (HttpURLConnection) url
+                    .openConnection();
+            connection.setDoOutput(true);
+            connection.setDoInput(true);
+            connection.setRequestMethod("POST");
+            connection.setUseCaches(false);
+            connection.setInstanceFollowRedirects(true);
+            connection.setRequestProperty("Content-Type",
+                    "application/x-www-form-urlencoded");
+            connection.connect();
+            //POST请求
+            DataOutputStream out = new DataOutputStream(
+                    connection.getOutputStream());
+            out.writeBytes(arr.toString());
+            out.flush();
+            out.close();
+            //读取响应
+            BufferedReader reader = new BufferedReader(new InputStreamReader(
+                    connection.getInputStream()));
+            String lines;
+            StringBuffer sb = new StringBuffer("");
+            while ((lines = reader.readLine()) != null) {
+                lines = new String(lines.getBytes(), "utf-8");
+                sb.append(lines);
+            }
+            result =sb.toString();
+            reader.close();
+            // 断开连接
+            connection.disconnect();
+        } catch (MalformedURLException e) {
+           result=e.getMessage();
+        } catch (UnsupportedEncodingException e) {
+            result=e.getMessage();
+        } catch (IOException e) {
+            result=e.getMessage();
+        }
+        return result;
 
+    }*/
     public static String SHA1(String str) {
         try {
             MessageDigest digest = java.security.MessageDigest.getInstance("SHA-1"); //如果是SHA加密只需要将"SHA-1"改成"SHA"即可

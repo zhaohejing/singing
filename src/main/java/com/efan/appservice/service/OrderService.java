@@ -12,6 +12,7 @@ import com.efan.utils.HttpUtils;
 import com.google.gson.Gson;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.data.domain.Page;
@@ -261,10 +262,10 @@ public class OrderService implements IOrderService {
         map.put("serImage",input.getConsumerName());
         map.put("singer",input.getConsumerName());
         map.put("method","open");
-        map.put("mode","sale");
+        map.put("mode","operation");
         map.put("duration",input.getPurchaseTime().toString());
 
-        String result=   HttpUtils.sendPost("https://cloud.xungevod.com:11443/kiosk/operation.html",map);;
+        String result=   HttpUtils.sendPost("https://cloud.xungevod.com:11443/kiosk/operation.html",map);
         ObjectResponse res;
         try{
             res =   new Gson().fromJson(result,ObjectResponse.class);
@@ -299,6 +300,32 @@ public class OrderService implements IOrderService {
             return  false;
         }
     }
+  /*  public boolean OutProductInAsync(Order input){
+        SimpleDateFormat df = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");//设置日期格式
+        List<Map<String,String>> temp=new ArrayList<>();
+        Map<String,String> map=new HashMap<>();
+
+        temp.add(map);
+
+        Map<String,String> t=new HashMap<>();
+        JSONArray arr=new JSONArray();
+        JSONObject obj=new JSONObject();
+        obj.put("orderNumber",input.getOrderNum());
+        obj.put("machineCode",input.getBoxId());
+        obj.put("productId",input.getOrderType().toString());
+        obj.put("vendoutDate",df.format(new Date()));
+        obj.put("payChannel","WX");
+        obj.put("vendoutStatus","VENDOUT_SUCCESS");
+        t.put("", new Gson().toJson(temp));
+        String result=   HttpUtils.postObj("https://openapi.efanyun.com/vendout/report/ktv",t);
+        ObjectResponse res;
+        try{
+            res =   new Gson().fromJson(result,ObjectResponse.class);
+            return  true;
+        }catch (Exception e){
+            return  false;
+        }
+    }*/
     /** 验证订单
       */
     public  boolean VilidateOrder(String machineCode,Date from ,Date to ){
