@@ -55,13 +55,17 @@ public class OrderController {
     @ApiOperation(value="创建订单", notes="远程购买接口")
     @ApiImplicitParam(name = "input", value = "dto对象", required = true, dataType = "OrderInput")
     @RequestMapping(value  ="/createorder" ,method = RequestMethod.POST)
-    public ActionResult CreateOrder(@RequestBody OrderInput input){
-        boolean canCreate=_orderService.VilidateOrder(input.boxId,input.fromTime,input.toTime);
+    public ActionResult CreateOrder(@RequestBody OrderInput input) throws  Exception{
+      /*  boolean canCreate=_orderService.VilidateOrder(input.boxId,input.fromTime,input.toTime);
         if(!canCreate){
             return  new ActionResult(false,"当前时段已有订单");
+        }*/
+        try {
+            Order res=_orderService.CreateOrder(input);
+            return  new ActionResult(res);
+        }catch (Exception e){
+            return  new ActionResult(false,e.getMessage());
         }
-        Order res=_orderService.CreateOrder(input);
-        return  new ActionResult(res);
     }
 
     /*支付接口*/

@@ -23,7 +23,7 @@ import org.springframework.data.domain.Page;
 import org.springframework.data.domain.PageRequest;
 import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
-
+import org.springframework.transaction.annotation.Transactional;
 
 
 import java.sql.Timestamp;
@@ -191,16 +191,17 @@ public class OrderService implements IOrderService {
 
     }
 //创建订单并调用支付接口
-  //  @Async
-    public Order CreateOrder(OrderInput input)  {
+ @Transactional
+    public Order CreateOrder(OrderInput input)  throws Exception {
         Timestamp date = new Timestamp(System.currentTimeMillis());
       UUID num=   java.util.UUID.randomUUID();
 
-      Timestamp ff= DateToTimestamp( input.fromTime.getTime()<date.getTime()?date:input.fromTime);
+      Timestamp start= DateToTimestamp( input.fromTime.getTime()<date.getTime()?date:input.fromTime);
 
 
         Calendar c=Calendar.getInstance();
-        c.setTime(ff);
+        c.setTime(start);
+
         if(input.purchaseTime<60){
             c.add(Calendar.MINUTE,input.purchaseTime);
         }else if(input.purchaseTime>=60&&input.purchaseTime<24*60){
@@ -209,13 +210,23 @@ public class OrderService implements IOrderService {
           c.add(Calendar.MINUTE,input.purchaseTime-hour*60);
         }
         Date end= c.getTime() ;
-        Timestamp tt=DateToTimestamp(end);
+        Timestamp eee=DateToTimestamp(end);
+        List<Order> temp=_orderRepository.findAllByBoxIdEquals(input.boxId);
+
+     for (Order o:temp
+          ) {
+         if (o.getFromTime().getTime()<=start.getTime()&&eee.getTime()<=o.getToTime().getTime()) throw new Exception("该时段已被预定");
+
+         if (o.getFromTime().getTime()>=start.getTime()&&eee.getTime()>=o.getFromTime().getTime())throw new Exception("该时段已被预定");
+         if (o.getToTime().getTime()>=start.getTime()&&eee.getTime()>=o.getToTime().getTime())throw new Exception("该时段已被预定");
+     }
+
         Order model=new Order();
         model.setAmount(input.amount);
         model.setBoxId(input.boxId);
         model.setBoxName(input.boxName);
-        model.setToTime(tt);
-        model.setFromTime(ff);
+        model.setToTime(eee);
+        model.setFromTime(start);
         model.setId(0L);
         model.setOrderNum(num.toString());
         model.setCommon(false);
@@ -231,7 +242,6 @@ public class OrderService implements IOrderService {
         model.setModifyTime(date);
         model.setMobile(input.consumerName);
         model.setOrderType(input.orderType);
-        model.setToTime(tt);
       return  _orderRepository.save(model);
     }
     /** 更新订单状态

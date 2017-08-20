@@ -24,5 +24,7 @@ public interface IOrderRepository extends JpaRepository<Order,Long> {
 
     Page<Order> findAllByUserKey(String userKey, Pageable pageable   );
 
+
     Order findByOrderNumEquals(String order);
+    List<Order> findAllByBoxIdEquals(String box);
 }

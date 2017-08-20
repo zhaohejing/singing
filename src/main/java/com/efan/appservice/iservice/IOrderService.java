@@ -24,7 +24,7 @@ public interface IOrderService {
      //获取预定列表
     List<OrderTime> GetOrderList(String boxId, Date date);
     ObjectResponse GetOrderTypeList(Boolean isRemote, String boxId);
-    Order CreateOrder(OrderInput input);
+    Order CreateOrder(OrderInput input) throws Exception;
     Order GetOrderDetail(String openId,String machineId);
     ResultModel<Order> GetMyOrders(BaseInput input);
       boolean vilidatePay(ValidatePayInput input);
