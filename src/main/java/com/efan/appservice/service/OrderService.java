@@ -299,7 +299,7 @@ public class OrderService implements IOrderService {
     public boolean TalkSingIt(Order input) throws JSONException {
         JSONObject map=new JSONObject();
         map.put("tag","roomControl");
-        map.put("stbId",input.getBoxId());
+        map.put("stbId",Integer.parseInt(input.getBoxId()) );
         map.put("identify","efanyun.com");
         map.put("openid",input.getUserKey());
         map.put("orderid",input.getOrderNum());
