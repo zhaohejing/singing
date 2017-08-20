@@ -93,18 +93,22 @@ public class OrderController {
     @RequestMapping(value  ="/cansingit" ,method = RequestMethod.POST)
     public  ActionResult CanSingIt(@RequestBody CanSingInput input) throws JSONException{
        String device=_orderService.ChangeToRoomId(input.machineId);
+       ActionResult result=null;
        if (device.isEmpty()){
-           return  new ActionResult(false,null ,"设备id转换失败！" );
+           result=  new ActionResult(false,null ,"设备id转换失败！" );
+           result.setCode(-1);
        }
-       // device= input.machineId;
       Order model   =_orderService.GetOrderDetail(input.openId,device);
       if (model==null){
-          return  new ActionResult(false,input.url ,"没有你的订单"   );
+          result=  new ActionResult(false,input.url ,"没有你的订单"   );
+          result.setCode(-2);
       }
       if ( model.getState()!=1){
-          return  new ActionResult(false,input.url ,"订单还未支付"   );
+          result=  new ActionResult(false,input.url ,"订单还未支付"   );
+          result.setCode(-3);
       }else if(!model.getUserKey().equals(input.openId)){
-          return  new ActionResult(false,null ,"该时段已被其他用户预定！" );
+          result=  new ActionResult(false,null ,"该时段已被其他用户预定！" );
+          result.setCode(-4);
       }
 
       //通知开平
@@ -112,7 +116,9 @@ public class OrderController {
       _orderService.TalkSingIt(model);
    // _orderService.OutProductIn(model);
     _orderService.OutProductInAsync(model);
-        return  new ActionResult(true,model.getOrderNum(),"获取成功,可以开唱");
+        result=  new ActionResult(true,model.getOrderNum(),"获取成功,可以开唱");
+        result.setCode(1);
+        return  result;
     }
     /**
      * 支付成功修改订单状态*/

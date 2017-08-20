@@ -12,6 +12,16 @@ public class ActionResult implements Serializable {
     private  String error;
     private  boolean unAuthorizedRequest;
     private  String targetUrl;
+
+    public Integer getCode() {
+        return code;
+    }
+
+    public void setCode(Integer code) {
+        this.code = code;
+    }
+
+    private Integer code;
     public  ActionResult(){
         success=false;
     }
