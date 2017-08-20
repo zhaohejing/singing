@@ -125,11 +125,7 @@ public class OrderService implements IOrderService {
             if (nowHour>i){
                 result.add(new OrderTime(i,i+1,60));
                 continue;
-            }else if(nowHour==i){
-                result.add(new OrderTime(i,i+1,now.get(Calendar.MINUTE)));
-                continue;
             }
-
             Integer count=0;
             for (Order temp : list) {
                 Timestamp from = temp.getFromTime();
@@ -144,6 +140,8 @@ public class OrderService implements IOrderService {
 
                 Integer thor = right.get(Calendar.HOUR_OF_DAY);
                 Integer tobin = right.get(Calendar.MINUTE);
+                hour+=12;
+                thor+=12;
                 if (i == hour) {
                     if (i == thor) {
                         count += (tobin - min);
