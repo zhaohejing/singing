@@ -120,7 +120,9 @@ public class OrderService implements IOrderService {
         Date end=GenderTime(date,false);
         List<OrderTime> result=new ArrayList<>();
           List<Order> list= _orderRepository.findOrders(boxId,start,end);
-          Integer nowHour=now.get(Calendar.HOUR_OF_DAY);
+        Integer nowHour=now.get(Calendar.HOUR_OF_DAY);
+        Integer minitu=now.get(Calendar.MINUTE);
+
         for (int i = 0; i <24 ; i++) {
             if (nowHour>i){
                 result.add(new OrderTime(i,i+1,60));
@@ -140,13 +142,11 @@ public class OrderService implements IOrderService {
 
                 Integer thor = right.get(Calendar.HOUR_OF_DAY);
                 Integer tobin = right.get(Calendar.MINUTE);
-                hour+=12;
-                thor+=12;
                 if (i == hour) {
                     if (i == thor) {
                         count += (tobin - min);
                     } else {
-                        count += (60 - min);
+                        count +=minitu+  min;
                     }
                 }
                 if (i == thor) {

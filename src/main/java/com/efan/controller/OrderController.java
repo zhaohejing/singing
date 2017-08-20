@@ -97,18 +97,22 @@ public class OrderController {
        if (device.isEmpty()){
            result=  new ActionResult(false,null ,"设备id转换失败！" );
            result.setCode(-1);
+           return  result;
        }
       Order model   =_orderService.GetOrderDetail(input.openId,device);
       if (model==null){
           result=  new ActionResult(false,input.url ,"没有你的订单"   );
           result.setCode(-2);
+          return  result;
       }
       if ( model.getState()!=1){
           result=  new ActionResult(false,input.url ,"订单还未支付"   );
           result.setCode(-3);
+          return  result;
       }else if(!model.getUserKey().equals(input.openId)){
-          result=  new ActionResult(false,null ,"该时段已被其他用户预定！" );
+          result=  new ActionResult(false,null ,"当前时间段已被别人预定！" );
           result.setCode(-4);
+          return  result;
       }
 
       //通知开平
@@ -116,7 +120,7 @@ public class OrderController {
       _orderService.TalkSingIt(model);
    // _orderService.OutProductIn(model);
     _orderService.OutProductInAsync(model);
-        result=  new ActionResult(true,model.getOrderNum(),"获取成功,可以开唱");
+        result=  new ActionResult(true,model.getOrderNum(),"请去演唱吧");
         result.setCode(1);
         return  result;
     }
