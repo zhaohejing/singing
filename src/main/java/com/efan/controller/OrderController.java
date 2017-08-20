@@ -9,6 +9,7 @@ import com.efan.core.primary.Order;
 import com.efan.core.page.ActionResult;
 import io.swagger.annotations.ApiImplicitParam;
 import io.swagger.annotations.ApiOperation;
+import org.aspectj.weaver.ast.Or;
 import org.json.JSONException;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
@@ -103,6 +104,12 @@ public class OrderController {
       if (model==null){
           result=  new ActionResult(false,input.url ,"没有你的订单"   );
           result.setCode(-2);
+          return  result;
+      }
+      List<Order> temp =_orderService.FindByFilter(device);
+      if (temp!=null&&temp.size()>0){
+          result=  new ActionResult(false,null ,"当前时间段已被别人预定！" );
+          result.setCode(-4);
           return  result;
       }
       if ( model.getState()!=1){

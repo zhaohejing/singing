@@ -27,4 +27,6 @@ public interface IOrderRepository extends JpaRepository<Order,Long> {
 
     Order findByOrderNumEquals(String order);
     List<Order> findAllByBoxIdEquals(String box);
+    @Query("select u from Order u where u.boxId=:boxId   and u.fromTime<=:a  and u.toTime>=:a order by  u.creationTime ")
+    List<Order> findbyFilter(@Param("boxId")String boxId,  @Param("a") Date start);
 }

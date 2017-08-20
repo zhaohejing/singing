@@ -316,6 +316,10 @@ public class OrderService implements IOrderService {
         }
     }
     //毁掉
+    public List<Order> FindByFilter(String boxId){
+        Date now=new Date();
+        return  _orderRepository.findbyFilter(boxId,now);
+    }
 
     public boolean OutProductInAsync(Order input) throws JSONException {
         SimpleDateFormat df = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");//设置日期格式
