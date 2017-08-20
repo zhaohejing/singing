@@ -305,7 +305,7 @@ public class OrderService implements IOrderService {
         map.put("singer",input.getConsumerName());
         map.put("method","open");
         map.put("mode","sale");
-        map.put("duration",input.getPurchaseTime());
+        map.put("duration",(input.getToTime().getTime()-input.getFromTime().getTime())/1000 );
         String result=   HttpUtils.postObj("https://cloud.xungevod.com:11443/kiosk/operation.html",map);
         ObjectResponse res;
         try{
