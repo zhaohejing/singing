@@ -53,10 +53,6 @@ public class OrderService implements IOrderService {
      * */
     public ObjectResponse GetRemoteList(RemoteInput input) {
         String url=efanurl+"api/getSpotsByCoordinate";
-    /*    Map<String,String> parm=new HashMap<>();
-        parm.put("longitude",input.y);
-        parm.put("latitude",input.x );
-        parm.put("page",input.page);*/
         String parm="longitude="+input.y+"&latitude"+input.x+"&page="+input.page;
 
       String result=  HttpUtils.sendPost(url,parm);
@@ -329,7 +325,7 @@ public class OrderService implements IOrderService {
     return  true;
 
     }
-    public boolean TalkSingIt(Order input) throws JSONException {
+    public ObjectResponse TalkSingIt(Order input) throws JSONException {
         JSONObject map=new JSONObject();
         map.put("tag","roomControl");
         map.put("stbId",Integer.parseInt(input.getBoxId()) );
@@ -341,14 +337,19 @@ public class OrderService implements IOrderService {
         map.put("method","open");
         map.put("mode","sale");
         map.put("duration",(input.getToTime().getTime()-input.getFromTime().getTime())/1000 );
+        logger.error(new Gson().toJson(map));
         String result=   HttpUtils.postObj("https://cloud.xungevod.com:11443/kiosk/operation.html",map);
+        logger.error(result);
+
         ObjectResponse res;
         try{
             res =   new Gson().fromJson(result,ObjectResponse.class);
-            return  true;
         }catch (Exception e){
-            return  false;
+            res=new ObjectResponse();
+            res.code=1000;
+            res.message=e.getMessage();
         }
+        return  res;
     }
     //毁掉
     public List<Order> FindByFilter(String boxId,String openId){
@@ -356,7 +357,7 @@ public class OrderService implements IOrderService {
         return  _orderRepository.findbyFilter(boxId,openId,now);
     }
 
-    public boolean OutProductInAsync(Order input) throws JSONException {
+    public ObjectResponse OutProductInAsync(Order input) throws JSONException {
         SimpleDateFormat df = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");//设置日期格式
         JSONArray arr=new JSONArray();
         JSONObject obj=new JSONObject();
@@ -366,15 +367,19 @@ public class OrderService implements IOrderService {
         obj.put("vendoutDate",df.format(new Date()));
         obj.put("payChannel","WX");
         obj.put("vendoutStatus","VENDOUT_SUCCESS");
-      arr.put(obj);
+          arr.put(obj);
+        logger.error(new Gson().toJson(arr));
         String result=   HttpUtils.postObj("http://openapi.efanyun.com/vendout/report/ktv",arr);
+        logger.error(result);
         ObjectResponse res;
         try{
             res =   new Gson().fromJson(result,ObjectResponse.class);
-            return  true;
         }catch (Exception e){
-            return  false;
+            res=new ObjectResponse();
+            res.code=1000;
+            res.message=e.getMessage();
         }
+        return  res;
     }
     /** 验证订单
       */

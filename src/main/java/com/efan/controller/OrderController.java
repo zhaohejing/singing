@@ -124,9 +124,11 @@ public class OrderController {
 
       //通知开平
         model.setBoxId(input.machineId);
-      _orderService.TalkSingIt(model);
+     ObjectResponse temp1=  _orderService.TalkSingIt(model);
+
    // _orderService.OutProductIn(model);
-    _orderService.OutProductInAsync(model);
+        ObjectResponse temp2=  _orderService.OutProductInAsync(model);
+
         result=  new ActionResult(true,model.getOrderNum(),"请去演唱吧");
         result.setCode(1);
         return  result;

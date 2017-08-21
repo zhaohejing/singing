@@ -32,9 +32,9 @@ public interface IOrderService {
     /** 更新订单状态
      */
      Order UpdateOrderState(OrderStateInput input);
-    boolean TalkSingIt(Order input) throws JSONException;
+    ObjectResponse TalkSingIt(Order input) throws JSONException;
     //毁掉
-     boolean OutProductInAsync(Order input) throws JSONException;
+    ObjectResponse OutProductInAsync(Order input) throws JSONException;
     String ChangeToRoomId(String deviceCode);
     String ChangeToDevice_code(String room_id);
     List<Order> FindByFilter(String boxId,String openId);
