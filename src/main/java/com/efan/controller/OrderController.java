@@ -100,20 +100,20 @@ public class OrderController {
            result.setCode(-1);
            return  result;
        }
+        List<Order> temp =_orderService.FindByFilter(device,input.openId);
+        if (temp!=null&&temp.size()>0){
+            result=  new ActionResult(false,null ,"当前时间段已被别人预定！" );
+            result.setCode(-4);
+            return  result;
+        }
       Order model   =_orderService.GetOrderDetail(input.openId,device);
       if (model==null){
           result=  new ActionResult(false,input.url ,"没有你的订单"   );
           result.setCode(-2);
           return  result;
       }
-      List<Order> temp =_orderService.FindByFilter(device);
-      if (temp!=null&&temp.size()>0){
-          result=  new ActionResult(false,null ,"当前时间段已被别人预定！" );
-          result.setCode(-4);
-          return  result;
-      }
       if ( model.getState()!=1){
-          result=  new ActionResult(false,input.url ,"订单还未支付"   );
+          result=  new ActionResult(false,input.url ,"你的订单还未支付"   );
           result.setCode(-3);
           return  result;
       }else if(!model.getUserKey().equals(input.openId)){

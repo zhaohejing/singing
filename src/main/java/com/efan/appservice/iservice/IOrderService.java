@@ -37,5 +37,5 @@ public interface IOrderService {
      boolean OutProductInAsync(Order input) throws JSONException;
     String ChangeToRoomId(String deviceCode);
     String ChangeToDevice_code(String room_id);
-    List<Order> FindByFilter(String boxId);
+    List<Order> FindByFilter(String boxId,String openId);
 }

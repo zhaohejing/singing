@@ -11,6 +11,7 @@ import com.efan.core.primary.Order;
 import com.efan.repository.primary.IOrderRepository;
 import com.efan.utils.HttpUtils;
 import com.google.gson.Gson;
+import com.sun.tools.corba.se.idl.constExpr.Times;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 
@@ -192,6 +193,7 @@ public class OrderService implements IOrderService {
  @Transactional
     public Order CreateOrder(OrderInput input)  throws Exception {
         Timestamp date = new Timestamp(System.currentTimeMillis());
+        Calendar now=Calendar.getInstance();
       UUID num=   java.util.UUID.randomUUID();
 
       Timestamp start= DateToTimestamp( input.fromTime.getTime()<date.getTime()?date:input.fromTime);
@@ -200,12 +202,20 @@ public class OrderService implements IOrderService {
         Calendar c=Calendar.getInstance();
         c.setTime(start);
 
-        if(input.purchaseTime<60){
+     now.setTime(date);
+
+
+     if(input.purchaseTime<60){
             c.add(Calendar.MINUTE,input.purchaseTime);
-        }else if(input.purchaseTime>=60&&input.purchaseTime<24*60){
+         now.add(Calendar.MINUTE,input.purchaseTime);
+
+     }else if(input.purchaseTime>=60&&input.purchaseTime<24*60){
           Integer hour=  input.purchaseTime/60;
           c.add(Calendar.HOUR_OF_DAY,hour );
           c.add(Calendar.MINUTE,input.purchaseTime-hour*60);
+
+         now.add(Calendar.HOUR_OF_DAY,hour );
+         now.add(Calendar.MINUTE,input.purchaseTime-hour*60);
         }
         Date end= c.getTime() ;
         Timestamp eee=DateToTimestamp(end);
@@ -214,9 +224,12 @@ public class OrderService implements IOrderService {
      for (Order o:temp
           ) {
          if (o.getFromTime().getTime()<=start.getTime()&&eee.getTime()<=o.getToTime().getTime()) throw new Exception("该时段已被预定");
-
          if (o.getFromTime().getTime()>=start.getTime()&&eee.getTime()>=o.getFromTime().getTime())throw new Exception("该时段已被预定");
          if (o.getToTime().getTime()>=start.getTime()&&eee.getTime()>=o.getToTime().getTime())throw new Exception("该时段已被预定");
+
+         if (o.getFromTime().getTime()<=date.getTime()&&now.getTime().getTime()<=o.getToTime().getTime()) throw new Exception("该时段已被预定");
+         if (o.getFromTime().getTime()>=date.getTime()&&now.getTime().getTime()>=o.getFromTime().getTime())throw new Exception("该时段已被预定");
+         if (o.getToTime().getTime()>=date.getTime()&&now.getTime().getTime()>=o.getToTime().getTime())throw new Exception("该时段已被预定");
      }
 
         Order model=new Order();
@@ -285,14 +298,30 @@ public class OrderService implements IOrderService {
     /** 验证支付
      */
     public  boolean vilidatePay(ValidatePayInput input) {
+        List<Order> temp=_orderRepository.findAllByBoxIdEquals(input.machineCode);
         Timestamp now = new Timestamp(System.currentTimeMillis());
-       input.fromTime=input.fromTime.getTime()<now.getTime()?now:input.fromTime;
-       Calendar c=Calendar.getInstance();
-       c.setTime(input.fromTime);
-        c.add(Calendar.MINUTE,input.keepLive);
-       Date end= c.getTime() ;
-        List<Order> res=_orderRepository.findOrdersbyKey(input.machineCode,input.fromTime,end);
-      return  res.size()>0;
+        input.fromTime=input.fromTime.getTime()<now.getTime()?now:input.fromTime;
+        Calendar c=Calendar.getInstance();
+        c.setTime(input.fromTime);
+        Date left=c.getTime();
+        if(input.keepLive<60){
+            c.add(Calendar.MINUTE,input.keepLive);
+        }else if(input.keepLive>=60&&input.keepLive<24*60){
+            Integer hour=  input.keepLive/60;
+            c.add(Calendar.HOUR_OF_DAY,hour );
+            c.add(Calendar.MINUTE,input.keepLive-hour*60);
+        }
+        Date end= c.getTime() ;
+
+        for (Order o:temp
+                ) {
+            if (o.getFromTime().getTime()<=left.getTime()&&end.getTime()<=o.getToTime().getTime()) return  false;
+            if (o.getFromTime().getTime()>=left.getTime()&&end.getTime()>=o.getFromTime().getTime())return  false;
+            if (o.getToTime().getTime()>=left.getTime()&&end.getTime()>=o.getToTime().getTime())return  false;
+
+        }
+    return  true;
+
     }
     public boolean TalkSingIt(Order input) throws JSONException {
         JSONObject map=new JSONObject();
@@ -316,9 +345,9 @@ public class OrderService implements IOrderService {
         }
     }
     //毁掉
-    public List<Order> FindByFilter(String boxId){
+    public List<Order> FindByFilter(String boxId,String openId){
         Date now=new Date();
-        return  _orderRepository.findbyFilter(boxId,now);
+        return  _orderRepository.findbyFilter(boxId,openId,now);
     }
 
     public boolean OutProductInAsync(Order input) throws JSONException {
