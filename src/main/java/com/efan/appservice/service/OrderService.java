@@ -145,7 +145,7 @@ public class OrderService implements IOrderService {
                 Integer tobin = right.get(Calendar.MINUTE);
                 if (i == hour) {
                     if (i == thor) {
-                        count += (tobin - min);
+                        count += tobin;
                     } else {
                         count +=minitu+  min;
                     }
@@ -219,7 +219,7 @@ public class OrderService implements IOrderService {
         }
         Date end= c.getTime() ;
         Timestamp eee=DateToTimestamp(end);
-        List<Order> temp=_orderRepository.findAllByBoxIdEquals(input.boxId);
+        List<Order> temp=_orderRepository.findboxandstate(input.boxId);
 
      for (Order o:temp
           ) {
@@ -298,7 +298,7 @@ public class OrderService implements IOrderService {
     /** 验证支付
      */
     public  boolean vilidatePay(ValidatePayInput input) {
-        List<Order> temp=_orderRepository.findAllByBoxIdEquals(input.machineCode);
+        List<Order> temp=_orderRepository.findboxandstate(input.machineCode);
         Timestamp now = new Timestamp(System.currentTimeMillis());
         input.fromTime=input.fromTime.getTime()<now.getTime()?now:input.fromTime;
         Calendar c=Calendar.getInstance();
