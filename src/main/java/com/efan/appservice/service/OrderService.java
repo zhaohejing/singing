@@ -143,6 +143,10 @@ public class OrderService implements IOrderService {
 
                 Integer thor = right.get(Calendar.HOUR_OF_DAY);
                 Integer tobin = right.get(Calendar.MINUTE);
+                if(i==nowHour){
+                    count+=minitu;
+                }
+
                 if (i == hour) {
                     if (i == thor) {
                         count += tobin;

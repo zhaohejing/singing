@@ -14,7 +14,7 @@ import java.util.List;
 
 @Repository
 public interface IOrderRepository extends JpaRepository<Order,Long> {
-    @Query("select u from Order u where u.boxId=:boxId and u.creationTime>:a and u.creationTime<=:b ")
+    @Query("select u from Order u where u.boxId=:boxId and u.state=1 and u.creationTime>:a and u.creationTime<=:b ")
     List<Order> findOrders(@Param("boxId")String boxId,@Param("a") Date start,@Param("b") Date end);
 
     @Query("select u from Order u where u.boxId=:boxId and u.userKey=:userKey  and u.fromTime<=:a  and u.toTime>=:a order by  u.creationTime ")
