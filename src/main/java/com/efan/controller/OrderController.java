@@ -3,10 +3,8 @@ package com.efan.controller;
 import com.efan.appservice.iservice.IOrderService;
 import com.efan.controller.dtos.OrderTime;
 import com.efan.controller.inputs.*;
-import com.efan.core.page.ListResponse;
-import com.efan.core.page.ObjectResponse;
+import com.efan.core.page.*;
 import com.efan.core.primary.Order;
-import com.efan.core.page.ActionResult;
 import io.swagger.annotations.ApiImplicitParam;
 import io.swagger.annotations.ApiOperation;
 import org.aspectj.weaver.ast.Or;
@@ -32,7 +30,7 @@ public class OrderController {
     @ApiImplicitParam(name = "input", value = "dto对象", required = true, dataType = "RemoteInput")
     @RequestMapping(value  ="/stores" ,method = RequestMethod.POST)
     public ActionResult RemoteBuy(@RequestBody RemoteInput input){
-        ObjectResponse result= _orderService.GetRemoteList(input);
+        BaseResponse result= _orderService.GetRemoteList(input);
         return  new ActionResult(result);
     }
     /*获取包房信息*/
@@ -83,7 +81,7 @@ public class OrderController {
     @ApiImplicitParam(name = "input", value = "dto对象", required = true, dataType = "GetPayType")
     @RequestMapping(value  ="/getpaylist" ,method = RequestMethod.POST)
      public  ActionResult GetPayList(@RequestBody GetPayType input){
-        ObjectResponse list=_orderService.GetOrderTypeList(input.isRemote,input.boxId);
+        BaseResponse list=_orderService.GetOrderTypeList(input.isRemote,input.boxId);
              return  new ActionResult(list);
      }
 
@@ -127,7 +125,7 @@ public class OrderController {
      ObjectResponse temp1=  _orderService.TalkSingIt(model);
 
    // _orderService.OutProductIn(model);
-        ObjectResponse temp2=  _orderService.OutProductInAsync(model);
+        BodyResponse temp2=  _orderService.OutProductInAsync(temp1,model);
 
         result=  new ActionResult(true,model.getOrderNum(),"请去演唱吧");
         result.setCode(1);

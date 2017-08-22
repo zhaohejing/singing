@@ -3,10 +3,7 @@ package com.efan.appservice.service;
 import com.efan.appservice.iservice.IOrderService;
 import com.efan.controller.dtos.OrderTime;
 import com.efan.controller.inputs.*;
-import com.efan.core.page.ChangeResponse;
-import com.efan.core.page.ListResponse;
-import com.efan.core.page.ObjectResponse;
-import com.efan.core.page.ResultModel;
+import com.efan.core.page.*;
 import com.efan.core.primary.Order;
 import com.efan.repository.primary.IOrderRepository;
 import com.efan.utils.HttpUtils;
@@ -51,17 +48,17 @@ public class OrderService implements IOrderService {
      /**
       * 获取门店列表
      * */
-    public ObjectResponse GetRemoteList(RemoteInput input) {
+    public BaseResponse GetRemoteList(RemoteInput input) {
         String url=efanurl+"api/getSpotsByCoordinate";
         String parm="longitude="+input.y+"&latitude"+input.x+"&page="+input.page;
 
       String result=  HttpUtils.sendPost(url,parm);
         logger.warn("logitude:"+input.y+",latitude:"+input.x+"result:"+result);
-        ObjectResponse res;
+        BaseResponse res;
         try{
-            res =   new Gson().fromJson(result,ObjectResponse.class);
+            res =   new Gson().fromJson(result,BaseResponse.class);
         }catch (Exception e){
-            res=new ObjectResponse();
+            res=new BaseResponse();
             res.code=1000;
             res.message=result;
         }
@@ -163,15 +160,15 @@ public class OrderService implements IOrderService {
         return  result;
     }
 ///根据lexington获取套餐详情
-     public  ObjectResponse GetOrderTypeList(Boolean isRemote,String boxId){
+     public  BaseResponse GetOrderTypeList(Boolean isRemote,String boxId){
          String url=isRemote?efanurl+"api/getProductsByRoomRemote": efanurl+"api/getProductsByRoom";
          String parms="room_id="+boxId;
          String result=  HttpUtils.sendPost(url,parms);
-         ObjectResponse res;
+         BaseResponse res;
          try{
-             res =   new Gson().fromJson(result,ObjectResponse.class);
+             res =   new Gson().fromJson(result,BaseResponse.class);
          }catch (Exception e){
-             res=new ObjectResponse();
+             res=new BaseResponse();
              res.code=1000;
              res.message=e.getMessage();
          }
@@ -341,14 +338,14 @@ public class OrderService implements IOrderService {
         logger.error(new Gson().toJson(map));
         String result=   HttpUtils.postObj("https://cloud.xungevod.com:11443/kiosk/operation.html",map);
         logger.error(result);
-
         ObjectResponse res;
         try{
             res =   new Gson().fromJson(result,ObjectResponse.class);
         }catch (Exception e){
             res=new ObjectResponse();
-            res.code=1000;
-            res.message=e.getMessage();
+           res.error=e.getMessage();
+           res.operation="failed";
+
         }
         return  res;
     }
@@ -358,7 +355,7 @@ public class OrderService implements IOrderService {
         return  _orderRepository.findbyFilter(boxId,openId,now);
     }
 
-    public ObjectResponse OutProductInAsync(Order input) throws JSONException {
+    public BodyResponse OutProductInAsync(ObjectResponse response, Order input) throws JSONException {
         SimpleDateFormat df = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");//设置日期格式
         JSONArray arr=new JSONArray();
         JSONObject obj=new JSONObject();
@@ -367,18 +364,18 @@ public class OrderService implements IOrderService {
         obj.put("productId",input.getOrderType().toString());
         obj.put("vendoutDate",df.format(new Date()));
         obj.put("payChannel","WX");
-        obj.put("vendoutStatus","VENDOUT_SUCCESS");
+        obj.put("vendoutStatus",  response.operation.equals("ok")? "VENDOUT_SUCCESS":"VENDOUT_FAILEd");
           arr.put(obj);
         logger.error(new Gson().toJson(arr));
         String result=   HttpUtils.postObj("http://openapi.efanyun.com/vendout/report/ktv",arr);
         logger.error(result);
-        ObjectResponse res;
+        BodyResponse res;
         try{
-            res =   new Gson().fromJson(result,ObjectResponse.class);
+            res =   new Gson().fromJson(result,BodyResponse.class);
         }catch (Exception e){
-            res=new ObjectResponse();
-            res.code=1000;
-            res.message=e.getMessage();
+            res=new BodyResponse();
+           res.code="failed";
+           res.message=e.getMessage();
         }
         return  res;
     }

@@ -6,7 +6,8 @@ import java.util.Map;
 
 
 public class ObjectResponse implements Serializable {
-    public Integer code;
-    public String message;
-    public Object respBody;
+    public Integer stbId;
+    public String error;
+    public String tag;
+    public String operation;
 }
