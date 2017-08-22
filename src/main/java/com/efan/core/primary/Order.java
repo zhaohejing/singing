@@ -82,7 +82,15 @@ public class Order implements Serializable {
 //订单消费类型
     private  String orderId;*/
 
+    public String getEfanOrder() {
+        return efanOrder;
+    }
 
+    public void setEfanOrder(String efanOrder) {
+        this.efanOrder = efanOrder;
+    }
+
+    private String efanOrder;
     private Long creationUserId;
 
     private Timestamp creationTime;

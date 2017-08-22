@@ -263,6 +263,7 @@ public class OrderService implements IOrderService {
       Order or=_orderRepository.findByOrderNumEquals(input.order);
       if (or!=null){
            or.setState(input.state);
+           or.setEfanOrder(input.efanOrder);
        or=   _orderRepository.saveAndFlush(or);
       }
       return  or;
@@ -361,7 +362,7 @@ public class OrderService implements IOrderService {
         SimpleDateFormat df = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");//设置日期格式
         JSONArray arr=new JSONArray();
         JSONObject obj=new JSONObject();
-        obj.put("orderNumber",input.getOrderNum());
+        obj.put("orderNumber",input.getEfanOrder());
         obj.put("machineCode",input.getBoxId());
         obj.put("productId",input.getOrderType().toString());
         obj.put("vendoutDate",df.format(new Date()));

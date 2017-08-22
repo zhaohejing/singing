@@ -6,4 +6,5 @@ package com.efan.controller.inputs;
 public class OrderStateInput {
     public  String order;
     public Integer state;
+    public String efanOrder;
 }
