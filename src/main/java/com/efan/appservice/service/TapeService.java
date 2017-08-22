@@ -45,13 +45,14 @@ public class TapeService implements ITapeService {
             songs.setState(true);
             songs.setSongKey(input.songKey);
             songs.setModifyTime(date);
+            songs.setSongCode(input.songCode);
             songs.setSort(1);
             songs.setModifyUserId(1L);
             songs=_mysongsRepository.save(songs);
        return songs;
     }
 
-    public  Integer GetMySongsCount(String userKey,Integer songsId){
+    public  Integer GetMySongsCount(String userKey,Long songsId){
          List<MySongs> result=_mysongsRepository.findAllByUserKeyEqualsAndSongKeyEquals(userKey,songsId);
          return  result.size();
     }

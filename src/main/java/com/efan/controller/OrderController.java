@@ -126,9 +126,14 @@ public class OrderController {
 
    // _orderService.OutProductIn(model);
         BodyResponse temp2=  _orderService.OutProductInAsync(temp1,model);
+        if(temp1.operation.equals("ok")){
+            result=  new ActionResult(true,model.getOrderNum(),"请去演唱吧");
+            result.setCode(1);
+        }else{
+            result=  new ActionResult(true,model.getOrderNum(),"开屏失败，联系管理员");
+            result.setCode(0);
+        }
 
-        result=  new ActionResult(true,model.getOrderNum(),"请去演唱吧");
-        result.setCode(1);
         return  result;
     }
     /**

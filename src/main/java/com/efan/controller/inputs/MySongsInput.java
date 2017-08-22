@@ -10,5 +10,6 @@ public class MySongsInput {
     public String userKey;
     public  String  songName;
     public  String singer;
-    public Integer songKey;
+    public Long songKey;
+    public  Long songCode;
 }

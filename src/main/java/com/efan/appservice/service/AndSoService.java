@@ -204,7 +204,7 @@ public class AndSoService implements IAndSoService {
             Boolean impact = false;
             for (MySongs aResult : result) {
                 Object left = aList.get("ID");
-                Integer right = aResult.getSongKey();
+                Long right = aResult.getSongKey();
                 if (left.toString().equals(right.toString())) {
                     impact = true;
                 }
