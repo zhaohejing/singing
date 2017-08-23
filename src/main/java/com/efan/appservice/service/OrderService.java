@@ -125,21 +125,22 @@ public class OrderService implements IOrderService {
             }
             Integer count=0;
 
-
+            Integer max=0;
             for (Order te:list){
-                Date ll=GetCurrentDate(true,i);
-                Date rr=GetCurrentDate(false,i+1);
+                Date ll=GetCurrentDateAsync(true,i);
+                Date rr=GetCurrentDateAsync(false,i);
                 if(i==nowHour){
                      Integer mmmm=   te.getToTime().getMinutes();
                     count=   mmmm>minitu?mmmm:minitu;
                     break;
                 }
                 if (ll.getTime()<=te.getToTime().getTime()&&rr.getTime()>=te.getFromTime().getTime()){
-                    count+=te.getPurchaseTime();
+                          Integer ttttt=  te.getToTime().getMinutes();
+                          max= max>ttttt?max:ttttt;
                 }
 
             }
-
+            count+=  max;
 
 
           /*  for (Order temp : list) {
@@ -438,7 +439,7 @@ public class OrderService implements IOrderService {
         }
         return  calendar1.getTime();
     }
-    private  Date GetCurrentDate(Boolean start,Integer hour){
+    private  Date GetCurrentDateAsync(Boolean start,Integer hour){
         Calendar calendar1 = Calendar.getInstance();
         if (start){
             calendar1.set(calendar1.get(Calendar.YEAR), calendar1.get(Calendar.MONTH), calendar1.get(Calendar.DAY_OF_MONTH),
