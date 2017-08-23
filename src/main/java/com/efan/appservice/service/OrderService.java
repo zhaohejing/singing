@@ -195,12 +195,13 @@ public class OrderService implements IOrderService {
         Calendar now=Calendar.getInstance();
       UUID num=   java.util.UUID.randomUUID();
 
-      Timestamp start= DateToTimestamp( input.fromTime.getTime()<date.getTime()?date:input.fromTime);
+      Date tempTime=input.fromTime.getTime()<date.getTime()?date:input.fromTime;
 
 
         Calendar c=Calendar.getInstance();
-        c.setTime(start);
-
+        c.setTime(tempTime);
+        c.add(Calendar.SECOND,1);
+     Timestamp   start=DateToTimestamp( c.getTime());
      now.setTime(date);
 
 
