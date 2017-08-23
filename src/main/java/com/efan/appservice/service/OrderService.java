@@ -125,12 +125,15 @@ public class OrderService implements IOrderService {
             }
             Integer count=0;
 
-         /*   if(i==nowHour){
-                count+=minitu;
-            }*/
+
             for (Order te:list){
                 Date ll=GetCurrentDate(true,i);
                 Date rr=GetCurrentDate(false,i+1);
+                if(i==nowHour){
+                     Integer mmmm=   te.getToTime().getMinutes();
+                    count=   mmmm>minitu?mmmm:minitu;
+                    break;
+                }
                 if (ll.getTime()<=te.getToTime().getTime()&&rr.getTime()>=te.getFromTime().getTime()){
                     count+=te.getPurchaseTime();
                 }
