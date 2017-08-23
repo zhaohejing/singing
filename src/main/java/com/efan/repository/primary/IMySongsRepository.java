@@ -19,6 +19,6 @@ public interface IMySongsRepository extends JpaRepository<MySongs,Long> {
     Page<MySongs> findAll (Pageable pageable);
     List<MySongs> findAllByUserKeyEqualsAndStateEqualsOrderBySortDesc(String userKey,Boolean state);
     Page<MySongs> findAllByUserKeyEqualsAndStateEqualsOrderBySortDesc(String userKey,Boolean state,Pageable pageable);
-    List<MySongs> findAllByUserKeyEqualsAndSongKeyEquals(String userKey,Long songsKey);
+    List<MySongs> findAllByUserKeyEqualsAndSongKeyEqualsaAndSongCodeEquals(String userKey,Long songsKey,Long songsCode);
     List<MySongs> findAllByUserKeyOrderBySortDesc(String userKey);
 }

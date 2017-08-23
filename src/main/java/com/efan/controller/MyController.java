@@ -77,7 +77,7 @@ public class MyController {
     @ApiImplicitParam(name = "input", value = "mysongsinput", required = true, dataType = "MySongsInput")
     @RequestMapping(value  ="/picksongs" ,method = RequestMethod.POST)
     public ActionResult PickSongs(@RequestBody MySongsInput input){
-        Integer count=_tapeService.GetMySongsCount(input.userKey,input.songKey);
+        Integer count=_tapeService.GetMySongsCount(input.userKey,input.songKey,input.songCode);
         if (count>0){
             return new ActionResult(false,"此歌曲已点");
         }

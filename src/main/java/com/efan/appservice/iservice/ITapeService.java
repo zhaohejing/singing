@@ -24,7 +24,7 @@ public interface ITapeService {
     void DeleteMySongs(Long id);
     //efan毁掉 我的歌曲列表
     Map<String,Object> GetMySongsByUser(KeyInput input);
-    Integer GetMySongsCount(String userKey,Long songsId);
+    Integer GetMySongsCount(String userKey,Long songsId,Long songsCode);
     //排序我的歌单
     MySongs  SortMyTape(String userKey,Long tapeId);
 }
