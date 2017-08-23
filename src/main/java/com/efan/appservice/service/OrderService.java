@@ -9,6 +9,7 @@ import com.efan.repository.primary.IOrderRepository;
 import com.efan.utils.HttpUtils;
 import com.google.gson.Gson;
 import com.sun.tools.corba.se.idl.constExpr.Times;
+import io.swagger.models.auth.In;
 import javafx.util.converter.TimeStringConverter;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
@@ -115,10 +116,15 @@ public class OrderService implements IOrderService {
         Date end=GenderTime(date,false);
         List<OrderTime> result=new ArrayList<>();
           List<Order> list= _orderRepository.findOrders(boxId,start,end);
+        Integer nowDay=now.get(Calendar.DAY_OF_MONTH);
         Integer nowHour=now.get(Calendar.HOUR_OF_DAY);
         Integer minitu=now.get(Calendar.MINUTE);
 
         for (int i = 0; i <24 ; i++) {
+            if(date.getDay()<nowDay){
+                result.add(new OrderTime(i,i+1,0));
+                continue;
+            }
             if (nowHour>i){
                 result.add(new OrderTime(i,i+1,60));
                 continue;
