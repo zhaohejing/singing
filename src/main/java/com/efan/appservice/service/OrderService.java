@@ -125,9 +125,9 @@ public class OrderService implements IOrderService {
             }
             Integer count=0;
 
-            if(i==nowHour){
+         /*   if(i==nowHour){
                 count+=minitu;
-            }
+            }*/
             for (Order te:list){
                 Date ll=GetCurrentDate(true,i);
                 Date rr=GetCurrentDate(false,i+1);
