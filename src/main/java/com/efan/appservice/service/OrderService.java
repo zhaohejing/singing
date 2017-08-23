@@ -121,7 +121,7 @@ public class OrderService implements IOrderService {
         Integer minitu=now.get(Calendar.MINUTE);
 
         for (int i = 0; i <24 ; i++) {
-            if(date.getDay()<nowDay){
+            if(end.getYear()>now.getTime().getYear()|| end.getMonth()>now.getTime().getMonth()||end.getDay()>now.getTime().getDay()){
                 result.add(new OrderTime(i,i+1,0));
                 continue;
             }
