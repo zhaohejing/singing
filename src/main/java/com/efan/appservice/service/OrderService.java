@@ -9,6 +9,7 @@ import com.efan.repository.primary.IOrderRepository;
 import com.efan.utils.HttpUtils;
 import com.google.gson.Gson;
 import com.sun.tools.corba.se.idl.constExpr.Times;
+import javafx.util.converter.TimeStringConverter;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 
@@ -127,7 +128,18 @@ public class OrderService implements IOrderService {
             if(i==nowHour){
                 count+=minitu;
             }
-            for (Order temp : list) {
+            for (Order te:list){
+                Date ll=GetCurrentDate(true,i);
+                Date rr=GetCurrentDate(false,i+1);
+                if (ll.getTime()<=te.getToTime().getTime()&&rr.getTime()>=te.getFromTime().getTime()){
+                    count+=te.getPurchaseTime();
+                }
+
+            }
+
+
+
+          /*  for (Order temp : list) {
                 Timestamp from = temp.getFromTime();
                 Calendar left = Calendar.getInstance();
                 left.setTime(from);
@@ -140,8 +152,6 @@ public class OrderService implements IOrderService {
 
                 Integer thor = right.get(Calendar.HOUR_OF_DAY);
                 Integer tobin = right.get(Calendar.MINUTE);
-
-
                 if (i == hour) {
                     if (i == thor) {
                         count += tobin;
@@ -154,11 +164,14 @@ public class OrderService implements IOrderService {
                         count += tobin;
                     }
                 }
-            }
+            }*/
             result.add(new OrderTime(i,i+1,count));
         }
         return  result;
     }
+
+
+
 ///根据lexington获取套餐详情
      public  BaseResponse GetOrderTypeList(Boolean isRemote,String boxId){
          String url=isRemote?efanurl+"api/getProductsByRoomRemote": efanurl+"api/getProductsByRoom";
@@ -413,6 +426,17 @@ public class OrderService implements IOrderService {
         }else {
             calendar1.set(calendar1.get(Calendar.YEAR), calendar1.get(Calendar.MONTH), calendar1.get(Calendar.DAY_OF_MONTH),
                     23, 59, 59);
+        }
+        return  calendar1.getTime();
+    }
+    private  Date GetCurrentDate(Boolean start,Integer hour){
+        Calendar calendar1 = Calendar.getInstance();
+        if (start){
+            calendar1.set(calendar1.get(Calendar.YEAR), calendar1.get(Calendar.MONTH), calendar1.get(Calendar.DAY_OF_MONTH),
+                    hour, 0, 0);
+        }else {
+            calendar1.set(calendar1.get(Calendar.YEAR), calendar1.get(Calendar.MONTH), calendar1.get(Calendar.DAY_OF_MONTH),
+                    hour+1, 59, 59);
         }
         return  calendar1.getTime();
     }
