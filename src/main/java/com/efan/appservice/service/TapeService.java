@@ -53,7 +53,7 @@ public class TapeService implements ITapeService {
     }
 
     public  Integer GetMySongsCount(String userKey,Long songsId,Long songsCode){
-         List<MySongs> result=_mysongsRepository.findAllByUserKeyEqualsAndSongKeyEqualsaAndSongCodeEquals(userKey,songsId,songsCode);
+         List<MySongs> result=_mysongsRepository.findAllByUserKeyEqualsAndSongKeyEqualsAndSongCodeEquals(userKey,songsId,songsCode);
          return  result.size();
     }
 
