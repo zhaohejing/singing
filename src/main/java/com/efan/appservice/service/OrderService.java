@@ -180,6 +180,20 @@ public class OrderService implements IOrderService {
          }
          return  res;
      }
+    public  BaseResponse GetMachineInfo(String boxId){
+        String url=efanurl+"api/getMachineInfo";
+        String parms="room_id="+boxId;
+        String result=  HttpUtils.sendPost(url,parms);
+        BaseResponse res;
+        try{
+            res =   new Gson().fromJson(result,BaseResponse.class);
+        }catch (Exception e){
+            res=new BaseResponse();
+            res.code=1000;
+            res.message=e.getMessage();
+        }
+        return  res;
+    }
      ///获取订单详情
      public  Order GetOrderDetail(String openId,String machineId){
 

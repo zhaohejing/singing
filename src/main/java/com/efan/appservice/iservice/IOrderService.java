@@ -36,4 +36,5 @@ public interface IOrderService {
     String ChangeToRoomId(String deviceCode);
     String ChangeToDevice_code(String room_id);
     List<Order> FindByFilter(String boxId,String openId);
+    BaseResponse GetMachineInfo(String boxId);
 }

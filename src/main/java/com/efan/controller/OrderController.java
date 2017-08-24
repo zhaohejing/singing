@@ -105,16 +105,17 @@ public class OrderController {
             return  result;
         }
       Order model   =_orderService.GetOrderDetail(input.openId,device);
+     BaseResponse r=   _orderService.GetMachineInfo(device);
       if (model==null){
           result=  new ActionResult(false,input.url ,"请来预定吧"   );
           result.setCode(-2);
-          result.setRoomId(device);
+          result.setMachine(r);
           return  result;
       }
       if ( model.getState()!=1){
           result=  new ActionResult(false,input.url ,"请来预定吧"   );
           result.setCode(-2);
-          result.setRoomId(device);
+          result.setMachine(r);
           return  result;
       }else if(!model.getUserKey().equals(input.openId)){
           result=  new ActionResult(false,null ,"当前时间段已被别人预定！" );

@@ -13,15 +13,16 @@ public class ActionResult implements Serializable {
     private  boolean unAuthorizedRequest;
     private  String targetUrl;
 
-    public String getRoomId() {
-        return roomId;
+    public Object getMachine() {
+        return machine;
     }
 
-    public void setRoomId(String roomId) {
-        this.roomId = roomId;
+    public void setMachine(Object machine) {
+        this.machine = machine;
     }
 
-    private String roomId;
+    private  Object machine;
+
     public Integer getCode() {
         return code;
     }
