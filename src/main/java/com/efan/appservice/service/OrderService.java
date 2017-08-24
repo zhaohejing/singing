@@ -148,7 +148,7 @@ public class OrderService implements IOrderService {
                     Integer mmmm=   te.getToTime().getMinutes();
 
                     count=   mmmm>minitu?mmmm:minitu;
-                    break;
+                    continue;
                 }
                 if (ll.getTime()<=te.getToTime().getTime()&&rr.getTime()>=te.getFromTime().getTime()){
                           Integer ttttt=  te.getToTime().getMinutes();
@@ -435,7 +435,7 @@ public class OrderService implements IOrderService {
                     hour, 0, 0);
         }else {
             calendar1.set(calendar1.get(Calendar.YEAR), calendar1.get(Calendar.MONTH), calendar1.get(Calendar.DAY_OF_MONTH),
-                    hour+1, 59, 59);
+                    hour, 59, 59);
         }
         return  calendar1.getTime();
     }
