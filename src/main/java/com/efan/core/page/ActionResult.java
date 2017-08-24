@@ -13,6 +13,15 @@ public class ActionResult implements Serializable {
     private  boolean unAuthorizedRequest;
     private  String targetUrl;
 
+    public String getRoomId() {
+        return roomId;
+    }
+
+    public void setRoomId(String roomId) {
+        this.roomId = roomId;
+    }
+
+    private String roomId;
     public Integer getCode() {
         return code;
     }
