@@ -226,17 +226,6 @@ public class OrderService implements IOrderService {
         Date end= c.getTime() ;
         Timestamp eee=DateToTimestamp(end);
         List<Order> temp=_orderRepository.findboxandstate(input.boxId);
-
-/*     for (Order o:temp
-             ) {
-         if (o.getFromTime().getTime()<start.getTime()&&eee.getTime()<o.getToTime().getTime()) throw new Exception("该时段已被预定");
-         if (o.getFromTime().getTime()>start.getTime()&&eee.getTime()>o.getFromTime().getTime())throw new Exception("该时段已被预定");
-         if (o.getToTime().getTime()>start.getTime()&&eee.getTime()>o.getToTime().getTime())throw new Exception("该时段已被预定");
-
-         if (o.getFromTime().getTime()<date.getTime()&&now.getTime().getTime()<o.getToTime().getTime()) throw new Exception("该时段已被预定");
-         if (o.getFromTime().getTime()>date.getTime()&&now.getTime().getTime()>o.getFromTime().getTime())throw new Exception("该时段已被预定");
-         if (o.getToTime().getTime()>date.getTime()&&now.getTime().getTime()>o.getToTime().getTime())throw new Exception("该时段已被预定");
-     }*/
      for (Order o:temp
           ) {
        if(o.getFromTime().getTime()<end.getTime()&&o.getToTime( ).getTime() >start.getTime()){
