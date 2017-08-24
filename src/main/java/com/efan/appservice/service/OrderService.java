@@ -135,12 +135,18 @@ public class OrderService implements IOrderService {
             }
             Integer count=0;
 
+            if (list.size()<=0){
+                if(i==nowHour){
+                    count=minitu;
+                }
+            }
             Integer max=0;
             for (Order te:list){
                 Date ll=GetCurrentDateAsync(true,i);
                 Date rr=GetCurrentDateAsync(false,i);
                 if(i==nowHour){
-                     Integer mmmm=   te.getToTime().getMinutes();
+                    Integer mmmm=   te.getToTime().getMinutes();
+
                     count=   mmmm>minitu?mmmm:minitu;
                     break;
                 }
@@ -152,33 +158,6 @@ public class OrderService implements IOrderService {
             }
             count+=  max;
 
-
-          /*  for (Order temp : list) {
-                Timestamp from = temp.getFromTime();
-                Calendar left = Calendar.getInstance();
-                left.setTime(from);
-                Integer hour = left.get(Calendar.HOUR_OF_DAY);
-                Integer min = left.get(Calendar.MINUTE);
-
-                Timestamp to = temp.getToTime();
-                Calendar right = Calendar.getInstance();
-                right.setTime(to);
-
-                Integer thor = right.get(Calendar.HOUR_OF_DAY);
-                Integer tobin = right.get(Calendar.MINUTE);
-                if (i == hour) {
-                    if (i == thor) {
-                        count += tobin;
-                    } else {
-                        count +=minitu+  min;
-                    }
-                }
-                if (i == thor) {
-                    if (hour < thor) {
-                        count += tobin;
-                    }
-                }
-            }*/
             result.add(new OrderTime(i,i+1,count));
         }
         return  result;
