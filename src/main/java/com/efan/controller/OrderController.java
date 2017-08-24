@@ -110,12 +110,14 @@ public class OrderController {
           result=  new ActionResult(false,input.url ,"请来预定吧"   );
           result.setCode(-2);
           result.setMachine(r);
+          result.setRoomId(device);
           return  result;
       }
       if ( model.getState()!=1){
           result=  new ActionResult(false,input.url ,"请来预定吧"   );
           result.setCode(-2);
           result.setMachine(r);
+          result.setRoomId(device);
           return  result;
       }else if(!model.getUserKey().equals(input.openId)){
           result=  new ActionResult(false,null ,"当前时间段已被别人预定！" );

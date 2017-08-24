@@ -21,8 +21,21 @@ public class ActionResult implements Serializable {
         this.machine = machine;
     }
 
+    public Boolean getSuccess() {
+        return success;
+    }
+
     private  Object machine;
 
+    public String getRoomId() {
+        return roomId;
+    }
+
+    public void setRoomId(String roomId) {
+        this.roomId = roomId;
+    }
+
+    private  String roomId;
     public Integer getCode() {
         return code;
     }
