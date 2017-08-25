@@ -146,8 +146,26 @@ public class OrderController {
     @ApiOperation(value="支付成功修改订单状态", notes="远程购买接口")
     @ApiImplicitParam(name = "input", value = "{order:订单号,state:支付状态}", required = true, dataType = "OrderStateInput")
     @RequestMapping(value  ="/paystate" ,method = RequestMethod.POST)
-    public  ActionResult UpdatePayState(@RequestBody OrderStateInput input){
+    public  ActionResult UpdatePayState(@RequestBody OrderStateInput input) throws JSONException{
+        ActionResult result=null;
         Order model   =_orderService.UpdateOrderState(input);
-        return  new ActionResult(model);
+        if (model.getOrderType()==2){
+            //调用开屏
+            if (model.getState()==1){
+                ObjectResponse temp1=  _orderService.TalkSingIt(model);
+                // _orderService.OutProductIn(model);
+                BodyResponse temp2=  _orderService.OutProductInAsync(temp1,model);
+                if(temp1.operation.equals("ok")){
+                    result.setCode(1);
+                }else{
+                    result=  new ActionResult(true,model.getOrderNum(),"开屏失败，联系管理员");
+                    result.setCode(0);
+                }
+            }
+        }else   {
+            result.setCode(1);
+        }
+
+        return  new ActionResult(result);
     }
 }
