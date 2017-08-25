@@ -220,7 +220,6 @@ public class OrderService implements IOrderService {
 
         Calendar c=Calendar.getInstance();
         c.setTime(tempTime);
-        c.add(Calendar.SECOND,1);
      Timestamp   start=DateToTimestamp( c.getTime());
      now.setTime(date);
 
