@@ -146,8 +146,8 @@ public class OrderService implements IOrderService {
                 Date rr=GetCurrentDateAsync(false,i);
                 if(i==nowHour){
                     Integer mmmm=   te.getToTime().getMinutes();
-
-                    count=   mmmm>minitu?mmmm:minitu;
+                    mmmm=mmmm==60?60:mmmm+1;
+                    count=   mmmm> minitu?mmmm:minitu;
                     continue;
                 }
                 if (ll.getTime()<=te.getToTime().getTime()&&rr.getTime()>=te.getFromTime().getTime()){
