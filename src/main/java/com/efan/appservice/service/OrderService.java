@@ -146,7 +146,6 @@ public class OrderService implements IOrderService {
                 Date rr=GetCurrentDateAsync(false,i);
                 if(i==nowHour){
                     Integer mmmm=   te.getToTime().getMinutes();
-                    mmmm=mmmm==60?60:mmmm+1;
                     count=   mmmm> minitu?mmmm:minitu;
                     continue;
                 }
@@ -157,7 +156,7 @@ public class OrderService implements IOrderService {
 
             }
             count+=  max;
-
+            count=count==60?60:count+1;
             result.add(new OrderTime(i,i+1,count));
         }
         return  result;
