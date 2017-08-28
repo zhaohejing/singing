@@ -338,6 +338,8 @@ public class OrderService implements IOrderService {
 
     }
     public ObjectResponse TalkSingIt(Order input) throws JSONException {
+        Timestamp now = new Timestamp(System.currentTimeMillis());
+            now= input.getFromTime().getTime()<=now.getTime()?now:input.getFromTime();
         JSONObject map=new JSONObject();
         map.put("tag","roomControl");
         map.put("stbId",Integer.parseInt(input.getBoxId()) );
@@ -348,7 +350,7 @@ public class OrderService implements IOrderService {
         map.put("singer",input.getConsumerName());
         map.put("method","open");
         map.put("mode","sale");
-        map.put("duration",(input.getToTime().getTime()-input.getFromTime().getTime())/1000 );
+        map.put("duration",(input.getToTime().getTime()-now.getTime())/1000 );
         String result=   HttpUtils.postObj("https://cloud.xungevod.com:11443/kiosk/operation.html",map);
         ObjectResponse res;
         try{
