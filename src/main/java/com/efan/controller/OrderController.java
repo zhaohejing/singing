@@ -152,6 +152,8 @@ public class OrderController {
         if (model.getOrderType()==2){
             //调用开屏
             if (model.getState()==1){
+                String device=_orderService.ChangeToDevice_code(model.getBoxId());
+                model.setBoxId(device);
                 ObjectResponse temp1=  _orderService.TalkSingIt(model);
                 // _orderService.OutProductIn(model);
                 BodyResponse temp2=  _orderService.OutProductInAsync(temp1,model);

@@ -349,9 +349,7 @@ public class OrderService implements IOrderService {
         map.put("method","open");
         map.put("mode","sale");
         map.put("duration",(input.getToTime().getTime()-input.getFromTime().getTime())/1000 );
-        logger.error(new Gson().toJson(map));
         String result=   HttpUtils.postObj("https://cloud.xungevod.com:11443/kiosk/operation.html",map);
-        logger.error(result);
         ObjectResponse res;
         try{
             res =   new Gson().fromJson(result,ObjectResponse.class);
@@ -380,9 +378,7 @@ public class OrderService implements IOrderService {
         obj.put("payChannel","WX");
         obj.put("vendoutStatus",  response.operation.equals("ok")? "VENDOUT_SUCCESS":"VENDOUT_FAILEd");
           arr.put(obj);
-        logger.error(new Gson().toJson(arr));
         String result=   HttpUtils.postObj("http://openapi.efanyun.com/vendout/report/ktv",arr);
-        logger.error(result);
         BodyResponse res;
         try{
             res =   new Gson().fromJson(result,BodyResponse.class);
