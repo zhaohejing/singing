@@ -64,7 +64,7 @@ public class MyTapeService implements IMyTapeService {
     public MyTape ModifyMyTape(MyTapeDto input){
         SimpleDateFormat df = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");//设置日期格式
             MyTape mod=_myTapeRepository.findOne(input.id );
-            mod.setQiniuKey(input.qiniuKey);
+            mod.setQiniuKey(input.qiniuUrl);
             mod.setModifyTime(df.format(new Date()));
             return   _myTapeRepository.save(mod);
     }
