@@ -38,6 +38,24 @@ public class MyTape implements Serializable {
     @Column(length = 150)
     private  String userImage;
 
+    public String getSongKey() {
+        return songKey;
+    }
+
+    public void setSongKey(String songKey) {
+        this.songKey = songKey;
+    }
+
+    public String getSongCode() {
+        return songCode;
+    }
+
+    public void setSongCode(String songCode) {
+        this.songCode = songCode;
+    }
+
+    private String songKey;
+    private String songCode;
 
     public String getOrderId() {
         return orderId;
@@ -50,9 +68,6 @@ public class MyTape implements Serializable {
     @NotNull
     @Column(length = 150,unique = true)
     private  String orderId;
-    //图片
-    @Column(length = 150)
-    private  String songImage;
     //留言
     @Column(length = 150)
     private  String remark;
@@ -125,13 +140,7 @@ public class MyTape implements Serializable {
         this.userImage = userImage;
     }
 
-    public String getSongImage() {
-        return songImage;
-    }
 
-    public void setSongImage(String songImage) {
-        this.songImage = songImage;
-    }
 
     public String getRemark() {
         return remark;

@@ -45,8 +45,10 @@ public class MyTapeService implements IMyTapeService {
             model.setOrderId(input.orderId);
             model.setUserImage(input.userImage);
             model.setQiniuUrl(input.qiniuUrl);
+            model.setSongKey(input.songKey);
+       model.setSongCode(input.songCode);
+
             model.setRemark(input.remark);
-            model.setSongImage(input.songImage);
             model.setSongTime(input.songTime);
             model.setCreationTime(df.format(new Date()));
             model.setState(false);

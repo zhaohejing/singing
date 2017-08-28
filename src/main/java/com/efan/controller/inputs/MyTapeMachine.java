@@ -6,8 +6,8 @@ public class MyTapeMachine {
     public String identify;
 
     public String songName;
-    //用户唯一标识
-    public String songSubId;
+    public String songKey;
+    public String songCode;
     //歌曲名称
     public  String  orderId;
     //演唱者
@@ -18,8 +18,7 @@ public class MyTapeMachine {
     public  String remark;
     //图片
     public  String singer;
-    //图片
-    public  String songImage;
+
     //留言
     public  String songTime;
     public  String userImage;
