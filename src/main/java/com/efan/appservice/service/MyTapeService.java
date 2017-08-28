@@ -7,6 +7,7 @@ import com.efan.controller.inputs.MyTapeMachine;
 import com.efan.core.primary.MyTape;
 import com.efan.core.page.FilterModel;
 import com.efan.core.page.ResultModel;
+import com.efan.repository.primary.IMySongsRepository;
 import com.efan.repository.primary.IMyTapeRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
@@ -26,9 +27,12 @@ import java.util.Map;
 @Service
 public class MyTapeService implements IMyTapeService {
     private IMyTapeRepository _myTapeRepository;
+    private IMySongsRepository _mySongsRepository;
+
     @Autowired
-    public MyTapeService(IMyTapeRepository myTapeRepository){
+    public MyTapeService(IMyTapeRepository myTapeRepository,IMySongsRepository mySongsRepository){
         this._myTapeRepository= myTapeRepository;
+        this._mySongsRepository=mySongsRepository;
     }
 //添加或编辑我的录音
     public Map<String,Object> InsertMyTape(MyTapeMachine input){
@@ -54,6 +58,11 @@ public class MyTapeService implements IMyTapeService {
             model.setState(false);
           model=   _myTapeRepository.save(model);
           if (model.getId()>0){
+              //清除歌单操作
+              if(!input.songSubId.isEmpty()){
+                  long l = Long.parseLong(input.songSubId);
+                  _mySongsRepository.delete(l);
+              }
               map.put("operation","ok");
           }else{
               map.put("operation","failed");

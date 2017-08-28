@@ -32,7 +32,7 @@ this._mytapeService=mytapeService;
     @ApiOperation(value="创建我的原唱歌曲", notes="我的模块接口")
     @RequestMapping(value  ="/insertTape" ,method = RequestMethod.POST)
     public  Map<String,Object> InsertTape(@RequestBody MyTapeMachine input){
-        Map<String,Object> result=_mytapeService.InsertMyTape(input);
+        Map<String,Object> result=   _mytapeService.InsertMyTape(input);
         return  result;
     }
     /*设备上传文件 获取到qiniu的路径 保存*/

@@ -18,7 +18,7 @@ public class MyTapeMachine {
     public  String remark;
     //图片
     public  String singer;
-
+    public String songSubId;
     //留言
     public  String songTime;
     public  String userImage;

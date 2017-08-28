@@ -75,7 +75,7 @@ public class MyTape implements Serializable {
     }
 
     @NotNull
-    @Column(length = 150,unique = true)
+    @Column(length = 150,unique = false)
     private  String orderId;
     //留言
     @Column(length = 150)
@@ -92,9 +92,6 @@ public class MyTape implements Serializable {
     public void setId(Long id) {
         this.id = id;
     }
-
-
-
     public String getUserKey() {
         return userKey;
     }
