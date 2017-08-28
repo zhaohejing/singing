@@ -44,7 +44,7 @@ public class MyTapeService implements IMyTapeService {
             model.setUserKey(input.userKey);
             model.setOrderId(input.orderId);
             model.setUserImage(input.userImage);
-            model.setQiniuUrl(input.qiniuUrl);
+            model.setQiniuKey(input.qiniuKey);
             model.setSongKey(input.songKey);
        model.setSongCode(input.songCode);
 
@@ -64,10 +64,9 @@ public class MyTapeService implements IMyTapeService {
     public MyTape ModifyMyTape(MyTapeDto input){
         SimpleDateFormat df = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");//设置日期格式
             MyTape mod=_myTapeRepository.findOne(input.id );
-            mod.setQiniuUrl(input.qiniuUrl);
+            mod.setQiniuKey(input.qiniuKey);
             mod.setModifyTime(df.format(new Date()));
             return   _myTapeRepository.save(mod);
-
     }
 //获取我的录音列表
     public ResultModel<MyTape> GetAllMyTapeList(FilterModel model){

@@ -11,7 +11,7 @@ public class MyTapeMachine {
     //歌曲名称
     public  String  orderId;
     //演唱者
-    public  String qiniuUrl;
+    public  String qiniuKey;
     //原唱
     public  String originalSinger;
     //时长

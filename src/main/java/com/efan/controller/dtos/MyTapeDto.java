@@ -8,7 +8,7 @@ package com.efan.controller.dtos;
 public class MyTapeDto {
 
     public Long id;
-    public String qiniuUrl;
+    public String qiniuKey;
     //用户唯一标识
     public String userKey;
     //歌曲名称

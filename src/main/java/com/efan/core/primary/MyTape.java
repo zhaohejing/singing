@@ -14,10 +14,19 @@ public class MyTape implements Serializable {
     @NotNull
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
+
+    public String getQiniuKey() {
+        return qiniuKey;
+    }
+
+    public void setQiniuKey(String qiniuKey) {
+        this.qiniuKey = qiniuKey;
+    }
+
     //骑牛url
     @NotNull
     @Column(length = 50)
-    private String qiniuUrl;
+    private String qiniuKey;
     //用户唯一标识
     @NotNull
     @Column(length = 50)
@@ -84,13 +93,7 @@ public class MyTape implements Serializable {
         this.id = id;
     }
 
-    public String getQiniuUrl() {
-        return qiniuUrl;
-    }
 
-    public void setQiniuUrl(String qiniuUrl) {
-        this.qiniuUrl = qiniuUrl;
-    }
 
     public String getUserKey() {
         return userKey;
