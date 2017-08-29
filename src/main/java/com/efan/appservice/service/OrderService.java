@@ -346,7 +346,7 @@ public class OrderService implements IOrderService {
         map.put("identify","efanyun.com");
         map.put("openid",input.getUserKey());
         map.put("orderid",input.getOrderNum());
-        map.put("serImage",input.getConsumerName());
+        map.put("serImage","");
         map.put("singer",input.getConsumerName());
         map.put("method","open");
         map.put("mode","sale");
