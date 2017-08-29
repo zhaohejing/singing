@@ -50,7 +50,7 @@ public class MyTapeService implements IMyTapeService {
             model.setUserImage(input.userImage);
             model.setQiniuKey(input.qiniuKey);
             model.setSongKey(input.songKey);
-       model.setSongCode(input.songCode);
+              model.setSongCode(input.songCode);
 
             model.setRemark(input.remark);
             model.setSongTime(input.songTime);
