@@ -48,7 +48,11 @@ public class MyTapeService implements IMyTapeService {
             model.setUserKey(input.userKey);
             model.setOrderId(input.orderId);
             model.setUserImage(input.userImage);
-            model.setQiniuKey(input.qiniuKey);
+            if(!input.qiniuKey.isEmpty()){
+                String url="http://www.baidu.com/"+input.qiniuKey;
+                model.setQiniuKey(url);
+
+            }
             model.setSongKey(input.songKey);
               model.setSongCode(input.songCode);
 
@@ -73,7 +77,10 @@ public class MyTapeService implements IMyTapeService {
     public MyTape ModifyMyTape(MyTapeDto input){
         SimpleDateFormat df = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");//设置日期格式
             MyTape mod=_myTapeRepository.findOne(input.id );
-            mod.setQiniuKey(input.qiniuUrl);
+        if(!input.qiniuUrl.isEmpty()){
+            String url="http://www.baidu.com/"+input.qiniuUrl;
+            mod.setQiniuKey(url);
+        }
             mod.setModifyTime(df.format(new Date()));
             return   _myTapeRepository.save(mod);
     }
