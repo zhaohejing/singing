@@ -9,6 +9,8 @@ import com.efan.core.page.FilterModel;
 import com.efan.core.page.ResultModel;
 import com.efan.repository.primary.IMySongsRepository;
 import com.efan.repository.primary.IMyTapeRepository;
+import com.qiniu.util.Auth;
+import com.sun.deploy.net.URLEncoder;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.PageRequest;
@@ -49,9 +51,8 @@ public class MyTapeService implements IMyTapeService {
             model.setOrderId(input.orderId);
             model.setUserImage(input.userImage);
             if(!input.qiniuKey.isEmpty()){
-                String url="http://www.baidu.com/"+input.qiniuKey;
+                String url=""+input.qiniuKey;
                 model.setQiniuKey(url);
-
             }
             model.setSongKey(input.songKey);
               model.setSongCode(input.songCode);
@@ -78,7 +79,7 @@ public class MyTapeService implements IMyTapeService {
         SimpleDateFormat df = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");//设置日期格式
             MyTape mod=_myTapeRepository.findOne(input.id );
         if(!input.qiniuUrl.isEmpty()){
-            String url="http://www.baidu.com/"+input.qiniuUrl;
+            String url=""+input.qiniuUrl;
             mod.setQiniuKey(url);
         }
             mod.setModifyTime(df.format(new Date()));
@@ -104,8 +105,21 @@ public class MyTapeService implements IMyTapeService {
     }
 
     //获取我的录音详情
-    public  MyTape GetMyTape(DeleteInput input){
+    public  MyTape GetMyTape(DeleteInput input) throws  Exception{
         MyTape model=_myTapeRepository.findOne(input.id);
+        if(!model.getQiniuKey().isEmpty()){
+
+            String domainOfBucket = "http://devtools.qiniu.com ";
+            String encodedFileName = URLEncoder.encode(model.getQiniuKey(), "utf-8");
+            String publicUrl = String.format("%s/%s", domainOfBucket, encodedFileName);
+
+            String accessKey = "qrHNg87X9WCbirrE_xouL35IUCJCQtQBUV3EfdD0";
+            String secretKey = "6_nyn8qIOQrNG8oSqbVUCzVdEKUm6Qb5pf17Xjnr";
+            Auth auth = Auth.create(accessKey, secretKey);
+            long expireInSeconds = 36000;//1小时，可以自定义链接过期时间
+            String finalUrl = auth.privateDownloadUrl(publicUrl, expireInSeconds);
+    model.setQiniuKey(finalUrl);
+        }
       return  model;
     }
 

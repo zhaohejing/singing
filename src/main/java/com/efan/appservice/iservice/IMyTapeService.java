@@ -19,7 +19,7 @@ public interface IMyTapeService {
      MyTape ModifyMyTape(MyTapeDto input);
     ResultModel<MyTape> GetMyTapeList(FilterModel model);
     MyTape UpdateMyTapeState(Long tapeId);
-    MyTape GetMyTape(DeleteInput input);
+    MyTape GetMyTape(DeleteInput input) throws  Exception;
     ResultModel<MyTape> GetAllMyTapeList(FilterModel model);
 
 }
