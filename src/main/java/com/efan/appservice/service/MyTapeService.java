@@ -10,17 +10,16 @@ import com.efan.core.page.ResultModel;
 import com.efan.repository.primary.IMySongsRepository;
 import com.efan.repository.primary.IMyTapeRepository;
 import com.qiniu.util.Auth;
-import com.sun.deploy.net.URLEncoder;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.PageRequest;
 import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
 
+import java.net.URLEncoder;
 import java.text.SimpleDateFormat;
 import java.util.Date;
 import java.util.HashMap;
-import java.util.List;
 import java.util.Map;
 
 /**
@@ -109,8 +108,8 @@ public class MyTapeService implements IMyTapeService {
         MyTape model=_myTapeRepository.findOne(input.id);
         if(!model.getQiniuKey().isEmpty()){
             String domainOfBucket = "http://record.eqichang.efanyun.com";
-         //   String encodedFileName =  URLEncoder.encode(model.getQiniuKey(), "utf-8");
-            String publicUrl = String.format("%s/%s", domainOfBucket, model.getQiniuKey());
+           String encodedFileName =  URLEncoder.encode(model.getQiniuKey(), "utf-8");
+            String publicUrl = String.format("%s/%s", domainOfBucket, encodedFileName);
 
             String accessKey = "qrHNg87X9WCbirrE_xouL35IUCJCQtQBUV3EfdD0";
             String secretKey = "6_nyn8qIOQrNG8oSqbVUCzVdEKUm6Qb5pf17Xjnr";
