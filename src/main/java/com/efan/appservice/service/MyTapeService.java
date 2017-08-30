@@ -109,8 +109,8 @@ public class MyTapeService implements IMyTapeService {
         MyTape model=_myTapeRepository.findOne(input.id);
         if(!model.getQiniuKey().isEmpty()){
             String domainOfBucket = "http://record.eqichang.efanyun.com";
-            String encodedFileName =  URLEncoder.encode(model.getQiniuKey(), "utf-8");
-            String publicUrl = String.format("%s/%s", domainOfBucket, encodedFileName);
+         //   String encodedFileName =  URLEncoder.encode(model.getQiniuKey(), "utf-8");
+            String publicUrl = String.format("%s/%s", domainOfBucket, model.getQiniuKey());
 
             String accessKey = "qrHNg87X9WCbirrE_xouL35IUCJCQtQBUV3EfdD0";
             String secretKey = "6_nyn8qIOQrNG8oSqbVUCzVdEKUm6Qb5pf17Xjnr";
