@@ -52,7 +52,7 @@ public class OrderService implements IOrderService {
      * */
     public BaseResponse GetRemoteList(RemoteInput input) {
         String url=efanurl+"api/getSpotsByCoordinate";
-        String parm="longitude="+input.y+"&latitude"+input.x+"&page="+input.page;
+        String parm="longitude="+input.y+"&latitude="+input.x+"&page="+input.page;
 
       String result=  HttpUtils.sendPost(url,parm);
         logger.warn("logitude:"+input.y+",latitude:"+input.x+"result:"+result);
