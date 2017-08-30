@@ -108,7 +108,7 @@ public class MyTapeService implements IMyTapeService {
     public  MyTape GetMyTape(DeleteInput input) throws  Exception{
         MyTape model=_myTapeRepository.findOne(input.id);
         if(!model.getQiniuKey().isEmpty()){
-            String domainOfBucket = "http://devtools.qiniu.com";
+            String domainOfBucket = "http://record.eqichang.efanyun.com";
             String encodedFileName =  URLEncoder.encode(model.getQiniuKey(), "utf-8");
             String publicUrl = String.format("%s/%s", domainOfBucket, encodedFileName);
 
