@@ -3,6 +3,7 @@ package com.efan.appservice.iservice;
 import com.efan.controller.dtos.MyTapeDto;
 import com.efan.controller.inputs.DeleteInput;
 import com.efan.controller.inputs.MyTapeMachine;
+import com.efan.controller.inputs.RemarkInput;
 import com.efan.core.primary.MySongs;
 import com.efan.core.primary.MyTape;
 import com.efan.core.page.FilterModel;
@@ -21,5 +22,5 @@ public interface IMyTapeService {
     MyTape UpdateMyTapeState(Long tapeId);
     MyTape GetMyTape(DeleteInput input) throws  Exception;
     ResultModel<MyTape> GetAllMyTapeList(FilterModel model);
-
+    MyTape Remark(RemarkInput input);
 }

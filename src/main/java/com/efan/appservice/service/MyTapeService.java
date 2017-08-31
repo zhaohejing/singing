@@ -4,6 +4,7 @@ import com.efan.appservice.iservice.IMyTapeService;
 import com.efan.controller.dtos.MyTapeDto;
 import com.efan.controller.inputs.DeleteInput;
 import com.efan.controller.inputs.MyTapeMachine;
+import com.efan.controller.inputs.RemarkInput;
 import com.efan.core.primary.MyTape;
 import com.efan.core.page.FilterModel;
 import com.efan.core.page.ResultModel;
@@ -102,7 +103,11 @@ public class MyTapeService implements IMyTapeService {
      model.setState(true);
     return  _myTapeRepository.save(model );
     }
-
+    public  MyTape Remark(RemarkInput input){
+        MyTape model=_myTapeRepository.findOne(input.tapeId);
+        model.setRemark(input.remark);
+        return  _myTapeRepository.save(model );
+    }
     //获取我的录音详情
     public  MyTape GetMyTape(DeleteInput input) throws  Exception{
         MyTape model=_myTapeRepository.findOne(input.id);

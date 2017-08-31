@@ -4,6 +4,7 @@ import com.efan.appservice.iservice.IMyTapeService;
 import com.efan.controller.dtos.MyTapeDto;
 import com.efan.controller.inputs.DeleteInput;
 import com.efan.controller.inputs.MyTapeMachine;
+import com.efan.controller.inputs.RemarkInput;
 import com.efan.controller.inputs.UserKeyInput;
 import com.efan.core.primary.MyTape;
 import com.efan.core.page.ActionResult;
@@ -49,7 +50,14 @@ this._mytapeService=mytapeService;
         MyTape result=_mytapeService.UpdateMyTapeState(id);
         return  new ActionResult(result);
     }
-
+    /*修改我的歌单文件上传状态*/
+    @ApiOperation(value="留言", notes="我的模块接口")
+    @ApiImplicitParam(name = "input", value = "{}", required = true, dataType = "RemarkInput")
+    @RequestMapping(value  ="/remark" ,method = RequestMethod.POST)
+    public ActionResult Remark(@RequestBody RemarkInput input){
+        MyTape result=_mytapeService.Remark(input);
+        return  new ActionResult(result);
+    }
     /*获取我的录音列表*/
     @ApiOperation(value="获取我的以保留录音列表", notes="我的模块接口")
     @ApiImplicitParam(name = "input", value = "{filter:过滤条件,index:页码,size:页容量 }", required = true, dataType = "FilterModel")
