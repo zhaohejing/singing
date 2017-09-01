@@ -47,6 +47,16 @@ public class MyTape implements Serializable {
     @Column(length = 150)
     private  String userImage;
 
+    public String getShare() {
+        return share;
+    }
+
+    public void setShare(String share) {
+        this.share = share;
+    }
+
+    private String share;
+
     public String getSongKey() {
         return songKey;
     }

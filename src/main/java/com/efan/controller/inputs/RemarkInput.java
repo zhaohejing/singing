@@ -6,4 +6,5 @@ package com.efan.controller.inputs;
 public class RemarkInput {
     public Long tapeId;
     public String remark;
+    public String share;
 }
