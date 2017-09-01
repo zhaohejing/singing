@@ -106,8 +106,17 @@ public class MyTapeService implements IMyTapeService {
     }
     public  MyTape Remark(RemarkInput input){
         MyTape model=_myTapeRepository.findOne(input.tapeId);
-        model.setRemark(input.remark);
-        model.setShare(input.share);
+        if (!input.remark.isEmpty()){
+            model.setRemark(input.remark);
+
+        }
+        if (!input.share.isEmpty()){
+            model.setShare(input.share);
+        }
+        if (!input.userImage.isEmpty()){
+            model.setUserImage(input.userImage);
+
+        }
         return  _myTapeRepository.save(model );
     }
     //获取我的录音详情

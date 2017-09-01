@@ -7,4 +7,5 @@ public class RemarkInput {
     public Long tapeId;
     public String remark;
     public String share;
+    public  String userImage;
 }
