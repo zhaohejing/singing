@@ -6,6 +6,7 @@ import com.efan.controller.inputs.*;
 import com.efan.core.page.*;
 import com.efan.core.primary.Order;
 import com.efan.repository.primary.IOrderRepository;
+import com.efan.utils.CodeUtil;
 import com.efan.utils.HttpUtils;
 import com.google.gson.Gson;
 import com.sun.tools.corba.se.idl.constExpr.Times;
@@ -347,7 +348,7 @@ public class OrderService implements IOrderService {
         map.put("openid",input.getUserKey());
         map.put("orderid",input.getOrderNum());
         map.put("serImage","");
-        map.put("singer",input.getConsumerName());
+        map.put("singer", CodeUtil.base64Encode(input.getConsumerName().getBytes()));
         map.put("method","open");
         map.put("mode","sale");
         map.put("duration",(input.getToTime().getTime()-now.getTime())/1000 );

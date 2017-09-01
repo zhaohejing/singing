@@ -10,6 +10,7 @@ import com.efan.core.page.FilterModel;
 import com.efan.core.page.ResultModel;
 import com.efan.repository.primary.IMySongsRepository;
 import com.efan.repository.primary.IMyTapeRepository;
+import com.efan.utils.CodeUtil;
 import com.qiniu.util.Auth;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
@@ -111,6 +112,7 @@ public class MyTapeService implements IMyTapeService {
     //获取我的录音详情
     public  MyTape GetMyTape(DeleteInput input) throws  Exception{
         MyTape model=_myTapeRepository.findOne(input.id);
+        model.setSinger(CodeUtil.base64Decode(model.getSinger()).toString());
         if(!model.getQiniuKey().isEmpty()){
             String domainOfBucket = "http://record.eqichang.efanyun.com";
            String encodedFileName =  URLEncoder.encode(model.getQiniuKey(), "utf-8");
