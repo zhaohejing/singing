@@ -12,6 +12,7 @@ import org.json.JSONException;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
+import java.io.IOException;
 import java.util.List;
 
 /**
@@ -90,7 +91,7 @@ public class OrderController {
     @ApiOperation(value="通知机器是否可以开唱", notes="远程购买接口")
     @ApiImplicitParam(name = "input", value = "dto对象", required = true, dataType = "CanSingInput")
     @RequestMapping(value  ="/cansingit" ,method = RequestMethod.POST)
-    public  ActionResult CanSingIt(@RequestBody CanSingInput input) throws JSONException{
+    public  ActionResult CanSingIt(@RequestBody CanSingInput input) throws JSONException,IOException{
        String device=_orderService.ChangeToRoomId(input.machineId);
        ActionResult result=null;
        if (device.isEmpty()){
@@ -146,7 +147,7 @@ public class OrderController {
     @ApiOperation(value="支付成功修改订单状态", notes="远程购买接口")
     @ApiImplicitParam(name = "input", value = "{order:订单号,state:支付状态}", required = true, dataType = "OrderStateInput")
     @RequestMapping(value  ="/paystate" ,method = RequestMethod.POST)
-    public  ActionResult UpdatePayState(@RequestBody OrderStateInput input) throws JSONException{
+    public  ActionResult UpdatePayState(@RequestBody OrderStateInput input) throws JSONException,IOException{
         ActionResult result=null;
         Order model   =_orderService.UpdateOrderState(input);
         if (model.getOrderType()==2){

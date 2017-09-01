@@ -6,6 +6,7 @@ import com.efan.core.page.*;
 import com.efan.core.primary.Order;
 import org.json.JSONException;
 
+import java.io.IOException;
 import java.sql.Timestamp;
 import java.util.Date;
 import java.util.List;
@@ -30,7 +31,7 @@ public interface IOrderService {
     /** 更新订单状态
      */
      Order UpdateOrderState(OrderStateInput input);
-    ObjectResponse TalkSingIt(Order input) throws JSONException;
+    ObjectResponse TalkSingIt(Order input) throws JSONException,IOException;
     //毁掉
     BodyResponse OutProductInAsync(ObjectResponse response,Order input) throws JSONException;
     String ChangeToRoomId(String deviceCode);

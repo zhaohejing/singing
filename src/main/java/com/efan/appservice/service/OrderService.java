@@ -27,6 +27,7 @@ import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
 
+import java.io.IOException;
 import java.sql.Timestamp;
 import java.text.DecimalFormat;
 import java.text.ParseException;
@@ -338,7 +339,7 @@ public class OrderService implements IOrderService {
     return  true;
 
     }
-    public ObjectResponse TalkSingIt(Order input) throws JSONException {
+    public ObjectResponse TalkSingIt(Order input) throws JSONException,IOException {
         Timestamp now = new Timestamp(System.currentTimeMillis());
             now= input.getFromTime().getTime()<=now.getTime()?now:input.getFromTime();
         JSONObject map=new JSONObject();
@@ -348,7 +349,7 @@ public class OrderService implements IOrderService {
         map.put("openid",input.getUserKey());
         map.put("orderid",input.getOrderNum());
         map.put("serImage","");
-        map.put("singer", CodeUtil.base64Encode(input.getConsumerName().getBytes()));
+        map.put("singer", CodeUtil.emojiConvert(input.getConsumerName()));
         map.put("method","open");
         map.put("mode","sale");
         map.put("duration",(input.getToTime().getTime()-now.getTime())/1000 );
