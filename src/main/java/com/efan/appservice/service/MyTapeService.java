@@ -110,8 +110,8 @@ public class MyTapeService implements IMyTapeService {
             model.setRemark(input.remark);
 
         }
-        if (!input.share.isEmpty()){
-            model.setShare(input.share);
+        if (!input.singer.isEmpty()){
+            model.setSinger(input.singer);
         }
         if (!input.userImage.isEmpty()){
             model.setUserImage(input.userImage);
@@ -122,7 +122,7 @@ public class MyTapeService implements IMyTapeService {
     //获取我的录音详情
     public  MyTape GetMyTape(DeleteInput input) throws  Exception{
         MyTape model=_myTapeRepository.findOne(input.id);
-        model.setSinger(CodeUtil.emojiRecovery(model.getSinger()).toString());
+       // model.setSinger(CodeUtil.emojiRecovery(model.getSinger()).toString());
         if(!model.getQiniuKey().isEmpty()){
             String domainOfBucket = "http://record.eqichang.efanyun.com";
            String encodedFileName =  URLEncoder.encode(model.getQiniuKey(), "utf-8");
