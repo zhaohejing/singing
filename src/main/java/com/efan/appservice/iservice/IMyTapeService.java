@@ -23,4 +23,5 @@ public interface IMyTapeService {
     MyTape GetMyTape(DeleteInput input) throws  Exception;
     ResultModel<MyTape> GetAllMyTapeList(FilterModel model);
     MyTape Remark(RemarkInput input);
+    void DeleteMyTape(DeleteInput input);
 }

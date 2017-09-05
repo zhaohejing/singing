@@ -87,4 +87,14 @@ this._mytapeService=mytapeService;
             return  new ActionResult(false,e.getMessage());
         }
     }
+
+    /*获取我的录音详情*/
+    @ApiOperation(value="删除我的录音", notes="我的模块接口")
+    @ApiImplicitParam(name = "input", value = "{id }", required = true, dataType = "DeleteInput")
+    @RequestMapping(value  ="/delete" ,method = RequestMethod.POST)
+    public ActionResult DeleteMyTape(@RequestBody DeleteInput input){
+          _mytapeService.DeleteMyTape(input);
+            return  new ActionResult(true);
+
+    }
 }

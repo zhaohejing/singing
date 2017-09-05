@@ -5,6 +5,7 @@ import com.efan.controller.dtos.MyTapeDto;
 import com.efan.controller.inputs.DeleteInput;
 import com.efan.controller.inputs.MyTapeMachine;
 import com.efan.controller.inputs.RemarkInput;
+import com.efan.core.page.ActionResult;
 import com.efan.core.primary.MyTape;
 import com.efan.core.page.FilterModel;
 import com.efan.core.page.ResultModel;
@@ -137,5 +138,7 @@ public class MyTapeService implements IMyTapeService {
         }
       return  model;
     }
-
+    public void DeleteMyTape(DeleteInput input){
+        _myTapeRepository.delete(input.id);
+    }
 }
