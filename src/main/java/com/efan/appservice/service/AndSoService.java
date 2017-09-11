@@ -203,9 +203,13 @@ public class AndSoService implements IAndSoService {
         for (Map<String, Object> aList : list) {
             Boolean impact = false;
             for (MySongs aResult : result) {
-                Object left = aList.get("ID");
-                Long right = aResult.getSongKey();
-                if (left.toString().equals(right.toString())) {
+                Object a = aList.get("ullSongCode");
+                Object b = aList.get("unSongCode");
+
+                String c = aResult.getSongKey();
+                String d= aResult.getSongKey();
+
+                if (a.toString().equals(c)&&b.toString().equals(d)) {
                     impact = true;
                 }
             }
