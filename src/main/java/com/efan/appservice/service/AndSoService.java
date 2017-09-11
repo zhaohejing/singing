@@ -207,9 +207,9 @@ public class AndSoService implements IAndSoService {
                 Object b = aList.get("unSongCode");
 
                 String c = aResult.getSongKey();
-                String d= aResult.getSongKey();
+                String d= aResult.getSongCode();
 
-                if (a.toString().equals(c)&&b.toString().equals(d)) {
+                if (a.toString().equals(d)&&b.toString().equals(c)) {
                     impact = true;
                 }
             }
