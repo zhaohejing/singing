@@ -127,7 +127,7 @@ public class OrderController {
       }
 
       //通知开平
-        model.setBoxId(input.machineId);
+      //  model.setBoxId(input.machineId);
      ObjectResponse temp1=  _orderService.TalkSingIt(model);
 
    // _orderService.OutProductIn(model);
