@@ -13,6 +13,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
 import java.io.IOException;
+import java.util.Date;
 import java.util.List;
 
 /**
@@ -170,5 +171,13 @@ public class OrderController {
         }
 
         return  new ActionResult(result);
+    }
+    /**
+     * 支付成功修改订单状态*/
+    @ApiOperation(value="获取服务器当前时间", notes="远程购买接口")
+    @RequestMapping(value  ="/date" ,method = RequestMethod.POST)
+    public  ActionResult GetNow() {
+        Date now=new Date();
+        return  new ActionResult(now);
     }
 }
