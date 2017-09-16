@@ -105,7 +105,7 @@ public class OrderService implements IOrderService {
         }
        Long less= (end.getTime()-start.getTime())/1000-total*60;
         if(less>0){
-         return  new DecimalFormat("#.00").format(less/3600);
+         return  new DecimalFormat("#").format(less/3600);
         }
           return  "0";
     }
@@ -161,6 +161,9 @@ public class OrderService implements IOrderService {
             count=count==60?60:count+1;
             result.add(new OrderTime(i,i+1,count));
         }
+
+
+
         return  result;
     }
 
