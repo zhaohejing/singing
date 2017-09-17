@@ -128,9 +128,8 @@ public class OrderController {
       }
 
       //通知开平
-      //  model.setBoxId(input.machineId);
+       model.setBoxId(device);
      ObjectResponse temp1=  _orderService.TalkSingIt(model);
-
    // _orderService.OutProductIn(model);
         BodyResponse temp2=  _orderService.OutProductInAsync(temp1,model);
         if(temp1.operation.equals("ok")){
