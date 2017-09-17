@@ -135,6 +135,10 @@ public class OrderService implements IOrderService {
                         Date rr=GetTargetDate(false,i,date);
                         if (ll.getTime()<=te.getToTime().getTime()&&rr.getTime()>=te.getFromTime().getTime()){
                             Integer ttttt=  te.getToTime().getMinutes();
+                            Long deff=te.getToTime().getTime()-te.getFromTime().getTime();
+                            if (ttttt==0&&deff>=3540000){
+                                ttttt=te.getPurchaseTime();
+                            }
                             max= max>ttttt?max:ttttt;
                         }
                     }
@@ -172,7 +176,10 @@ public class OrderService implements IOrderService {
                     continue;
                 }
                 if (ll.getTime()<=te.getToTime().getTime()&&rr.getTime()>=te.getFromTime().getTime()){
-                          Integer ttttt=  te.getToTime().getMinutes();
+                    Integer ttttt=  te.getToTime().getMinutes();
+                    if (ttttt==0&&(te.getToTime().getTime()-te.getFromTime().getTime())>=3540000){
+                        ttttt=te.getPurchaseTime();
+                    }
                           max= max>ttttt?max:ttttt;
                 }
 
@@ -471,7 +478,7 @@ public class OrderService implements IOrderService {
                     hour, 0, 0);
         }else {
             calendar1.set(calendar1.get(Calendar.YEAR), calendar1.get(Calendar.MONTH), calendar1.get(Calendar.DAY_OF_MONTH),
-                    hour, 59, 59);
+                    hour+1, 0, 0);
         }
         return  calendar1.getTime();
     }
