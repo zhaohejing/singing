@@ -38,4 +38,6 @@ public interface IOrderService {
     String ChangeToDevice_code(String room_id);
     List<Order> FindByFilter(String boxId,String openId);
     BaseResponse GetMachineInfo(String boxId);
+    /*获取预定订单列表*/
+     List<OrderTime> GetOrderListAsync(String boxId, Date date);
 }

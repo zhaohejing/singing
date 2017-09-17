@@ -48,7 +48,7 @@ public class OrderController {
     @ApiImplicitParam(name = "input", value = "dto对象", required = true, dataType = "GetOrderInput")
     @RequestMapping(value  ="/booking" ,method = RequestMethod.POST)
     public ActionResult Booking(@RequestBody GetOrderInput input){
-        List<OrderTime> res =_orderService.GetOrderList(input.boxId, input.date);
+        List<OrderTime> res =_orderService.GetOrderListAsync(input.boxId, input.date);
         return  new ActionResult(res);
     }
 
