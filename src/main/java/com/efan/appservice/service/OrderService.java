@@ -168,8 +168,8 @@ public class OrderService implements IOrderService {
             }
             Integer max=0;
             for (Order te:list){
-                Date ll=GetCurrentDateAsync(true,i);
-                Date rr=GetCurrentDateAsync(false,i);
+                Date ll=GetTargetDate(true,i,date);
+                Date rr=GetTargetDate(false,i,date);
                 if(i==nowHour){
                     Integer mmmm=   te.getToTime().getMinutes();
                     count=   mmmm> minitu?mmmm:minitu;
@@ -256,10 +256,11 @@ public class OrderService implements IOrderService {
 
 
      if(input.purchaseTime<60){
-            c.add(Calendar.MINUTE,input.purchaseTime);
+        c.add(Calendar.MINUTE,input.purchaseTime);
          now.add(Calendar.MINUTE,input.purchaseTime);
 
-     }else if(input.purchaseTime>=60&&input.purchaseTime<24*60){
+     }
+     else if(input.purchaseTime>=60&&input.purchaseTime<24*60){
           Integer hour=  input.purchaseTime/60;
           c.add(Calendar.HOUR_OF_DAY,hour );
           c.add(Calendar.MINUTE,input.purchaseTime-hour*60);
