@@ -124,8 +124,28 @@ public class OrderService implements IOrderService {
 
         for (int i = 0; i <24 ; i++) {
             if(end.getYear()>now.getTime().getYear()|| end.getMonth()>now.getTime().getMonth()||end.getDate()>now.getTime().getDate()){
-                result.add(new OrderTime(i,i+1,0));
-                continue;
+                if (list.size()<=0){
+                    result.add(new OrderTime(i,i+1,0));
+                    continue;
+                }else{
+                    Integer count=0;
+                    Integer max=0;
+                    for (Order te:list){
+                        Date ll=GetTargetDate(true,i,date);
+                        Date rr=GetTargetDate(false,i,date);
+                        if (ll.getTime()<=te.getToTime().getTime()&&rr.getTime()>=te.getFromTime().getTime()){
+                            Integer ttttt=  te.getToTime().getMinutes();
+                            max= max>ttttt?max:ttttt;
+                        }
+                    }
+                    count+=  max;
+                    count=count==60?60:count+1;
+                    result.add(new OrderTime(i,i+1,count));
+                    continue;
+                }
+
+
+
             }
             if(end.getYear()<now.getTime().getYear()|| end.getMonth()<now.getTime().getMonth()||end.getDate()<now.getTime().getDate()){
                 result.add(new OrderTime(i,i+1,60));
@@ -443,5 +463,16 @@ public class OrderService implements IOrderService {
         }
         return  calendar1.getTime();
     }
-
+    private  Date GetTargetDate(Boolean start,Integer hour,Date date){
+        Calendar calendar1 = Calendar.getInstance();
+        calendar1.setTime(date);
+        if (start){
+            calendar1.set(calendar1.get(Calendar.YEAR), calendar1.get(Calendar.MONTH), calendar1.get(Calendar.DAY_OF_MONTH),
+                    hour, 0, 0);
+        }else {
+            calendar1.set(calendar1.get(Calendar.YEAR), calendar1.get(Calendar.MONTH), calendar1.get(Calendar.DAY_OF_MONTH),
+                    hour, 59, 59);
+        }
+        return  calendar1.getTime();
+    }
 }
