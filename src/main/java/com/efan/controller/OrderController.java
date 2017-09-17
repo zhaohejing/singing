@@ -93,20 +93,20 @@ public class OrderController {
     @ApiImplicitParam(name = "input", value = "dto对象", required = true, dataType = "CanSingInput")
     @RequestMapping(value  ="/cansingit" ,method = RequestMethod.POST)
     public  ActionResult CanSingIt(@RequestBody CanSingInput input) throws JSONException,IOException{
-       String device=_orderService.ChangeToRoomId(input.machineId);
+       String device=_orderService.ChangeToDevice_code(input.machineId);
        ActionResult result=null;
        if (device.isEmpty()){
            result=  new ActionResult(false,null ,"设备id转换失败！" );
            result.setCode(-1);
            return  result;
        }
-        List<Order> temp =_orderService.FindByFilter(device,input.openId);
+        List<Order> temp =_orderService.FindByFilter(input.machineId,input.openId);
         if (temp!=null&&temp.size()>0){
             result=  new ActionResult(false,null ,"当前时间段已被别人预定！" );
             result.setCode(-3);
             return  result;
         }
-      Order model   =_orderService.GetOrderDetail(input.openId,device);
+      Order model   =_orderService.GetOrderDetail(input.openId,input.machineId);
      BaseResponse r=   _orderService.GetMachineInfo(device);
       if (model==null){
           result=  new ActionResult(false,input.url ,"请来预定吧"   );
@@ -130,7 +130,7 @@ public class OrderController {
       //通知开平
        model.setBoxId(device);
      ObjectResponse temp1=  _orderService.TalkSingIt(model);
-   // _orderService.OutProductIn(model);
+        model.setBoxId(input.machineId);
         BodyResponse temp2=  _orderService.OutProductInAsync(temp1,model);
         if(temp1.operation.equals("ok")){
             result=  new ActionResult(true,model.getOrderNum(),"请去演唱吧");
