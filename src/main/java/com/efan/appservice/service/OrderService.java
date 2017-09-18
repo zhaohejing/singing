@@ -209,7 +209,7 @@ public class OrderService implements IOrderService {
             if(end.getYear()>now.getTime().getYear()|| end.getMonth()>now.getTime().getMonth()||end.getDate()>now.getTime().getDate())
             {
                 if (list.size()<=0){
-                    result.add(new OrderTime(i,i+1,0));
+                    result.add(new OrderTime(i,i+1,1));
                     continue;
                 }else
 
