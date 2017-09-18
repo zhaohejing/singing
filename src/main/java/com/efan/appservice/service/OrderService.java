@@ -205,17 +205,55 @@ public class OrderService implements IOrderService {
         Integer nowHour=now.get(Calendar.HOUR_OF_DAY);
         Integer minitu=now.get(Calendar.MINUTE);
 
-        for (int i = 0; i <24 ; i++) {
-            if(end.getYear()>now.getTime().getYear()|| end.getMonth()>now.getTime().getMonth()||end.getDate()>now.getTime().getDate())
+
+
+        if(date.getDate()< now.getTime().getDate())
+        {
+            for (int i = 0; i <24 ; i++)
+                result.add(new OrderTime(i,i+1,60));
+        }else if(date.getDate() > now.getTime().getDate() )
+        {
+            for (int i = 0; i <24 ; i++)
             {
-                if (list.size()<=0){
-                    result.add(new OrderTime(i,i+1,1));
+                Integer count=0;
+                Integer max=0;
+                for (Order te:list)
+                {
+                    Date ll=GetTargetDate(true,i,date);
+                    Date rr=GetTargetDate(false,i,date);
+
+                    if (ll.getTime()<=te.getToTime().getTime()&&rr.getTime()>=te.getFromTime().getTime())
+                    {
+                        if(te.getToTime().getHours()>i )
+                        {
+                            result.add(new OrderTime(i,i+1,60));
+                            continue;
+                        }else
+                        {
+                            Integer ttttt=  te.getToTime().getMinutes();
+                            max= max>ttttt?max:ttttt;
+                        }
+
+                    }
+                }
+                count=  max;
+                count=count==60?60:count+1;
+                result.add(new OrderTime(i,i+1,count));
+            }
+        }else
+        {
+            for (int i = 0; i <24 ; i++)
+            {
+
+                Integer count=0;
+                Integer max=0;
+
+                if (nowHour>i)
+                {
+                    result.add(new OrderTime(i,i+1,60));
                     continue;
                 }else
-
                 {
-                    Integer count=0;
-                    Integer max=0;
                     for (Order te:list)
                     {
                         Date ll=GetTargetDate(true,i,date);
@@ -231,71 +269,20 @@ public class OrderService implements IOrderService {
                                 Integer ttttt=  te.getToTime().getMinutes();
                                 max= max>ttttt?max:ttttt;
                             }
-
                         }
-                    }
-                    count+=  max;
-                    count=count==60?60:count+1;
-                    result.add(new OrderTime(i,i+1,count));
-                    continue;
-                }
+                        if(i==nowHour)
+                        {
+                            Integer mmmm=   now.getTime().getMinutes();
+                            max= max>mmmm?max:mmmm;
+                        }
+                        count=  max;
+                        count=count==60?60:count+1;
+                        result.add(new OrderTime(i,i+1,count));
 
-
-
-            }
-            if(end.getYear()<now.getTime().getYear()|| end.getMonth()<now.getTime().getMonth()||end.getDate()<now.getTime().getDate())
-            {
-                result.add(new OrderTime(i,i+1,60));
-                continue;
-            }
-            if (nowHour>i)
-            {
-                result.add(new OrderTime(i,i+1,60));
-                continue;
-            }
-            Integer count=0;
-
-            if (list.size()<=0)
-            {
-                if(i==nowHour)
-                {
-                    count=minitu;
-                }
-            }
-            Integer max=0;
-            for (Order te:list)
-            {
-                Date ll=GetTargetDate(true,i,date);
-                Date rr=GetTargetDate(false,i,date);
-
-                if (ll.getTime()<=te.getToTime().getTime()&&rr.getTime()>=te.getFromTime().getTime())
-                {
-                    if(te.getToTime().getHours()>i )
-                    {
-                        max=60;
-
-                    }else
-                    {
-                        Integer ttttt=  te.getToTime().getMinutes();
-                        max= max>ttttt?max:ttttt;
                     }
                 }
-                if(i==nowHour)
-                {
-                    Integer mmmm=   now.getTime().getMinutes();
-                    max= max>mmmm?max:mmmm;
-                }
-
-
-
             }
-            count+=  max;
-            count=count==60?60:count+1;
-            result.add(new OrderTime(i,i+1,count));
         }
-
-
-
         return  result;
     }
 
