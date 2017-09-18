@@ -226,8 +226,7 @@ public class OrderService implements IOrderService {
                     {
                         if(te.getToTime().getHours()>i )
                         {
-                            result.add(new OrderTime(i,i+1,60));
-                            continue;
+                            max=60;
                         }else
                         {
                             Integer ttttt=  te.getToTime().getMinutes();
@@ -275,12 +274,12 @@ public class OrderService implements IOrderService {
                             Integer mmmm=   now.getTime().getMinutes();
                             max= max>mmmm?max:mmmm;
                         }
-                        count=  max;
-                        count=count==60?60:count+1;
-                        result.add(new OrderTime(i,i+1,count));
 
                     }
                 }
+                count=  max;
+                count=count==60?60:count+1;
+                result.add(new OrderTime(i,i+1,count));
             }
         }
         return  result;
