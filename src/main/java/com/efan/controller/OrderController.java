@@ -149,13 +149,14 @@ public class OrderController {
     public  ActionResult UpdatePayState(@RequestBody OrderStateInput input) throws JSONException,IOException{
         ActionResult result=null;
         Order model   =_orderService.UpdateOrderState(input);
+        String roomid=model.getBoxId();
         if (model.getOrderType()==2){
             //调用开屏
             if (model.getState()==1){
                 String device=_orderService.ChangeToDevice_code(model.getBoxId());
                 model.setBoxId(device);
                 ObjectResponse temp1=  _orderService.TalkSingIt(model);
-                // _orderService.OutProductIn(model);
+                model.setBoxId(roomid);
                 BodyResponse temp2=  _orderService.OutProductInAsync(temp1,model);
                 if(temp1.operation.equals("ok")){
                     result.setCode(1);
