@@ -197,16 +197,16 @@ public class OrderService implements IOrderService {
     /*获取预定订单列表*/
     public List<OrderTime> GetOrderListAsync(String boxId, Date date){
         Calendar now =Calendar.getInstance();
-        Date start=GenderTime(date,true);
+        Date start=now.getTime();
+        if(date.getTime()>now.getTime().getTime()){
+             start=GenderStart(date);
+        }
         Date end=GenderTime(date,false);
         List<OrderTime> result=new ArrayList<>();
         List<Order> list= _orderRepository.findOrders(boxId,start,end);
         Integer nowDay=now.get(Calendar.DAY_OF_MONTH);
         Integer nowHour=now.get(Calendar.HOUR_OF_DAY);
         Integer minitu=now.get(Calendar.MINUTE);
-
-
-
         if(date.getDate()< now.getTime().getDate())
         {
             for (int i = 0; i <24 ; i++)
@@ -532,7 +532,15 @@ public class OrderService implements IOrderService {
                     23, 59, 59);
         }
         return  calendar1.getTime();
+    }
+    private  Date GenderStart(Date time){
+        Calendar calendar1 = Calendar.getInstance();
+        calendar1.setTime(time);
 
+            calendar1.set(calendar1.get(Calendar.YEAR), calendar1.get(Calendar.MONTH), calendar1.get(Calendar.DAY_OF_MONTH),
+                    0, 0, 0);
+
+        return  calendar1.getTime();
     }
     private Timestamp DateToTimestamp(Date date){
         SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
