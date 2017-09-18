@@ -93,9 +93,9 @@ public class OrderController {
     @ApiImplicitParam(name = "input", value = "dto对象", required = true, dataType = "CanSingInput")
     @RequestMapping(value  ="/cansingit" ,method = RequestMethod.POST)
     public  ActionResult CanSingIt(@RequestBody CanSingInput input) throws JSONException,IOException{
-       String device=_orderService.ChangeToDevice_code(input.machineId);
+       String roomId=_orderService.ChangeToRoomId(input.machineId);
        ActionResult result=null;
-       if (device.isEmpty()){
+       if (roomId.isEmpty()){
            result=  new ActionResult(false,null ,"设备id转换失败！" );
            result.setCode(-1);
            return  result;
@@ -107,19 +107,19 @@ public class OrderController {
             return  result;
         }
       Order model   =_orderService.GetOrderDetail(input.openId,input.machineId);
-     BaseResponse r=   _orderService.GetMachineInfo(device);
+     BaseResponse r=   _orderService.GetMachineInfo(input.machineId);
       if (model==null){
           result=  new ActionResult(false,input.url ,"请来预定吧"   );
           result.setCode(-2);
           result.setMachine(r);
-          result.setRoomId(device);
+          result.setRoomId(roomId);
           return  result;
       }
       if ( model.getState()!=1){
           result=  new ActionResult(false,input.url ,"请来预定吧"   );
           result.setCode(-2);
           result.setMachine(r);
-          result.setRoomId(device);
+          result.setRoomId(roomId);
           return  result;
       }else if(!model.getUserKey().equals(input.openId)){
           result=  new ActionResult(false,null ,"当前时间段已被别人预定！" );
@@ -128,9 +128,9 @@ public class OrderController {
       }
 
       //通知开平
-       model.setBoxId(device);
+       model.setBoxId(input.machineId);
      ObjectResponse temp1=  _orderService.TalkSingIt(model);
-        model.setBoxId(input.machineId);
+        model.setBoxId(roomId);
         BodyResponse temp2=  _orderService.OutProductInAsync(temp1,model);
         if(temp1.operation.equals("ok")){
             result=  new ActionResult(true,model.getOrderNum(),"请去演唱吧");
@@ -139,7 +139,6 @@ public class OrderController {
             result=  new ActionResult(true,model.getOrderNum(),"开屏失败，联系管理员");
             result.setCode(0);
         }
-
         return  result;
     }
     /**
