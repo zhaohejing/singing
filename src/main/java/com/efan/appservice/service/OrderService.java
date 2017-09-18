@@ -197,10 +197,7 @@ public class OrderService implements IOrderService {
     /*获取预定订单列表*/
     public List<OrderTime> GetOrderListAsync(String boxId, Date date){
         Calendar now =Calendar.getInstance();
-        Date start=now.getTime();
-        if(date.getTime()>now.getTime().getTime()){
-             start=GenderStart(date);
-        }
+        Date start=GenderStart(now.getTime()) ;
         Date end=GenderTime(date,false);
         List<OrderTime> result=new ArrayList<>();
         List<Order> list= _orderRepository.findOrders(boxId,start,end);
@@ -269,12 +266,11 @@ public class OrderService implements IOrderService {
                                 max= max>ttttt?max:ttttt;
                             }
                         }
-                        if(i==nowHour)
-                        {
-                            Integer mmmm=   now.getTime().getMinutes();
-                            max= max>mmmm?max:mmmm;
-                        }
-
+                    }
+                    if(i==nowHour)
+                    {
+                        Integer mmmm=   now.getTime().getMinutes();
+                        max= max>mmmm?max:mmmm;
                     }
                 }
                 count=  max;
@@ -536,9 +532,16 @@ public class OrderService implements IOrderService {
     private  Date GenderStart(Date time){
         Calendar calendar1 = Calendar.getInstance();
         calendar1.setTime(time);
-
             calendar1.set(calendar1.get(Calendar.YEAR), calendar1.get(Calendar.MONTH), calendar1.get(Calendar.DAY_OF_MONTH),
                     0, 0, 0);
+
+        return  calendar1.getTime();
+    }
+    private  Date GenderNowNoMinitie(Date time){
+        Calendar calendar1 = Calendar.getInstance();
+        calendar1.setTime(time);
+        calendar1.set(calendar1.get(Calendar.YEAR), calendar1.get(Calendar.MONTH), calendar1.get(Calendar.DAY_OF_MONTH),
+                calendar1.get(Calendar.HOUR_OF_DAY), 0, 0);
 
         return  calendar1.getTime();
     }
