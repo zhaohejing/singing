@@ -100,14 +100,14 @@ public class OrderController {
            result.setCode(-1);
            return  result;
        }
-        List<Order> temp =_orderService.FindByFilter(input.machineId,input.openId);
+        List<Order> temp =_orderService.FindByFilter(roomId,input.openId);
         if (temp!=null&&temp.size()>0){
             result=  new ActionResult(false,null ,"当前时间段已被别人预定！" );
             result.setCode(-3);
             return  result;
         }
-      Order model   =_orderService.GetOrderDetail(input.openId,input.machineId);
-     BaseResponse r=   _orderService.GetMachineInfo(input.machineId);
+      Order model   =_orderService.GetOrderDetail(input.openId,roomId);
+     BaseResponse r=   _orderService.GetMachineInfo(roomId);
       if (model==null){
           result=  new ActionResult(false,input.url ,"请来预定吧"   );
           result.setCode(-2);
