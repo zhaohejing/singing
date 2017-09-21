@@ -25,9 +25,8 @@ public interface IOrderRepository extends JpaRepository<Order,Long> {
 
     Page<Order> findAllByUserKey(String userKey, Pageable pageable   );
 
-
     Order findByOrderNumEquals(String order);
-
+    Order findByEfanOrderEquals(String order);
     @Query("select u from Order u where u.boxId=:boxId   and u.state=1"  )
     List<Order> findboxandstate(@Param("boxId")String boxId);
 

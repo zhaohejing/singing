@@ -69,6 +69,13 @@ public class OrderController {
         }
     }
 
+    /*创建支付订单*/
+    @ApiOperation(value="退款", notes="远程购买接口")
+    @RequestMapping(value  ="/payoff" ,method = RequestMethod.POST)
+    public ActionResult PayOff(@RequestParam String order) throws  Exception{
+            _orderService.PayOffOrder(order);
+            return  new ActionResult(true);
+    }
     /*支付接口*/
     @ApiOperation(value="验证是否可以支付", notes="远程购买接口")
     @ApiImplicitParam(name = "input", value = "dto对象", required = true, dataType = "ValidatePayInput")
