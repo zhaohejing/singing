@@ -328,7 +328,7 @@ public class OrderService implements IOrderService {
      /*获取我的订单*/
     public ResultModel<Order> GetMyOrders(BaseInput input){
         Pageable pageable = new PageRequest(input.getIndex()-1, input.getSize(),null);
-        Page<Order> res=  _orderRepository.findAllByUserKey(input.getFilter(), pageable);
+        Page<Order> res=  _orderRepository.findAllByUserKeyOrderByCreationTimeDesc(input.getFilter(), pageable);
         return new ResultModel<>(res.getContent(), res.getTotalElements());
 
     }
