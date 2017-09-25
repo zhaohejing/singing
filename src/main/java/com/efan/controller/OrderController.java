@@ -154,7 +154,7 @@ public class OrderController {
     @ApiImplicitParam(name = "input", value = "{order:订单号,state:支付状态}", required = true, dataType = "OrderStateInput")
     @RequestMapping(value  ="/paystate" ,method = RequestMethod.POST)
     public  ActionResult UpdatePayState(@RequestBody OrderStateInput input) throws JSONException,IOException{
-        ActionResult result=null;
+        ActionResult result=new ActionResult();
         Order model   =_orderService.UpdateOrderState(input);
         String roomid=model.getBoxId();
         if (model.getOrderType()==2){
