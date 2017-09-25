@@ -399,9 +399,11 @@ public class OrderService implements IOrderService {
     public Order UpdateOrderState(OrderStateInput input){
       Order or=_orderRepository.findByOrderNumEquals(input.order);
       if (or!=null){
-           or.setState(input.state);
-           or.setEfanOrder(input.efanOrder);
-       or=   _orderRepository.saveAndFlush(or);
+          if(or.getState()==0){
+              or.setState(input.state);
+              or.setEfanOrder(input.efanOrder);
+              or=   _orderRepository.saveAndFlush(or);
+          }
       }
       return  or;
     }
