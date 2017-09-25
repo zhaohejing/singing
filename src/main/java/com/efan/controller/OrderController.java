@@ -173,7 +173,7 @@ public class OrderController {
                 }
             }
         }else   {
-            result.setCode(1);
+            result.setCode(0);
         }
 
         return  new ActionResult(result);
