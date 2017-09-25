@@ -401,9 +401,9 @@ public class OrderService implements IOrderService {
       if (or!=null){
           if(or.getState()==0){
               or.setState(input.state);
-              or.setEfanOrder(input.efanOrder);
-              or=   _orderRepository.saveAndFlush(or);
           }
+          or.setEfanOrder(input.efanOrder);
+          or=   _orderRepository.saveAndFlush(or);
       }
       return  or;
     }
