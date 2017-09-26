@@ -280,14 +280,14 @@ public class OrderService implements IOrderService {
         }
         return  result;
     }
-    public  Boolean  PayOffOrder(String order){
+    public  ActionResult  PayOffOrder(String order){
         Order o=_orderRepository.findByEfanOrderEquals(order);
         if (o!=null){
             o.setState(3);
             _orderRepository.saveAndFlush(o);
-            return  true;
+            return  new ActionResult(true,"退订成功");
         }
-return  false;
+return  new ActionResult(false,"订单不存在");
     }
 
 ///根据lexington获取套餐详情

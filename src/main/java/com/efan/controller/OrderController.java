@@ -74,8 +74,7 @@ public class OrderController {
     @ApiOperation(value="退款", notes="远程购买接口")
     @RequestMapping(value  ="/payoff" ,method = RequestMethod.POST)
     public ActionResult PayOff(@RequestParam String order) throws  Exception{
-         Boolean res=   _orderService.PayOffOrder(order);
-            return  new ActionResult(res);
+      return   _orderService.PayOffOrder(order);
     }
     /*支付接口*/
     @ApiOperation(value="验证是否可以支付", notes="远程购买接口")
