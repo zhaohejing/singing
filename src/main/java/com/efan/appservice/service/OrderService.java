@@ -280,13 +280,14 @@ public class OrderService implements IOrderService {
         }
         return  result;
     }
-    public  void  PayOffOrder(String order){
+    public  Boolean  PayOffOrder(String order){
         Order o=_orderRepository.findByEfanOrderEquals(order);
         if (o!=null){
             o.setState(3);
             _orderRepository.saveAndFlush(o);
+            return  true;
         }
-
+return  false;
     }
 
 ///根据lexington获取套餐详情

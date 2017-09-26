@@ -5,6 +5,7 @@ import com.efan.controller.dtos.OrderTime;
 import com.efan.controller.inputs.*;
 import com.efan.core.page.*;
 import com.efan.core.primary.Order;
+import com.sun.org.apache.xpath.internal.operations.Bool;
 import io.swagger.annotations.ApiImplicitParam;
 import io.swagger.annotations.ApiOperation;
 import org.aspectj.weaver.ast.Or;
@@ -73,8 +74,8 @@ public class OrderController {
     @ApiOperation(value="退款", notes="远程购买接口")
     @RequestMapping(value  ="/payoff" ,method = RequestMethod.POST)
     public ActionResult PayOff(@RequestParam String order) throws  Exception{
-            _orderService.PayOffOrder(order);
-            return  new ActionResult(true);
+         Boolean res=   _orderService.PayOffOrder(order);
+            return  new ActionResult(res);
     }
     /*支付接口*/
     @ApiOperation(value="验证是否可以支付", notes="远程购买接口")

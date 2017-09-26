@@ -40,5 +40,5 @@ public interface IOrderService {
     BaseResponse GetMachineInfo(String boxId);
     /*获取预定订单列表*/
      List<OrderTime> GetOrderListAsync(String boxId, Date date);
-    void  PayOffOrder(String order);
+    Boolean  PayOffOrder(String order);
 }
