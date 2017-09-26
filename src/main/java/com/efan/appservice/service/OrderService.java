@@ -466,6 +466,7 @@ public class OrderService implements IOrderService {
 
     }
     public ObjectResponse TalkSingIt(Order input) throws JSONException,IOException {
+        logger.error("--------------------------------"+ new Gson().toJson(input));
         Timestamp now = new Timestamp(System.currentTimeMillis());
             now= input.getFromTime().getTime()<=now.getTime()?now:input.getFromTime();
         JSONObject map=new JSONObject();
@@ -480,6 +481,7 @@ public class OrderService implements IOrderService {
         map.put("mode","sale");
         map.put("duration",(input.getToTime().getTime()-now.getTime())/1000 );
         String result=   HttpUtils.postObj("https://cloud.xungevod.com:11443/kiosk/operation.html",map);
+        logger.error("--------------------------------"+result);
         ObjectResponse res;
         try{
             res =   new Gson().fromJson(result,ObjectResponse.class);
@@ -498,6 +500,7 @@ public class OrderService implements IOrderService {
     }
 
     public BodyResponse OutProductInAsync(ObjectResponse response, Order input) throws JSONException {
+        logger.error("--------------------------------"+ new Gson().toJson(input));
         SimpleDateFormat df = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");//设置日期格式
         JSONArray arr=new JSONArray();
         JSONObject obj=new JSONObject();
@@ -509,6 +512,7 @@ public class OrderService implements IOrderService {
         obj.put("vendoutStatus",  response.operation.equals("ok")? "VENDOUT_SUCCESS":"VENDOUT_FAILEd");
           arr.put(obj);
         String result=   HttpUtils.postObj("http://openapi.efanyun.com/vendout/report/ktv",arr);
+        logger.error("--------------------------------"+result);
         BodyResponse res;
         try{
             res =   new Gson().fromJson(result,BodyResponse.class);
