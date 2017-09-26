@@ -475,7 +475,7 @@ public class OrderService implements IOrderService {
         map.put("openid",input.getUserKey());
         map.put("orderid",input.getOrderNum());
         map.put("serImage","");
-        map.put("singer", CodeUtil.emojiConvert(input.getConsumerName()));
+        map.put("singer", "");
         map.put("method","open");
         map.put("mode","sale");
         map.put("duration",(input.getToTime().getTime()-now.getTime())/1000 );
