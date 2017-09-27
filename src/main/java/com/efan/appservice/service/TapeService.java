@@ -94,7 +94,7 @@ public class TapeService implements ITapeService {
     //获取我的点歌列表
     public ResultModel<MySongs> GetMySongsList(FilterModel model){
         Pageable pageable = new PageRequest(model.index-1, model.size,null);
-        Page<MySongs> res=  _mysongsRepository.findAllByUserKeyEqualsAndStateEqualsOrderBySortDesc(model.filter,true, pageable);
+        Page<MySongs> res=  _mysongsRepository.findAllByUserKeyEqualsAndStateEqualsOrderByCreationTimeDesc(model.filter,true, pageable);
         return  new ResultModel<>( res.getContent(),res.getTotalElements());
     }
     //排序我的歌单
